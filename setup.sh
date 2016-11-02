@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# get script's path
+# get script's dir
 pushd $(dirname $0) > /dev/null
 this_dir=$(pwd -P)
 popd > /dev/null
@@ -16,8 +16,17 @@ for (( index=0; index<${num_files}; ++index )); do
 done
 
 # special case files
-terminator_path=$home_dir/.config/terminator
-mkdir -p "${terminator_path}"
-ln -s "${this_dir}/terminator-config" "${terminator_path}/config"
+terminator_dir=$home_dir/.config/terminator
+mkdir -p "${terminator_dir}"
+ln -s "${this_dir}/terminator-config" "${terminator_dir}/config"
 
 ln -s "${this_dir}/aliases.zsh" "${home_dir}/.oh-my-zsh/custom/aliases.zsh"
+
+# need check because follows symlink otherwise
+snippets_dir=$home_dir/.janus/mysnippets
+if [ ! -L "${snippets_dir}/snippets" ]; then
+  mkdir -p "${snippets_dir}"
+  ln -s "${this_dir}/snippets" "${snippets_dir}/snippets"
+else
+  echo "Snippets folder exists in janus config"
+fi

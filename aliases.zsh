@@ -19,6 +19,7 @@ alias python="python3.5"
 alias ssh_home="ssh adam@69.180.253.138 -p 20055"
 
 # some more ls aliases that were being overwritten
+alias ls='ls --color'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
