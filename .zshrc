@@ -85,7 +85,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# fix vim not seeing 256-color terminal
 [[ $COLORTERM = gnome-terminal && ! $TERM = screen-256color ]] && TERM=xterm-256color
+
+# set vim as default editor
+export VISUAL=vim
+export EDITOR=vim
 
 # colorize man pages
 man() {
