@@ -104,3 +104,6 @@ man() {
   command man "$@"
 }
 
+if [ -e $HOME/.zshrc.after ]; then
+  source $HOME/.zshrc.after
+fi
