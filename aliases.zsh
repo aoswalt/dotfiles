@@ -23,6 +23,7 @@ alias ls='ls --color'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias tree="tree -C"
 
 
 # start web server
@@ -57,8 +58,8 @@ function webstop() {
 alias hsk=webstop
 
 
+# run task in background
 function detach() {
-  #nohup wcmd "$@" &> /dev/null &
   if test -t 1; then
     exec 1> /dev/null
   fi
@@ -71,13 +72,29 @@ function detach() {
 }
 
 
+# start tmux optionally with script file
 function mux() {
-  com="tmux"
   if [ $1 ]; then
-    com="$com -f $1"
+    file=$1
   fi
 
-  eval "$com attach"
-}
+  # if the argument can't be found, try finding matches
+  if [ ! -f "$file" ]; then
+    if [ -f "$file.tmux" ]; then
+      file="$file.tmux"
+    elif [ -f "$HOME/.tmux/$file" ]; then
+      file="$HOME/.tmux/$file"
+    elif [ -f "$HOME/.tmux/$file.tmux" ]; then
+      file="$HOME/.tmux/$file.tmux"
+    else
+      echo "Could not find tmux script: $file"
+      exit 1
+    fi
+  fi
 
-alias tree="tree -C"
+  if [ $file ]; then
+    file="-f $file attach"
+  fi
+
+  eval "tmux $file"
+}
