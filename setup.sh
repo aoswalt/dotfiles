@@ -25,3 +25,10 @@ if [ ! -L "${snippets_dir}/snippets" ]; then
 else
   echo "Snippets folder exists in janus config"
 fi
+
+# clone needed repos
+if [ ! -d "${home_dir}/.janus/onedark" ]; then
+  git clone git@github.com:aoswalt/onedark.vim.git $home_dir/.janus/onedark
+else
+  echo "onedark folder exists"
+fi
