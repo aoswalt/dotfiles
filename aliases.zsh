@@ -70,5 +70,14 @@ function detach() {
   "$@" &
 }
 
-alias tree="tree -C"
 
+function mux() {
+  com="tmux"
+  if [ $1 ]; then
+    com="$com -f $1"
+  fi
+
+  eval "$com attach"
+}
+
+alias tree="tree -C"
