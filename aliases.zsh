@@ -57,13 +57,6 @@ function webstop() {
 alias hsk=webstop
 
 
-#alias atom=/c/Dropbox/atom/bin/atom
-#alias atom="nohup wrun \"C:\Dropbox\atom\bin\atom.cmd\" &>/dev/null &"
-#alias atom="wstart \"C:\Dropbox\atom\app-1.9.3\atom.exe\""
-alias atom="wstart \"C:\Users\adamo\AppData\Local\atom\bin\atom.cmd\""
-
-alias dgwatch="kill $(pgrep -f 'gulp') && nohup wcmd gulp watch &> /dev/null &"
-
 function detach() {
   #nohup wcmd "$@" &> /dev/null &
   if test -t 1; then
