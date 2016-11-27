@@ -107,3 +107,5 @@ man() {
 if [ -e $HOME/.zshrc.after ]; then
   source $HOME/.zshrc.after
 fi
+
+[[ $TERM != screen* ]] && [ -z $TMUX ] && { tmux attach || tmux new-session -s home; }
