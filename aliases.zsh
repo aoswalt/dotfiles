@@ -17,13 +17,14 @@ alias gs="git status"
 #alias hs="http-server -i"
 alias python="python3.5"
 alias ssh_home="ssh adam@69.180.253.138 -p 20055"
+alias tree="tree -C"
+alias npm-exec="PATH=$(npm bin):$PATH"  # run node module
 
 # some more ls aliases that were being overwritten
 alias ls='ls --color'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias tree="tree -C"
 
 
 # start web server
