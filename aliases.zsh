@@ -79,7 +79,7 @@ function mux() {
   fi
 
   # if the argument can't be found, try finding matches
-  if [ ! -f "$file" ]; then
+  if [ $file ] && [ ! -f "$file" ]; then
     if [ -f "$file.tmux" ]; then
       file="$file.tmux"
     elif [ -f "$HOME/.tmux/$file" ]; then
