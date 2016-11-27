@@ -96,5 +96,9 @@ function mux() {
     file="-f $file attach"
   fi
 
-  eval "tmux $file"
+  if [ $2 ]; then
+    session="; tmux rename-session $2"
+  fi
+
+  eval "tmux $file $session"
 }
