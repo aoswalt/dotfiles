@@ -18,7 +18,7 @@ alias gs="git status"
 alias python="python3.5"
 alias ssh_home="ssh adam@69.180.253.138 -p 20055"
 alias tree="tree -C"
-alias npm-exec="PATH=$(npm bin):$PATH"  # run node module
+function npm-exec() { PATH=$(npm bin):$PATH; $@ }   # run node module
 
 # some more ls aliases that were being overwritten
 alias ls='ls --color'
