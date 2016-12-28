@@ -9,8 +9,7 @@ Plug 'scrooloose/nerdtree' , {'on': 'NERDTreeToggle'}
 Plug 'aoswalt/onedark.vim'
 call plug#end()
 
-let mapleader = ' ' "use space as leader
-
+" display/ui
 set t_Co=256
 colorscheme onedark
 
@@ -18,13 +17,19 @@ set cursorline      "highlihght cursorline
 set incsearch       "highlight first matching search while typing
 set scrolloff=4     "keep more lines on screen while scrolling
 
+
+" QoL tweaks
 set undolevels=100  "more undo history
+
+set hidden          "allow hiding a buffer instead of requring save
+
+
+" keybindings
+let mapleader = ' ' "use space as leader
 
 "move cursor into wrapped lines
 nnoremap <Up> gk
 nnoremap <Down> gj
-
-set hidden          "allow hiding a buffer instead of requring save
 
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 
