@@ -6,11 +6,13 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'scrooloose/nerdtree' , {'on': 'NERDTreeToggle'}
+Plug 'aoswalt/onedark.vim'
 call plug#end()
 
-let mapleader = ' '  "use space as leader
+let mapleader = ' ' "use space as leader
 
-"set t_Co=256        "ensure 256 colors
+set t_Co=256
+colorscheme onedark
 
 set cursorline      "highlihght cursorline
 set incsearch       "highlight first matching search while typing
