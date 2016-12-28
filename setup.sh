@@ -41,3 +41,9 @@ if [ ! -d "${home_dir}/.janus/onedark" ]; then
 else
   echo "onedark folder exists"
 fi
+
+nvim_dir=$home_dir/.config/nvim
+if [ ! -d "${nvim_dir}" ]; then
+  mkdir -p "${nvim_dir}"
+fi
+ln -s "${this_dir}/init.vim" "${nvim_dir}/init.vim"
