@@ -14,7 +14,6 @@ set t_Co=256
 colorscheme onedark
 
 set cursorline      "highlihght cursorline
-set incsearch       "highlight first matching search while typing
 set scrolloff=4     "keep more lines on screen while scrolling
 
 
