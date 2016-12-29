@@ -18,8 +18,6 @@ set scrolloff=4     "keep more lines on screen while scrolling
 
 
 " QoL tweaks
-set undolevels=100  "more undo history
-
 set hidden          "allow hiding a buffer instead of requring save
 
 
