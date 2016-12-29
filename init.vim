@@ -6,6 +6,9 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'scrooloose/nerdtree' , {'on': 'NERDTreeToggle'}
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+Plug 'neomake/neomake', {'on': 'Neomake'}
 Plug 'airblade/vim-gitgutter'
 Plug 'aoswalt/onedark.vim'
 call plug#end()
@@ -32,6 +35,9 @@ nnoremap <Down> gj
 
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 
+
+let g:deoplete#enable_at_startup = 1
+set completeopt+=noinsert  "auto-select first completion
 
 
 " below taken from janus to have expected NERDTree usage
