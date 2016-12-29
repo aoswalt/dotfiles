@@ -13,6 +13,7 @@ call plug#end()
 set t_Co=256
 colorscheme onedark
 
+set number          "line numbers
 set cursorline      "highlihght cursorline
 set scrolloff=4     "keep more lines on screen while scrolling
 
