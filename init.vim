@@ -6,6 +6,7 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'scrooloose/nerdtree' , {'on': 'NERDTreeToggle'}
+Plug 'airblade/vim-gitgutter'
 Plug 'aoswalt/onedark.vim'
 call plug#end()
 
