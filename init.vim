@@ -20,10 +20,17 @@ colorscheme onedark
 set number          "line numbers
 set cursorline      "highlihght cursorline
 set scrolloff=4     "keep more lines on screen while scrolling
+set list            "enable invisible characters
 
 
 " QoL tweaks
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
 set hidden          "allow hiding a buffer instead of requring save
+set splitbelow      "default horizontal split to lower
+set splitright      "default vertical split to right
 
 
 " keybindings
