@@ -8,6 +8,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'scrooloose/nerdtree' , {'on': 'NERDTreeToggle'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+Plug 'Raimondi/delimitMate'
 Plug 'neomake/neomake', {'on': 'Neomake'}
 Plug 'airblade/vim-gitgutter'
 Plug 'aoswalt/onedark.vim'
