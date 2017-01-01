@@ -10,6 +10,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'Raimondi/delimitMate'
 Plug 'neomake/neomake', {'on': 'Neomake'}
+Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'aoswalt/onedark.vim'
 call plug#end()
@@ -42,6 +43,7 @@ nnoremap <Up> gk
 nnoremap <Down> gj
 
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+map <leader>/ <plug>NERDCommenterToggle<CR>
 
 
 let g:deoplete#enable_at_startup = 1
