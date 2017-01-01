@@ -48,6 +48,9 @@ let g:deoplete#enable_at_startup = 1
 set completeopt+=noinsert  "auto-select first completion
 
 
+autocmd! BufWritePost * Neomake
+
+
 " below taken from janus to have expected NERDTree usage
 augroup AuNERDTreeCmd
 autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
