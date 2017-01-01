@@ -103,3 +103,5 @@ function! s:UpdateNERDTree(...)
     endif
   endif
 endfunction
+
+augroup END
