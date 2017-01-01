@@ -8,7 +8,7 @@ popd > /dev/null
 home_dir=$(echo $HOME)
 
 # simple files
-files=(".bashrc" ".vimrc.after" ".vimrc.before" ".zshrc" ".tmux.conf")
+files=(".bashrc" ".vimrc.after" ".vimrc.before" ".zshrc" ".tmux.conf" ".eslintrc.json")
 num_files=${#files[@]}
 
 for (( index=0; index<${num_files}; ++index )); do
