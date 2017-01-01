@@ -46,6 +46,15 @@
     "no-octal-escape": "warn",
     "no-octal": "warn",
     "no-param-reassign": "warn",
+    "no-redeclare": ["error", { "builtinGlobals": true }],
+    "no-return-await": "warn",
+    "no-self-assign": ["error", {"props": true}],
+    "no-self-compare": "error",
+    "no-sequences": "error",
+    "no-throw-literal": "error",
+    "no-unmodified-loop-condition": "warn",
+    "no-useless-concat": "warn",
+    "no-useless-return": "warn",
     "semi": ["error", "never"]
   }
 }
