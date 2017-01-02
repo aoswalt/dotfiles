@@ -1,5 +1,6 @@
 {
   "rules": {
+    // Possible Errors
     "no-constant-condition": ["error", { "checkLoops": false }],
     "no-dupe-args": "error",
     "no-dupe-keys": "error",
@@ -21,6 +22,7 @@
     "no-unsafe-negation": "warn",
     "use-isnan": "error",
     "valid-typeof": "warn",
+    // Best Practices
     "array-callback-return": "warn",
     "block-scoped-var": "warn",
     "complexity": ["warn", 10],
@@ -55,6 +57,15 @@
     "no-unmodified-loop-condition": "warn",
     "no-useless-concat": "warn",
     "no-useless-return": "warn",
+    // Strict Mode
+    //"strict":["error",
+    // Variables
+    "no-shadow-restricted-names": "error",
+    "no-shadow": "warn",
+    "no-undef-init": "warn",
+    "no-undef": ["error", { "typeof": true }],
+    "no-unused-vars": "warn",
+    "no-use-before-define": "warn",
     "semi": ["error", "never"]
   }
 }
