@@ -43,7 +43,8 @@ nnoremap <Up> gk
 nnoremap <Down> gj
 
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
-map <leader>/ <plug>NERDCommenterToggle<CR>
+map <leader>/ <plug>NERDCommenterToggle<CR><Up>
+let g:NERDTrimTrailingWhitespace = 1
 
 
 let g:deoplete#enable_at_startup = 1
