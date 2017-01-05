@@ -43,6 +43,9 @@ let mapleader = ' ' "use space as leader
 nnoremap <Up> gk
 nnoremap <Down> gj
 
+"mimic D,C
+nmap Y y$
+
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 map <leader>/ <plug>NERDCommenterToggle<CR><Up>
 let g:NERDTrimTrailingWhitespace = 1
