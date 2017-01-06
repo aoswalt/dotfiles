@@ -56,6 +56,9 @@ nnoremap <Down> gj
 "mimic D,C
 nmap Y y$
 
+" cycle through popup menu options with <TAB>
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 map <leader>/ <plug>NERDCommenterToggle<CR><Up>
 let g:NERDTrimTrailingWhitespace = 1
