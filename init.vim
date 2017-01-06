@@ -18,6 +18,7 @@ Plug 'neomake/neomake', {'on': 'Neomake'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
+Plug 'sheerun/vim-polyglot'
 Plug 'aoswalt/onedark.vim'
 call plug#end()
 
