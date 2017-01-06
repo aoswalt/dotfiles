@@ -8,6 +8,11 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'scrooloose/nerdtree' , {'on': 'NERDTreeToggle'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'zchee/deoplete-jedi'
+Plug 'Shougo/neco-vim'
+Plug 'Shougo/neco-syntax'
+
 Plug 'Raimondi/delimitMate'
 Plug 'neomake/neomake', {'on': 'Neomake'}
 Plug 'scrooloose/nerdcommenter'
