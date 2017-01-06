@@ -20,6 +20,10 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
 Plug 'aoswalt/onedark.vim'
+
+" ctags require https://github.com/universal-tags/ctags
+Plug 'ludovicchabant/vim-gutentags', {'do': ':call plug#helptags()'}
+Plug 'majutsushi/tagbar'
 call plug#end()
 
 " display/ui
