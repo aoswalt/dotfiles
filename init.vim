@@ -17,6 +17,8 @@ Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
 
+Plug 'gko/vim-coloresque'
+
 Plug 'Raimondi/delimitMate'
 Plug 'neomake/neomake', {'on': 'Neomake'}
 Plug 'scrooloose/nerdcommenter'
