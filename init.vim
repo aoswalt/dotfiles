@@ -6,6 +6,9 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'scrooloose/nerdtree' , {'on': 'NERDTreeToggle'}
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
+
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
@@ -26,9 +29,17 @@ Plug 'ludovicchabant/vim-gutentags', {'do': ':call plug#helptags()'}
 Plug 'majutsushi/tagbar'
 call plug#end()
 
+set encoding=utf8
+
 " display/ui
 set t_Co=256
 colorscheme onedark
+
+" reduce devicons spacing
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+
+"hide extra characters from devicons in nerdtree
+autocmd FileType nerdtree setlocal nolist
 
 set number          "line numbers
 set cursorline      "highlihght cursorline
