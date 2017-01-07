@@ -19,6 +19,7 @@ Plug 'Shougo/neco-syntax'
 Plug 'Raimondi/delimitMate'
 Plug 'neomake/neomake', {'on': 'Neomake'}
 Plug 'scrooloose/nerdcommenter'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
@@ -45,6 +46,9 @@ set number          "line numbers
 set cursorline      "highlihght cursorline
 set scrolloff=4     "keep more lines on screen while scrolling
 set list            "enable invisible characters
+
+" automatically strip trailiing whitespace on save
+autocmd BufWritePre * StripWhitespace
 
 
 " QoL tweaks
