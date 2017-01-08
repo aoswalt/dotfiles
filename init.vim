@@ -18,6 +18,7 @@ Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
 Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
 
+Plug 'vimwiki/vimwiki'
 Plug 'gko/vim-coloresque'
 
 Plug 'Raimondi/delimitMate'
