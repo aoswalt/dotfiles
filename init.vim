@@ -47,7 +47,7 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 autocmd FileType nerdtree setlocal nolist
 
 set number          "line numbers
-set cursorline      "highlihght cursorline
+set cursorline      "highlight cursorline
 set scrolloff=4     "keep more lines on screen while scrolling
 set list            "enable invisible characters
 
@@ -74,6 +74,9 @@ nnoremap <Down> gj
 
 "mimic D,C
 nmap Y y$
+
+" toggle search highlight
+nnoremap <leader>hs :set hlsearch!<CR>
 
 " cycle through popup menu options with <TAB>
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
