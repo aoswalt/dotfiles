@@ -16,6 +16,7 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
+Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
 
 Plug 'gko/vim-coloresque'
 
@@ -95,6 +96,9 @@ let delimitMate_expand_space = 1
 let delimitMate_jump_expansion = 1
 
 autocmd! BufWritePost * Neomake
+
+let g:livedown_browser = "firefox"
+nnoremap <leader>md :LivedownToggle<CR>
 
 
 " below taken from janus to have expected NERDTree usage
