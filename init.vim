@@ -38,6 +38,7 @@ set encoding=utf8
 
 " display/ui
 set t_Co=256
+set background=dark
 colorscheme onedark
 
 " reduce devicons spacing
