@@ -37,6 +37,7 @@ Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
 
 Plug 'aoswalt/onedark.vim'
+Plug 'w0ng/vim-hybrid'
 
 " ctags require https://github.com/universal-ctags/ctags
 Plug 'ludovicchabant/vim-gutentags', {'do': ':call plug#helptags()'}
@@ -53,6 +54,7 @@ set encoding=utf8
 set t_Co=256
 set background=dark
 colorscheme onedark
+"colorscheme hybrid
 
 " reduce devicons spacing
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
