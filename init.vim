@@ -10,28 +10,31 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'neomake/neomake', {'on': 'Neomake'}
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'sheerun/vim-polyglot'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
-Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
+Plug 'slashmili/alchemist.vim'
 
 Plug 'vimwiki/vimwiki'
 Plug 'mtth/scratch.vim'
+Plug 'guns/xterm-color-table.vim'
+Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
+
 Plug 'gko/vim-coloresque'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'guns/xterm-color-table.vim'
+Plug 'airblade/vim-gitgutter'
 
 Plug 'Raimondi/delimitMate'
-Plug 'neomake/neomake', {'on': 'Neomake'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'airblade/vim-gitgutter'
-Plug 'sheerun/vim-polyglot'
+
 Plug 'aoswalt/onedark.vim'
 
 " ctags require https://github.com/universal-ctags/ctags
