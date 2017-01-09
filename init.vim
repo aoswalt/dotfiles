@@ -20,6 +20,8 @@ Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
 
 Plug 'vimwiki/vimwiki'
 Plug 'gko/vim-coloresque'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'guns/xterm-color-table.vim'
 
 Plug 'Raimondi/delimitMate'
 Plug 'neomake/neomake', {'on': 'Neomake'}
@@ -31,7 +33,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
 Plug 'aoswalt/onedark.vim'
 
-" ctags require https://github.com/universal-tags/ctags
+" ctags require https://github.com/universal-ctags/ctags
 Plug 'ludovicchabant/vim-gutentags', {'do': ':call plug#helptags()'}
 Plug 'majutsushi/tagbar'
 call plug#end()
@@ -46,12 +48,14 @@ colorscheme onedark
 " reduce devicons spacing
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 
-"hide extra characters from devicons in nerdtree
+" hide extra characters from devicons in nerdtree
 autocmd FileType nerdtree setlocal nolist
 
 set number          "line numbers
 set cursorline      "highlight cursorline
+set ruler           "show line/column
 set scrolloff=4     "keep more lines on screen while scrolling
+set sidescroll=5    "horizontal scrolloff
 set list            "enable invisible characters
 
 " automatically strip trailiing whitespace on save
@@ -59,30 +63,54 @@ autocmd BufWritePre * StripWhitespace
 
 
 " QoL tweaks
-set tabstop=2
-set shiftwidth=2
-set expandtab
+set tabstop=2       "width of tabs
+set shiftwidth=2    "amount for < and > commands
+set expandtab       "insert spaces instead of tabs
 
 set hidden          "allow hiding a buffer instead of requring save
 set splitbelow      "default horizontal split to lower
 set splitright      "default vertical split to right
 
+set ignorecase      "ignore caps when searching
+set smartcase       "unless a capital is used
+set gdefault        "global search by default
+set magic           "use extended regular expressions
+
+set autochdir       "switch to current file's parent directory
+
+
+let g:indent_guides_enable_on_vim_startup = 1
+hi IndentGuidesOdd  ctermbg=234
+hi IndentGuidesEven ctermbg=235
+
 
 " keybindings
 let mapleader = ' ' "use space as leader
 
-"move cursor into wrapped lines
+" quick sourcing for working on vim files
+nnoremap <leader>\ :source %<CR>
+
+" use ; for commands
+nnoremap ; :
+
+" move cursor into wrapped lines
 nnoremap <Up> gk
 nnoremap <Down> gj
 
-"mimic D,C
+" mimic D,C
 nmap Y y$
+
+" leader-w to save
+nnoremap <leader>w :w<CR>
+nnoremap <leader>wf :w<CR>
+nnoremap <leader>wa :wa<CR>
 
 " toggle search highlight
 nnoremap <leader>hs :set hlsearch!<CR>
 
 " cycle through popup menu options with <TAB>
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 map <leader>/ <plug>NERDCommenterToggle<CR><Up>
@@ -91,15 +119,32 @@ let g:NERDTrimTrailingWhitespace = 1
 
 let g:deoplete#enable_at_startup = 1
 set completeopt+=noinsert  "auto-select first completion
+hi Pmenu ctermbg=240
+hi PmenuSel ctermbg=25
 
 let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 let delimitMate_jump_expansion = 1
 
-autocmd! BufWritePost * Neomake
+" Neomake on open or write, leader-l to open issues
+autocmd! BufWinEnter,BufWritePost * Neomake
+nnoremap <leader>l :lopen<CR>
 
 let g:livedown_browser = "firefox"
 nnoremap <leader>md :LivedownToggle<CR>
+
+
+" toggle relative numbers
+function! RelativeToggle()
+  if(&relativenumber == 1)
+    set nornu
+    set number
+  else
+    set rnu
+  endif
+endfunction
+
+nnoremap <leader>r :call RelativeToggle()<CR>
 
 
 " below taken from janus to have expected NERDTree usage
