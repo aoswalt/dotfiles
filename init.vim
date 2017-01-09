@@ -39,6 +39,10 @@ Plug 'ludovicchabant/vim-gutentags', {'do': ':call plug#helptags()'}
 Plug 'majutsushi/tagbar'
 call plug#end()
 
+" allow shift-K to use :help instead of :man
+autocmd FileType help setlocal keywordprg=:help
+autocmd FileType vim setlocal keywordprg=:help
+
 set encoding=utf8
 
 " display/ui
