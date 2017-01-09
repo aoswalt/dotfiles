@@ -144,6 +144,8 @@ let delimitMate_jump_expansion = 1
 autocmd! BufWinEnter,BufWritePost * Neomake
 nnoremap <leader>l :lopen<CR>
 
+let g:gutentags_cache_dir = '~/.tags_cache'
+
 let g:livedown_browser = "firefox"
 nnoremap <leader>md :LivedownToggle<CR>
 
