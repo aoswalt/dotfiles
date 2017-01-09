@@ -66,6 +66,7 @@ set ruler           "show line/column
 set scrolloff=4     "keep more lines on screen while scrolling
 set sidescroll=5    "horizontal scrolloff
 set list            "enable invisible characters
+set nowrap          "do not wrap lines by default
 
 " automatically strip trailiing whitespace on save
 autocmd BufWritePre * StripWhitespace
@@ -124,6 +125,8 @@ inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 map <leader>/ <plug>NERDCommenterToggle<CR><Up>
 let g:NERDTrimTrailingWhitespace = 1
+
+nnoremap <leader>tb :TagbarToggle<CR>
 
 
 let g:deoplete#enable_at_startup = 1
