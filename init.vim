@@ -87,6 +87,7 @@ set ignorecase      "ignore caps when searching
 set smartcase       "unless a capital is used
 set gdefault        "global search by default
 set magic           "use extended regular expressions
+set iskeyword+=-    "treat foo-bar as one word
 
 set autochdir       "switch to current file's parent directory
 
