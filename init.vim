@@ -24,6 +24,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'mtth/scratch.vim'
 Plug 'guns/xterm-color-table.vim'
 Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
+Plug 'chrisbra/csv.vim'
 
 Plug 'gko/vim-coloresque'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -140,6 +141,8 @@ nnoremap <leader>l :lopen<CR>
 
 let g:livedown_browser = "firefox"
 nnoremap <leader>md :LivedownToggle<CR>
+
+let b:csv_arrange_use_all_rows = 1
 
 
 " toggle relative numbers
