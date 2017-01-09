@@ -19,6 +19,7 @@ Plug 'Shougo/neco-syntax'
 Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
 
 Plug 'vimwiki/vimwiki'
+Plug 'mtth/scratch.vim'
 Plug 'gko/vim-coloresque'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'guns/xterm-color-table.vim'
