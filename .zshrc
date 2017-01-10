@@ -104,6 +104,10 @@ man() {
   command man "$@"
 }
 
+if [ -f $HOME/.Xresources ]; then
+  xrdb -merge $HOME/.Xresources
+fi
+
 if [ -e $HOME/.zshrc.after ]; then
   source $HOME/.zshrc.after
 fi
