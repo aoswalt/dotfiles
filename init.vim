@@ -166,6 +166,14 @@ endfunction
 nnoremap <leader>r :call RelativeToggle()<CR>
 
 
+" Neomake linting errors
+nmap <Leader>lo :lopen<CR>
+nmap <Leader>lc :lclose<CR>
+nmap <Leader>ll :ll<CR>
+nmap <Leader>ln :lnext<CR>
+nmap <Leader>lp :lprev<CR>
+
+
 " below taken from janus to have expected NERDTree usage
 augroup AuNERDTreeCmd
 autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
