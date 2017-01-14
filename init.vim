@@ -142,9 +142,13 @@ let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 let delimitMate_jump_expansion = 1
 
-" Neomake on open or write, leader-l to open issues
+" Neomake on open or write, leader-l* for linting errors window
 autocmd! BufWinEnter,BufWritePost * Neomake
-nnoremap <leader>l :lopen<CR>
+nmap <Leader>lo :lopen<CR>
+nmap <Leader>lc :lclose<CR>
+nmap <Leader>ll :ll<CR>
+nmap <Leader>ln :lnext<CR>
+nmap <Leader>lp :lprev<CR>
 
 let g:gutentags_cache_dir = '~/.tags_cache'
 
@@ -165,14 +169,6 @@ function! RelativeToggle()
 endfunction
 
 nnoremap <leader>r :call RelativeToggle()<CR>
-
-
-" Neomake linting errors
-nmap <Leader>lo :lopen<CR>
-nmap <Leader>lc :lclose<CR>
-nmap <Leader>ll :ll<CR>
-nmap <Leader>ln :lnext<CR>
-nmap <Leader>lp :lprev<CR>
 
 
 " below taken from janus to have expected NERDTree usage
