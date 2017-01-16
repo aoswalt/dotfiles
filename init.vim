@@ -5,10 +5,10 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'scrooloose/nerdtree' , {'on': 'NERDTreeToggle'}
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'ryanoasis/vim-devicons'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
+Plug 'ryanoasis/vim-devicons', {'on': 'NERDTreeToggle'}
+Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 
 Plug 'neomake/neomake', {'on': 'Neomake'}
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
