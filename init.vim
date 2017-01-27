@@ -149,7 +149,7 @@ let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 let delimitMate_jump_expansion = 1
 
-" Neomake on open or write, leader-l to open issues
+" Neomake on open or write, leader-l for issues
 autocmd! BufReadPost,BufWritePost * Neomake
 nnoremap <Leader>lo :lopen<CR>
 nnoremap <Leader>lc :lclose<CR>
