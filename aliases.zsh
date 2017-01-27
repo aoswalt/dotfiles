@@ -20,6 +20,7 @@ alias pip="pip3"
 alias ssh_home="ssh adam@69.180.253.138 -p 20055"
 alias tree="tree -C"
 function npm-exec() { PATH=$(npm bin):$PATH; $@ }   # run node module
+alias weather="curl wttr.in/Nashville"
 
 # some more ls aliases that were being overwritten
 alias ls='ls --color'
