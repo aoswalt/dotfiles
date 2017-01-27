@@ -142,7 +142,7 @@ set completeopt+=noinsert  "auto-select first completion
 hi Pmenu ctermbg=240
 hi PmenuSel ctermbg=25
 
-" autoclose preview pane
+" auto-close preview pane
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 let delimitMate_expand_cr = 1
