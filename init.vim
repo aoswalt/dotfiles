@@ -9,6 +9,7 @@ Plug 'scrooloose/nerdtree' , {'on': 'NERDTreeToggle'}
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'simnalamburt/vim-mundo'
 
 Plug 'neomake/neomake', {'on': 'Neomake'}
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
@@ -136,6 +137,8 @@ nnoremap <leader>tb :TagbarToggle<CR>
 
 " use <C-p> to open fzf
 nnoremap <C-p> :FZF<CR>
+
+nnoremap <F5> :MundoToggle<CR>
 
 let g:deoplete#enable_at_startup = 1
 set completeopt+=noinsert  "auto-select first completion
