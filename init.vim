@@ -12,7 +12,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 
 Plug 'neomake/neomake', {'on': 'Neomake'}
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'zchee/deoplete-jedi'
@@ -120,7 +121,7 @@ nnoremap <leader>wf :w<CR>
 nnoremap <leader>wa :wa<CR>
 
 " toggle search highlight
-nnoremap <leader>hs :set hlsearch!<CR>
+nnoremap <leader>hs :noh<CR>
 
 " cycle through popup menu options with <TAB>
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -132,6 +133,9 @@ let g:NERDTrimTrailingWhitespace = 1
 
 nnoremap <leader>tb :TagbarToggle<CR>
 
+
+" use <C-p> to open fzf
+nnoremap <C-p> :FZF<CR>
 
 let g:deoplete#enable_at_startup = 1
 set completeopt+=noinsert  "auto-select first completion
@@ -145,13 +149,13 @@ let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 let delimitMate_jump_expansion = 1
 
-" Neomake on open or write, leader-l* for linting errors window
-autocmd! BufWinEnter,BufWritePost * Neomake
-nmap <Leader>lo :lopen<CR>
-nmap <Leader>lc :lclose<CR>
-nmap <Leader>ll :ll<CR>
-nmap <Leader>ln :lnext<CR>
-nmap <Leader>lp :lprev<CR>
+" Neomake on open or write, leader-l for issues
+autocmd! BufReadPost,BufWritePost * Neomake
+nnoremap <Leader>lo :lopen<CR>
+nnoremap <Leader>lc :lclose<CR>
+nnoremap <Leader>ll :ll<CR>
+nnoremap <Leader>ln :lnext<CR>
+nnoremap <Leader>lp :lprev<CR>
 
 let g:gutentags_cache_dir = '~/.tags_cache'
 
@@ -171,6 +175,7 @@ function! RelativeToggle()
   endif
 endfunction
 
+set rnu
 nnoremap <leader>r :call RelativeToggle()<CR>
 
 
