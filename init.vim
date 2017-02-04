@@ -55,8 +55,8 @@ set encoding=utf8
 set t_Co=256
 set background=dark
 let g:hybrid_custom_term_colors = 1
-"colorscheme onedark
-colorscheme hybrid
+colorscheme onedark
+"colorscheme hybrid
 
 " reduce devicons spacing
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
