@@ -20,6 +20,8 @@ Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
 Plug 'slashmili/alchemist.vim'
+Plug 'tpope/vim-projectionist'
+Plug 'c-brenn/phoenix.vim'
 
 Plug 'vimwiki/vimwiki'
 Plug 'mtth/scratch.vim'
