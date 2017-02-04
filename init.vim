@@ -134,7 +134,7 @@ nnoremap <leader>tb :TagbarToggle<CR>
 
 
 " use <C-p> to open fzf
-nnoremap <C-p> :FZF<CR>
+nnoremap <C-p> :GFiles -co<CR>
 
 let g:deoplete#enable_at_startup = 1
 set completeopt+=noinsert  "auto-select first completion
