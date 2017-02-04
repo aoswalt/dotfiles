@@ -91,7 +91,6 @@ set ignorecase      "ignore caps when searching
 set smartcase       "unless a capital is used
 set gdefault        "global search by default
 set magic           "use extended regular expressions
-set iskeyword+=-    "treat foo-bar as one word
 
 set autochdir       "switch to current file's parent directory
 
@@ -119,8 +118,6 @@ nmap Y y$
 
 " leader-w to save
 nnoremap <leader>w :w<CR>
-nnoremap <leader>wf :w<CR>
-nnoremap <leader>wa :wa<CR>
 
 " toggle search highlight
 nnoremap <leader>hs :noh<CR>
