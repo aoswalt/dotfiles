@@ -20,6 +20,8 @@ Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
 Plug 'slashmili/alchemist.vim'
+Plug 'tpope/vim-projectionist'
+Plug 'c-brenn/phoenix.vim'
 
 Plug 'vimwiki/vimwiki'
 Plug 'mtth/scratch.vim'
@@ -55,8 +57,8 @@ set encoding=utf8
 set t_Co=256
 set background=dark
 let g:hybrid_custom_term_colors = 1
-"colorscheme onedark
-colorscheme hybrid
+colorscheme onedark
+"colorscheme hybrid
 
 " reduce devicons spacing
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
@@ -89,7 +91,6 @@ set ignorecase      "ignore caps when searching
 set smartcase       "unless a capital is used
 set gdefault        "global search by default
 set magic           "use extended regular expressions
-set iskeyword+=-    "treat foo-bar as one word
 
 set autochdir       "switch to current file's parent directory
 
@@ -117,8 +118,6 @@ nmap Y y$
 
 " leader-w to save
 nnoremap <leader>w :w<CR>
-nnoremap <leader>wf :w<CR>
-nnoremap <leader>wa :wa<CR>
 
 " toggle search highlight
 nnoremap <leader>hs :noh<CR>
@@ -135,7 +134,7 @@ nnoremap <leader>tb :TagbarToggle<CR>
 
 
 " use <C-p> to open fzf
-nnoremap <C-p> :FZF<CR>
+nnoremap <C-p> :GFiles -co<CR>
 
 let g:deoplete#enable_at_startup = 1
 set completeopt+=noinsert  "auto-select first completion
