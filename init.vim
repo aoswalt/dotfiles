@@ -117,6 +117,9 @@ nnoremap <Down> gj
 " mimic D,C
 nmap Y y$
 
+" use Q to play last macro
+nmap Q @@
+
 " leader-w to save
 nnoremap <leader>w :w<CR>
 
