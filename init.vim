@@ -67,6 +67,7 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 autocmd FileType nerdtree setlocal nolist
 
 set number          "line numbers
+set rnu             "relative line numbers
 set cursorline      "highlight cursorline
 set ruler           "show line/column
 set scrolloff=4     "keep more lines on screen while scrolling
@@ -162,20 +163,6 @@ let g:livedown_browser = "firefox"
 nnoremap <leader>md :LivedownToggle<CR>
 
 let b:csv_arrange_use_all_rows = 1
-
-
-" toggle relative numbers
-function! RelativeToggle()
-  if(&relativenumber == 1)
-    set nornu
-    set number
-  else
-    set rnu
-  endif
-endfunction
-
-set rnu
-nnoremap <leader>r :call RelativeToggle()<CR>
 
 
 " below taken from janus to have expected NERDTree usage
