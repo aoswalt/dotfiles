@@ -19,6 +19,7 @@ alias python="python3"
 alias pip="pip3"
 alias ssh_home="ssh adam@69.180.253.138 -p 20055"
 alias tree="tree -C"
+alias less="less -R"
 function npm-exec() { PATH=$(npm bin):$PATH; $@ }   # run node module
 alias weather="curl wttr.in/Nashville"
 

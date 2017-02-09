@@ -5,10 +5,10 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'scrooloose/nerdtree' , {'on': 'NERDTreeToggle'}
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'ryanoasis/vim-devicons'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
+Plug 'ryanoasis/vim-devicons', {'on': 'NERDTreeToggle'}
+Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 Plug 'simnalamburt/vim-mundo'
 
 Plug 'neomake/neomake', {'on': 'Neomake'}
@@ -21,6 +21,10 @@ Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
 Plug 'slashmili/alchemist.vim'
+Plug 'tpope/vim-projectionist'
+Plug 'c-brenn/phoenix.vim'
+
+Plug 'thinca/vim-quickrun'
 
 Plug 'vimwiki/vimwiki'
 Plug 'mtth/scratch.vim'
@@ -56,8 +60,8 @@ set encoding=utf8
 set t_Co=256
 set background=dark
 let g:hybrid_custom_term_colors = 1
-"colorscheme onedark
-colorscheme hybrid
+colorscheme onedark
+"colorscheme hybrid
 
 " reduce devicons spacing
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
@@ -66,6 +70,7 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 autocmd FileType nerdtree setlocal nolist
 
 set number          "line numbers
+set rnu             "relative line numbers
 set cursorline      "highlight cursorline
 set ruler           "show line/column
 set scrolloff=4     "keep more lines on screen while scrolling
@@ -90,7 +95,6 @@ set ignorecase      "ignore caps when searching
 set smartcase       "unless a capital is used
 set gdefault        "global search by default
 set magic           "use extended regular expressions
-set iskeyword+=-    "treat foo-bar as one word
 
 set autochdir       "switch to current file's parent directory
 
@@ -114,12 +118,13 @@ nnoremap <Up> gk
 nnoremap <Down> gj
 
 " mimic D,C
-nmap Y y$
+nnoremap Y y$
+
+" use Q to play last macro
+nnoremap Q @@
 
 " leader-w to save
 nnoremap <leader>w :w<CR>
-nnoremap <leader>wf :w<CR>
-nnoremap <leader>wa :wa<CR>
 
 " toggle search highlight
 nnoremap <leader>hs :noh<CR>
@@ -136,7 +141,7 @@ nnoremap <leader>tb :TagbarToggle<CR>
 
 
 " use <C-p> to open fzf
-nnoremap <C-p> :FZF<CR>
+nnoremap <C-p> :GFiles -co<CR>
 
 nnoremap <F5> :MundoToggle<CR>
 
@@ -168,18 +173,8 @@ nnoremap <leader>md :LivedownToggle<CR>
 let b:csv_arrange_use_all_rows = 1
 
 
-" toggle relative numbers
-function! RelativeToggle()
-  if(&relativenumber == 1)
-    set nornu
-    set number
-  else
-    set rnu
-  endif
-endfunction
-
-set rnu
-nnoremap <leader>r :call RelativeToggle()<CR>
+let g:quickrun_config = {}
+let g:quickrun_config['javascript.jsx'] = { 'type': 'javascript' }
 
 
 " below taken from janus to have expected NERDTree usage

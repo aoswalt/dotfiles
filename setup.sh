@@ -47,3 +47,8 @@ if [ ! -d "${nvim_dir}" ]; then
   mkdir -p "${nvim_dir}"
 fi
 ln -s "${this_dir}/init.vim" "${nvim_dir}/init.vim"
+
+konsole_profile_dir=$home_dir/.local/share/konsole
+mkdir -p $konsole_profile_dir
+ln -s "${this_dir}/konsole/Mine.profile" "${konsole_profile_dir}/Mine.profile"
+ln -s "${this_dir}/konsole/Mine.colorscheme" "${konsole_profile_dir}/Mine.colorscheme"
