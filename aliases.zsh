@@ -25,8 +25,10 @@ alias weather="curl wttr.in/Nashville"
 
 # some more ls aliases that were being overwritten
 alias ls='ls --color'
+alias l1='ls -1'
 alias ll='ls -alF'
 alias la='ls -A'
+alias la1='ls -A1'
 alias l='ls -CF'
 
 
