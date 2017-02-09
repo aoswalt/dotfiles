@@ -23,6 +23,8 @@ Plug 'slashmili/alchemist.vim'
 Plug 'tpope/vim-projectionist'
 Plug 'c-brenn/phoenix.vim'
 
+Plug 'thinca/vim-quickrun'
+
 Plug 'vimwiki/vimwiki'
 Plug 'mtth/scratch.vim'
 Plug 'guns/xterm-color-table.vim'
@@ -166,6 +168,10 @@ let g:livedown_browser = "firefox"
 nnoremap <leader>md :LivedownToggle<CR>
 
 let b:csv_arrange_use_all_rows = 1
+
+
+let g:quickrun_config = {}
+let g:quickrun_config['javascript.jsx'] = { 'type': 'javascript' }
 
 
 " below taken from janus to have expected NERDTree usage
