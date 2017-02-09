@@ -147,13 +147,12 @@ let g:NERDTrimTrailingWhitespace = 1
 nnoremap <leader>tb :TagbarToggle<CR>
 
 
-" use <C-p> to open fzf
+" use <C-p> to open fzf with git files
 nnoremap <C-p> :GFiles -co<CR>
 
 nnoremap <F5> :MundoToggle<CR>
 
 let g:deoplete#enable_at_startup = 1
-set completeopt+=noinsert  "auto-select first completion
 hi Pmenu ctermbg=240
 hi PmenuSel ctermbg=25
 
