@@ -25,6 +25,7 @@ Plug 'tpope/vim-projectionist'
 Plug 'c-brenn/phoenix.vim'
 
 Plug 'thinca/vim-quickrun'
+Plug 'dbext.vim'
 
 Plug 'vimwiki/vimwiki'
 Plug 'mtth/scratch.vim'
@@ -181,6 +182,12 @@ let b:csv_arrange_use_all_rows = 1
 
 let g:quickrun_config = {}
 let g:quickrun_config['javascript.jsx'] = { 'type': 'javascript' }
+
+
+" allow loading of device specific configs
+if filereadable(expand('$HOME/init.after.vim'))
+  source $HOME/init.after.vim
+endif
 
 
 " below taken from janus to have expected NERDTree usage
