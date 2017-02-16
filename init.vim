@@ -16,6 +16,7 @@ Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'exu/pgsql.vim'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/neco-vim'
@@ -26,6 +27,8 @@ Plug 'c-brenn/phoenix.vim'
 
 Plug 'thinca/vim-quickrun'
 Plug 'dbext.vim'
+Plug 'ingo-library'
+Plug 'SyntaxRange'
 
 Plug 'vimwiki/vimwiki'
 Plug 'mtth/scratch.vim'
@@ -182,6 +185,11 @@ let b:csv_arrange_use_all_rows = 1
 
 let g:quickrun_config = {}
 let g:quickrun_config['javascript.jsx'] = { 'type': 'javascript' }
+
+let g:sql_type_default = 'pgsql'
+
+" use pgsql syntax inside elixir non-doc string blocks
+call SyntaxRange#Include('\s\{2,\}\"\"\"', '\"\"\"', 'pgsql', 'NonText')
 
 
 " allow loading of device specific configs
