@@ -10,6 +10,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
 Plug 'ryanoasis/vim-devicons', {'on': 'NERDTreeToggle'}
 Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 Plug 'simnalamburt/vim-mundo'
+Plug 'tpope/vim-fugitive'
 
 Plug 'neomake/neomake', {'on': 'Neomake'}
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
@@ -100,7 +101,7 @@ set smartcase       "unless a capital is used
 set gdefault        "global search by default
 set magic           "use extended regular expressions
 
-set autochdir       "switch to current file's parent directory
+"set autochdir       "switch to current file's parent directory
 
 
 if isdirectory($HOME . '/.config/nvim/undo') == 0
@@ -133,6 +134,7 @@ nnoremap Y y$
 
 " use Q to play last macro
 nnoremap Q @@
+"TODO attempt to use @q if no @@
 
 " leader-w to save
 nnoremap <leader>w :w<CR>
@@ -148,11 +150,15 @@ nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 map <leader>/ <plug>NERDCommenterToggle<CR><Up>
 let g:NERDTrimTrailingWhitespace = 1
 
+noremap <leader>x :Vexplore<CR>
+noremap <leader><s-x> :Explore<CR>
+
 nnoremap <leader>tb :TagbarToggle<CR>
 
-
 " use <C-p> to open fzf with git files
-nnoremap <C-p> :GFiles -co<CR>
+"nnoremap <C-p> :GFiles -co<CR>
+nnoremap <C-p> :FZF<CR>
+nnoremap <leader>f :Ag<space>
 
 nnoremap <F5> :MundoToggle<CR>
 
@@ -200,7 +206,7 @@ endif
 
 " below taken from janus to have expected NERDTree usage
 augroup AuNERDTreeCmd
-autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
+"autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
 autocmd AuNERDTreeCmd FocusGained * call s:UpdateNERDTree()
 
 " If the parameter is a directory, cd into it
