@@ -89,8 +89,8 @@ source $ZSH/oh-my-zsh.sh
 [[ $COLORTERM = gnome-terminal && ! $TERM = screen-256color ]] && TERM=xterm-256color
 
 # set vim as default editor
-export VISUAL=vim
-export EDITOR=vim
+export VISUAL=nvim
+export EDITOR=nvim
 
 # colorize man pages
 man() {
@@ -104,12 +104,9 @@ man() {
   command man "$@"
 }
 
-if [ -f $HOME/.Xresources ]; then
-  xrdb -merge $HOME/.Xresources
-fi
-
 if [ -e $HOME/.zshrc.after ]; then
   source $HOME/.zshrc.after
 fi
 
+# start terminal in tmux, reattach if exists
 [[ $TERM != screen* ]] && [ -z $TMUX ] && { tmux attach || tmux new-session -s home; }
