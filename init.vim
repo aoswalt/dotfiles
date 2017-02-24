@@ -5,50 +5,50 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
-Plug 'ryanoasis/vim-devicons', {'on': 'NERDTreeToggle'}
-Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 Plug 'simnalamburt/vim-mundo'
-Plug 'tpope/vim-fugitive'
-
-Plug 'neomake/neomake', {'on': 'Neomake'}
-Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'neomake/neomake', {'on': 'Neomake'}
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+
 Plug 'sheerun/vim-polyglot'
 Plug 'exu/pgsql.vim'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'zchee/deoplete-jedi'
-Plug 'Shougo/neco-vim'
-Plug 'Shougo/neco-syntax'
-Plug 'slashmili/alchemist.vim'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
+Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'tpope/vim-projectionist'
-Plug 'c-brenn/phoenix.vim'
-
-Plug 'thinca/vim-quickrun'
-Plug 'dbext.vim'
+Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'ingo-library'
 Plug 'SyntaxRange'
 
+Plug 'thinca/vim-quickrun'
+Plug 'dbext.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'mtth/scratch.vim'
-Plug 'guns/xterm-color-table.vim'
 Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
 Plug 'chrisbra/csv.vim'
 
-Plug 'gko/vim-coloresque'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'airblade/vim-gitgutter'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'gko/vim-coloresque'
+Plug 'guns/xterm-color-table.vim'
 
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-surround'
-Plug 'terryma/vim-multiple-cursors'
 
 Plug 'aoswalt/onedark.vim'
 Plug 'w0ng/vim-hybrid'
+
+" pending removal
+Plug 'terryma/vim-multiple-cursors'
+
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
+Plug 'ryanoasis/vim-devicons', {'on': 'NERDTreeToggle'}
+Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 
 " ctags require https://github.com/universal-ctags/ctags
 Plug 'ludovicchabant/vim-gutentags', {'do': ':call plug#helptags()'}
@@ -67,12 +67,6 @@ set background=dark
 let g:hybrid_custom_term_colors = 1
 colorscheme onedark
 "colorscheme hybrid
-
-" reduce devicons spacing
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
-
-" hide extra characters from devicons in nerdtree
-autocmd FileType nerdtree setlocal nolist
 
 set number          "line numbers
 set rnu             "relative line numbers
@@ -102,6 +96,8 @@ set gdefault        "global search by default
 set magic           "use extended regular expressions
 
 "set autochdir       "switch to current file's parent directory
+
+let g:netrw_altfile=1   "allow <c-6> to go to the previously edited file
 
 
 if isdirectory($HOME . '/.config/nvim/undo') == 0
@@ -146,7 +142,6 @@ nnoremap <leader>hs :noh<CR>
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
-nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 map <leader>/ <plug>NERDCommenterToggle<CR><Up>
 let g:NERDTrimTrailingWhitespace = 1
 
@@ -203,6 +198,16 @@ if filereadable(expand('$HOME/init.after.vim'))
   source $HOME/init.after.vim
 endif
 
+
+" NERDTREE pending removal
+
+" reduce devicons spacing
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+
+" hide extra characters from devicons in nerdtree
+autocmd FileType nerdtree setlocal nolist
+
+nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 
 " below taken from janus to have expected NERDTree usage
 augroup AuNERDTreeCmd
