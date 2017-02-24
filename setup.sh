@@ -15,18 +15,10 @@ for (( index=0; index<${num_files}; ++index )); do
   ln -s $this_dir/${files[$index]} $home_dir/${files[$index]}
 done
 
-# special case for nested file
+# aliases is a nested file
 ln -s "${this_dir}/aliases.zsh" "${home_dir}/.oh-my-zsh/custom/aliases.zsh"
 
-# need check because follows symlink otherwise
-snippets_dir=$home_dir/.janus/mysnippets
-if [ ! -L "${snippets_dir}/snippets" ]; then
-  mkdir -p "${snippets_dir}"
-  ln -s "${this_dir}/snippets" "${snippets_dir}/snippets"
-else
-  echo "Snippets folder exists in janus config"
-fi
-
+# need to ensure nvim foder exists first
 nvim_dir=$home_dir/.config/nvim
 if [ ! -d "${nvim_dir}" ]; then
   mkdir -p "${nvim_dir}"
