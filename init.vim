@@ -42,14 +42,6 @@ Plug 'tpope/vim-surround'
 Plug 'aoswalt/onedark.vim'
 Plug 'w0ng/vim-hybrid'
 
-" pending removal
-Plug 'terryma/vim-multiple-cursors'
-
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
-Plug 'ryanoasis/vim-devicons', {'on': 'NERDTreeToggle'}
-Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
-
 " ctags require https://github.com/universal-ctags/ctags
 Plug 'ludovicchabant/vim-gutentags', {'do': ':call plug#helptags()'}
 Plug 'majutsushi/tagbar'
@@ -197,67 +189,3 @@ call SyntaxRange#Include('\s\{2,\}\"\"\"', '\"\"\"', 'pgsql', 'NonText')
 if filereadable(expand('$HOME/init.after.vim'))
   source $HOME/init.after.vim
 endif
-
-
-" NERDTREE pending removal
-
-" reduce devicons spacing
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
-
-" hide extra characters from devicons in nerdtree
-autocmd FileType nerdtree setlocal nolist
-
-nnoremap <silent> <leader>n :NERDTreeToggle<CR>
-
-" below taken from janus to have expected NERDTree usage
-augroup AuNERDTreeCmd
-"autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
-autocmd AuNERDTreeCmd FocusGained * call s:UpdateNERDTree()
-
-" If the parameter is a directory, cd into it
-function! s:CdIfDirectory(directory)
-  let explicitDirectory = isdirectory(a:directory)
-  let directory = explicitDirectory || empty(a:directory)
-
-  if explicitDirectory
-    exe "cd " . fnameescape(a:directory)
-  endif
-
-  " Allows reading from stdin
-  " ex: git diff | mvim -R -
-  if strlen(a:directory) == 0
-    return
-  endif
-
-  if directory
-    NERDTree
-    wincmd p
-    bd
-  endif
-
-  if explicitDirectory
-    wincmd p
-  endif
-endfunction
-
-" NERDTree utility function
-function! s:UpdateNERDTree(...)
-  let stay = 0
-
-  if(exists("a:1"))
-    let stay = a:1
-  end
-
-  if exists("t:NERDTreeBufName")
-    let nr = bufwinnr(t:NERDTreeBufName)
-    if nr != -1
-      exe nr . "wincmd w"
-      exe substitute(mapcheck("R"), "<CR>", "", "")
-      if !stay
-        wincmd p
-      end
-    endif
-  endif
-endfunction
-
-augroup END
