@@ -107,8 +107,8 @@ set magic           "use extended regular expressions
 if isdirectory($HOME . '/.config/nvim/undo') == 0
   :silent !mkdir -p ~/.config/nvim/undo > /dev/null 2>&1
 endif
-set undodir=./.vim-undo//
-set undodir+=~/.vim/undo//
+set undofile
+set undodir=~/.config/nvim/undo/
 
 
 let g:indent_guides_enable_on_vim_startup = 1
