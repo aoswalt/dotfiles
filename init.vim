@@ -184,7 +184,7 @@ let g:quickrun_config['sh'] = { 'type': 'bash' }
 let g:sql_type_default = 'pgsql'
 
 " use pgsql syntax inside elixir non-doc string blocks
-call SyntaxRange#Include('\s\{2,\}\"\"\"', '\"\"\"', 'pgsql', 'NonText')
+au FileType elixir call SyntaxRange#Include('\s\{2,\}\"\"\"', '\"\"\"', 'pgsql', 'NonText')
 
 
 " allow loading of device specific configs
