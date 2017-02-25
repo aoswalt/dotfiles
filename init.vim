@@ -33,6 +33,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'gko/vim-coloresque'
 Plug 'guns/xterm-color-table.vim'
+Plug 'AnsiEsc.vim'
 
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
