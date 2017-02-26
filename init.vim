@@ -147,6 +147,9 @@ nnoremap <leader>tb :TagbarToggle<CR>
 nnoremap <C-p> :GFiles -co<CR>
 nnoremap <leader>f :Ag<space>
 
+" search for word under cursor with <leader>*
+nnoremap <leader>* :Ag <c-r><c-w><CR>
+
 nnoremap <F5> :MundoToggle<CR>
 
 let g:deoplete#enable_at_startup = 1
