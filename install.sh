@@ -13,7 +13,7 @@ function try_link() {
   dst_path=$2
 
   if [[ -e $dst_path || -L $dst_path ]]; then
-    echo -e "\033[36m$dst_path\033[0m alread exists. \033[31;1mRemove?\033[0m [y\033[32;1mN\033[0m]"
+    echo -e "\033[36m$dst_path\033[0m already exists. \033[31;1mRemove?\033[0m [y\033[32;1mN\033[0m]"
     read choice
     if [[ ${choice:0:1} == y ]]; then
       rm $dst_path
