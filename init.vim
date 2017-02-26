@@ -88,7 +88,7 @@ set smartcase       "unless a capital is used
 set gdefault        "global search by default
 set magic           "use extended regular expressions
 
-"set autochdir       "switch to current file's parent directory
+set autochdir       "switch to current file's parent directory
 
 let g:netrw_altfile=1   "allow <c-6> to go to the previously edited file
 
@@ -144,8 +144,7 @@ noremap <leader><s-x> :Explore<CR>
 nnoremap <leader>tb :TagbarToggle<CR>
 
 " use <C-p> to open fzf with git files
-"nnoremap <C-p> :GFiles -co<CR>
-nnoremap <C-p> :FZF<CR>
+nnoremap <C-p> :GFiles -co<CR>
 nnoremap <leader>f :Ag<space>
 
 nnoremap <F5> :MundoToggle<CR>
@@ -185,6 +184,21 @@ let g:sql_type_default = 'pgsql'
 
 " use pgsql syntax inside elixir non-doc string blocks
 au FileType elixir call SyntaxRange#Include('\s\{2,\}\"\"\"', '\"\"\"', 'pgsql', 'NonText')
+
+
+" extracted from inside fzf
+function! s:get_git_root()
+  try
+    return fugitive#repo().tree()
+  catch
+    return ''
+  endtry
+endfunction
+
+" override Ag command to search inside git repo
+function! fzf#vim#ag_raw(command_suffix, ...)
+  return call('fzf#vim#grep', extend(['ag --nogroup --column --color '.a:command_suffix.' '.s:get_git_root(), 1], a:000))
+endfunction
 
 
 " allow loading of device specific configs
