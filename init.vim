@@ -121,9 +121,8 @@ nnoremap <Down> gj
 " mimic D,C
 nnoremap Y y$
 
-" use Q to play last macro
-nnoremap Q @@
-"TODO attempt to use @q if no @@
+" use Q to play q macro
+nnoremap Q @q
 
 " leader-w to save
 nnoremap <leader>w :w<CR>
