@@ -156,6 +156,7 @@ nnoremap <leader>* :Ag <c-r><c-w><CR>
 nnoremap <F5> :MundoToggle<CR>
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 100
 hi Pmenu ctermbg=240
 hi PmenuSel ctermbg=25
 
@@ -205,6 +206,9 @@ endfunction
 function! fzf#vim#ag_raw(command_suffix, ...)
   return call('fzf#vim#grep', extend(['ag --nogroup --column --color '.a:command_suffix.' '.s:get_git_root(), 1], a:000))
 endfunction
+
+" from issue, but doesn't work at all in non-repo
+"command! -bang -nargs=* GitAg\ call fzf#vim#ag(<q-args>, {'dir': systemlist('git rev-parse --show-toplevel')[0]}, <bang>0)
 
 
 " allow loading of device specific configs
