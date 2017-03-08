@@ -124,8 +124,12 @@ nnoremap Y y$
 " use Q to play q macro
 nnoremap Q @q
 
-" leader-w to save
-nnoremap <leader>w :w<CR>
+" use ctrl+h/j/k/l to move across windows
+nmap <silent> <bs> <c-h>
+nmap <silent> <c-h> :wincmd h<cr>
+nmap <silent> <c-j> :wincmd j<cr>
+nmap <silent> <c-k> :wincmd k<cr>
+nmap <silent> <c-l> :wincmd l<cr>
 
 " toggle search highlight
 nnoremap <leader>hs :noh<CR>
