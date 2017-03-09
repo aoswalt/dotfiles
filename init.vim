@@ -29,6 +29,7 @@ Plug 'mtth/scratch.vim'
 Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
 Plug 'chrisbra/csv.vim'
 
+Plug 'itchyny/lightline.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'gko/vim-coloresque'
@@ -209,6 +210,17 @@ endfunction
 
 " from issue, but doesn't work at all in non-repo
 "command! -bang -nargs=* GitAg\ call fzf#vim#ag(<q-args>, {'dir': systemlist('git rev-parse --show-toplevel')[0]}, <bang>0)
+
+
+set noshowmode
+"\   'colorscheme': 'onedark',
+let g:lightline = {
+\   'component': {
+\     'readonly': '%{&readonly?"\ue0a2":""}',
+\   },
+\   'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+\   'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+\ }
 
 
 " allow loading of device specific configs
