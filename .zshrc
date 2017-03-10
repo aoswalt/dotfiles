@@ -110,3 +110,5 @@ fi
 
 # start terminal in tmux, reattach if exists
 [[ $TERM != screen* ]] && [ -z $TMUX ] && { tmux attach || tmux new-session -s home; }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
