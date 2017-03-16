@@ -134,6 +134,12 @@ nmap <silent> <c-l> :wincmd l<cr>
 
 " toggle search highlight
 nnoremap <leader>hs :noh<CR>
+nnoremap <leader>hl :set hlsearch! hlsearch?<CR>
+
+" allow range commands from searches - ex:  /foo$m
+cnoremap $t <CR>:t''<CR>
+cnoremap $m <CR>:m''<CR>
+cnoremap $d <CR>:d<CR>``
 
 " cycle through popup menu options with <TAB>
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
