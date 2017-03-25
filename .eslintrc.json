@@ -111,7 +111,7 @@
       "ArrayExpression": "first",
       "ObjectExpression": "first"
     }],
-    "jsx-quotes": ["error", "prefer-double"],
+    "jsx-quotes": ["error", "prefer-single"],
     "key-spacing": "warn",
     "keyword-spacing": ["error", {
       "overrides": {
