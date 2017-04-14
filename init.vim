@@ -40,6 +40,8 @@ Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-surround'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 Plug 'aoswalt/onedark.vim'
 Plug 'w0ng/vim-hybrid'
@@ -48,6 +50,15 @@ Plug 'w0ng/vim-hybrid'
 Plug 'ludovicchabant/vim-gutentags', {'do': ':call plug#helptags()'}
 Plug 'majutsushi/tagbar'
 call plug#end()
+
+let g:UltiSnipsExpandTrigger="<c-s>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
+set completeopt=longest,menuone
+let g:tern_request_timeout = 1
+let g:tern_show_signature_in_pum = '0'
+let g:tern#filetypes = ['jsx', 'javascript.jsx']
 
 " allow shift-K to use :help instead of :man
 autocmd FileType help setlocal keywordprg=:help
@@ -169,6 +180,8 @@ nnoremap <F5> :MundoToggle<CR>
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 100
+let g:deoplete#auto_complete_start_length = 1
+let g:deoplete#auto_complete_delay = 1
 hi Pmenu ctermbg=240
 hi PmenuSel ctermbg=25
 
