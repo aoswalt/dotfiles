@@ -171,6 +171,7 @@ nnoremap <leader>tb :TagbarToggle<CR>
 
 " use <C-p> to open fzf with git files
 nnoremap <C-p> :GFiles -co --exclude-per-directory=.gitignore<CR>
+nnoremap <leader>p :FZF<CR>
 nnoremap <leader>f :Ag<space>
 
 " search for word under cursor with <leader>*
