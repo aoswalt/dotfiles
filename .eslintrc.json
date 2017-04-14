@@ -13,6 +13,9 @@
     "browser": true,
     "node": true
   },
+  "globals": {
+    "Promise": true
+  },
   "rules": {
     // Possible Errors
     "no-constant-condition": ["error", { "checkLoops": false }],
@@ -104,7 +107,7 @@
     "func-call-spacing": "error",
     "indent": ["error", 2, {
       "SwitchCase": 1,
-      "MemberExpression": 1,
+      "MemberExpression": 0,
       "FunctionDeclaration": { "parameters": "first" },
       "FunctionExpression": { "parameters": "first" },
       "CallExpression": { "arguments": "first" },
@@ -172,7 +175,7 @@
     }],
     // ECMAScript 6
     "arrow-body-style": "error",
-    "arrow-parens": [2, "as-needed", { "requireForBlockBody": true }],
+    //"arrow-parens": [2, "as-needed", { "requireForBlockBody": true }],
     "arrow-spacing": "error",
     "constructor-super": "error",
     "generator-star-spacing": "error",
