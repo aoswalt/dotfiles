@@ -106,6 +106,8 @@ hi IndentGuidesOdd  ctermbg=234
 hi IndentGuidesEven ctermbg=235
 
 
+:set isk-=-,.
+
 " keybindings
 let mapleader = ' ' "use space as leader
 
