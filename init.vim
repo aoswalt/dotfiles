@@ -116,8 +116,9 @@ let g:indent_guides_enable_on_vim_startup = 1
 hi IndentGuidesOdd  ctermbg=234
 hi IndentGuidesEven ctermbg=235
 
-
-:set isk-=-,.
+" use - and . as word separators
+:set isk-=-
+:set isk-=.
 
 " keybindings
 let mapleader = ' ' "use space as leader
