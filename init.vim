@@ -165,7 +165,7 @@ inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 map <leader>/ <plug>NERDCommenterToggle<CR><Up>
 let g:NERDTrimTrailingWhitespace = 1
 
-noremap <leader>x :Vexplore<CR>
+noremap <leader>x :Vexplore!<CR>:wincmd =<CR>
 noremap <leader><s-x> :Explore<CR>
 
 nnoremap <leader>tb :TagbarToggle<CR>
