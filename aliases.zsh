@@ -76,35 +76,3 @@ function detach() {
 
   "$@" &
 }
-
-
-# start tmux optionally with script file
-function mux() {
-  if [ $1 ]; then
-    file=$1
-  fi
-
-  # if the argument can't be found, try finding matches
-  if [ $file ] && [ ! -f "$file" ]; then
-    if [ -f "$file.tmux" ]; then
-      file="$file.tmux"
-    elif [ -f "$HOME/.tmux/$file" ]; then
-      file="$HOME/.tmux/$file"
-    elif [ -f "$HOME/.tmux/$file.tmux" ]; then
-      file="$HOME/.tmux/$file.tmux"
-    else
-      echo "Could not find tmux script: $file"
-      exit 1
-    fi
-  fi
-
-  if [ $file ]; then
-    file="-f $file attach"
-  fi
-
-  if [ $2 ]; then
-    session="; tmux rename-session $2"
-  fi
-
-  eval "tmux $file $session"
-}
