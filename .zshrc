@@ -21,7 +21,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git tmux autojump colored-man-pages web-search yarn mix fancy-ctrl-z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -45,22 +45,22 @@ export PATH="$HOME/.yarn/bin:$PATH"
 
 # colorize man pages
 # https://unix.stackexchange.com/questions/108699/documentation-on-less-termcap-variables
-man() {
-  LESS_TERMCAP_mb=$'\e[1;31m' \
-  LESS_TERMCAP_md=$'\e[1;31m' \
-  LESS_TERMCAP_me=$'\e[0m' \
-  LESS_TERMCAP_se=$'\e[0m' \
-  LESS_TERMCAP_so=$'\e[1;44;33m' \
-  LESS_TERMCAP_ue=$'\e[0m' \
-  LESS_TERMCAP_us=$'\e[1;32m' \
-  command man "$@"
-}
+#man() {
+  #LESS_TERMCAP_mb=$'\e[1;31m' \
+  #LESS_TERMCAP_md=$'\e[1;31m' \
+  #LESS_TERMCAP_me=$'\e[0m' \
+  #LESS_TERMCAP_se=$'\e[0m' \
+  #LESS_TERMCAP_so=$'\e[1;44;33m' \
+  #LESS_TERMCAP_ue=$'\e[0m' \
+  #LESS_TERMCAP_us=$'\e[1;32m' \
+  #command man "$@"
+#}
 
 # start terminal in tmux, reattach if exists
-[[ $TERM != screen* ]] && [ -z $TMUX ] && { tmux attach || tmux new-session -s home; }
+#[[ $TERM != screen* ]] && [ -z $TMUX ] && { tmux attach || tmux new-session -s home; }
 
 # load other files if exist
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f /usr/share/autojump/autojump.sh ] && source /usr/share/autojump/autojump.sh
+#[ -f /usr/share/autojump/autojump.sh ] && source /usr/share/autojump/autojump.sh
 
 [ -e $HOME/.zshrc.after ] && source $HOME/.zshrc.after
