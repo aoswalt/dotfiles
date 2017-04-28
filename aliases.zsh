@@ -24,7 +24,6 @@ function npm-exec() { PATH=$(npm bin):$PATH; $@ }   # run node module
 alias weather="curl wttr.in/Nashville"
 
 # some more ls aliases that were being overwritten
-alias ls='ls --color'
 alias l1='ls -1'
 alias ll='ls -alF'
 alias la='ls -A'
