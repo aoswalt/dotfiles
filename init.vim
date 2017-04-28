@@ -148,7 +148,16 @@ nmap <silent> <c-l> :wincmd l<cr>
 
 " toggle search highlight
 nnoremap <leader>hs :noh<CR>
-nnoremap <leader>hl :set hlsearch! hlsearch?<CR>
+
+" hard toggle for highlight
+"nnoremap <leader>hl :set hlsearch! hlsearch?<CR>
+" off / on
+nnoremap [h :set nohlsearch<CR>
+nnoremap ]h :set hlsearch<CR>
+
+" quickfix prev & next like unimpaired
+nnoremap [q :cprev<CR>
+nnoremap ]q :cnext<CR>
 
 " allow range commands from searches - ex:  /foo$m
 cnoremap $t <CR>:t''<CR>
