@@ -57,7 +57,7 @@ export PATH="$HOME/.yarn/bin:$PATH"
 #}
 
 # start terminal in tmux, reattach if exists
-#[[ $TERM != screen* ]] && [ -z $TMUX ] && { tmux attach || tmux new-session -s home; }
+[[ $TERM != screen* ]] && [ -z $TMUX ] && { tmux attach || tmux new-session -s home; }
 
 # load other files if exist
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
