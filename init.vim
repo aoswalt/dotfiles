@@ -100,7 +100,11 @@ set smartcase       "unless a capital is used
 set gdefault        "global search by default
 set magic           "use extended regular expressions
 
-set autochdir       "switch to current file's parent directory
+"set autochdir       "switch to current file's parent directory
+augroup vimrc_set_working_dir
+  au!
+  autocmd BufEnter * silent! lcd %:p:h
+augroup end
 
 let g:netrw_altfile=1   "allow <c-6> to go to the previously edited file
 
