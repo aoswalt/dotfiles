@@ -82,6 +82,10 @@ set sidescroll=5    "horizontal scrolloff
 set list            "enable invisible characters
 set nowrap          "do not wrap lines by default
 
+" toggle relative number based on insert
+autocmd InsertEnter * :set norelativenumber
+autocmd InsertLeave * :set relativenumber
+
 " automatically strip trailiing whitespace on save
 autocmd BufWritePre * StripWhitespace
 
