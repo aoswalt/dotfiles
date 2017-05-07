@@ -129,6 +129,9 @@ hi IndentGuidesEven ctermbg=235
 :set isk-=-
 :set isk-=.
 
+" disable continuation of comments to the next line
+autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
+
 " keybindings
 let mapleader = ' ' "use space as leader
 
