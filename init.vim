@@ -171,6 +171,10 @@ nnoremap ]h :set hlsearch<CR>
 nnoremap [q :cprev<CR>
 nnoremap ]q :cnext<CR>
 
+" buffer prev & next like unimpaired
+nnoremap [b :bprevious<CR>
+nnoremap ]b :bnext<CR>
+
 " allow range commands from searches - ex:  /foo$m
 cnoremap $t <CR>:t''<CR>
 cnoremap $m <CR>:m''<CR>
