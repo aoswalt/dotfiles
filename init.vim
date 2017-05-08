@@ -203,6 +203,9 @@ nnoremap <leader>tb :TagbarToggle<CR>
 " use sudo for file if forgot to when opened
 cmap w!! w !sudo tee % >/dev/null
 
+" search count
+nnoremap * *n<C-O>:%s///gn<CR>
+
 " use <C-p> to open fzf with git files
 nnoremap <C-p> :GFiles -co --exclude-per-directory=.gitignore<CR>
 nnoremap <leader>p :FZF<CR>
