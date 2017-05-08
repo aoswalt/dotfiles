@@ -283,6 +283,23 @@ endfunction
 " from issue, but doesn't work at all in non-repo
 "command! -bang -nargs=* GitAg\ call fzf#vim#ag(<q-args>, {'dir': systemlist('git rev-parse --show-toplevel')[0]}, <bang>0)
 
+" run macro on selection
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+" run 'q' macro on selection
+function! ExecuteQMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @q"
+endfunction
+
+xnoremap Q :<C-u>call ExecuteQMacroOverVisualRange()<CR>
+
+
 
 set noshowmode
 "\   'colorscheme': 'onedark',
