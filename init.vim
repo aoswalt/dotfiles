@@ -245,6 +245,8 @@ nnoremap <leader>md :LivedownToggle<CR>
 
 let b:csv_arrange_use_all_rows = 1
 
+let g:scratch_insert_autohide = 0
+
 
 let g:quickrun_config = {}
 let g:quickrun_config['javascript.jsx'] = { 'type': 'javascript' }
