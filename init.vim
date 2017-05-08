@@ -228,6 +228,9 @@ nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
+" save session
+nnoremap <leader>s :mksession<CR>
+
 let g:gutentags_cache_dir = '~/.tags_cache'
 
 let g:livedown_browser = "firefox"
