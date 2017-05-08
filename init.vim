@@ -223,6 +223,11 @@ nnoremap <Leader>ll :ll<CR>
 nnoremap <Leader>ln :lnext<CR>
 nnoremap <Leader>lp :lprev<CR>
 
+" edit vimrc/zshrc and load vimrc bindings
+nnoremap <leader>ev :vsp $MYVIMRC<CR>
+nnoremap <leader>ez :vsp ~/.zshrc<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
 let g:gutentags_cache_dir = '~/.tags_cache'
 
 let g:livedown_browser = "firefox"
