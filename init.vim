@@ -302,6 +302,9 @@ endfunction
 xnoremap Q :<C-u>call ExecuteQMacroOverVisualRange()<CR>
 
 
+" more solid vertical bar
+set fillchars=vert:\│
+
 set listchars+=extends:»
 set listchars+=precedes:«
 set listchars+=nbsp:⣿
