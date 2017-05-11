@@ -16,6 +16,7 @@ Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 
 Plug 'sheerun/vim-polyglot'
 Plug 'exu/pgsql.vim'
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': ['javascript', 'javascript.jsx'] }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
@@ -256,6 +257,12 @@ let g:quickrun_config['javascript.jsx'] = { 'type': 'javascript' }
 let g:quickrun_config['sh'] = { 'type': 'bash' }
 
 let g:sql_type_default = 'pgsql'
+
+
+" Use tern_for_vim.
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
+
 
 " use pgsql syntax inside elixir non-doc string blocks
 au FileType elixir call SyntaxRange#Include('\s\{2,\}\"\"\"', '\"\"\"', 'pgsql', 'NonText')
