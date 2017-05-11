@@ -309,6 +309,7 @@ set listchars+=extends:»
 set listchars+=precedes:«
 set listchars+=nbsp:⣿
 
+set diffopt+=vertical
 
 set noshowmode
 "\   'colorscheme': 'onedark',
