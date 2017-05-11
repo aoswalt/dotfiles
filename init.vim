@@ -302,6 +302,10 @@ endfunction
 xnoremap Q :<C-u>call ExecuteQMacroOverVisualRange()<CR>
 
 
+set listchars+=extends:»
+set listchars+=precedes:«
+set listchars+=nbsp:⣿
+
 
 set noshowmode
 "\   'colorscheme': 'onedark',
