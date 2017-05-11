@@ -5,6 +5,8 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'christoomey/vim-tmux-navigator'
+
 Plug 'simnalamburt/vim-mundo'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -152,7 +154,6 @@ nnoremap Y y$
 nnoremap Q @q
 
 " use ctrl+h/j/k/l to move across windows
-nmap <silent> <bs> <c-h>
 nmap <silent> <c-h> :wincmd h<cr>
 nmap <silent> <c-j> :wincmd j<cr>
 nmap <silent> <c-k> :wincmd k<cr>
