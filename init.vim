@@ -193,8 +193,6 @@ let g:NERDTrimTrailingWhitespace = 1
 noremap <leader>x :Vexplore!<CR>:wincmd =<CR>
 noremap <leader><s-x> :Explore<CR>
 
-nnoremap <leader>tb :TagbarToggle<CR>
-
 " use sudo for file if forgot to when opened
 cmap w!! w !sudo tee % >/dev/null
 
@@ -210,6 +208,8 @@ nnoremap <leader>f :Ag<space>
 nnoremap <leader>* :Ag <c-r><c-w><CR>
 
 nnoremap <F5> :MundoToggle<CR>
+nnoremap <F8> :TagbarToggle<CR>
+
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 100
