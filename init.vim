@@ -21,11 +21,11 @@ Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'tpope/vim-projectionist'
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
-Plug 'ingo-library'
-Plug 'SyntaxRange'
+Plug 'vim-scripts/ingo-library'
+Plug 'vim-scripts/SyntaxRange'
 
 Plug 'thinca/vim-quickrun'
-Plug 'dbext.vim'
+Plug 'vim-scripts/dbext.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'mtth/scratch.vim'
 Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
@@ -36,7 +36,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'gko/vim-coloresque'
 Plug 'guns/xterm-color-table.vim'
-Plug 'AnsiEsc.vim'
+Plug 'vim-scripts/AnsiEsc.vim'
 
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
