@@ -213,8 +213,9 @@ cmap w!! w !sudo tee % >/dev/null
 nnoremap * *n<C-O>:%s///gn<CR>
 
 " use <C-p> to open fzf with git files
-nnoremap <C-p> :GFiles -co --exclude-per-directory=.gitignore<CR>
-nnoremap <leader>p :FZF<CR>
+nnoremap <c-p> :GFiles -co --exclude-per-directory=.gitignore<CR>
+nnoremap <leader>p :GFiles -co --exclude-per-directory=.gitignore<CR>
+nnoremap <leader>P :FZF<CR>
 nnoremap <leader>f :Ag<space>
 
 " search for word under cursor with <leader>*
