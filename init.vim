@@ -164,13 +164,24 @@ nnoremap <leader>hs :noh<CR>
 nnoremap [h :set nohlsearch<CR>
 nnoremap ]h :set hlsearch<CR>
 
-" quickfix prev & next like unimpaired
+" quickfix prev/next/first/last like unimpaired
 nnoremap [q :cprev<CR>
 nnoremap ]q :cnext<CR>
+nnoremap [Q :crewind<CR>
+nnoremap ]Q :clast<CR>
 
-" buffer prev & next like unimpaired
+" buffer prev/next/first/last like unimpaired
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
+nnoremap [B :bfirst<CR>
+nnoremap ]B :blast<CR>
+
+" arg list prev/next/first/last like unimpaired
+nnoremap [b :bprevious<CR>
+nnoremap [a :prev<CR>
+nnoremap ]a :next<CR>
+nnoremap [A :rewind<CR>
+nnoremap ]A :last<CR>
 
 " allow range commands from searches - ex:  /foo$m
 cnoremap $t <CR>:t''<CR>
