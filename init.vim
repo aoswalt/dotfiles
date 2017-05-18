@@ -40,7 +40,7 @@ Plug 'guns/xterm-color-table.vim'
 Plug 'vim-scripts/AnsiEsc.vim'
 
 Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-surround'
 Plug 'SirVer/ultisnips'
@@ -188,8 +188,7 @@ nnoremap <leader>iD "=strftime("%m.%d.%Y")<CR>P"
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
-map <leader>/ <plug>NERDCommenterToggle<CR><Up>
-let g:NERDTrimTrailingWhitespace = 1
+map <leader>/ gcc
 
 noremap <leader>x :Vexplore!<CR>:wincmd =<CR>
 noremap <leader><s-x> :Explore<CR>
