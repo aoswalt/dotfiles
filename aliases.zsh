@@ -33,6 +33,8 @@ alias l='ls -CF'
 alias gresolve='git diff --name-only | uniq | xargs nvim'
 alias gresolvep='gresolve -p'
 alias gresolveo='gresolve -O'
+alias n='nvim'
+alias v='nvim'
 
 
 # start web server
