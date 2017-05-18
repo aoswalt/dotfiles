@@ -221,6 +221,14 @@ nnoremap <leader>f :Ag<space>
 " search for word under cursor with <leader>*
 nnoremap <leader>* :Ag <c-r><c-w><CR>
 
+" put searches in middle of screen
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
 nnoremap <F5> :MundoToggle<CR>
 nnoremap <F8> :TagbarToggle<CR>
 
