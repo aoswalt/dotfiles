@@ -141,8 +141,9 @@ let mapleader = ' ' "use space as leader
 " quick sourcing for working on vim files
 nnoremap <leader>\ :source %<CR>
 
-" use ; for commands
+" swap ; and :
 nnoremap ; :
+nnoremap : ;
 
 " move cursor into wrapped lines
 nnoremap <Up> gk
