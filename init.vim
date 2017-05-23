@@ -326,6 +326,16 @@ xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 " run 'q' macro on selection
 xnoremap Q :normal @q<CR>
 
+" search for visual selection -  from practical vim
+function! s:VSetSearch(cmdType)
+  let temp = @s
+  norm! gv"sy
+  let @/ = '\V' . substitute(escape(@s, a:cmdType.'\'), '\n', '\\n', 'g')
+  let @s = temp
+endfunction
+
+xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
+xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>/<C-R>=@/<CR><CR>
 
 " print highlight group of word under cursor
 nmap <silent> <leader>hg :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
