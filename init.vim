@@ -312,7 +312,7 @@ endfunction
 "command! -bang -nargs=* GitAg\ call fzf#vim#ag(<q-args>, {'dir': systemlist('git rev-parse --show-toplevel')[0]}, <bang>0)
 
 " run macro on selection
-function! ExecuteMacroOverVisualRange()
+function! s:ExecuteMacroOverVisualRange()
   echo "@".getcmdline()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
@@ -320,12 +320,7 @@ endfunction
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
 " run 'q' macro on selection
-function! ExecuteQMacroOverVisualRange()
-  echo "@".getcmdline()
-  execute ":'<,'>normal @q"
-endfunction
-
-xnoremap Q :<C-u>call ExecuteQMacroOverVisualRange()<CR>
+xnoremap Q :normal @q<CR>
 
 
 " print highlight group of word under cursor
