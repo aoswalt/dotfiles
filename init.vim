@@ -142,8 +142,8 @@ let mapleader = ' ' "use space as leader
 nnoremap <leader>\ :source %<CR>
 
 " swap ; and :
-nnoremap ; :
-nnoremap : ;
+noremap ; :
+noremap : ;
 
 " move cursor into wrapped lines
 nnoremap <Up> gk
