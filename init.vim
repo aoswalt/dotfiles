@@ -183,6 +183,12 @@ nnoremap ]a :next<CR>
 nnoremap [A :first<CR>
 nnoremap ]A :last<CR>
 
+" location list prev/next/first/last like unimpaired
+nnoremap [l :lprev<CR>
+nnoremap ]l :lnext<CR>
+nnoremap [L :lfirst<CR>
+nnoremap ]L :llast<CR>
+
 " allow range commands from searches - ex:  /foo$m
 cnoremap $t <CR>:t''<CR>
 cnoremap $m <CR>:m''<CR>
