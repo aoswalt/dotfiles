@@ -105,7 +105,6 @@ set splitright      "default vertical split to right
 set ignorecase      "ignore caps when searching
 set smartcase       "unless a capital is used
 set gdefault        "global search by default
-set magic           "use extended regular expressions
 set lazyredraw      "no need to redraw all the time
 
 "set autochdir       "switch to current file's parent directory
@@ -144,6 +143,11 @@ nnoremap <leader>\ :source %<CR>
 " swap ; and :
 noremap ; :
 noremap : ;
+
+" pretty much always want very magic searches
+nnoremap / /\v
+nnoremap ? ?\v
+cnoremap %s/ %s/\v
 
 " move cursor into wrapped lines
 nnoremap <Up> gk
