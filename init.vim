@@ -42,7 +42,12 @@ Plug 'vim-scripts/AnsiEsc.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-scriptease'
+Plug 'tpope/vim-speeddating'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
@@ -162,37 +167,6 @@ nnoremap Q @q
 " toggle search highlight
 nnoremap <leader>hs :noh<CR>
 
-" hard toggle for highlight
-"nnoremap <leader>hl :set hlsearch! hlsearch?<CR>
-" off / on
-nnoremap [h :set nohlsearch<CR>
-nnoremap ]h :set hlsearch<CR>
-
-" quickfix prev/next/first/last like unimpaired
-nnoremap [q :cprev<CR>
-nnoremap ]q :cnext<CR>
-nnoremap [Q :cfirst<CR>
-nnoremap ]Q :clast<CR>
-
-" buffer prev/next/first/last like unimpaired
-nnoremap [b :bprevious<CR>
-nnoremap ]b :bnext<CR>
-nnoremap [B :bfirst<CR>
-nnoremap ]B :blast<CR>
-
-" arg list prev/next/first/last like unimpaired
-nnoremap [b :bprevious<CR>
-nnoremap [a :prev<CR>
-nnoremap ]a :next<CR>
-nnoremap [A :first<CR>
-nnoremap ]A :last<CR>
-
-" location list prev/next/first/last like unimpaired
-nnoremap [l :lprev<CR>
-nnoremap ]l :lnext<CR>
-nnoremap [L :lfirst<CR>
-nnoremap ]L :llast<CR>
-
 " allow range commands from searches - ex:  /foo$m
 cnoremap $t <CR>:t''<CR>
 cnoremap $m <CR>:m''<CR>
@@ -261,8 +235,6 @@ autocmd! BufReadPost,BufWritePost * Neomake
 nnoremap <Leader>lo :lopen<CR>
 nnoremap <Leader>lc :lclose<CR>
 nnoremap <Leader>ll :ll<CR>
-nnoremap <Leader>ln :lnext<CR>
-nnoremap <Leader>lp :lprev<CR>
 
 " edit vimrc/zshrc and load vimrc bindings
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
@@ -337,8 +309,6 @@ endfunction
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>/<C-R>=@/<CR><CR>
 
-" print highlight group of word under cursor
-nnoremap <silent> <leader>hg :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " more solid vertical bar
 set fillchars=vert:\│
