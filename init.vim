@@ -129,8 +129,8 @@ hi IndentGuidesOdd  ctermbg=234
 hi IndentGuidesEven ctermbg=235
 
 " use - and . as word separators
-:set isk-=-
-:set isk-=.
+set isk-=-
+set isk-=.
 
 " disable continuation of comments to the next line
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
