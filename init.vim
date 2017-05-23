@@ -167,7 +167,7 @@ nnoremap ]h :set hlsearch<CR>
 " quickfix prev/next/first/last like unimpaired
 nnoremap [q :cprev<CR>
 nnoremap ]q :cnext<CR>
-nnoremap [Q :crewind<CR>
+nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 
 " buffer prev/next/first/last like unimpaired
@@ -180,7 +180,7 @@ nnoremap ]B :blast<CR>
 nnoremap [b :bprevious<CR>
 nnoremap [a :prev<CR>
 nnoremap ]a :next<CR>
-nnoremap [A :rewind<CR>
+nnoremap [A :first<CR>
 nnoremap ]A :last<CR>
 
 " allow range commands from searches - ex:  /foo$m
