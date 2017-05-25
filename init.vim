@@ -65,7 +65,8 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 set completeopt=longest,menuone
 let g:tern_request_timeout = 1
-let g:tern_show_signature_in_pum = '0'
+let g:tern_show_signature_in_pum = 1
+let g:tern_show_argument_hints = "on_move"
 let g:tern#filetypes = ['jsx', 'javascript.jsx']
 
 " allow shift-K to use :help instead of :man
