@@ -109,6 +109,8 @@ set splitright      "default vertical split to right
 
 set ignorecase      "ignore caps when searching
 set smartcase       "unless a capital is used
+set infercase       "smart auto-completion casing
+set wildignorecase  "ignore case on files and directories
 set gdefault        "global search by default
 set lazyredraw      "no need to redraw all the time
 
