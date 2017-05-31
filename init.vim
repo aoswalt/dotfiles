@@ -161,6 +161,13 @@ cnoremap %s/ %s/\v
 nnoremap <Up> gk
 nnoremap <Down> gj
 
+" terminal keybindings
+tnoremap <leader><esc> <c-\><c-n>
+tnoremap <c-h> <c-\><c-n><c-w>h
+tnoremap <c-j> <c-\><c-n><c-w>j
+tnoremap <c-k> <c-\><c-n><c-w>k
+tnoremap <c-l> <c-\><c-n><c-w>l
+
 " mimic D,C
 nnoremap Y y$
 
