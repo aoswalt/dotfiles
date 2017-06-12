@@ -202,7 +202,6 @@ cmap w!! w !sudo tee % >/dev/null
 nnoremap * *n<C-O>:%s///gn<CR>
 
 " use <C-p> to open fzf with git files
-nnoremap <c-p> :GFiles -co --exclude-per-directory=.gitignore<CR>
 nnoremap <leader>p :GFiles -co --exclude-per-directory=.gitignore<CR>
 nnoremap <leader>P :FZF<CR>
 nnoremap <leader>f :Ag<space>
