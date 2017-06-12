@@ -190,6 +190,7 @@ nnoremap <leader>iD "=strftime("%m.%d.%Y")<CR>P"
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
+" commenting
 map <leader>/ gcc
 vmap <leader>/ gc
 
@@ -229,6 +230,7 @@ xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>/<C-R>=@/<CR><CR>
 
 
+" pane toggles
 nnoremap <F5> :MundoToggle<CR>
 nnoremap <F8> :TagbarToggle<CR>
 
