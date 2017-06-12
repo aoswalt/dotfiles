@@ -197,9 +197,6 @@ noremap <leader>x :Vexplore!<CR>:wincmd =<CR>
 noremap <leader><s-x> :Explore<CR>
 
 " use sudo for file if forgot to when opened
-
-" search count
-nnoremap * *n<C-O>:%s///gn<CR>
 function! SudoW()
   normal :w !sudo tee % >/dev/null
 endfunction
@@ -221,9 +218,16 @@ xmap n nzz
 xmap N Nzz
 xmap * *zz
 xmap # #zz
-
 nmap g* g*zz
 nmap g# g#zz
+
+" search count alongside search
+nnoremap * *n<c-o>:%s///gn<CR>
+
+" search for visual selection
+xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
+xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>/<C-R>=@/<CR><CR>
+
 
 nnoremap <F5> :MundoToggle<CR>
 nnoremap <F8> :TagbarToggle<CR>
@@ -317,9 +321,6 @@ function! s:VSetSearch(cmdType)
   let @/ = '\V' . substitute(escape(@s, a:cmdType.'\'), '\n', '\\n', 'g')
   let @s = temp
 endfunction
-
-xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
-xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>/<C-R>=@/<CR><CR>
 
 " show highlight stack
 function! SynStack()
