@@ -83,17 +83,12 @@ colorscheme onedark
 "colorscheme hybrid
 
 set number          "line numbers
-set rnu             "relative line numbers
 set cursorline      "highlight cursorline
 set ruler           "show line/column
 set scrolloff=4     "keep more lines on screen while scrolling
 set sidescroll=5    "horizontal scrolloff
 set list            "enable invisible characters
 set nowrap          "do not wrap lines by default
-
-" toggle relative number based on insert
-autocmd InsertEnter * :set norelativenumber
-autocmd InsertLeave * :set relativenumber
 
 " automatically strip trailiing whitespace on save
 autocmd BufWritePre * StripWhitespace
