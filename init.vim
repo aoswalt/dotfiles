@@ -11,7 +11,7 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'neomake/neomake', {'on': 'Neomake'}
+Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 
 Plug 'sheerun/vim-polyglot'
@@ -235,8 +235,7 @@ let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 let delimitMate_jump_expansion = 1
 
-" Neomake on open or write, leader-l for issues
-autocmd! BufReadPost,BufWritePost * Neomake
+" extra location list keybinds (some with unimpaired)
 nnoremap <Leader>lo :lopen<CR>
 nnoremap <Leader>lc :lclose<CR>
 nnoremap <Leader>ll :ll<CR>
@@ -332,6 +331,8 @@ let g:lightline = {
 \   },
 \ }
 
+let g:ale_fixers = {}
+let g:ale_fixers.javascript = ['eslint']
 
 " allow loading of device specific configs
 if filereadable(expand('$HOME/init.after.vim'))
