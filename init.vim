@@ -314,6 +314,15 @@ endfunction
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>/<C-R>=@/<CR><CR>
 
+" show highlight stack
+function! SynStack()
+  let syns = synstack(line("."), col("."))
+  call map(syns, {key, id -> [synIDattr(id, "name"), synIDattr(synIDtrans(id), "name")]})
+  call map(syns, {key, pair -> ("[" . get(pair, 0) . "->" . get(pair, 1) . "]")})
+  let stack = join(syns, " => ")
+  echo stack
+endfunction
+command! SynStack :call SynStack()
 
 " more solid vertical bar
 set fillchars=vert:\│
