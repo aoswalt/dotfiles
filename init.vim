@@ -195,6 +195,7 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 map <leader>/ gcc
+vmap <leader>/ gc
 
 noremap <leader>x :Vexplore!<CR>:wincmd =<CR>
 noremap <leader><s-x> :Explore<CR>
