@@ -131,6 +131,9 @@ let g:indent_guides_enable_on_vim_startup = 1
 hi IndentGuidesOdd  ctermbg=234
 hi IndentGuidesEven ctermbg=235
 
+hi jsBlock ctermfg=150
+hi jsObjectKey ctermfg=139
+
 " use - and . as word separators
 set isk-=-
 set isk-=.
