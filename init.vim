@@ -182,9 +182,9 @@ cnoremap $d <CR>:d<CR>``
 noremap gV `[v`]
 
 " insert time / date
-nnoremap <leader>it "=strftime("%H:%M")<CR>P"
-nnoremap <leader>id "=strftime("%Y-%m-%d")<CR>P"
-nnoremap <leader>iD "=strftime("%m.%d.%Y")<CR>P"
+nnoremap <leader>it "=strftime("%H:%M")<CR>P
+nnoremap <leader>id "=strftime("%Y-%m-%d")<CR>P
+nnoremap <leader>iD "=strftime("%m.%d.%Y")<CR>P
 
 " cycle through popup menu options with <TAB>
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
