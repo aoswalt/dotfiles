@@ -9,11 +9,12 @@ easy updating.
 
 ## Setup
 
-Run `setup.sh` to create the symlinks.
+Run `install.sh` to create the symlinks.
 
 ## Soft Dependencies
 
 * tmux
+* zsh
 * oh-my-zsh
 * neovim
 * ag - the silver searcher
