@@ -95,7 +95,7 @@ set tabstop=2       "width of tabs
 set shiftwidth=2    "amount for < and > commands
 set expandtab       "insert spaces instead of tabs
 
-set hidden          "allow hiding a buffer instead of requring save
+" set hidden          "allow hiding a buffer instead of requring save
 set splitbelow      "default horizontal split to lower
 set splitright      "default vertical split to right
 
@@ -333,6 +333,8 @@ function! SynStack()
   echo stack
 endfunction
 command! SynStack :call SynStack()
+
+command! BufOnly :%bd|e#
 
 " more solid vertical bar
 set fillchars=vert:\│
