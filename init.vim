@@ -204,7 +204,8 @@ endfunction
 
 " use <C-p> to open fzf with git files
 nnoremap <leader>p :GFiles -co --exclude-per-directory=.gitignore<CR>
-nnoremap <leader>P :FZF<CR>
+" plain FZF vs GFiles have a few differences to be sorted out
+" nnoremap <leader>P :FZF<CR>
 nnoremap <leader>f :Ag<space>
 
 " search for word under cursor with <leader>*
@@ -223,7 +224,8 @@ nmap g* g*zz
 nmap g# g#zz
 
 " search count alongside search
-nnoremap * *n<c-o>:%s///gn<CR>
+" right command but needs some tweaking to seamlessly integrate
+" nnoremap * *n<c-o>:%s///gn<CR>
 
 " search for visual selection
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
