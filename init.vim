@@ -164,6 +164,9 @@ tnoremap <c-j> <c-\><c-n><c-w>j
 tnoremap <c-k> <c-\><c-n><c-w>k
 tnoremap <c-l> <c-\><c-n><c-w>l
 
+" maximize window
+nnoremap <c-w>' :vertical-resize<cr>:resize<cr>
+
 " mimic D,C
 nnoremap Y y$
 
