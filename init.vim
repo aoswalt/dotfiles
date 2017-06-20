@@ -338,17 +338,6 @@ command! SynStack :call SynStack()
 
 command! BufOnly :%bd|e#
 
-" scratch buffer
-function! Scratch()
-  vnew
-  setlocal buftype=nofile
-  setlocal bufhidden=hide
-  setlocal noswapfile
-  startinsert!
-endfunction
-command! Scratch :call Scratch()
-nnoremap <leader>os :call Scratch()<CR>
-
 " more solid vertical bar
 set fillchars=vert:\│
 
