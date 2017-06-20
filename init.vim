@@ -76,11 +76,7 @@ autocmd FileType vim setlocal keywordprg=:help
 set encoding=utf8
 
 " display/ui
-set t_Co=256
-set background=dark
-let g:hybrid_custom_term_colors = 1
 colorscheme onedark
-"colorscheme hybrid
 
 set number          "line numbers
 set cursorline      "highlight cursorline
@@ -127,9 +123,10 @@ set undofile
 set undodir=~/.config/nvim/undo/
 
 
+let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
-hi IndentGuidesOdd  ctermbg=234
-hi IndentGuidesEven ctermbg=235
+hi IndentGuidesOdd  ctermbg=233
+hi IndentGuidesEven ctermbg=234
 
 hi jsBlock ctermfg=150
 hi jsObjectKey ctermfg=139
