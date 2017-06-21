@@ -211,6 +211,9 @@ nnoremap <leader>p :GFiles -co --exclude-per-directory=.gitignore<CR>
 " nnoremap <leader>P :FZF<CR>
 nnoremap <leader>f :Ag<space>
 
+" easy access to the buffer list
+nnoremap <leader>b :Buffers<cr>
+
 " search for word under cursor with <leader>*
 nnoremap <leader>* :Ag <c-r><c-w><CR>
 
