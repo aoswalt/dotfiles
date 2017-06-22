@@ -342,7 +342,17 @@ function! SynStack()
 endfunction
 command! SynStack :call SynStack()
 
+" close all other buffers
 command! BufOnly :%bd|e#
+
+" open a terminal in a different buffer
+command! VTerm :vsp|terminal
+command! STerm :sp|terminal
+command! TTerm :tabnew|terminal
+
+" go into insert mode if switching to a terminal buffer
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+
 
 " more solid vertical bar
 set fillchars=vert:\│
