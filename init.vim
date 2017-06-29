@@ -208,7 +208,7 @@ endfunction
 " use <C-p> to open fzf with git files
 nnoremap <leader>p :GFiles -co --exclude-per-directory=.gitignore<CR>
 " plain FZF vs GFiles have a few differences to be sorted out
-" nnoremap <leader>P :FZF<CR>
+nnoremap <leader>P :FZF<CR>
 nnoremap <leader>f :Ag<space>
 
 " easy access to the buffer list
