@@ -16,7 +16,7 @@ Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 
 Plug 'sheerun/vim-polyglot'
 Plug 'exu/pgsql.vim'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': ['javascript', 'javascript.jsx'] }
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
