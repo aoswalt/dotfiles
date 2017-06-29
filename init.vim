@@ -64,10 +64,13 @@ let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 set completeopt=longest,menuone
-let g:tern_request_timeout = 1
+
+" tern tweaks
 let g:tern_show_signature_in_pum = 1
 let g:tern_show_argument_hints = "on_move"
-let g:tern#filetypes = ['jsx', 'javascript.jsx']
+let g:tern#filetypes = ['javascript', 'jsx', 'javascript.jsx']
+let g:tern#is_show_argument_hints_enabled = 0
+
 
 " allow shift-K to use :help instead of :man
 autocmd FileType help setlocal keywordprg=:help
@@ -285,11 +288,6 @@ let g:quickrun_config['javascript.jsx'] = { 'type': 'javascript' }
 let g:quickrun_config['sh'] = { 'type': 'bash' }
 
 let g:sql_type_default = 'pgsql'
-
-
-" Use tern_for_vim.
-let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent"]
 
 
 " use pgsql syntax inside elixir non-doc string blocks
