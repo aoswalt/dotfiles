@@ -49,6 +49,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-vinegar'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
@@ -204,7 +205,6 @@ map <leader>/ gcc
 vmap <leader>/ gc
 
 noremap <leader>x :Vexplore!<CR>:wincmd =<CR>
-noremap <leader><s-x> :Explore<CR>
 
 " use sudo for file if forgot to when opened
 function! SudoW()
