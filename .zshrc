@@ -64,3 +64,5 @@ export PATH="$HOME/.yarn/bin:$PATH"
 #[ -f /usr/share/autojump/autojump.sh ] && source /usr/share/autojump/autojump.sh
 
 [ -e $HOME/.zshrc.after ] && source $HOME/.zshrc.after
+
+function = { echo $(($@))  }
