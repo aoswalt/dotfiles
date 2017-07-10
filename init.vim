@@ -208,9 +208,7 @@ vmap <leader>/ gc
 noremap <leader>x :Vexplore!<CR>:wincmd =<CR>
 
 " use sudo for file if forgot to when opened
-function! SudoW()
-  normal :w !sudo tee % >/dev/null
-endfunction
+nnoremap <leader>sw :w !sudo tee % >/dev/null<cr>
 
 " use <C-p> to open fzf with git files
 nnoremap <leader>p :GFiles -co --exclude-per-directory=.gitignore<CR>
