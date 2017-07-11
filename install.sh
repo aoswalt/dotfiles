@@ -41,7 +41,9 @@ nvim_dir=$HOME/.config/nvim
 mkdir -p "${nvim_dir}"
 try_link $this_dir/init.vim $nvim_dir/init.vim
 
-konsole_profile_dir=$HOME/.local/share/konsole
-mkdir -p $konsole_profile_dir
-try_link $this_dir/konsole/Mine.profile $konsole_profile_dir/Mine.profile
-try_link $this_dir/konsole/Mine.colorscheme $konsole_profile_dir/Mine.colorscheme
+if [ $(which konsole) ]; then
+  konsole_profile_dir=$HOME/.local/share/konsole
+  mkdir -p $konsole_profile_dir
+  try_link $this_dir/konsole/Mine.profile $konsole_profile_dir/Mine.profile
+  try_link $this_dir/konsole/Mine.colorscheme $konsole_profile_dir/Mine.colorscheme
+fi
