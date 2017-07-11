@@ -65,4 +65,6 @@ export PATH="$HOME/.yarn/bin:$PATH"
 
 [ -e $HOME/.zshrc.after ] && source $HOME/.zshrc.after
 
+[ $(which setxkbmap) ] && setxkbmap -option caps:ctrl_modifier
+
 function = { echo $(($@))  }
