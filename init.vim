@@ -352,6 +352,15 @@ command! VTerm :vsp|terminal
 command! STerm :sp|terminal
 command! TTerm :tabnew|terminal
 
+" format a block of JSON with python's built-in function
+function! FormatJSON() range
+  let fullRange = a:firstline.','.a:lastline
+  let singeLine = a:firstline.','.a:firstline
+  silent exe fullRange.'join | '.singeLine.'! python3 -m "json.tool"'
+  silent normal =}
+endfunction
+command! -range FormatJSON :<line1>,<line2>call FormatJSON()
+
 " go into insert mode if switching to a terminal buffer
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 
