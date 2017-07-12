@@ -172,6 +172,9 @@ tnoremap <c-j> <c-\><c-n><c-w>j
 tnoremap <c-k> <c-\><c-n><c-w>k
 tnoremap <c-l> <c-\><c-n><c-w>l
 
+nnoremap <leader><c-h> gT
+nnoremap <leader><c-l> gT
+
 " maximize window
 nnoremap <c-w>' :vertical resize<cr>:resize<cr>
 
