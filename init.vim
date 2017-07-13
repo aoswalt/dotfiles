@@ -281,6 +281,11 @@ nnoremap <leader>sf :source %<CR>
 " save session
 nnoremap <leader>s :mksession<CR>
 
+" term splits like tmux
+nnoremap <leader>\| :VTerm<CR>
+nnoremap <leader>\ :VTerm<CR>
+nnoremap <leader>- :STerm<CR>
+
 let g:gutentags_cache_dir = '~/.tags_cache'
 
 let g:livedown_browser = "firefox"
