@@ -85,6 +85,7 @@ set encoding=utf8
 " display/ui
 colorscheme onedark
 
+set noswapfile
 set number          "line numbers
 set cursorline      "highlight cursorline
 set ruler           "show line/column
