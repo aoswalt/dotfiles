@@ -150,9 +150,6 @@ autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 " keybindings
 let mapleader = ' ' "use space as leader
 
-" quick sourcing for working on vim files
-nnoremap <leader>\ :source %<CR>
-
 " swap ; and :
 noremap ; :
 noremap : ;
@@ -270,10 +267,11 @@ nnoremap <Leader>lo :lopen<CR>
 nnoremap <Leader>lc :lclose<CR>
 nnoremap <Leader>ll :ll<CR>
 
-" edit vimrc/zshrc and load vimrc bindings
+" edit vimrc/zshrc and source vimrc
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>sf :source %<CR>
 
 " save session
 nnoremap <leader>s :mksession<CR>
