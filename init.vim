@@ -365,6 +365,9 @@ command! -range FormatJSON :<line1>,<line2>call FormatJSON()
 " go into insert mode if switching to a terminal buffer
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 
+" assume shell command if no file extension
+autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=sh | endif
+
 " comment jsx lines in javascript.jsx files
 autocmd FileType javascript.jsx
 \ let jsxRegionID = hlID('jsxRegion') |
