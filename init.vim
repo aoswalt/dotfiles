@@ -170,6 +170,11 @@ tnoremap <c-j> <c-\><c-n><c-w>j
 tnoremap <c-k> <c-\><c-n><c-w>k
 tnoremap <c-l> <c-\><c-n><c-w>l
 
+inoremap <c-h> <esc><c-w>h
+inoremap <c-j> <esc><c-w>j
+inoremap <c-k> <esc><c-w>k
+inoremap <c-l> <esc><c-w>l
+
 nnoremap <leader><c-h> gT
 nnoremap <leader><c-l> gT
 
