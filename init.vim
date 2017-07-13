@@ -365,6 +365,15 @@ command! -range FormatJSON :<line1>,<line2>call FormatJSON()
 " go into insert mode if switching to a terminal buffer
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 
+" comment jsx lines in javascript.jsx files
+autocmd FileType javascript.jsx
+\ let jsxRegionID = hlID('jsxRegion') |
+\ autocmd CursorMoved *
+\   if index(synstack(line("."), col("$") - 1), jsxRegionID) > 0 |
+\     setlocal commentstring={/*\ %s\ */} |
+\   else |
+\     setlocal commentstring=//%s |
+\   endif
 
 " more solid vertical bar
 set fillchars=vert:\│
