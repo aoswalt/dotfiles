@@ -211,7 +211,8 @@ inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 map <leader>/ gcc
 vmap <leader>/ gc
 
-noremap <leader>x :Vexplore!<CR>:wincmd =<CR>
+noremap <silent> <leader>x :Vexplore!<CR>:wincmd =<CR>
+noremap <silent> <leader>X :Sexplore<CR>:wincmd =<CR>
 
 " use sudo for file if forgot to when opened
 nnoremap <leader>sw :w !sudo tee % >/dev/null<cr>
