@@ -373,7 +373,8 @@ endfunction
 command! -range FormatJSON :<line1>,<line2>call FormatJSON()
 
 " go into insert mode if switching to a terminal buffer
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+autocmd BufEnter term://* startinsert
+autocmd BufLeave term://* stopinsert
 
 " comment jsx lines in javascript.jsx files
 autocmd FileType javascript.jsx
