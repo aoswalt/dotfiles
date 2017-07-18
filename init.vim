@@ -282,9 +282,11 @@ nnoremap <leader>sf :source %<CR>
 nnoremap <leader>s :mksession<CR>
 
 " term splits like tmux
-nnoremap <leader>\| :VTerm<CR>
 nnoremap <leader>\ :VTerm<CR>
 nnoremap <leader>- :STerm<CR>
+
+nnoremap <leader>\| :VTerm<CR>
+nnoremap <leader>_ :STerm<CR>
 
 let g:gutentags_cache_dir = '~/.tags_cache'
 
