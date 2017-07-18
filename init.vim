@@ -175,8 +175,8 @@ inoremap <c-j> <esc><c-w>j
 inoremap <c-k> <esc><c-w>k
 inoremap <c-l> <esc><c-w>l
 
-nnoremap <leader><c-h> gT
-nnoremap <leader><c-l> gT
+nnoremap <leader><c-h> :tabprev<cr>
+nnoremap <leader><c-l> :tabnext<cr>
 
 " maximize window
 nnoremap <c-w>' :vertical resize<cr>:resize<cr>
