@@ -179,7 +179,7 @@ nnoremap <leader><c-h> :tabprev<cr>
 nnoremap <leader><c-l> :tabnext<cr>
 
 " maximize window
-nnoremap <c-w>' :vertical resize<cr>:resize<cr>
+nnoremap <silent> <c-w>' :vertical resize<cr>:resize<cr>
 
 " mimic D,C
 nnoremap Y y$
