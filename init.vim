@@ -229,6 +229,9 @@ nnoremap <leader>b :Buffers<cr>
 " search for word under cursor with <leader>*
 nnoremap <leader>* :Ag <c-r><c-w><CR>
 
+" system clipboard yank
+nnoremap <leader>y "+y
+
 " put searches in middle of screen
 nmap n nzz
 nmap N Nzz
