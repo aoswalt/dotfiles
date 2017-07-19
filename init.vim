@@ -139,6 +139,7 @@ hi IndentGuidesEven ctermbg=234
 hi jsBlock ctermfg=150
 hi jsObjectKey ctermfg=139
 hi Constant ctermfg=37
+hi Normal ctermbg=NONE
 
 " use - and . as word separators
 set isk-=-
