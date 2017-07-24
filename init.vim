@@ -235,6 +235,7 @@ nnoremap <leader>* :Ag <c-r><c-w><CR>
 
 " system clipboard yank
 nnoremap <leader>y "+y
+vnoremap <leader>y "+y
 
 " put searches in middle of screen
 nmap n nzz
