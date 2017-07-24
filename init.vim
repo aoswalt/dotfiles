@@ -227,8 +227,8 @@ nnoremap <leader>f :Ag<space>
 " buffer management
 nnoremap <leader>bf :Buffers<cr>
 nnoremap <leader>bl :ls<cr>:b<space>
-nnoremap <leader>bd :silent! bn \| bd #<cr>
-nnoremap <leader>q :silent! bn \| bd #<cr>
+nnoremap <silent> <leader>bd :bn \| bd #<cr>
+nnoremap <leader>q :bd<cr>
 
 " search for word under cursor with <leader>*
 nnoremap <leader>* :Ag <c-r><c-w><CR>
