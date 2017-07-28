@@ -222,7 +222,8 @@ nnoremap <leader>sw :w !sudo tee % >/dev/null<cr>
 nnoremap <leader>p :GFiles -co --exclude-per-directory=.gitignore<CR>
 " plain FZF vs GFiles have a few differences to be sorted out
 nnoremap <leader>P :FZF<CR>
-nnoremap <leader>f :Ag<space>
+nnoremap <leader>f :BLines<space>
+nnoremap <leader>F :Ag<space>
 
 " buffer management
 nnoremap <leader>bf :Buffers<cr>
