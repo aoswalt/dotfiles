@@ -438,6 +438,9 @@ let g:lightline = {
 let g:ale_fixers = {}
 let g:ale_fixers.javascript = ['eslint']
 
+let g:ale_linters = {}
+let g:ale_linters.javascript = ['eslint']
+
 " allow loading of device specific configs
 if filereadable(expand('$HOME/init.after.vim'))
   source $HOME/init.after.vim
