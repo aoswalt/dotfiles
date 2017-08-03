@@ -409,14 +409,14 @@ autocmd BufEnter term://* startinsert
 autocmd BufLeave term://* stopinsert
 
 " comment jsx lines in javascript.jsx files
-autocmd FileType javascript.jsx
-\ let jsxRegionID = hlID('jsxRegion') |
-\ autocmd CursorMoved *
-\   if index(synstack(line("."), col("$") - 1), jsxRegionID) > 0 |
-\     setlocal commentstring={/*\ %s\ */} |
-\   else |
-\     setlocal commentstring=//%s |
-\   endif
+"autocmd FileType javascript.jsx
+"\ let jsxRegionID = hlID('jsxRegion') |
+"\ autocmd CursorMoved *
+"\   if index(synstack(line("."), col("$") - 1), jsxRegionID) > 0 |
+"\     setlocal commentstring={/*\ %s\ */} |
+"\   else |
+"\     setlocal commentstring=//%s |
+"\   endif
 
 " more solid vertical bar
 set fillchars=vert:\│
