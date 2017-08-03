@@ -391,9 +391,9 @@ command! SynStack :call SynStack()
 command! BufOnly :%bd|e#
 
 " open a terminal in a different buffer
-command! VTerm :vsp|terminal
-command! STerm :sp|terminal
-command! TTerm :tabnew|terminal
+command! -nargs=* VTerm :vsp|terminal <args>
+command! -nargs=* STerm :sp|terminal <args>
+command! -nargs=* TTerm :tabnew|terminal <args>
 
 " format a block of JSON with python's built-in function
 function! FormatJSON() range
