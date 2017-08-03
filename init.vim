@@ -113,11 +113,11 @@ set gdefault        "global search by default
 set lazyredraw      "no need to redraw all the time
 set nohlsearch      "don't highlight searches by default
 
-"set autochdir       "switch to current file's parent directory
-augroup vimrc_set_working_dir
-  au!
-  autocmd BufEnter * silent! lcd %:p:h
-augroup end
+set autochdir       "switch to current file's parent directory
+" augroup vimrc_set_working_dir
+"   au!
+"   autocmd BufRead,BufEnter * silent! lcd %:p:h
+" augroup end
 
 let g:netrw_altfile=1   "allow <c-6> to go to the previously edited file
 
@@ -317,7 +317,6 @@ nnoremap <leader>s :mksession<CR>
 " term splits like tmux
 nnoremap <leader>\ :VTerm<CR>
 nnoremap <leader>- :STerm<CR>
-
 nnoremap <leader>\| :VTerm<CR>
 nnoremap <leader>_ :STerm<CR>
 
