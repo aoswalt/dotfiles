@@ -177,8 +177,33 @@ inoremap <c-l> <esc><c-w>l
 nnoremap <leader><c-h> :tabprev<cr>
 nnoremap <leader><c-l> :tabnext<cr>
 
-" maximize window
-nnoremap <silent> <c-w>' :vertical resize<cr>:resize<cr>
+function! MaximizeWindow()
+  vertical resize
+  resize
+endfunction
+
+let s:maximized=0
+function! ZoomToggle()
+  if s:maximized
+    wincmd =
+    let s:maximized=0
+  else
+    call MaximizeWindow()
+    let s:maximized=1
+  endif
+endfunction
+
+
+" window resizing
+nnoremap <M-h> <C-w><
+nnoremap <M-j> <C-w>+
+nnoremap <M-k> <C-w>-
+nnoremap <M-l> <C-w>>
+nnoremap <M-=> <C-w>=
+nnoremap <silent> <c-w>' :call MaximizeWindow()<cr>
+nnoremap <silent> <c-w>z :call ZoomToggle()<cr>
+nnoremap <silent> <M-'> :call MaximizeWindow()<cr>
+nnoremap <silent> <M-z> :call ZoomToggle()<cr>
 
 " mimic D,C
 nnoremap Y y$
