@@ -320,10 +320,12 @@ nnoremap <leader>- :STerm<CR>
 nnoremap <leader>\| :VTerm<CR>
 nnoremap <leader>_ :STerm<CR>
 
-augroup jsFileName
+augroup jsOperatorMotions
   autocmd!
-  " operator for javascript arrow function name but needs parentheses around arguments
-  autocmd FileType *.js* onoremap ifn :<c-u>execute "normal! ?\\v\\w+\\ze \\= \\(\.\{-\}\\) \\=\\\>\rve"<cr>
+  " arrow function name
+  autocmd FileType *.js* onoremap ifn :<c-u>execute "normal! ?\\v\\w+\\ze \\= (\\w\{-\}\\|\\(\.\{-\}\\)) \\=\\\>\rve"<cr>
+  " variable name
+  autocmd FileType *.js* onoremap ivn :<c-u>execute "normal! ?\\v(const\\|var\\|let) \\zs\rve"<cr>
 augroup end
 
 
