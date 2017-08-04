@@ -320,6 +320,13 @@ nnoremap <leader>- :STerm<CR>
 nnoremap <leader>\| :VTerm<CR>
 nnoremap <leader>_ :STerm<CR>
 
+augroup jsFileName
+  autocmd!
+  " operator for javascript arrow function name but needs parentheses around arguments
+  autocmd FileType *.js* onoremap ifn :<c-u>execute "normal! ?\\v\\w+\\ze \\= \\(\.\{-\}\\) \\=\\\>\rve"<cr>
+augroup end
+
+
 let g:gutentags_cache_dir = '~/.tags_cache'
 
 let g:livedown_browser = "firefox"
