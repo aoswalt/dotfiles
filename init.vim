@@ -345,7 +345,10 @@ let g:sql_type_default = 'pgsql'
 
 
 " use pgsql syntax inside elixir non-doc string blocks
-au FileType elixir call SyntaxRange#Include('\s\{2,\}\"\"\"', '\"\"\"', 'pgsql', 'NonText')
+augroup elixirSql
+  autocmd!
+  autocmd FileType elixir call SyntaxRange#Include('\s\{2,\}\"\"\"', '\"\"\"', 'pgsql', 'NonText')
+augroup end
 
 
 " extracted from inside fzf
