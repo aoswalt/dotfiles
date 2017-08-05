@@ -22,6 +22,8 @@ export PAGER='less'
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+# enable iex history in otp 20
+export ERL_AFLAGS="-kernel shell_history enabled"
 
 #
 # Language
