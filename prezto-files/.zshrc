@@ -53,13 +53,6 @@ alias exs='iEx -S mix start'
 function = { echo $(($@))  }
 mkdwn() { pandoc $1 | lynx -stdin -dump }   # print markdown in terminal
 
-# environment variables
-export EDITOR=nvim
-export VISUAL=$EDITOR
-
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
 # run setups if exist
 if [ $commands[autojump] ]; then # check if autojump is installed
   if [ -f $HOME/.autojump/etc/profile.d/autojump.zsh ]; then # manual user-local installation
@@ -109,9 +102,6 @@ fi
 #   msys*)    echo "WINDOWS" ;;
 #   *)        echo "unknown: $OSTYPE" ;;
 # esac
-
-# uname
-
 
 # [ $commands[setxkbmap] ] && setxkbmap -option caps:ctrl_modifier
 # [ $(which setxkbmap) ] && setxkbmap -option caps:ctrl_modifier

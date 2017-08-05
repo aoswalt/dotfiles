@@ -13,13 +13,15 @@ if [[ "$OSTYPE" == darwin* ]]; then
   export BROWSER='open'
 fi
 
-#
 # Editors
-#
-
 export EDITOR='nvim'
-export VISUAL='nvim'
+export VISUAL=$EDITOR
 export PAGER='less'
+
+
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 
 #
 # Language
@@ -41,9 +43,14 @@ typeset -gU cdpath fpath mailpath path
 #   $cdpath
 # )
 
+
+# GO
+# export GOPATH=$HOME/SkyDrive/go
+
 # Set the list of directories that Zsh searches for programs.
 path=(
   /usr/local/{bin,sbin}
+#   $GOPATH/bin
   $path
 )
 
