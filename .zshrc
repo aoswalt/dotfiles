@@ -1,47 +1,115 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
-
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux autojump colored-man-pages web-search yarn mix)
-
-source $ZSH/oh-my-zsh.sh
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+## Executes commands at the start of an interactive session
 
 # fix vim not seeing 256-color terminal
 [[ $COLORTERM = gnome-terminal && ! $TERM = screen-256color && -z "$TMUX" ]] && TERM=xterm-256color
 
-# set vim as default editor
-export VISUAL=nvim
-export EDITOR=nvim
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
 
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# Remove completion groups
+zstyle -d ':completion:*:matches' group
+zstyle -d ':completion:*:options' description
+zstyle -d ':completion:*:options' auto-description
+zstyle -d ':completion:*:corrections' format
+zstyle -d ':completion:*:descriptions' format
+zstyle -d ':completion:*:messages' format
+zstyle -d ':completion:*:warnings' format
+zstyle -d ':completion:*:default' list-prompt
+zstyle -d ':completion:*' format
+zstyle -d ':completion:*' group-name
 
-export PATH="$HOME/.yarn/bin:$PATH"
+# unsetopt CORRECT                      # Disable autocorrect guesses.
+
+
+## aliases
+alias weather='curl wttr.in/Nashville'
+alias tree='tree -C'
+alias python='python3'
+alias pip='pip3'
+alias l1='ls -1'
+alias ll='ls -alF'
+alias la='ls -A'
+alias la1='ls -A1'
+alias l='ls -CF'
+alias gresolve="git diff --name-only | uniq | xargs $EDITOR"
+alias gresolvep='gresolve -p'
+alias gresolveo='gresolve -O'
+alias n='nvim'
+alias n.='nvim .'
+alias v='nvim'
+
+alias giaa="gia -A"
+
+alias yrd='yarn && yarn run dev'
+alias exs='iEx -S mix start'
+
+## functions
+function = { echo $(($@))  }  # easy math
+mkdwn() { pandoc $1 | lynx -stdin -dump }   # print markdown in terminal
+
+# needs tweaking for non BSD, probably with brace expansion {1..5}
+# maybe cd\^
+# cd^ () {
+#   if [ $1 -eq 1 ]; then
+#     cd ..
+#   else
+#     cd $(seq -f '../' -s '' $1)
+#   fi
+# }
+
+# run setups if exist
+if [ $commands[autojump] ]; then # check if autojump is installed
+  if [ -f $HOME/.autojump/etc/profile.d/autojump.zsh ]; then # manual user-local installation
+    . $HOME/.autojump/etc/profile.d/autojump.zsh
+  elif [ -f $HOME/.autojump/share/autojump/autojump.zsh ]; then # another manual user-local installation
+    . $HOME/.autojump/share/autojump/autojump.zsh
+  elif [ -f $HOME/.nix-profile/etc/profile.d/autojump.zsh ]; then # nix installation
+    . $HOME/.nix-profile/etc/profile.d/autojump.zsh
+  elif [ -f /usr/share/autojump/autojump.zsh ]; then # debian and ubuntu package
+    . /usr/share/autojump/autojump.zsh
+  elif [ -f /etc/profile.d/autojump.zsh ]; then # manual installation
+    . /etc/profile.d/autojump.zsh
+  elif [ -f /etc/profile.d/autojump.sh ]; then # gentoo installation
+    . /etc/profile.d/autojump.sh
+  elif [ -f /usr/local/share/autojump/autojump.zsh ]; then # freebsd installation
+    . /usr/local/share/autojump/autojump.zsh
+  elif [ -f /opt/local/etc/profile.d/autojump.zsh ]; then # mac os x with ports
+    . /opt/local/etc/profile.d/autojump.zsh
+  elif [ $commands[brew] -a -f `brew --prefix`/etc/autojump.sh ]; then # mac os x with brew
+    . `brew --prefix`/etc/autojump.sh
+  fi
+fi
+
+
+# if [[ "$OSTYPE" == "linux-gnu" ]]; then
+#   # ...
+# elif [[ "$OSTYPE" == "darwin"* ]]; then
+#   # Mac OSX
+# elif [[ "$OSTYPE" == "cygwin" ]]; then
+#   # POSIX compatibility layer and Linux environment emulation for Windows
+# elif [[ "$OSTYPE" == "msys" ]]; then
+#   # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
+# elif [[ "$OSTYPE" == "win32" ]]; then
+#   # I'm not sure this can happen.
+# elif [[ "$OSTYPE" == "freebsd"* ]]; then
+#   # ...
+# else
+#   # Unknown.
+# fi
+
+
+# case "$OSTYPE" in
+#   solaris*) echo "SOLARIS" ;;
+#   darwin*)  echo "OSX" ;;
+#   linux*)   echo "LINUX" ;;
+#   bsd*)     echo "BSD" ;;
+#   msys*)    echo "WINDOWS" ;;
+#   *)        echo "unknown: $OSTYPE" ;;
+# esac
+
+
 
 # colorize man pages
 # https://unix.stackexchange.com/questions/108699/documentation-on-less-termcap-variables
@@ -56,15 +124,15 @@ export PATH="$HOME/.yarn/bin:$PATH"
   #command man "$@"
 #}
 
+
 # start terminal in tmux, reattach if exists
-[[ $TERM != screen* ]] && [ -z $TMUX ] && { tmux attach || tmux new-session -s home; }
+# [[ $TERM != screen* ]] && [ -z $TMUX ] && { tmux attach || tmux new-session -s home; }
 
-# load other files if exist
+
+
+
+[ $commands[setxkbmap] ] && setxkbmap -option caps:ctrl_modifier
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-#[ -f /usr/share/autojump/autojump.sh ] && source /usr/share/autojump/autojump.sh
 
-[ -e $HOME/.zshrc.after ] && source $HOME/.zshrc.after
-
-[ $(which setxkbmap) ] && setxkbmap -option caps:ctrl_modifier
-
-function = { echo $(($@))  }
+## load local zshrc
+[ -f $HOME/.zshrc.after ] && source $HOME/.zshrc.after
