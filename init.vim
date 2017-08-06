@@ -430,6 +430,9 @@ autocmd BufLeave term://* stopinsert
 "\     setlocal commentstring=//%s |
 "\   endif
 
+" command to fix netrw buftype shenanigans
+command! FixBuftype set buftype=<space>
+
 " more solid vertical bar
 set fillchars=vert:\│
 
