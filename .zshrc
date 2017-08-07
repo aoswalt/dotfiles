@@ -49,6 +49,17 @@ alias exs='iEx -S mix start'
 function = { echo $(($@))  }  # easy math
 mkdwn() { pandoc $1 | lynx -stdin -dump }   # print markdown in terminal
 
+# from oh-my-zsh
+gpb() {
+  if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
+    git push origin "${*}"
+  else
+    [[ "$#" == 0 ]] && local b="$(git-branch-current)"
+    git push origin "${b:=$1}"
+  fi
+}
+compdef _git gpb=git-checkout
+
 # needs tweaking for non BSD, probably with brace expansion {1..5}
 # maybe cd\^
 # cd^ () {
