@@ -1,11 +1,9 @@
-#! /bin/bash
+#! /bin/zsh
 
 # get script's dir
 pushd $(dirname $0) > /dev/null
 this_dir=$(pwd -P)
 popd > /dev/null
-
-shopt -s nocasematch
 
 # try to create a symlink to $1 at $2
 function try_link() {
@@ -68,11 +66,5 @@ fi
 getopts 'p' do_prezto
 # prezto setup
 if [ $do_prezto ]; then
-  # need to set to zsh if not already
-  set_zsh=[[ -z $ZSH_NAME ]]
-
-  [ $set_zsh ] && zsh
   git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-  # set zsh as shell
-  [ $set_zsh ] && chsh -s /bin/zsh
 fi
