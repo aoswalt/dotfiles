@@ -448,6 +448,13 @@ let g:lightline = {
 \   'component': {
 \     'readonly': '%{&readonly?"\ue0a2":""}',
 \   },
+\   'active': {
+\     'right': [
+\        [ 'lineinfo' ],
+\        [ 'percent' ],
+\        [ 'fileformat', 'filetype' ],
+\     ]
+\   },
 \ }
 
 let g:ale_fixers = {}
