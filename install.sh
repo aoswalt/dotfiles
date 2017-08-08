@@ -1,9 +1,7 @@
-#! /bin/zsh
+#! /bin/sh
 
-# get script's dir
-pushd $(dirname $0) > /dev/null
-this_dir=$(pwd -P)
-popd > /dev/null
+# get script's directory
+this_dir=$(cd $(dirname $0); pwd -P)
 
 # try to create a symlink to $1 at $2
 function try_link() {
@@ -13,7 +11,8 @@ function try_link() {
   if [[ -e $dst_path || -L $dst_path ]]; then
     echo -e "\033[36m$dst_path\033[0m already exists. \033[31;1mRemove?\033[0m [y/\033[31;1mN\033[0m]"
     read choice
-    if [[ ${choice:0:1} == y ]]; then
+    # TODO(adam): find appropriate way to handle casing
+    if [[ ${choice:0:1} == "y" || ${choice:0:1} == "Y" ]]; then
       rm $dst_path
     fi
   fi
@@ -37,7 +36,7 @@ files=(
   .zshrc
 )
 
-for filename in $files; do
+for filename in ${files[*]}; do
   try_link $this_dir/$filename $HOME/$filename
 done
 
@@ -45,8 +44,7 @@ nvim_dir=$HOME/.config/nvim
 mkdir -p ${nvim_dir}
 try_link $this_dir/init.vim $nvim_dir/init.vim
 
-# if which konsole &> /dev/null; then
-if [[ $(which konsole) ]]; then
+if [ -x "$(command -v konsole)" ]; then
   konsole_profile_dir=$HOME/.local/share/konsole
   mkdir -p $konsole_profile_dir
   try_link $this_dir/konsole/Mine.profile $konsole_profile_dir/Mine.profile
@@ -63,8 +61,10 @@ fi
 #   esac
 # done
 
-getopts 'p' do_prezto
+getopts 'p' clone_prezto
 # prezto setup
-if [ $do_prezto ]; then
+if [ -e $clone_prezto ]; then
   git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 fi
+
+# TODO(adam): set to zsh
