@@ -143,6 +143,13 @@ hi Normal ctermbg=NONE
 set isk-=-
 set isk-=.
 
+let g:ale_linters = {}
+let g:ale_linters.javascript = ['eslint']
+
+let g:ale_fixers = {}
+let g:ale_fixers.javascript = ['eslint']
+
+
 " disable continuation of comments to the next line
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
@@ -457,11 +464,7 @@ let g:lightline = {
 \   },
 \ }
 
-let g:ale_fixers = {}
-let g:ale_fixers.javascript = ['eslint']
 
-let g:ale_linters = {}
-let g:ale_linters.javascript = ['eslint']
 
 " allow loading of device specific configs
 if filereadable(expand('$HOME/init.after.vim'))
