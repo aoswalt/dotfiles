@@ -38,6 +38,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'gko/vim-coloresque'
 Plug 'guns/xterm-color-table.vim'
 Plug 'vim-scripts/AnsiEsc.vim'
+Plug 'ryanoasis/vim-devicons'
 
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
@@ -455,6 +456,9 @@ let g:lightline = {
 \   'component': {
 \     'readonly': '%{&readonly?"\ue0a2":""}',
 \   },
+\   'component_function': {
+\     'filename': 'FilenameWithIcon',
+\   },
 \   'active': {
 \     'right': [
 \        [ 'lineinfo' ],
@@ -464,6 +468,9 @@ let g:lightline = {
 \   },
 \ }
 
+function! FilenameWithIcon()
+  return expand('%') . ' ' . WebDevIconsGetFileTypeSymbol()
+endfunction
 
 
 " allow loading of device specific configs
