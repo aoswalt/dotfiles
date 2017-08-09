@@ -469,7 +469,8 @@ let g:lightline = {
 \ }
 
 function! FilenameWithIcon()
-  return expand('%') . ' ' . WebDevIconsGetFileTypeSymbol()
+  let filename = expand('%')
+  return len(filename) > 0 ? filename . ' ' . WebDevIconsGetFileTypeSymbol() : '[No File]'
 endfunction
 
 
