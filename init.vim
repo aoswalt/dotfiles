@@ -468,9 +468,17 @@ let g:lightline = {
 \   },
 \ }
 
+" custom icon overrides
+let s:icons = {
+\   'jsx': "\ue7ba",
+\   'javascript.jsx': "\ue7ba",
+\   'nginx': "\ue776",
+\ }
+
 function! FilenameWithIcon()
+  let icon = index(keys(s:icons), &filetype) > -1 ? s:icons[&filetype] : WebDevIconsGetFileTypeSymbol()
   let filename = expand('%')
-  return len(filename) > 0 ? filename . ' ' . WebDevIconsGetFileTypeSymbol() : '[No File]'
+  return len(filename) > 0 ? filename . ' ' . icon : '[No File]'
 endfunction
 
 
