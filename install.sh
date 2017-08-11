@@ -11,8 +11,7 @@ function try_link() {
   if [[ -e $dst_path || -L $dst_path ]]; then
     echo -e "\033[36m$dst_path\033[0m already exists. \033[31;1mRemove?\033[0m [y/\033[31;1mN\033[0m]"
     read choice
-    # TODO(adam): find appropriate way to handle casing
-    if [[ ${choice:0:1} == "y" || ${choice:0:1} == "Y" ]]; then
+    if [[ $choice =~ ^[Yy] ]]; then
       rm $dst_path
     fi
   fi
