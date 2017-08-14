@@ -28,8 +28,24 @@ function try_link() {
 
 # print help and exit
 function print_help_abort() {
-  echo 'USAGE: Options'
-  exit 0
+  echo '
+Usage: install options...
+-h  help      This output
+
+Script settings:
+-A  All       Install all options
+-Y  yes       Accept all confirmation prompts
+-N  no        Deny all confirmation prompts
+-V  verbose   Enable extra logging
+
+Installable options:
+-k  konsole   Link Konsole profile and colorscheme
+-n  neovim    Setup neovim and link init.vim
+-p  prezto    Clone prezto and link configuration files
+-t  tmux      Link tmux configuration
+-z  zsh       Set zsh as shell
+'
+  exit 1
 }
 
 
@@ -38,20 +54,24 @@ if (($# == 0)); then
   print_help_abort
 fi
 
-
-while getopts 'Af:khptvz' flag; do
+while getopts 'hAYNVf:knptz' flag; do
   case "${flag}" in
-    A) all='true' ;;
     h) print_help_abort ;;
+
+    A) all='true' ;;
+    Y) all_yes='true' ;;
+    N) all_no='true' ;;
+    V) verbose='true' ;;
+
     k) konsole_files='true' ;;
-    p) clone_prezto='true' ;;
+    n) setup_neovim='true' ;;
+    p) setup_prezto='true' ;;
     t) setup_tmux='true' ;;
-    v) verbose='true' ;;
     z) set_zsh='true' ;;
+
     \?) print_help_abort ;;
 
-    f) files="${OPTARG}" ;;
-    *) error "Unexpected option ${flag}" ;;
+    # f) files="${OPTARG}" ;;
   esac
 done
 
@@ -61,7 +81,11 @@ files=(
   .Xresources
   .bashrc
   .eslintrc.json
-  .tmux.conf
+)
+
+[ $setup_tmux ] && files+=(.tmux.conf)
+
+[ $setup_prezto ] && files+=(
   .zlogin
   .zlogout
   .zpreztorc
@@ -74,9 +98,11 @@ for filename in ${files[*]}; do
   try_link $this_dir/$filename $HOME/$filename
 done
 
-nvim_dir=$HOME/.config/nvim
-mkdir -p ${nvim_dir}
-try_link $this_dir/init.vim $nvim_dir/init.vim
+if [ $setup_neovim ]; then
+  nvim_dir=$HOME/.config/nvim
+  mkdir -p ${nvim_dir}
+  try_link $this_dir/init.vim $nvim_dir/init.vim
+fi
 
 if [ -x "$(command -v konsole)" ] && [ $konsole_files ]; then
   konsole_profile_dir=$HOME/.local/share/konsole
