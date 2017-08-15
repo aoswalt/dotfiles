@@ -119,4 +119,10 @@ if [ $setup_prezto ]; then
   fi
 fi
 
-# TODO(adam): set to zsh
+if [ $set_zsh ]; then
+  # TODO(adam): grep in /etc/shells for zsh
+  chsh -s $(which zsh)
+
+  # run zsh in current shell
+  [ ! -z $ZSH_NAME ] && exec zsh
+fi
