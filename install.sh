@@ -56,7 +56,7 @@ if (($# == 0)); then
   print_help_abort
 fi
 
-while getopts 'hAYNVbef:knptz' flag; do
+while getopts 'hAYNVbefknptz' flag; do
   case "${flag}" in
     h) print_help_abort ;;
 
@@ -67,6 +67,7 @@ while getopts 'hAYNVbef:knptz' flag; do
 
     b) setup_bash='true' ;;
     e) setup_eslint='true' ;;
+    f) setup_fzf='true' ;;
     k) konsole_files='true' ;;
     n) setup_neovim='true' ;;
     p) setup_prezto='true' ;;
@@ -75,6 +76,7 @@ while getopts 'hAYNVbef:knptz' flag; do
 
     \?) print_help_abort ;;
 
+    # 'f:'
     # f) files="${OPTARG}" ;;
   esac
 done
@@ -107,6 +109,17 @@ if [ $setup_neovim ]; then
   nvim_dir=$HOME/.config/nvim
   mkdir -p ${nvim_dir}
   try_link $this_dir/init.vim $nvim_dir/init.vim
+fi
+
+if [ $setup_fzf ]; then
+  if [ -x "$(command -v konsole)" ]; then
+    [ $verbose ] && echo "Cloning fzf"
+    git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+    [ $verbose ] && echo "Running fzf install"
+    $HOME/.fzf/install
+  else
+    [ $verbose ] && echo "fzf found - not cloning"
+  fi
 fi
 
 if [ -x "$(command -v konsole)" ] && [ $konsole_files ]; then
