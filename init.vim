@@ -331,9 +331,11 @@ nnoremap <leader>_ :STerm<CR>
 augroup jsOperatorMotions
   autocmd!
   " arrow function name
-  autocmd FileType *.js* onoremap ifn :<c-u>execute "normal! ?\\v\\w+\\ze \\= (\\w\{-\}\\|\\(\.\{-\}\\)) \\=\\\>\rve"<cr>
+  autocmd FileType *.js* onoremap <silent> ifn :<c-u>execute "silent normal! ?\\v\\w+\\ze \\= (\\w\{-\}\\|\\(\.\{-\}\\)) \\=\\\>\rve"<cr>
+  autocmd FileType *.js* vnoremap <silent> ifn :<c-u>execute "silent normal! ?\\v\\w+\\ze \\= (\\w\{-\}\\|\\(\.\{-\}\\)) \\=\\\>\rve"<cr>
   " variable name
-  autocmd FileType *.js* onoremap ivn :<c-u>execute "normal! ?\\v(const\\|var\\|let) \\zs\rve"<cr>
+  autocmd FileType *.js* onoremap <silent> ivn :<c-u>execute "silent normal! ?\\v(const\\|var\\|let) \\zs\rve"<cr>
+  autocmd FileType *.js* vnoremap <silent> ivn :<c-u>execute "silent normal! ?\\v(const\\|var\\|let) \\zs\rve"<cr>
 augroup end
 
 
