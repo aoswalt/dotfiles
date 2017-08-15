@@ -40,7 +40,7 @@ alias n='nvim'
 alias n.='nvim .'
 alias v='nvim'
 
-alias giaa="gia -A"
+alias giaa='gia -A'
 
 alias yrd='yarn && yarn run dev'
 alias exs='iEx -S mix start'
