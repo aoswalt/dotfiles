@@ -47,6 +47,7 @@ Script settings:
 Installable options:
 -b  bash      Link bashrc
 -e  eslint    Link eslintrc
+-f  fzf       Setup fzf
 -k  konsole   Link Konsole profile and colorscheme
 -n  neovim    Setup neovim and link init.vim
 -p  prezto    Clone prezto and link configuration files
