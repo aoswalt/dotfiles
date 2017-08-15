@@ -121,6 +121,8 @@ if [ $setup_prezto ]; then
   if [[ ! -e "${ZDOTDIR:-$HOME}/.zprezto"  ]]; then
     [ $verbose ] && echo "Cloning Prezto"
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+  else
+    [ $verbose ] && echo "Prezto already exists - not cloning"
   fi
 fi
 
