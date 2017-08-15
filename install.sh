@@ -14,8 +14,7 @@ function try_link() {
     elif [ ! -z $all_no ]; then
       choice='n'
     else
-      echo -e "\033[36m$dst_path\033[0m already exists. \033[31;1mRemove?\033[0m [y/\033[31;1mN\033[0m]"
-      read choice
+      read -p $'\n\033[36m'"$dst_path"$'\033[0m already exists. \033[31;1mRemove?\033[0m [y/\033[31;1mN\033[0m]:  ' choice
     fi
 
     if [[ $choice =~ ^[Yy] ]]; then
