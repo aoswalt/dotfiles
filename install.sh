@@ -39,6 +39,8 @@ Script settings:
 -V  verbose   Enable extra logging
 
 Installable options:
+-b  bash      Link bashrc
+-e  eslint    Link eslintrc
 -k  konsole   Link Konsole profile and colorscheme
 -n  neovim    Setup neovim and link init.vim
 -p  prezto    Clone prezto and link configuration files
@@ -54,7 +56,7 @@ if (($# == 0)); then
   print_help_abort
 fi
 
-while getopts 'hAYNVf:knptz' flag; do
+while getopts 'hAYNVbef:knptz' flag; do
   case "${flag}" in
     h) print_help_abort ;;
 
@@ -63,6 +65,8 @@ while getopts 'hAYNVf:knptz' flag; do
     N) all_no='true' ;;
     V) verbose='true' ;;
 
+    b) setup_bash='true' ;;
+    e) setup_eslint='true' ;;
     k) konsole_files='true' ;;
     n) setup_neovim='true' ;;
     p) setup_prezto='true' ;;
@@ -77,12 +81,13 @@ done
 
 
 # simple files in home folder
-files=(
-  .Xresources
-  .bashrc
-  .eslintrc.json
-)
+files=()
 
+# TODO(adam): need to figure out solution for terminal colors
+# .Xresources
+
+[ $setup_bash ] && files+=(.bashrc)
+[ $setup_eslint ] && files+=(.eslintrc.json)
 [ $setup_tmux ] && files+=(.tmux.conf)
 
 [ $setup_prezto ] && files+=(
