@@ -119,7 +119,7 @@ if [ $setup_neovim ]; then
 fi
 
 if [ $setup_fzf ]; then
-  if [ -x "$(command -v konsole)" ]; then
+  if [ ! -x "$(command -v fzf)" ]; then
     [ $verbose ] && echo "Cloning fzf"
     git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
     [ $verbose ] && echo "Running fzf install"
