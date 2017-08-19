@@ -114,11 +114,11 @@ set gdefault        "global search by default
 set lazyredraw      "no need to redraw all the time
 set nohlsearch      "don't highlight searches by default
 
-set autochdir       "switch to current file's parent directory
-" augroup vimrc_set_working_dir
-"   au!
-"   autocmd BufRead,BufEnter * silent! lcd %:p:h
-" augroup end
+" set autochdir       "switch to current file's parent directory
+augroup vimrc_set_working_dir
+  au!
+  autocmd BufRead,BufEnter * silent! lcd %:p:h
+augroup end
 
 let g:netrw_altfile=1   "allow <c-6> to go to the previously edited file
 
@@ -331,10 +331,17 @@ nnoremap <leader>_ :STerm<CR>
 augroup jsOperatorMotions
   autocmd!
   " arrow function name
-  autocmd FileType *.js* onoremap ifn :<c-u>execute "normal! ?\\v\\w+\\ze \\= (\\w\{-\}\\|\\(\.\{-\}\\)) \\=\\\>\rve"<cr>
+  autocmd FileType *.js* onoremap <silent> ifn :<c-u>execute "silent normal! ?\\v\\w+\\ze \\= (\\w\{-\}\\|\\(\.\{-\}\\)) \\=\\\>\rve"<cr>
+  autocmd FileType *.js* vnoremap <silent> ifn :<c-u>execute "silent normal! ?\\v\\w+\\ze \\= (\\w\{-\}\\|\\(\.\{-\}\\)) \\=\\\>\rve"<cr>
   " variable name
-  autocmd FileType *.js* onoremap ivn :<c-u>execute "normal! ?\\v(const\\|var\\|let) \\zs\rve"<cr>
+  autocmd FileType *.js* onoremap <silent> ivn :<c-u>execute "silent normal! ?\\v(const\\|var\\|let) \\zs\rve"<cr>
+  autocmd FileType *.js* vnoremap <silent> ivn :<c-u>execute "silent normal! ?\\v(const\\|var\\|let) \\zs\rve"<cr>
 augroup end
+
+onoremap <silent> iT :<c-u>execute "silent normal! ?\\v\\{[{%]\\zs.\rv/\\v.\\ze[%}]\\}\r"<cr>
+vnoremap <silent> iT :<c-u>execute "silent normal! ?\\v\\{[{%]\\zs.\rv/\\v.\\ze[%}]\\}\r"<cr>
+onoremap <silent> aT :<c-u>execute "silent normal! ?\\v\\{[{%].\rv/\\v[%}]\\}/e\r"<cr>
+vnoremap <silent> aT :<c-u>execute "silent normal! ?\\v\\{[{%].\rv/\\v[%}]\\}/e\r"<cr>
 
 
 let g:gutentags_cache_dir = '~/.tags_cache'
