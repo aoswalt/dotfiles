@@ -1,4 +1,7 @@
 {
+  "plugins": [
+    "react"
+  ],
   "parserOptions": {
     "ecmaVersion": 2017,
     "sourceType": "module",
@@ -204,6 +207,61 @@
     "sort-imports": "warn",
     "symbol-description": "error",
     "template-curly-spacing": "error",
-    "yield-star-spacing": "error"
+    "yield-star-spacing": "error",
+    // React
+    "react/default-props-match-prop-types": "error",
+    "react/no-array-index-key": "warn",
+    "react/no-children-prop": "warn",
+    "react/no-deprecated": "error",
+    "react/no-did-mount-set-state": ["error", "disallow-in-func"],
+    "react/no-did-update-set-state": ["error", "disallow-in-func"],
+    "react/no-direct-mutation-state": "error",
+    "react/no-find-dom-node": "error",
+    "react/no-multi-comp": ["warn", { "ignoreStateless": true }],
+    "react/no-redundant-should-component-update": "warn",
+    "react/no-string-refs": "error",
+    //"react/no-typos": "error",
+    "react/no-unescaped-entities": "warn",
+    "react/no-unknown-property": "warn",
+    "react/no-unused-prop-types": "warn",
+    "react/no-will-update-set-state": ["error", "disallow-in-func"],
+    "react/prefer-es6-class": "warn",
+    "react/prefer-stateless-function": "warn",
+    "react/prop-types": "warn",
+    "react/react-in-jsx-scope": "error",
+    "react/require-default-props": "warn",
+    "react/require-render-return": "error",
+    "react/self-closing-comp": "warn",
+    "react/sort-comp": "warn",
+    "react/sort-prop-types": "warn",
+    "react/style-prop-object": "error",
+    "react/void-dom-elements-no-children": "error",
+    // jsx
+    "react/jsx-boolean-value": "warn",
+    "react/jsx-closing-bracket-location": ["warn", "line-aligned"],
+    "react/jsx-closing-tag-location": "warn",
+    "react/jsx-curly-spacing": ["warn", {
+      "when": "never",
+      "children": true
+    }],
+    "react/jsx-equals-spacing": "warn",
+    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+    "react/jsx-first-prop-new-line": "warn", //multiline?
+    "react/jsx-indent-props": ["warn", 2],
+    "react/jsx-indent": ["warn", 2],
+    "react/jsx-key": "warn",
+    "react/jsx-max-props-per-line": ["warn", { "maximum": 1, "when": "multiline" }],
+    "react/jsx-no-bind": "error",
+    "react/jsx-no-comment-textnodes": "error",
+    "react/jsx-no-duplicate-props": "error",
+    "react/jsx-no-target-blank": "error",
+    "react/jsx-no-undef": "error",
+    "react/jsx-pascal-case": "error",
+    "react/jsx-sort-props": "warn",
+    "react/jsx-space-before-closing": "warn",
+    "react/jsx-tag-spacing": "error",
+    "react/jsx-uses-react": "warn",
+    "react/jsx-uses-vars": "warn",
+    "react/jsx-wrap-multilines": "warn"
   }
 }
