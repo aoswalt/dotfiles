@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # get script's directory
 this_dir=$(cd $(dirname $0); pwd -P)
