@@ -154,6 +154,13 @@ let g:ale_fixers.javascript = ['eslint']
 " disable continuation of comments to the next line
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
+" only show cursor line one active window
+augroup cursorLine
+  autocmd!
+  autocmd BufEnter * setlocal cursorline
+  autocmd BufLeave * setlocal nocursorline
+augroup END
+
 " keybindings
 let mapleader = ' ' "use space as leader
 
