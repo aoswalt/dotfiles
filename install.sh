@@ -116,6 +116,16 @@ if [[ $setup_neovim ]]; then
   nvim_dir=$HOME/.config/nvim
   mkdir -p ${nvim_dir}
   try_link $this_dir/init.vim $nvim_dir/init.vim
+  if $(type pip3 >/dev/null 2>&1); then
+    if [[ $(pip3 list 2>/dev/null | grep 'neovim') ]]; then
+      [[ $verbose ]] && echo "Python neovim package already installed"
+    else
+      [[ $verbose ]] && echo "Installing neovim python3 package"
+      pip3 install neovim
+    fi
+  else
+    "pip3 not found - python neovim package needed for proper usage"
+  fi
 fi
 
 if [[ $setup_fzf ]]; then
