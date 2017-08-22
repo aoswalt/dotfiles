@@ -82,17 +82,14 @@ while getopts 'hAYNVbefknptz' flag; do
     z) set_zsh='true' ;;
 
     \?) print_help_abort ;;
-
-    # 'f:'
-    # f) files="${OPTARG}" ;;
   esac
 done
 
 
-# simple files in home folder
+# array of simple files in home folder
 files=()
 
-# TODO(adam): need to figure out solution for terminal colors
+# TODO(adam): figure out solution for terminal colors
 # .Xresources
 
 [[ $setup_bash || $all ]] && files+=(.bashrc)
