@@ -95,11 +95,11 @@ files=()
 # TODO(adam): need to figure out solution for terminal colors
 # .Xresources
 
-[[ $setup_bash ]] && files+=(.bashrc)
-[[ $setup_eslint ]] && files+=(.eslintrc.json)
-[[ $setup_tmux ]] && files+=(.tmux.conf)
+[[ $setup_bash || $all ]] && files+=(.bashrc)
+[[ $setup_eslint || $all ]] && files+=(.eslintrc.json)
+[[ $setup_tmux || $all ]] && files+=(.tmux.conf)
 
-[[ $setup_prezto ]] && files+=(
+[[ $setup_prezto || $all ]] && files+=(
   .zlogin
   .zlogout
   .zpreztorc
@@ -112,7 +112,7 @@ for filename in ${files[*]}; do
   try_link $this_dir/$filename $HOME/$filename
 done
 
-if [[ $setup_neovim ]]; then
+if [[ $setup_neovim || $all ]]; then
   nvim_dir=$HOME/.config/nvim
   mkdir -p ${nvim_dir}
   try_link $this_dir/init.vim $nvim_dir/init.vim
@@ -128,18 +128,18 @@ if [[ $setup_neovim ]]; then
   fi
 fi
 
-if [[ $setup_fzf ]]; then
+if [[ $setup_fzf || $all ]]; then
   if $(type fzf >/dev/null 2>&1); then
+    [[ $verbose ]] && echo "fzf found - not cloning"
+  else
     [[ $verbose ]] && echo "Cloning fzf"
     git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
     [[ $verbose ]] && echo "Running fzf install"
     $HOME/.fzf/install
-  else
-    [[ $verbose ]] && echo "fzf found - not cloning"
   fi
 fi
 
-if $(type konsole >/dev/null 2>&1) && [[ $konsole_files ]]; then
+if $(type konsole >/dev/null 2>&1) && [[ $konsole_files || $all ]]; then
   konsole_profile_dir=$HOME/.local/share/konsole
   mkdir -p $konsole_profile_dir
   try_link $this_dir/konsole/Mine.profile $konsole_profile_dir/Mine.profile
@@ -147,7 +147,7 @@ if $(type konsole >/dev/null 2>&1) && [[ $konsole_files ]]; then
 fi
 
 # prezto setup
-if [[ $setup_prezto ]]; then
+if [[ $setup_prezto || $all ]]; then
   if [[ ! -e "${ZDOTDIR:-$HOME}/.zprezto"  ]]; then
     [[ $verbose ]] && echo "Cloning Prezto"
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
@@ -156,10 +156,14 @@ if [[ $setup_prezto ]]; then
   fi
 fi
 
-if [[ $set_zsh ]]; then
-  # TODO(adam): grep in /etc/shells for zsh
-  chsh -s $(which zsh)
+if [[ $set_zsh || $all ]]; then
+  if [[ $(echo $SHELL | grep 'zsh') ]]; then
+    [[ $verbose ]] && echo "Zsh already default shell"
+  else
+    # TODO(adam): grep in /etc/shells for zsh
+    chsh -s $(which zsh)
 
-  # run zsh in current shell
-  [[ ! -z $ZSH_NAME ]] && exec zsh
+    # run zsh in current shell
+    [[ ! -z $ZSH_NAME ]] && exec zsh
+  fi
 fi
