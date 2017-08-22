@@ -18,17 +18,17 @@ function try_link() {
     fi
 
     if [[ $choice =~ ^[Yy] ]]; then
-      [[ $verbose ]] && echo "Removing \033[36m$dst_path\033[0m"
+      [[ $verbose ]] && echo -e "Removing \033[36m$dst_path\033[0m"
       rm $dst_path
     else
-      [[ $verbose ]] && echo "Not removing \033[36m$dst_path\033[0m"
+      [[ $verbose ]] && echo -e "Not removing \033[36m$dst_path\033[0m"
     fi
   fi
 
   if [[ ! -e $dst_path ]] && ln -s $src_path $dst_path; then
-    [[ $verbose ]] && echo "Link created for \033[36m$dst_path\033[0m"
+    [[ $verbose ]] && echo -e "Link created for \033[36m$dst_path\033[0m"
   else
-    [[ $verbose ]] && echo "Could not create link for \033[36m$dst_path\033[0m"
+    [[ $verbose ]] && echo -e "Could not create link for \033[36m$dst_path\033[0m"
   fi
 }
 
