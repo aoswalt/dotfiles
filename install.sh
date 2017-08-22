@@ -129,7 +129,7 @@ if [[ $setup_neovim ]]; then
 fi
 
 if [[ $setup_fzf ]]; then
-  if [[ $(type fzf) ]]; then
+  if $(type fzf >/dev/null 2>&1); then
     [[ $verbose ]] && echo "Cloning fzf"
     git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
     [[ $verbose ]] && echo "Running fzf install"
@@ -139,7 +139,7 @@ if [[ $setup_fzf ]]; then
   fi
 fi
 
-if [[ $(type konsole) ]] && [[ $konsole_files ]]; then
+if $(type konsole >/dev/null 2>&1) && [[ $konsole_files ]]; then
   konsole_profile_dir=$HOME/.local/share/konsole
   mkdir -p $konsole_profile_dir
   try_link $this_dir/konsole/Mine.profile $konsole_profile_dir/Mine.profile
