@@ -75,3 +75,5 @@ if ! shopt -oq posix; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+[ -f $HOME/.bashrc.after ] && source $HOME/.bashrc.after
