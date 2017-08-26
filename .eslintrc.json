@@ -148,7 +148,7 @@
     "no-trailing-spaces": "error",
     "no-unneeded-ternary": "warn",
     "no-whitespace-before-property": "error",
-    "object-curly-newline": ["error", { "multiline": true }],
+    //"object-curly-newline": ["error", { "consistent": true }],
     "object-curly-spacing": ["warn", "always"],
     "object-property-newline": ["error", { "allowMultiplePropertiesPerLine": true }],
     "one-var": ["error", "never"],
@@ -158,14 +158,14 @@
       "avoidEscape": true,
       "allowTemplateLiterals": true
     }],
-    "require-jsdoc": ["warn", {
-      "require": {
-        "FunctionDeclaration": true,
-        "MethodDefinition": true,
-        "ClassDeclaration": true,
-        "ArrowFunctionExpression": true
-      }
-    }],
+    //"require-jsdoc": ["warn", {
+    //  "require": {
+    //    "FunctionDeclaration": true,
+    //    "MethodDefinition": true,
+    //    "ClassDeclaration": true,
+    //    "ArrowFunctionExpression": true
+    //  }
+    //}],
     "semi-spacing": "error",
     "semi": ["error", "never"],
     "space-before-blocks": "error",
