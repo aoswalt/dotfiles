@@ -110,7 +110,7 @@
     "func-call-spacing": "error",
     "indent": ["error", 2, {
       "SwitchCase": 1,
-      "MemberExpression": 0,
+      "MemberExpression": 1,
       "FunctionDeclaration": { "parameters": "first" },
       "FunctionExpression": { "parameters": "first" },
       "CallExpression": { "arguments": "first" },
