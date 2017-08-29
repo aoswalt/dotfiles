@@ -490,7 +490,11 @@ let s:icons = {
 \ }
 
 function! FilenameWithIcon()
-  let icon = index(keys(s:icons), &filetype) > -1 ? s:icons[&filetype] : WebDevIconsGetFileTypeSymbol()
+  if exists("*WebDevIconsGetFileTypeSymbol")
+    let icon = index(keys(s:icons), &filetype) > -1 ? s:icons[&filetype] : WebDevIconsGetFileTypeSymbol()
+  else
+    let icon = ''
+  endif
   let filename = expand('%')
   let filename = filename =~ 'term://' ? '[term]' : filename
   return len(filename) > 0 ? filename . ' ' . icon : '[No File]'
