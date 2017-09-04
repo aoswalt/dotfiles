@@ -113,6 +113,7 @@ set wildignorecase  "ignore case on files and directories
 set gdefault        "global search by default
 set lazyredraw      "no need to redraw all the time
 set nohlsearch      "don't highlight searches by default
+set inccommand=nosplit  "show substitution while typing
 
 " set autochdir       "switch to current file's parent directory
 augroup vimrc_set_working_dir
