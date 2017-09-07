@@ -424,6 +424,24 @@ command! SynStack :call SynStack()
 " close all other buffers
 command! BufOnly :%bd|e#
 
+" Delete buffers that are not displayed in any window or modified
+function! BufCleanup()
+  let tabs = map(copy(gettabinfo()), 'v:val.tabnr')
+
+  let openBuffers = []
+  for i in tabs
+     call extend(openBuffers, tabpagebuflist(i))
+  endfor
+
+  let buffers = map(filter(filter(copy(getbufinfo()), 'v:val.listed'), {i, info -> info.changed == v:false}), 'v:val.bufnr')
+  for bnr in buffers
+      if index(openBuffers, bnr) < 0
+          exe 'bd '.bnr
+      endif
+  endfor
+endfunction
+command! BufCleanup :call BufCleanup()
+
 " open a terminal in a different buffer
 command! -nargs=* VTerm :vsp|terminal <args>
 command! -nargs=* STerm :sp|terminal <args>
