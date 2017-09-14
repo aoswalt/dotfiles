@@ -1,7 +1,11 @@
+scriptencoding utf-8
+
 " install plug if not found
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
+  augroup plug_install
+    autocmd VimEnter * PlugInstall
+  augroup end
 endif
 
 call plug#begin('~/.config/nvim/plugged')
@@ -62,9 +66,9 @@ Plug 'ludovicchabant/vim-gutentags', {'do': ':call plug#helptags()'}
 Plug 'majutsushi/tagbar'
 call plug#end()
 
-let g:UltiSnipsExpandTrigger="<c-s>"
-let g:UltiSnipsJumpForwardTrigger="<c-n>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsExpandTrigger='<c-s>'
+let g:UltiSnipsJumpForwardTrigger='<c-n>'
+let g:UltiSnipsJumpBackwardTrigger='<c-b>'
 
 set completeopt=longest,menuone
 
@@ -72,14 +76,14 @@ set completeopt=longest,menuone
 let g:tern_show_signature_in_pum = 1
 let g:tern#filetypes = ['javascript', 'jsx', 'javascript.jsx']
 let g:tern#is_show_argument_hints_enabled = 0
-let g:tern#arguments = ["--persistent"]
+let g:tern#arguments = ['--persistent']
 
 
 " allow shift-K to use :help instead of :man
-autocmd FileType help setlocal keywordprg=:help
-autocmd FileType vim setlocal keywordprg=:help
-
-set encoding=utf8
+augroup vim_help_program
+  autocmd FileType help setlocal keywordprg=:help
+  autocmd FileType vim setlocal keywordprg=:help
+augroup end
 
 " display/ui
 colorscheme onedark
@@ -142,8 +146,8 @@ hi Constant ctermfg=37
 hi Normal ctermbg=NONE
 
 " use - and . as word separators
-set isk-=-
-set isk-=.
+set iskeyword-=-
+set iskeyword-=.
 
 let g:ale_linters = {}
 let g:ale_linters.javascript = ['eslint']
@@ -163,7 +167,7 @@ augroup cursorLine
 augroup END
 
 " keybindings
-let mapleader = ' ' "use space as leader
+let g:mapleader = ' ' "use space as leader
 
 " swap ; and :
 noremap ; :
@@ -313,8 +317,8 @@ hi PmenuSel ctermbg=25
 " auto-close preview pane
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-let delimitMate_expand_cr = 1
-let delimitMate_expand_space = 1
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
 
 " extra location list keybinds (some with unimpaired)
 nnoremap <Leader>lo :lopen<CR>
@@ -354,7 +358,7 @@ vnoremap <silent> aT :<c-u>execute "silent normal! ?\\v\\{[{%].\rv/\\v[%}]\\}/e\
 
 let g:gutentags_cache_dir = '~/.tags_cache'
 
-let g:livedown_browser = "firefox"
+let g:livedown_browser = 'firefox'
 nnoremap <leader>md :LivedownToggle<CR>
 
 let b:csv_arrange_use_all_rows = 1
@@ -395,7 +399,7 @@ endfunction
 
 " run macro on selection
 function! s:ExecuteMacroOverVisualRange()
-  echo "@".getcmdline()
+  echo '@'.getcmdline()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
 
@@ -406,19 +410,19 @@ xnoremap Q :normal @q<CR>
 
 " search for visual selection -  from practical vim
 function! s:VSetSearch(cmdType)
-  let temp = @s
+  let l:temp = @s
   norm! gv"sy
   let @/ = '\V' . substitute(escape(@s, a:cmdType.'\'), '\n', '\\n', 'g')
-  let @s = temp
+  let @s = l:temp
 endfunction
 
 " show highlight stack
 function! SynStack()
-  let syns = synstack(line("."), col("."))
-  call map(syns, {key, id -> [synIDattr(id, "name"), synIDattr(synIDtrans(id), "name")]})
-  call map(syns, {key, pair -> ("[" . get(pair, 0) . "->" . get(pair, 1) . "]")})
-  let stack = join(syns, " => ")
-  echo stack
+  let l:syns = synstack(line('.'), col('.'))
+  call map(l:syns, {key, id -> [synIDattr(id, 'name'), synIDattr(synIDtrans(id), 'name')]})
+  call map(l:syns, {key, pair -> ('[' . get(pair, 0) . '->' . get(pair, 1) . ']')})
+  let l:stack = join(l:syns, ' => ')
+  echo l:stack
 endfunction
 command! SynStack :call SynStack()
 
@@ -432,9 +436,9 @@ command! -nargs=* TTerm :tabnew|terminal <args>
 
 " format a block of JSON with python's built-in function
 function! FormatJSON() range
-  let fullRange = a:firstline.','.a:lastline
-  let singeLine = a:firstline.','.a:firstline
-  silent exe fullRange.'join | '.singeLine.'! python3 -m "json.tool"'
+  let l:fullRange = a:firstline.','.a:lastline
+  let l:singeLine = a:firstline.','.a:firstline
+  silent exe l:fullRange.'join | '.l:singeLine.'! python3 -m "json.tool"'
   silent normal =}
 endfunction
 command! -range FormatJSON :<line1>,<line2>call FormatJSON()
@@ -491,14 +495,14 @@ let s:icons = {
 \ }
 
 function! FilenameWithIcon()
-  if exists("*WebDevIconsGetFileTypeSymbol")
-    let icon = index(keys(s:icons), &filetype) > -1 ? s:icons[&filetype] : WebDevIconsGetFileTypeSymbol()
+  if exists('*WebDevIconsGetFileTypeSymbol')
+    let l:icon = index(keys(s:icons), &filetype) > -1 ? s:icons[&filetype] : WebDevIconsGetFileTypeSymbol()
   else
-    let icon = ''
+    let l:icon = ''
   endif
-  let filename = expand('%')
-  let filename = filename =~ 'term://' ? '[term]' : filename
-  return len(filename) > 0 ? filename . ' ' . icon : '[No File]'
+  let l:filename = expand('%')
+  let l:filename = l:filename =~? 'term://' ? '[term]' : l:filename
+  return len(l:filename) > 0 ? l:filename . ' ' . l:icon : '[No File]'
 endfunction
 
 
