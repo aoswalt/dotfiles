@@ -431,17 +431,17 @@ command! BufOnly :%bd|e#
 
 " Delete buffers that are not displayed in any window or modified
 function! BufCleanup()
-  let tabs = map(copy(gettabinfo()), 'v:val.tabnr')
+  let l:tabs = map(copy(gettabinfo()), 'v:val.tabnr')
 
-  let openBuffers = []
-  for i in tabs
-     call extend(openBuffers, tabpagebuflist(i))
+  let l:openBuffers = []
+  for l:i in l:tabs
+     call extend(l:openBuffers, tabpagebuflist(l:i))
   endfor
 
-  let buffers = map(filter(filter(copy(getbufinfo()), 'v:val.listed'), {i, info -> info.changed == v:false}), 'v:val.bufnr')
-  for bnr in buffers
-      if index(openBuffers, bnr) < 0
-          exe 'bd '.bnr
+  let l:buffers = map(filter(filter(copy(getbufinfo()), 'v:val.listed'), {i, info -> info.changed == v:false}), 'v:val.bufnr')
+  for l:bnr in l:buffers
+      if index(l:openBuffers, l:bnr) < 0
+          exe 'bd '.l:bnr
       endif
   endfor
 endfunction
