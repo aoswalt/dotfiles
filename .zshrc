@@ -20,7 +20,7 @@ zstyle -d ':completion:*:default' list-prompt
 zstyle -d ':completion:*' format
 zstyle -d ':completion:*' group-name
 
-# unsetopt CORRECT                      # Disable autocorrect guesses.
+unsetopt CORRECT                      # Disable autocorrect guesses.
 
 
 ## aliases
