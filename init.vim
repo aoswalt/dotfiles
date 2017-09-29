@@ -357,6 +357,10 @@ vnoremap <silent> iT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?\\zs.\rv/\\
 onoremap <silent> aT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}][>}]/e\r"<cr>
 vnoremap <silent> aT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}][>}]/e\r"<cr>
 
+" inside lines
+onoremap <silent> il :<c-u>execute "silent normal! ^vg_"<cr>
+vnoremap <silent> il :<c-u>execute "silent normal! ^vg_"<cr>
+
 
 let g:gutentags_cache_dir = '~/.tags_cache'
 
