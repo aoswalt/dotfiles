@@ -41,6 +41,7 @@ alias n.='nvim .'
 alias v='nvim'
 
 alias giaa='gia -A'
+alias gfp='git fetch --prune'
 alias gzb='gco $(gbL | fzf | cut -d ' ' -f 3)'
 
 alias yrd='yarn && yarn run dev'
