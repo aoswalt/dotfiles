@@ -351,10 +351,11 @@ augroup jsOperatorMotions
   autocmd FileType *.js* vnoremap <silent> ivn :<c-u>execute "silent normal! ?\\v(const\\|var\\|let) \\zs\rve"<cr>
 augroup end
 
-onoremap <silent> iT :<c-u>execute "silent normal! ?\\v\\{[{%]\\zs.\rv/\\v.\\ze[%}]\\}\r"<cr>
-vnoremap <silent> iT :<c-u>execute "silent normal! ?\\v\\{[{%]\\zs.\rv/\\v.\\ze[%}]\\}\r"<cr>
-onoremap <silent> aT :<c-u>execute "silent normal! ?\\v\\{[{%].\rv/\\v[%}]\\}/e\r"<cr>
-vnoremap <silent> aT :<c-u>execute "silent normal! ?\\v\\{[{%].\rv/\\v[%}]\\}/e\r"<cr>
+" inside template tags
+onoremap <silent> iT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?\\zs.\rv/\\v.\\ze[%}][>}]\r"<cr>
+vnoremap <silent> iT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?\\zs.\rv/\\v.\\ze[%}][>}]\r"<cr>
+onoremap <silent> aT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}][>}]/e\r"<cr>
+vnoremap <silent> aT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}][>}]/e\r"<cr>
 
 
 let g:gutentags_cache_dir = '~/.tags_cache'
