@@ -22,6 +22,8 @@ zstyle -d ':completion:*' group-name
 
 unsetopt CORRECT                      # Disable autocorrect guesses.
 
+autoload -U zmv
+alias zmv='noglob zmv -W'
 
 ## aliases
 alias weather='curl wttr.in/Nashville'
