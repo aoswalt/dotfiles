@@ -226,6 +226,9 @@ nnoremap <silent> <c-w>z :call ZoomToggle()<cr>
 nnoremap <silent> <M-'> :call MaximizeWindow()<cr>
 nnoremap <silent> <M-z> :call ZoomToggle()<cr>
 
+" open file to side
+nnoremap gF :vertical wincmd f<CR>
+
 " mimic D,C
 nnoremap Y y$
 
