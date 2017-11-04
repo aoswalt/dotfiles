@@ -114,11 +114,18 @@ if [[ $setup_neovim || $all ]]; then
   mkdir -p ${nvim_dir}
   try_link $this_dir/init.vim $nvim_dir/init.vim
   if $(type pip3 >/dev/null 2>&1); then
-    if [[ $(pip3 list 2>/dev/null | grep 'neovim') ]]; then
+    if [[ $(pip3 list 2>/dev/null | grep 'neovim ') ]]; then
       [[ $verbose ]] && echo "Python neovim package already installed"
     else
       [[ $verbose ]] && echo "Installing neovim python3 package"
       pip3 install neovim
+    fi
+
+    if [[ $(pip3 list 2>/dev/null | grep 'neovim-remote') ]]; then
+      [[ $verbose ]] && echo "Python neovim package already installed"
+    else
+      [[ $verbose ]] && echo "Installing neovim-remote python3 package"
+      pip3 install neovim-remote
     fi
   else
     "pip3 not found - python neovim package needed for proper usage"
