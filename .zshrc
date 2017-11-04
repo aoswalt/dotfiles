@@ -65,6 +65,15 @@ gpb() {
 }
 compdef _git gpb=git-checkout
 
+# use nvr to prevent neovim nesting
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+  if [ -x "$(command -v nvr)" ]; then
+    alias nvim=nvr
+  else
+    alias nvim=$(echo "No nesting!")
+  fi
+fi
+
 # needs tweaking for non BSD, probably with brace expansion {1..5}
 # maybe cd\^
 # cd^ () {
