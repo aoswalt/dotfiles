@@ -67,6 +67,12 @@ Plug 'ludovicchabant/vim-gutentags', {'do': ':call plug#helptags()'}
 Plug 'majutsushi/tagbar'
 call plug#end()
 
+" override $VISUAL to use nvr inside neovim
+if executable('nvr')
+  let $VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+endif
+
+
 let g:UltiSnipsExpandTrigger='<c-s>'
 let g:UltiSnipsJumpForwardTrigger='<c-n>'
 let g:UltiSnipsJumpBackwardTrigger='<c-b>'
