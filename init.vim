@@ -193,6 +193,12 @@ cnoremap %s/ %s/\v
 nnoremap <Up> gk
 nnoremap <Down> gj
 
+" warning mappings lke unimpaired
+nmap <silent> [W <Plug>(ale_first)
+nmap <silent> [w <Plug>(ale_previous)
+nmap <silent> ]w <Plug>(ale_next)
+nmap <silent> ]W <Plug>(ale_last)
+
 " terminal keybindings
 tnoremap <leader><esc> <c-\><c-n>
 tnoremap <c-h> <c-\><c-n><c-w>h
