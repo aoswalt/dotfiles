@@ -139,13 +139,16 @@ set undodir=~/.config/nvim/undo/
 
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
-hi IndentGuidesOdd  ctermbg=233
-hi IndentGuidesEven ctermbg=234
+highlight! IndentGuidesOdd  ctermbg=233
+highlight! IndentGuidesEven ctermbg=234
 
-hi jsBlock ctermfg=150
-hi jsObjectKey ctermfg=139
-hi Constant ctermfg=37
-hi Normal ctermbg=NONE
+highlight! jsBlock ctermfg=150
+highlight! jsObjectKey ctermfg=139
+highlight! Constant ctermfg=37
+highlight! Normal ctermbg=NONE
+
+highlight! link TermCursor Cursor
+highlight! TermCursorNC ctermbg=1 ctermfg=15
 
 " use - and . as word separators
 set iskeyword-=-
