@@ -127,6 +127,16 @@ if [[ $setup_neovim || $all ]]; then
       [[ $verbose ]] && echo "Installing neovim-remote python3 package"
       pip3 install neovim-remote
     fi
+
+    [[ $verbose ]] && echo "Clearing editor from git config to use env"
+    git config --global --unset core.editor
+    # git config --local --unset core.editor
+
+    if [ -n "$(git config --system core.editor)" ]; then
+      echo 'WARNING: git system editor set'
+    fi
+
+
   else
     "pip3 not found - python neovim package needed for proper usage"
   fi

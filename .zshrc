@@ -75,15 +75,6 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
   fi
 fi
 
-# unset git editor to use env variable
-git config --global --unset core.editor
-git config --local --unset core.editor
-
-if [ -n "$(git config --system core.editor)" ]; then
-  echo 'WARNING: git system editor set'
-fi
-
-
 # needs tweaking for non BSD, probably with brace expansion {1..5}
 # maybe cd\^
 # cd^ () {
