@@ -251,9 +251,6 @@ nnoremap Y y$
 " use Q to play q macro
 nnoremap Q @q
 
-" toggle search highlight
-nnoremap <leader>hs :noh<CR>
-
 " allow range commands from searches - ex:  /foo$m
 cnoremap $t <CR>:t''<CR>
 cnoremap $m <CR>:m''<CR>
