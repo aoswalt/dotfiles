@@ -281,7 +281,7 @@ noremap <silent> <leader>X :Sexplore<CR>:wincmd =<CR>
 " use sudo for file if forgot to when opened
 nnoremap <leader>sw :w !sudo tee % >/dev/null<cr>
 
-" use <C-p> to open fzf with git files
+" use <leader>p to open fzf with git files
 nnoremap <leader>p :GFiles -co --exclude-per-directory=.gitignore<CR>
 " plain FZF vs GFiles have a few differences to be sorted out
 nnoremap <leader>P :FZF<CR>
