@@ -48,9 +48,6 @@ alias gfp='git fetch --prune'
 alias gzb='gco $(gbL | fzf | cut -d ' ' -f 3)'
 alias gbdr='git push origin --delete'
 
-alias yrd='yarn && yarn run dev'
-alias exs='iEx -S mix start'
-
 ## functions
 function = { echo $(($@))  }  # easy math
 mkdwn() { pandoc $1 | lynx -stdin -dump }   # print markdown in terminal
