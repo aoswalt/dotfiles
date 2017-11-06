@@ -73,9 +73,8 @@ if executable('nvr')
 endif
 
 
-let g:UltiSnipsExpandTrigger='<c-s>'
-let g:UltiSnipsJumpForwardTrigger='<c-n>'
-let g:UltiSnipsJumpBackwardTrigger='<c-b>'
+" ultisnips interferes with built-in completion
+inoremap <c-x><c-k> <c-x><c-k>
 
 set completeopt=longest,menuone
 
@@ -199,20 +198,29 @@ nmap <silent> [w <Plug>(ale_previous)
 nmap <silent> ]w <Plug>(ale_next)
 nmap <silent> ]W <Plug>(ale_last)
 
+
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <m-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <m-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <m-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <m-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <m-\> :TmuxNavigatePrevious<cr>
+
 " terminal keybindings
 tnoremap <leader><esc> <c-\><c-n>
-tnoremap <c-h> <c-\><c-n><c-w>h
-tnoremap <c-j> <c-\><c-n><c-w>j
-tnoremap <c-k> <c-\><c-n><c-w>k
-tnoremap <c-l> <c-\><c-n><c-w>l
+tnoremap <m-h> <c-\><c-n><c-w>h
+tnoremap <m-j> <c-\><c-n><c-w>j
+tnoremap <m-k> <c-\><c-n><c-w>k
+tnoremap <m-l> <c-\><c-n><c-w>l
 
-inoremap <c-h> <esc><c-w>h
-inoremap <c-j> <esc><c-w>j
-inoremap <c-k> <esc><c-w>k
-inoremap <c-l> <esc><c-w>l
+inoremap <m-h> <esc><c-w>h
+inoremap <m-j> <esc><c-w>j
+inoremap <m-k> <esc><c-w>k
+inoremap <m-l> <esc><c-w>l
 
-nnoremap <leader><c-h> :tabprev<cr>
-nnoremap <leader><c-l> :tabnext<cr>
+nnoremap <leader><m-h> :tabprev<cr>
+nnoremap <leader><m-l> :tabnext<cr>
 
 function! MaximizeWindow()
   vertical resize
@@ -232,11 +240,10 @@ endfunction
 
 
 " window resizing
-nnoremap <M-h> <C-w><
-nnoremap <M-j> <C-w>+
-nnoremap <M-k> <C-w>-
-nnoremap <M-l> <C-w>>
-nnoremap <M-=> <C-w>=
+nnoremap <M-S-h> <C-w><
+nnoremap <M-S-j> <C-w>+
+nnoremap <M-S-k> <C-w>-
+nnoremap <M-S-l> <C-w>>
 nnoremap <silent> <c-w>' :call MaximizeWindow()<cr>
 nnoremap <silent> <c-w>z :call ZoomToggle()<cr>
 nnoremap <silent> <M-'> :call MaximizeWindow()<cr>
@@ -263,10 +270,6 @@ noremap gV `[v`]
 nnoremap <leader>it "=strftime("%H:%M")<CR>P
 nnoremap <leader>id "=strftime("%Y-%m-%d")<CR>P
 nnoremap <leader>iD "=strftime("%m.%d.%Y")<CR>P
-
-" cycle through popup menu options with <TAB>
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 " commenting
 map <leader>/ gcc
