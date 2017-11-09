@@ -336,11 +336,11 @@ let g:deoplete#auto_complete_delay = 100
 let g:deoplete#auto_complete_start_length = 1
 let g:deoplete#auto_complete_delay = 1
 " let g:deoplete#enable_refresh_always = 1
-hi Pmenu ctermbg=240
-hi PmenuSel ctermbg=25
+highlight Pmenu ctermbg=240
+highlight PmenuSel ctermbg=25
 
 " lighten non-active windows
-hi NormalNC ctermbg=234
+highlight NormalNC ctermbg=234
 
 " auto-close preview pane
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
