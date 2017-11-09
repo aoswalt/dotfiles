@@ -126,6 +126,10 @@ set lazyredraw      "no need to redraw all the time
 set nohlsearch      "don't highlight searches by default
 set inccommand=nosplit  "show substitution while typing
 
+" add globbing to path for fuzzy :find
+set path+=**
+
+
 " set autochdir       "switch to current file's parent directory
 augroup vimrc_set_working_dir
   au!
