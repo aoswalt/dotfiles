@@ -85,10 +85,10 @@ let g:tern#is_show_argument_hints_enabled = 0
 let g:tern#arguments = ['--persistent']
 
 
-" allow shift-K to use :help instead of :man
-augroup vim_help_program
-  autocmd FileType help setlocal keywordprg=:help
-  autocmd FileType vim setlocal keywordprg=:help
+" leader-K to go to definition of js via tern
+augroup javascript_help
+  autocmd FileType javascript.jsx nnoremap <buffer> <leader>k :TernType<cr>
+  autocmd FileType javascript.jsx nnoremap <buffer> <leader>K :TernDef<cr>
 augroup end
 
 " display/ui
