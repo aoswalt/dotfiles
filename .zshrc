@@ -48,6 +48,15 @@ alias gfp='git fetch --prune'
 alias gzb='gco $(gbL | fzf | cut -d ' ' -f 3)'
 alias gbdr='git push origin --delete'
 
+ownnpm() {
+  if [[ $(npm config get prefix) == '/usr' ]]; then
+    echo 'Cannot autofix: your npm prefix is "/usr"'
+    echo 'Add to after file: export NPM_CONFIG_PREFIX=~/.npm-global'
+  else
+   sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
+  fi
+}
+
 ## functions
 function = { echo $(($@))  }  # easy math
 mkdwn() { pandoc $1 | lynx -stdin -dump }   # print markdown in terminal
