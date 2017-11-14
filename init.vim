@@ -57,6 +57,7 @@ Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-rsi'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
