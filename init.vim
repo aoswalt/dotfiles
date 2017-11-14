@@ -45,6 +45,7 @@ Plug 'guns/xterm-color-table.vim'
 Plug 'vim-scripts/AnsiEsc.vim'
 Plug 'ryanoasis/vim-devicons'
 
+Plug 'machakann/vim-highlightedyank'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
 Plug 'ntpeters/vim-better-whitespace'
