@@ -48,6 +48,11 @@ alias gfp='git fetch --prune'
 alias gzb='gco $(gbL | fzf | cut -d ' ' -f 3)'
 alias gbdr='git push origin --delete'
 
+neoterm() {
+  nvim +"terminal $*" +'set bufhidden=hide'
+}
+alias nt='neoterm'
+
 ownnpm() {
   if [[ $(npm config get prefix) == '/usr' ]]; then
     echo 'Cannot autofix: your npm prefix is "/usr"'
