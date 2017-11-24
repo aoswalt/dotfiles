@@ -161,8 +161,8 @@ highlight! jsObjectKey ctermfg=139
 highlight! Constant ctermfg=37
 highlight! Normal ctermbg=NONE
 
-highlight! link TermCursor Cursor
-highlight! TermCursorNC ctermbg=1 ctermfg=15
+" highlight! link TermCursor Cursor
+highlight! TermCursorNC ctermbg=0 ctermfg=15
 
 " use - and . as word separators
 set iskeyword-=-
