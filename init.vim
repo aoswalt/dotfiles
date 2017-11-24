@@ -21,7 +21,7 @@ Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'sheerun/vim-polyglot'
 Plug 'exu/pgsql.vim'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
+Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'galooshi/vim-import-js', { 'do': 'npm install -g import-js', 'for': ['javascript', 'javascript.jsx'] }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'Shougo/neco-syntax'
@@ -86,8 +86,11 @@ set completeopt=longest,menuone
 " tern tweaks
 let g:tern_show_signature_in_pum = 1
 let g:tern#filetypes = ['javascript', 'jsx', 'javascript.jsx']
-let g:tern#is_show_argument_hints_enabled = 0
+let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#case_insensitive = 1
+let g:deoplete#sources#ternjs#include_keywords = 1
 
 
 " leader-K to go to definition of js via tern
