@@ -24,6 +24,9 @@ Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern', 'for': ['javascript',
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
 Plug 'galooshi/vim-import-js', { 'do': 'npm install -g import-js', 'for': ['javascript', 'javascript.jsx'] }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'Shougo/neco-syntax'
+Plug 'Shougo/neco-vim'
+Plug 'zchee/deoplete-zsh'
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'tpope/vim-projectionist'
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
