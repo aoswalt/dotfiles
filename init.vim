@@ -559,7 +559,6 @@ function! FilenameWithIcon()
     let l:icon = ''
   endif
   let l:filename = expand('%')
-  let l:filename = l:filename =~? 'term://' ? '[term]' : l:filename
   return len(l:filename) > 0 ? l:filename . ' ' . l:icon : '[No File]'
 endfunction
 
