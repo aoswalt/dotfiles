@@ -33,6 +33,15 @@ Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'vim-scripts/ingo-library'
 Plug 'vim-scripts/SyntaxRange'
 
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-entire'      "ae/ie for entire file
+Plug 'kana/vim-textobj-indent'      "ai/ii for indent block
+Plug 'kana/vim-textobj-line'        "al/il for line
+Plug 'sgur/vim-textobj-parameter'   "a,/i, fop argument/parameter
+Plug 'Julian/vim-textobj-variable-segment'    "av/iv for variable part
+Plug 'Chun-Yang/vim-textobj-chunk'  "ac/ic for json-ish chunk
+Plug 'whatyouhide/vim-textobj-xmlattr'  "ax/ix for xml attribute
+
 Plug 'thinca/vim-quickrun'
 Plug 'vim-scripts/dbext.vim'
 Plug 'vimwiki/vimwiki'
@@ -377,26 +386,11 @@ nnoremap <leader>- :STerm<CR>
 nnoremap <leader>\| :VTermRepo<CR>
 nnoremap <leader>_ :STermRepo<CR>
 
-augroup jsOperatorMotions
-  autocmd!
-  " arrow function name
-  autocmd FileType *.js* onoremap <silent> ifn :<c-u>execute "silent normal! ?\\v\\w+\\ze \\= (\\w\{-\}\\|\\(\.\{-\}\\)) \\=\\\>\rve"<cr>
-  autocmd FileType *.js* vnoremap <silent> ifn :<c-u>execute "silent normal! ?\\v\\w+\\ze \\= (\\w\{-\}\\|\\(\.\{-\}\\)) \\=\\\>\rve"<cr>
-  " variable name
-  autocmd FileType *.js* onoremap <silent> ivn :<c-u>execute "silent normal! ?\\v(const\\|var\\|let) \\zs\rve"<cr>
-  autocmd FileType *.js* vnoremap <silent> ivn :<c-u>execute "silent normal! ?\\v(const\\|var\\|let) \\zs\rve"<cr>
-augroup end
-
 " inside template tags
 onoremap <silent> iT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?\\zs.\rv/\\v.\\ze[%}][>}]\r"<cr>
 vnoremap <silent> iT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?\\zs.\rv/\\v.\\ze[%}][>}]\r"<cr>
 onoremap <silent> aT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}][>}]/e\r"<cr>
 vnoremap <silent> aT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}][>}]/e\r"<cr>
-
-" inside lines
-onoremap <silent> il :<c-u>execute "silent normal! ^vg_"<cr>
-vnoremap <silent> il :<c-u>execute "silent normal! ^vg_"<cr>
-
 
 let g:gutentags_cache_dir = '~/.tags_cache'
 
