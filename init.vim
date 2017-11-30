@@ -518,6 +518,9 @@ autocmd BufLeave term://* stopinsert
 " command to fix netrw buftype shenanigans
 command! FixBuftype set buftype=<space>
 
+" amend without editing commit message
+command! Gamend Gcommit --amend --no-edit
+
 " more solid vertical bar
 set fillchars=vert:\│
 
