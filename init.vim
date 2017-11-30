@@ -374,8 +374,8 @@ nnoremap <leader>s :mksession<CR>
 " term splits like tmux
 nnoremap <leader>\ :VTerm<CR>
 nnoremap <leader>- :STerm<CR>
-nnoremap <leader>\| :VTerm<CR>
-nnoremap <leader>_ :STerm<CR>
+nnoremap <leader>\| :VTermRepo<CR>
+nnoremap <leader>_ :STermRepo<CR>
 
 augroup jsOperatorMotions
   autocmd!
@@ -490,10 +490,13 @@ function! BufCleanup()
 endfunction
 command! BufCleanup :call BufCleanup()
 
-" open a terminal in a different buffer
+" open a terminal in a different view
 command! -nargs=* VTerm :vsp|terminal <args>
+command! -nargs=* VTermRepo :vsp|execute 'lcd' fnameescape(s:get_git_root())|terminal <args>
 command! -nargs=* STerm :sp|terminal <args>
+command! -nargs=* STermRepo :sp|execute 'lcd' fnameescape(s:get_git_root())|terminal <args>
 command! -nargs=* TTerm :tabnew|terminal <args>
+command! -nargs=* TTermRepo :tabnew|execute 'lcd' fnameescape(s:get_git_root())|terminal <args>
 
 " format a block of JSON with python's built-in function
 function! FormatJSON() range
