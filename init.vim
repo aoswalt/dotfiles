@@ -93,6 +93,9 @@ inoremap <c-x><c-k> <c-x><c-k>
 
 set completeopt=longest,menuone
 
+" fix to not require extra keypress for fzf in terminal
+let $FZF_DEFAULT_OPTS .= ' --no-height'
+
 " tern tweaks
 let g:tern_show_signature_in_pum = 1
 let g:tern#filetypes = ['javascript', 'jsx', 'javascript.jsx']
