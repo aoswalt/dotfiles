@@ -105,6 +105,9 @@ let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#case_insensitive = 1
 let g:deoplete#sources#ternjs#include_keywords = 1
 
+let g:surround_{char2nr('-')} = "<% \r %>"
+let g:surround_{char2nr('=')} = "<%= \r %>"
+
 let g:vim_textobj_elixir_mapping = 'E'
 
 " leader-K to go to definition of js via tern
