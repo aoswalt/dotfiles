@@ -37,7 +37,8 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'      "ae/ie for entire file
 Plug 'kana/vim-textobj-indent'      "ai/ii for indent block
 Plug 'kana/vim-textobj-line'        "al/il for line
-Plug 'sgur/vim-textobj-parameter'   "a,/i, fop argument/parameter
+Plug 'sgur/vim-textobj-parameter'   "a,/i, for argument/parameter
+Plug 'aoswalt/vim-textobj-elixir'   "aE/iE for Elixir blocks as remapped
 Plug 'Julian/vim-textobj-variable-segment'    "av/iv for variable part
 Plug 'Chun-Yang/vim-textobj-chunk'  "ac/ic for json-ish chunk
 Plug 'whatyouhide/vim-textobj-xmlattr'  "ax/ix for xml attribute
@@ -101,6 +102,7 @@ let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#case_insensitive = 1
 let g:deoplete#sources#ternjs#include_keywords = 1
 
+let g:vim_textobj_elixir_mapping = 'E'
 
 " leader-K to go to definition of js via tern
 augroup javascript_help
