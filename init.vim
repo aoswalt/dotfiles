@@ -191,6 +191,7 @@ let g:ale_linters.javascript = ['eslint']
 let g:ale_fixers = {}
 let g:ale_fixers.javascript = ['eslint']
 
+let g:highlightedyank_highlight_duration = 350
 
 " disable continuation of comments to the next line
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
