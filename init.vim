@@ -410,6 +410,7 @@ let g:gutentags_cache_dir = '~/.tags_cache'
 
 let g:livedown_browser = 'firefox'
 let g:livedown_port = 1337
+let g:livedown_open = 0
 nnoremap <leader>md :LivedownToggle<CR>
 
 let b:csv_arrange_use_all_rows = 1
