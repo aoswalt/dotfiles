@@ -150,6 +150,7 @@ set gdefault        "global search by default
 set lazyredraw      "no need to redraw all the time
 set nohlsearch      "don't highlight searches by default
 set inccommand=nosplit  "show substitution while typing
+set path+=**        "include subdirectory globbing in path
 
 " add globbing to path for fuzzy :find
 set path+=**
