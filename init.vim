@@ -240,6 +240,7 @@ nnoremap <silent> <m-\> :TmuxNavigatePrevious<cr>
 
 " terminal keybindings
 tnoremap <leader><esc> <c-\><c-n>
+tnoremap <m-[> <c-\><c-n>
 tnoremap <m-h> <c-\><c-n><c-w>h
 tnoremap <m-j> <c-\><c-n><c-w>j
 tnoremap <m-k> <c-\><c-n><c-w>k
