@@ -44,6 +44,8 @@ Plug 'Chun-Yang/vim-textobj-chunk'  "ac/ic for json-ish chunk
 Plug 'whatyouhide/vim-textobj-xmlattr'  "ax/ix for xml attribute
 
 Plug 'thinca/vim-quickrun'
+Plug 'tpope/vim-dispatch'
+Plug 'radenling/vim-dispatch-neovim'
 Plug 'vim-scripts/dbext.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'mtth/scratch.vim'
