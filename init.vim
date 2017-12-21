@@ -90,8 +90,10 @@ if executable('nvr')
 endif
 
 
-" ultisnips interferes with built-in completion
-inoremap <c-x><c-k> <c-x><c-k>
+let g:ultisnips_javascript = {
+\ 'semi': 'never',
+\ 'space-before-function-paren': 'never',
+\ }
 
 set completeopt=longest,menuone
 
