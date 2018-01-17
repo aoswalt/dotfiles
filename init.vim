@@ -552,12 +552,19 @@ let g:lightline = {
 \   },
 \   'component_function': {
 \     'filename': 'FilenameWithIcon',
+\     'gitversion': 'GitVersion',
 \   },
 \   'active': {
 \     'right': [
-\        [ 'lineinfo' ],
-\        [ 'percent' ],
+\        [ 'lineinfo'],
+\        [ 'gitversion', 'percent' ],
 \        [ 'fileformat', 'filetype' ],
+\     ]
+\   },
+\   'inactive': {
+\     'right': [
+\        [ 'lineinfo' ],
+\        [ 'gitversion', 'percent' ],
 \     ]
 \   },
 \ }
@@ -579,6 +586,20 @@ function! FilenameWithIcon()
   return len(l:filename) > 0 ? l:filename . ' ' . l:icon : '[No File]'
 endfunction
 
+function! GitVersion()
+  let fullname = expand('%')
+  let gitversion = ''
+  if fullname =~? 'fugitive://.*/\.git//0/.*'
+    let gitversion = 'git index'
+  elseif fullname =~? 'fugitive://.*/\.git//2/.*'
+    let gitversion = 'git target'
+  elseif fullname =~? 'fugitive://.*/\.git//3/.*'
+    let gitversion = 'git merge'
+  elseif &diff == 1
+    let gitversion = 'working copy'
+  endif
+  return gitversion
+endfunction
 
 " allow loading of device specific configs
 if filereadable(expand('$HOME/init.after.vim'))
