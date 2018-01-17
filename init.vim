@@ -49,7 +49,7 @@ Plug 'radenling/vim-dispatch-neovim'
 Plug 'vim-scripts/dbext.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'mtth/scratch.vim'
-Plug 'shime/vim-livedown', { 'do': 'npm install -g livedown' }
+Plug 'suan/vim-instant-markdown', { 'do': 'npm install -g instant-markdown-d' }
 Plug 'chrisbra/csv.vim'
 
 Plug 'itchyny/lightline.vim'
@@ -410,10 +410,8 @@ vnoremap <silent> aT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}
 
 let g:gutentags_cache_dir = '~/.tags_cache'
 
-let g:livedown_browser = 'firefox'
-let g:livedown_port = 1337
-let g:livedown_open = 0
-nnoremap <leader>md :LivedownToggle<CR>
+" port 8090
+nnoremap <leader>md :InstantMarkdownPreview<CR>
 
 let b:csv_arrange_use_all_rows = 1
 
