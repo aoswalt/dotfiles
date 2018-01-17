@@ -278,10 +278,10 @@ nnoremap <M-S-j> <C-w>+
 nnoremap <M-S-k> <C-w>-
 nnoremap <M-S-l> <C-w>>
 nnoremap <silent> <M-=> <c-w>=
-nnoremap <silent> <c-w>' :call MaximizeWindow()<cr>
-nnoremap <silent> <c-w>z :call ZoomToggle()<cr>
-nnoremap <silent> <M-'> :call MaximizeWindow()<cr>
-nnoremap <silent> <M-z> :call ZoomToggle()<cr>
+nnoremap <silent> <c-w>' :call ZoomToggle()<cr>
+nnoremap <silent> <c-w>z :call MaximizeWindow()<cr>
+nnoremap <silent> <M-'> :call ZoomToggle()<cr>
+nnoremap <silent> <M-z> :call MaximizeWindow()<cr>
 
 " open file to side
 nnoremap gF :vertical wincmd f<CR>
