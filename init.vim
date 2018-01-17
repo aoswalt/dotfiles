@@ -162,7 +162,8 @@ augroup vimrc_set_working_dir
   autocmd BufRead,BufEnter * silent! lcd %:p:h
 augroup end
 
-let g:netrw_altfile=1   "allow <c-6> to go to the previously edited file
+let g:netrw_altfile = 1   "allow <c-6> to go to the previously edited file
+let g:netrw_preview = 1   "open preview window in a vertical split
 
 
 if isdirectory($HOME . '/.config/nvim/undo') == 0
