@@ -22,7 +22,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'exu/pgsql.vim'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'galooshi/vim-import-js', { 'do': 'npm install -g import-js', 'for': ['javascript', 'javascript.jsx'] }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neco-vim'
