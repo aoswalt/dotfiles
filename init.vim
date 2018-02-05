@@ -79,6 +79,8 @@ Plug 'honza/vim-snippets'
 Plug 'aoswalt/onedark.vim'
 Plug 'w0ng/vim-hybrid'
 
+Plug 'wannesm/wmgraphviz.vim'
+
 " ctags require https://github.com/universal-ctags/ctags
 Plug 'ludovicchabant/vim-gutentags', {'do': ':call plug#helptags()'}
 Plug 'majutsushi/tagbar'
@@ -121,6 +123,7 @@ augroup javascript_help
 augroup end
 
 autocmd FileType sh let b:dispatch = '$SHELL'
+autocmd FileType dot let b:dispatch = 'dot -Tpng % -o %:r.png'
 
 " display/ui
 colorscheme onedark
