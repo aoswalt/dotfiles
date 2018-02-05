@@ -120,6 +120,8 @@ augroup javascript_help
   autocmd FileType javascript.jsx nnoremap <buffer> <leader>K :TernDef<cr>
 augroup end
 
+autocmd FileType sh let b:dispatch = '$SHELL'
+
 " display/ui
 colorscheme onedark
 
