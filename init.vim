@@ -378,15 +378,6 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
 
-" extra location list keybinds (some with unimpaired)
-nnoremap <Leader>lo :lopen<CR>
-nnoremap <Leader>lc :lclose<CR>
-nnoremap <Leader>ll :ll<CR>
-
-" extra quickfix keybinds (some with unimpaired)
-nnoremap <Leader>co :Copen<CR>
-nnoremap <Leader>cc :cclose<CR>
-
 " edit vimrc/zshrc and source vimrc
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
