@@ -362,10 +362,8 @@ nnoremap <F8> :TagbarToggle<CR>
 
 
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 100
-let g:deoplete#auto_complete_start_length = 1
+let g:deoplete#min_pattern_length = 1
 let g:deoplete#auto_complete_delay = 1
-" let g:deoplete#enable_refresh_always = 1
 highlight Pmenu ctermbg=240
 highlight PmenuSel ctermbg=25
 
