@@ -47,7 +47,6 @@ Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'vim-scripts/dbext.vim'
 Plug 'vimwiki/vimwiki'
-Plug 'mtth/scratch.vim'
 Plug 'suan/vim-instant-markdown', { 'do': 'npm install -g instant-markdown-d' }
 Plug 'chrisbra/csv.vim'
 
@@ -408,9 +407,6 @@ let g:gutentags_cache_dir = '~/.tags_cache'
 nnoremap <leader>md :InstantMarkdownPreview<CR>
 
 let b:csv_arrange_use_all_rows = 1
-
-let g:scratch_insert_autohide = 0
-
 
 let g:quickrun_config = {}
 let g:quickrun_config['javascript.jsx'] = { 'type': 'javascript' }
