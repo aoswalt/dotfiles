@@ -321,10 +321,15 @@ nnoremap <leader>/ :Ag<space>
 nnoremap <leader>? :BLines<space>
 
 " buffer management
-nnoremap <leader>bf :Buffers<cr>
-nnoremap <leader>bl :ls<cr>:b
-nnoremap <silent> <leader>bd :bn \| bd #<cr>
-nnoremap <leader>q :bd<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <c-up> :ls<cr>:b
+nnoremap <c-right> :bn<cr>
+nnoremap <c-left> :bp<cr>
+nnoremap <c-down> :bn \| bd #<cr>
+
+nnoremap <leader>w :w<cr>
+nnoremap <leader>q :q<cr>
+nnoremap <leader>Q :bd<cr>
 
 " search for word under cursor with <leader>*
 nnoremap <leader>* :Ag <c-r><c-w><CR>
