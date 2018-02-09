@@ -121,6 +121,7 @@ augroup javascript_help
   autocmd FileType javascript.jsx nnoremap <buffer> <leader>K :TernDef<cr>
 augroup end
 
+nnoremap <leader>d :Dispatch<cr>
 autocmd FileType sh let b:dispatch = '$SHELL'
 autocmd FileType dot let b:dispatch = 'dot -Tpng % -o %:r.png'
 
@@ -313,11 +314,11 @@ noremap <silent> <leader>X :Sexplore<CR>:wincmd =<CR>
 nnoremap <leader>sw :w !sudo tee % >/dev/null<cr>
 
 " use <leader>p to open fzf with git files
-nnoremap <leader>p :GFiles -co --exclude-per-directory=.gitignore<CR>
+nnoremap <leader>f :GFiles -co --exclude-per-directory=.gitignore<CR>
 " plain FZF vs GFiles have a few differences to be sorted out
-nnoremap <leader>P :FZF<CR>
-nnoremap <leader>f :Ag<space>
-nnoremap <leader>F :BLines<space>
+nnoremap <leader>F :FZF<CR>
+nnoremap <leader>/ :Ag<space>
+nnoremap <leader>? :BLines<space>
 
 " buffer management
 nnoremap <leader>bf :Buffers<cr>
@@ -331,6 +332,10 @@ nnoremap <leader>* :Ag <c-r><c-w><CR>
 " system clipboard yank
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>P "+P
 
 " put searches in middle of screen
 nmap n nzz
