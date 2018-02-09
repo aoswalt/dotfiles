@@ -190,10 +190,6 @@ highlight! Normal ctermbg=NONE
 " highlight! link TermCursor Cursor
 highlight! TermCursorNC ctermbg=0 ctermfg=15
 
-" use - and . as word separators
-set iskeyword-=-
-set iskeyword-=.
-
 let g:ale_linters = {}
 let g:ale_linters.javascript = ['eslint']
 
@@ -309,10 +305,6 @@ noremap gV `[v`]
 nnoremap <leader>it "=strftime("%H:%M")<CR>P
 nnoremap <leader>id "=strftime("%Y-%m-%d")<CR>P
 nnoremap <leader>iD "=strftime("%m.%d.%Y")<CR>P
-
-" commenting
-map <leader>/ gcc
-vmap <leader>/ gc
 
 noremap <silent> <leader>x :Vexplore!<CR>:wincmd =<CR>
 noremap <silent> <leader>X :Sexplore<CR>:wincmd =<CR>
