@@ -223,6 +223,7 @@ noremap : ;
 nnoremap / /\v
 nnoremap ? ?\v
 cnoremap %s/ %s/\v
+cnoremap s/ s/\v
 
 " move cursor into wrapped lines
 nnoremap <Up> gk
