@@ -116,7 +116,7 @@ let g:LanguageClient_serverCommands = {
 \ 'jsx': ['javascript-typescript-stdio'],
 \ 'javascript.jsx': ['javascript-typescript-stdio'],
 \ }
-let g:LanguageClient_diagnosticsList = 'location'
+let g:LanguageClient_diagnosticsList = 'Location'
 
 let g:surround_{char2nr('-')} = "<% \r %>"
 let g:surround_{char2nr('=')} = "<%= \r %>"
