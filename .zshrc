@@ -45,7 +45,7 @@ alias v='nvim'
 
 alias giaa='gia -A'
 alias gfp='git fetch --prune'
-alias gzb='gco $(gbL | fzf | cut -d ' ' -f 3)'
+alias gzb='gco $(gbL | fzf | cut -d " " -f 3)'
 alias gbdr='git push origin --delete'
 
 neoterm() {
