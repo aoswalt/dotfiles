@@ -49,7 +49,7 @@ alias gzb='gco $(gbL | fzf | cut -d " " -f 3)'
 alias gbdr='git push origin --delete'
 
 neoterm() {
-  nvim +"terminal $*" +'set bufhidden=hide'
+  nvim +"terminal $*"
 }
 alias nt='neoterm'
 

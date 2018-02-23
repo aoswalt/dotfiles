@@ -500,28 +500,24 @@ function! BufCleanup()
 endfunction
 command! BufCleanup :call BufCleanup()
 
+autocmd TermOpen * setlocal nonumber norelativenumber bufhidden=hide
+
 " open a terminal in a different view while setting bufhidden to hide to keep alive
 command! -nargs=* VTerm :vsp
   \ | execute 'terminal' <args>
-  \ | set bufhidden=hide
 command! -nargs=* VTermRepo :vsp
   \ | execute 'lcd' fnameescape(s:get_git_root())
   \ | execute 'terminal' <args>
-  \ | set bufhidden=hide
 command! -nargs=* STerm :sp
   \ | execute 'terminal' <args>
-  \ | set bufhidden=hide
 command! -nargs=* STermRepo :sp
   \ | execute 'lcd' fnameescape(s:get_git_root())
   \ | execute 'terminal' <args>
-  \ | set bufhidden=hide
 command! -nargs=* TTerm :tabnew
   \ | execute 'terminal' <args>
-  \ | set bufhidden=hide
 command! -nargs=* TTermRepo :tabnew
   \ | execute 'lcd' fnameescape(s:get_git_root())
   \ | execute 'terminal' <args>
-  \ | set bufhidden=hide
 
 " format a block of JSON with python's built-in function
 function! FormatJSON() range
