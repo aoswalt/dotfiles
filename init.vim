@@ -134,6 +134,9 @@ nnoremap <leader>d :Dispatch<cr>
 autocmd FileType sh let b:dispatch = '$SHELL'
 autocmd FileType dot let b:dispatch = 'dot -Tpng % -o %:r.png'
 
+" add do/end as jumps for %
+autocmd FileType elixir let b:match_words = '\<do\>:\<end\>'
+
 " display/ui
 colorscheme onedark
 
