@@ -158,6 +158,7 @@ autocmd BufWritePre * StripWhitespace
 " QoL tweaks
 set tabstop=2       "width of tabs
 set shiftwidth=2    "amount for < and > commands
+set shiftround      "indent to the next multiple of shiftwidth
 set expandtab       "insert spaces instead of tabs
 
 " set hidden          "allow hiding a buffer instead of requring save
