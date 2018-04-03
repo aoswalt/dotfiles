@@ -457,7 +457,7 @@ endfunction
 "command! -bang -nargs=* GitAg\ call fzf#vim#ag(<q-args>, {'dir': systemlist('git rev-parse --show-toplevel')[0]}, <bang>0)
 
 " run macro on selection
-function! s:ExecuteMacroOverVisualRange()
+function! g:ExecuteMacroOverVisualRange()
   echo '@'.getcmdline()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
