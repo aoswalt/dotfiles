@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-" install plug if not found
+" install plug if not found {{{1
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   augroup plug_install
@@ -8,6 +8,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   augroup end
 endif
 
+" plugins {{{1
 call plug#begin('~/.config/nvim/plugged')
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -88,59 +89,8 @@ Plug 'ludovicchabant/vim-gutentags', {'do': ':call plug#helptags()'}
 Plug 'majutsushi/tagbar'
 call plug#end()
 
-" override $VISUAL to use nvr inside neovim
-if executable('nvr')
-  let $VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
-endif
 
-
-let g:ultisnips_javascript = {
-\ 'semi': 'never',
-\ 'space-before-function-paren': 'never',
-\ }
-
-set completeopt=longest,menuone
-
-" fix to not require extra keypress for fzf in terminal
-let $FZF_DEFAULT_OPTS .= ' --no-height'
-
-" tern tweaks
-let g:tern_show_signature_in_pum = 1
-let g:tern#filetypes = ['javascript', 'jsx', 'javascript.jsx']
-let g:tern#command = ['tern']
-let g:tern#arguments = ['--persistent']
-let g:deoplete#sources#ternjs#types = 1
-let g:deoplete#sources#ternjs#case_insensitive = 1
-let g:deoplete#sources#ternjs#include_keywords = 1
-
-let g:LanguageClient_serverCommands = {
-\ 'javascript': ['javascript-typescript-stdio'],
-\ 'jsx': ['javascript-typescript-stdio'],
-\ 'javascript.jsx': ['javascript-typescript-stdio'],
-\ }
-let g:LanguageClient_diagnosticsList = 'Location'
-
-let g:surround_{char2nr('-')} = "<% \r %>"
-let g:surround_{char2nr('=')} = "<%= \r %>"
-
-let g:vim_textobj_elixir_mapping = 'E'
-
-" leader-K to go to definition of js via tern
-augroup javascript_help
-  autocmd FileType javascript.jsx nnoremap <buffer> <leader>k :TernType<cr>
-  autocmd FileType javascript.jsx nnoremap <buffer> <leader>K :TernDef<cr>
-augroup end
-
-nnoremap <leader>d :Dispatch<cr>
-autocmd FileType sh let b:dispatch = '$SHELL'
-autocmd FileType dot let b:dispatch = 'dot -Tpng % -o %:r.png'
-
-" add do/end as jumps for %
-autocmd FileType elixir let b:match_words = '\<do\>:\<end\>'
-
-" display/ui
-colorscheme onedark
-
+" vim settings {{{1
 set noswapfile
 set number          "line numbers
 set cursorline      "highlight cursorline
@@ -150,10 +100,6 @@ set sidescroll=5    "horizontal scrolloff
 set list            "enable invisible characters
 set nowrap          "do not wrap lines by default
 set mouse=a         "use mouse in all modes
-
-" automatically strip trailiing whitespace on save
-autocmd BufWritePre * StripWhitespace
-
 
 " QoL tweaks
 set tabstop=2       "width of tabs
@@ -174,16 +120,20 @@ set lazyredraw      "no need to redraw all the time
 set nohlsearch      "don't highlight searches by default
 set inccommand=nosplit  "show substitution while typing
 set path+=**        "include subdirectory globbing in path for :find
+set diffopt+=vertical   "vertical split for diffs
 
-" set autochdir       "switch to current file's parent directory
-augroup vimrc_set_working_dir
-  au!
-  autocmd BufRead,BufEnter * silent! lcd %:p:h
-augroup end
+set noshowmode      "do not show mode since using lightline
 
-let g:netrw_altfile = 1   "allow <c-6> to go to the previously edited file
-let g:netrw_preview = 1   "open preview window in a vertical split
+" characters for horizontal scrolled text
+set listchars+=extends:»
+set listchars+=precedes:«
+set listchars+=nbsp:⣿
+" more solid vertical bar
+set fillchars=vert:\│
 
+set completeopt=longest,menuone
+
+let g:mapleader = ' ' "use space as leader
 
 if isdirectory($HOME . '/.config/nvim/undo') == 0
   :silent !mkdir -p ~/.config/nvim/undo > /dev/null 2>&1
@@ -191,9 +141,139 @@ endif
 set undofile
 set undodir=~/.config/nvim/undo/
 
+" override $VISUAL to use nvr inside neovim
+if executable('nvr')
+  let $VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+endif
+
+" fix to not require extra keypress for fzf in terminal
+let $FZF_DEFAULT_OPTS .= ' --no-height'
+
+
+
+" plugin settings {{{1
+let g:netrw_altfile = 1   "allow <c-6> to go to the previously edited file
+let g:netrw_preview = 1   "open preview window in a vertical split
+
+let g:ale_linters = {}
+let g:ale_linters.javascript = ['eslint']
+
+let g:ale_fixers = {}
+let g:ale_fixers.javascript = ['eslint']
 
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
+
+let g:highlightedyank_highlight_duration = 350
+
+let g:ultisnips_javascript = {
+\ 'semi': 'never',
+\ 'space-before-function-paren': 'never',
+\ }
+
+let g:surround_{char2nr('-')} = "<% \r %>"
+let g:surround_{char2nr('=')} = "<%= \r %>"
+
+let g:vim_textobj_elixir_mapping = 'E'
+
+let g:tern_show_signature_in_pum = 1
+let g:tern#filetypes = ['javascript', 'jsx', 'javascript.jsx']
+let g:tern#command = ['tern']
+let g:tern#arguments = ['--persistent']
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#case_insensitive = 1
+let g:deoplete#sources#ternjs#include_keywords = 1
+
+let g:LanguageClient_serverCommands = {
+\ 'javascript': ['javascript-typescript-stdio'],
+\ 'jsx': ['javascript-typescript-stdio'],
+\ 'javascript.jsx': ['javascript-typescript-stdio'],
+\ }
+let g:LanguageClient_diagnosticsList = 'Location'
+
+let g:tmux_navigator_no_mappings = 1
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#min_pattern_length = 1
+let g:deoplete#auto_complete_delay = 1
+
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
+
+let g:gutentags_cache_dir = '~/.tags_cache'
+
+let b:csv_arrange_use_all_rows = 1
+
+let g:quickrun_config = {}
+let g:quickrun_config['javascript.jsx'] = { 'type': 'javascript' }
+let g:quickrun_config['sh'] = { 'type': 'bash' }
+
+let g:sql_type_default = 'pgsql'
+
+
+
+" autocommands {{{1
+" leader-K to go to definition of js via tern
+augroup javascript_help
+  autocmd FileType javascript.jsx nnoremap <buffer> <leader>k :TernType<cr>
+  autocmd FileType javascript.jsx nnoremap <buffer> <leader>K :TernDef<cr>
+augroup end
+
+augroup whitespace
+  " automatically strip trailiing whitespace on save
+  autocmd BufWritePre * StripWhitespace
+augroup end
+
+augroup dispatch_commands
+  autocmd FileType sh let b:dispatch = '$SHELL'
+  autocmd FileType dot let b:dispatch = 'dot -Tpng % -o %:r.png'
+augroup end
+
+augroup ft_match_words
+  " add do/end as jumps for %
+  autocmd FileType elixir let b:match_words = '\<do\>:\<end\>'
+augroup end
+
+" switch to current file's parent directory
+" set autochdir was causing issues with some plugins but needs reinvestigating
+augroup vimrc_set_working_dir
+  au!
+  autocmd BufRead,BufEnter * silent! lcd %:p:h
+augroup end
+
+" only show cursor line one active window
+augroup cursorLine
+  autocmd!
+  autocmd BufEnter * setlocal cursorline
+  autocmd BufLeave * setlocal nocursorline
+augroup end
+
+" use pgsql syntax inside elixir non-doc string blocks
+augroup elixirSql
+  autocmd!
+  autocmd FileType elixir call SyntaxRange#Include('\s\{2,\}\"\"\"', '\"\"\"', 'pgsql', 'NonText')
+augroup end
+
+augroup pum
+  " auto-close preview pane
+  autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+augroup end
+
+augroup term_settings
+  autocmd TermOpen * setlocal nonumber norelativenumber bufhidden=hide
+augroup end
+
+augroup term_insert
+  " go into insert mode if switching to a terminal buffer
+  autocmd BufEnter term://* startinsert
+  autocmd BufLeave term://* stopinsert
+augroup end
+
+
+
+" colors {{{1
+colorscheme onedark
+
 highlight! IndentGuidesOdd  ctermbg=233
 highlight! IndentGuidesEven ctermbg=234
 
@@ -205,27 +285,15 @@ highlight! Normal ctermbg=NONE
 " highlight! link TermCursor Cursor
 highlight! TermCursorNC ctermbg=0 ctermfg=15
 
-let g:ale_linters = {}
-let g:ale_linters.javascript = ['eslint']
+highlight Pmenu ctermbg=240
+highlight PmenuSel ctermbg=25
 
-let g:ale_fixers = {}
-let g:ale_fixers.javascript = ['eslint']
+" lighten non-active windows
+highlight NormalNC ctermbg=234
 
-let g:highlightedyank_highlight_duration = 350
 
-" disable continuation of comments to the next line
-autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
-" only show cursor line one active window
-augroup cursorLine
-  autocmd!
-  autocmd BufEnter * setlocal cursorline
-  autocmd BufLeave * setlocal nocursorline
-augroup END
-
-" keybindings
-let g:mapleader = ' ' "use space as leader
-
+" keymappings {{{1
 " swap ; and :
 noremap ; :
 noremap : ;
@@ -246,14 +314,16 @@ nmap <silent> [w <Plug>(ale_previous)
 nmap <silent> ]w <Plug>(ale_next)
 nmap <silent> ]W <Plug>(ale_last)
 
-
-let g:tmux_navigator_no_mappings = 1
-
+" split navigation
 nnoremap <silent> <m-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <m-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <m-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <m-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <m-\> :TmuxNavigatePrevious<cr>
+inoremap <m-h> <esc>:TmuxNavigateLeft<cr>
+inoremap <m-j> <esc>:TmuxNavigateDown<cr>
+inoremap <m-k> <esc>:TmuxNavigateUp<cr>
+inoremap <m-l> <esc>:TmuxNavigateRight<cr>
 
 " terminal keybindings
 tnoremap <leader><esc> <c-\><c-n>
@@ -263,30 +333,9 @@ tnoremap <m-j> <c-\><c-n><c-w>j
 tnoremap <m-k> <c-\><c-n><c-w>k
 tnoremap <m-l> <c-\><c-n><c-w>l
 
-inoremap <m-h> <esc><c-w>h
-inoremap <m-j> <esc><c-w>j
-inoremap <m-k> <esc><c-w>k
-inoremap <m-l> <esc><c-w>l
-
+" tab switching like tmux
 nnoremap <leader><m-h> :tabprev<cr>
 nnoremap <leader><m-l> :tabnext<cr>
-
-function! MaximizeWindow()
-  vertical resize
-  resize
-endfunction
-
-let s:maximized=0
-function! ZoomToggle()
-  if s:maximized
-    wincmd =
-    let s:maximized=0
-  else
-    call MaximizeWindow()
-    let s:maximized=1
-  endif
-endfunction
-
 
 " window resizing
 nnoremap <M-S-h> <C-w><
@@ -321,16 +370,18 @@ nnoremap <leader>it "=strftime("%H:%M")<CR>P
 nnoremap <leader>id "=strftime("%Y-%m-%d")<CR>P
 nnoremap <leader>iD "=strftime("%m.%d.%Y")<CR>P
 
+" netrw splits
 noremap <silent> <leader>x :Vexplore!<CR>:wincmd =<CR>
 noremap <silent> <leader>X :Sexplore<CR>:wincmd =<CR>
 
 " use sudo for file if forgot to when opened
 nnoremap <leader>sw :w !sudo tee % >/dev/null<cr>
 
-" use <leader>p to open fzf with git files
+" super find
 nnoremap <leader>f :GFiles -co --exclude-per-directory=.gitignore<CR>
-" plain FZF vs GFiles have a few differences to be sorted out
 nnoremap <leader>F :FZF<CR>
+
+" super search
 nnoremap <leader>/ :Ag<space>
 nnoremap <leader>? :BLines<space>
 
@@ -368,34 +419,15 @@ xmap # #zz
 nmap g* g*zz
 nmap g# g#zz
 
-" search count alongside search
-" right command but needs some tweaking to seamlessly integrate
-" nnoremap * *n<c-o>:%s///gn<CR>
+nnoremap <leader>d :Dispatch<cr>
 
 " search for visual selection
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>/<C-R>=@/<CR><CR>
 
-
 " pane toggles
 nnoremap <F5> :MundoToggle<CR>
 nnoremap <F8> :TagbarToggle<CR>
-
-
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#min_pattern_length = 1
-let g:deoplete#auto_complete_delay = 1
-highlight Pmenu ctermbg=240
-highlight PmenuSel ctermbg=25
-
-" lighten non-active windows
-highlight NormalNC ctermbg=234
-
-" auto-close preview pane
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-let g:delimitMate_expand_cr = 1
-let g:delimitMate_expand_space = 1
 
 " edit vimrc/zshrc and source vimrc
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
@@ -418,26 +450,63 @@ vnoremap <silent> iT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?\\zs.\rv/\\
 onoremap <silent> aT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}][>}]/e\r"<cr>
 vnoremap <silent> aT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}][>}]/e\r"<cr>
 
-let g:gutentags_cache_dir = '~/.tags_cache'
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+" run 'q' macro on selection
+xnoremap Q :normal @q<CR>
 
 " port 8090
 nnoremap <leader>md :InstantMarkdownPreview<CR>
 
-let b:csv_arrange_use_all_rows = 1
-
-let g:quickrun_config = {}
-let g:quickrun_config['javascript.jsx'] = { 'type': 'javascript' }
-let g:quickrun_config['sh'] = { 'type': 'bash' }
-
-let g:sql_type_default = 'pgsql'
 
 
-" use pgsql syntax inside elixir non-doc string blocks
-augroup elixirSql
-  autocmd!
-  autocmd FileType elixir call SyntaxRange#Include('\s\{2,\}\"\"\"', '\"\"\"', 'pgsql', 'NonText')
-augroup end
+" commands {{{1
+" close all other buffers
+command! BufOnly :%bd|e#
 
+command! BufCleanup :call BufCleanup()
+command! SynStack :call SynStack()
+
+" open a terminal in a different view while setting bufhidden to hide to keep alive
+command! -nargs=* VTerm :vsp
+  \ | execute 'terminal' <args>
+command! -nargs=* VTermRepo :vsp
+  \ | execute 'lcd' fnameescape(s:get_git_root())
+  \ | execute 'terminal' <args>
+command! -nargs=* STerm :sp
+  \ | execute 'terminal' <args>
+command! -nargs=* STermRepo :sp
+  \ | execute 'lcd' fnameescape(s:get_git_root())
+  \ | execute 'terminal' <args>
+command! -nargs=* TTerm :tabnew
+  \ | execute 'terminal' <args>
+command! -nargs=* TTermRepo :tabnew
+  \ | execute 'lcd' fnameescape(s:get_git_root())
+  \ | execute 'terminal' <args>
+
+" amend without editing commit message
+command! Gamend Gcommit --amend --no-edit
+
+command! -range FormatJSON :<line1>,<line2>call FormatJSON()
+
+
+
+" functions {{{1
+function! MaximizeWindow()
+  vertical resize
+  resize
+endfunction
+
+let s:maximized=0
+function! ZoomToggle()
+  if s:maximized
+    wincmd =
+    let s:maximized=0
+  else
+    call MaximizeWindow()
+    let s:maximized=1
+  endif
+endfunction
 
 " extracted from inside fzf
 function! s:get_git_root()
@@ -462,11 +531,6 @@ function! g:ExecuteMacroOverVisualRange()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
 
-xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
-
-" run 'q' macro on selection
-xnoremap Q :normal @q<CR>
-
 " search for visual selection -  from practical vim
 function! s:VSetSearch(cmdType)
   let l:temp = @s
@@ -483,10 +547,6 @@ function! SynStack()
   let l:stack = join(l:syns, ' => ')
   echo l:stack
 endfunction
-command! SynStack :call SynStack()
-
-" close all other buffers
-command! BufOnly :%bd|e#
 
 " Delete buffers that are not displayed in any window or modified
 function! BufCleanup()
@@ -504,26 +564,6 @@ function! BufCleanup()
       endif
   endfor
 endfunction
-command! BufCleanup :call BufCleanup()
-
-autocmd TermOpen * setlocal nonumber norelativenumber bufhidden=hide
-
-" open a terminal in a different view while setting bufhidden to hide to keep alive
-command! -nargs=* VTerm :vsp
-  \ | execute 'terminal' <args>
-command! -nargs=* VTermRepo :vsp
-  \ | execute 'lcd' fnameescape(s:get_git_root())
-  \ | execute 'terminal' <args>
-command! -nargs=* STerm :sp
-  \ | execute 'terminal' <args>
-command! -nargs=* STermRepo :sp
-  \ | execute 'lcd' fnameescape(s:get_git_root())
-  \ | execute 'terminal' <args>
-command! -nargs=* TTerm :tabnew
-  \ | execute 'terminal' <args>
-command! -nargs=* TTermRepo :tabnew
-  \ | execute 'lcd' fnameescape(s:get_git_root())
-  \ | execute 'terminal' <args>
 
 " format a block of JSON with python's built-in function
 function! FormatJSON() range
@@ -532,38 +572,10 @@ function! FormatJSON() range
   silent exe l:fullRange.'join | '.l:singeLine.'! python3 -m "json.tool"'
   silent normal =}
 endfunction
-command! -range FormatJSON :<line1>,<line2>call FormatJSON()
 
-" go into insert mode if switching to a terminal buffer
-autocmd BufEnter term://* startinsert
-autocmd BufLeave term://* stopinsert
 
-" comment jsx lines in javascript.jsx files
-"autocmd FileType javascript.jsx
-"\ let jsxRegionID = hlID('jsxRegion') |
-"\ autocmd CursorMoved *
-"\   if index(synstack(line("."), col("$") - 1), jsxRegionID) > 0 |
-"\     setlocal commentstring={/*\ %s\ */} |
-"\   else |
-"\     setlocal commentstring=//%s |
-"\   endif
 
-" command to fix netrw buftype shenanigans
-command! FixBuftype set buftype=<space>
-
-" amend without editing commit message
-command! Gamend Gcommit --amend --no-edit
-
-" more solid vertical bar
-set fillchars=vert:\│
-
-set listchars+=extends:»
-set listchars+=precedes:«
-set listchars+=nbsp:⣿
-
-set diffopt+=vertical
-
-set noshowmode
+" statusline {{{1
 "\   'colorscheme': 'onedark',
 let g:lightline = {
 \   'component': {
@@ -621,6 +633,9 @@ function! GitVersion()
   return gitversion
 endfunction
 
+
+
+" after.vim loading {{{1
 " allow loading of device specific configs
 if filereadable(expand('$HOME/init.after.vim'))
   source $HOME/init.after.vim
