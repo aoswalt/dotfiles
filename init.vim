@@ -420,6 +420,7 @@ nmap g* g*zz
 nmap g# g#zz
 
 nnoremap <leader>d :Dispatch<cr>
+vnoremap <leader>d :<c-u>execute ':Dispatch ' . substitute(b:dispatch, '%', shellescape(join(getline(line("'<"), line("'>")), "\n"), "\n"), "")<cr>
 
 " search for visual selection
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
