@@ -77,7 +77,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-rsi'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'tpope/vim-db'
+Plug 'tpope/vim-dadbod'
 
 Plug 'aoswalt/onedark.vim'
 Plug 'w0ng/vim-hybrid'
