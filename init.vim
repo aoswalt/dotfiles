@@ -96,7 +96,8 @@ set number          "line numbers
 set cursorline      "highlight cursorline
 set ruler           "show line/column
 set scrolloff=4     "keep more lines on screen while scrolling
-set sidescroll=5    "horizontal scrolloff
+set sidescroll=1    "horizontal scroll amount
+set sidescrolloff=5 "horizontal scrolloff
 set list            "enable invisible characters
 set nowrap          "do not wrap lines by default
 set mouse=a         "use mouse in all modes
