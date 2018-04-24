@@ -137,6 +137,14 @@ if [[ $setup_neovim || $all ]]; then
     fi
 
 
+    if [[ ! -e ~/init.after.vim && ! -L ~/int.after.vim ]]; then
+      [[ $verbose ]] && echo "Adding init.after.vim for direct 'edit vim' mapping."
+      echo "nnoremap <leader>ev :vsp $this_dir/init.vim<CR>" > ~/init.after.vim
+      echo "nnoremap <leader>ez :vsp $this_dir/.zshrc<CR>" >> ~/init.after.vim
+    else
+      [[ $verbose ]] && echo "init.after.vim already exists, not adding direct edit overrides."
+    fi
+
   else
     "pip3 not found - python neovim package needed for proper usage"
   fi
