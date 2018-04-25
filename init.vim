@@ -231,7 +231,7 @@ augroup whitespace
 augroup end
 
 augroup dispatch_commands
-  autocmd FileType sh let b:dispatch = '$SHELL'
+  autocmd FileType sh let b:dispatch = '$SHELL %'
   autocmd FileType dot let b:dispatch = 'dot -Tpng % -o %:r.png'
 augroup end
 
