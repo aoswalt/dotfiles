@@ -155,6 +155,7 @@ let $FZF_DEFAULT_OPTS .= ' --no-height'
 " plugin settings {{{1
 let g:netrw_altfile = 1   "allow <c-6> to go to the previously edited file
 let g:netrw_preview = 1   "open preview window in a vertical split
+let g:netrw_localrmdir="rm -r"  "allow deleting non-empty directories
 
 let g:ale_linters = {}
 let g:ale_linters.javascript = ['eslint']
