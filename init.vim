@@ -308,6 +308,8 @@ cnoremap %s/ %s/\v
 cnoremap s/ s/\v
 
 " move cursor into wrapped lines
+nnoremap k gk
+nnoremap j gj
 nnoremap <Up> gk
 nnoremap <Down> gj
 
