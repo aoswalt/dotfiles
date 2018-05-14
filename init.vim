@@ -28,7 +28,6 @@ Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neco-vim'
 Plug 'zchee/deoplete-zsh'
-Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'tpope/vim-projectionist'
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'vim-scripts/ingo-library'
@@ -162,6 +161,7 @@ let g:ale_linters.javascript = ['eslint']
 
 let g:ale_fixers = {}
 let g:ale_fixers.javascript = ['eslint']
+let g:ale_fixers.elixir = ['mix_format']
 
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
@@ -190,6 +190,7 @@ let g:LanguageClient_serverCommands = {
 \ 'javascript': ['javascript-typescript-stdio'],
 \ 'jsx': ['javascript-typescript-stdio'],
 \ 'javascript.jsx': ['javascript-typescript-stdio'],
+\ 'elixir': ['elixir-ls'],
 \ }
 let g:LanguageClient_diagnosticsList = 'Location'
 
@@ -219,12 +220,6 @@ let g:UltiSnipsEditSplit = 'horizontal'
 
 
 " autocommands {{{1
-" leader-K to go to definition of js via tern
-augroup javascript_help
-  autocmd FileType javascript.jsx nnoremap <buffer> <leader>k :TernType<cr>
-  autocmd FileType javascript.jsx nnoremap <buffer> <leader>K :TernDef<cr>
-augroup end
-
 augroup whitespace
   " automatically strip trailiing whitespace on save
   autocmd BufWritePre * StripWhitespace
@@ -467,6 +462,9 @@ xnoremap Q :normal @q<CR>
 " port 8090
 nnoremap <leader>md :InstantMarkdownPreview<CR>
 
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 
 " commands {{{1
