@@ -166,7 +166,7 @@ fi
 # [[ $TERM != screen* ]] && [ -z $TMUX ] && { tmux attach || tmux new-session -s home; }
 
 
-
+[ $commands[fasd] ] && eval "$(fasd --init auto)"
 
 [ $commands[setxkbmap] ] && setxkbmap -option caps:ctrl_modifier
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
