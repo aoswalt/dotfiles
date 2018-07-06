@@ -476,6 +476,21 @@ endfun
 
 autocmd FileType * call MapLCKeys()
 
+" fzf
+" Mapping selecting mappings
+nnoremap <leader><tab> <plug>(fzf-maps-n)
+xnoremap <leader><tab> <plug>(fzf-maps-x)
+onoremap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+inoremap <c-x><c-k> <plug>(fzf-complete-word)
+inoremap <c-x><c-f> <plug>(fzf-complete-path)
+inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
+inoremap <c-x><c-l> <plug>(fzf-complete-line)
+
+" Advanced customization using autoload functions
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+
 
 " commands {{{1
 " close all other buffers
