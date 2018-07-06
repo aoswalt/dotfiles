@@ -462,9 +462,19 @@ xnoremap Q :normal @q<CR>
 " port 8090
 nnoremap <leader>md :InstantMarkdownPreview<CR>
 
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+fun! MapLCKeys()
+  " Don't map for built-in ones
+  if &ft =~ 'vim\|help\|shell'
+      return
+  endif
+
+  nnoremap <F2> :call LanguageClient_contextMenu()<CR>
+  nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+  nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+  nnoremap <silent> <F3> :call LanguageClient#textDocument_rename()<CR>
+endfun
+
+autocmd FileType * call MapLCKeys()
 
 
 " commands {{{1
