@@ -43,6 +43,7 @@ alias n.='nvim .'
 alias vim='nvim'
 alias v='nvim'
 
+alias gh='git help'
 alias giaa='gia -A'
 alias gfp='git fetch --prune'
 alias gzb='gco $(gbL | fzf | cut -d " " -f 3)'
