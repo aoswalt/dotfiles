@@ -48,6 +48,7 @@ alias giaa='gia -A'
 alias gfp='git fetch --prune'
 alias gzb='gco $(gbL | fzf | cut -d " " -f 3)'
 alias gbdr='git push origin --delete'
+alias gfap='gfa --prune'
 
 neoterm() {
   nvim +"terminal $*"
