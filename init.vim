@@ -154,7 +154,7 @@ let $FZF_DEFAULT_OPTS .= ' --no-height'
 " plugin settings {{{1
 let g:netrw_altfile = 1   "allow <c-6> to go to the previously edited file
 let g:netrw_preview = 1   "open preview window in a vertical split
-let g:netrw_localrmdir="rm -r"  "allow deleting non-empty directories
+let g:netrw_localrmdir='rm -r'  "allow deleting non-empty directories
 
 let g:ale_linters = {}
 let g:ale_linters.javascript = ['eslint']
@@ -651,18 +651,18 @@ function! FilenameWithIcon()
 endfunction
 
 function! GitVersion()
-  let fullname = expand('%')
-  let gitversion = ''
-  if fullname =~? 'fugitive://.*/\.git//0/.*'
-    let gitversion = 'git index'
-  elseif fullname =~? 'fugitive://.*/\.git//2/.*'
-    let gitversion = 'git target'
-  elseif fullname =~? 'fugitive://.*/\.git//3/.*'
-    let gitversion = 'git merge'
+  let l:fullname = expand('%')
+  let l:gitversion = ''
+  if l:fullname =~? 'fugitive://.*/\.git//0/.*'
+    let l:gitversion = 'git index'
+  elseif l:fullname =~? 'fugitive://.*/\.git//2/.*'
+    let l:gitversion = 'git target'
+  elseif l:fullname =~? 'fugitive://.*/\.git//3/.*'
+    let l:gitversion = 'git merge'
   elseif &diff == 1
-    let gitversion = 'working copy'
+    let l:gitversion = 'working copy'
   endif
-  return gitversion
+  return l:gitversion
 endfunction
 
 
