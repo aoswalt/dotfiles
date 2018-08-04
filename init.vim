@@ -491,6 +491,9 @@ inoremap <c-x><c-l> <plug>(fzf-complete-line)
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
+" fuzzy command list
+nnoremap <leader><leader> :Commands<CR>
+
 
 " commands {{{1
 " close all other buffers
