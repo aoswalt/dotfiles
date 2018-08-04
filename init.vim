@@ -27,7 +27,7 @@ Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neco-vim'
-Plug 'zchee/deoplete-zsh'
+Plug 'Shougo/deoplete-zsh'
 Plug 'tpope/vim-projectionist'
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'vim-scripts/ingo-library'
