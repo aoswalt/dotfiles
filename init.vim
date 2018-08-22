@@ -429,6 +429,9 @@ vnoremap <leader>d :<c-u>execute ':Dispatch ' . substitute(b:dispatch, '%', shel
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>/<C-R>=@/<CR><CR>
 
+" run fixer
+nnoremap <F4> :ALEFix<CR>
+
 " pane toggles
 nnoremap <F5> :MundoToggle<CR>
 nnoremap <F8> :TagbarToggle<CR>
