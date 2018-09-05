@@ -198,7 +198,6 @@ let g:tmux_navigator_no_mappings = 1
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#min_pattern_length = 1
-let g:deoplete#auto_complete_delay = 1
 
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
