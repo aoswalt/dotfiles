@@ -240,10 +240,10 @@
     "react/jsx-boolean-value": "warn",
     "react/jsx-closing-bracket-location": ["warn", "line-aligned"],
     "react/jsx-closing-tag-location": "warn",
-    "react/jsx-curly-spacing": ["warn", {
-      "when": "never",
-      "children": true
-    }],
+//    "react/jsx-curly-spacing": ["warn", {
+//      "when": "never",
+//      "children": true
+//    }],
     "react/jsx-equals-spacing": "warn",
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
     "react/jsx-first-prop-new-line": "warn", //multiline?
