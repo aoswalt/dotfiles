@@ -22,8 +22,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sheerun/vim-polyglot'
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'exu/pgsql.vim'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neco-vim'
@@ -173,14 +171,6 @@ let g:surround_{char2nr('-')} = "<% \r %>"
 let g:surround_{char2nr('=')} = "<%= \r %>"
 
 let g:vim_textobj_elixir_mapping = 'E'
-
-let g:tern_show_signature_in_pum = 1
-let g:tern#filetypes = ['javascript', 'jsx', 'javascript.jsx']
-let g:tern#command = ['tern']
-let g:tern#arguments = ['--persistent']
-let g:deoplete#sources#ternjs#types = 1
-let g:deoplete#sources#ternjs#case_insensitive = 1
-let g:deoplete#sources#ternjs#include_keywords = 1
 
 let g:LanguageClient_serverCommands = {
 \ 'javascript': ['javascript-typescript-stdio'],
