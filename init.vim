@@ -82,10 +82,6 @@ Plug 'aoswalt/onedark.vim'
 Plug 'w0ng/vim-hybrid'
 
 Plug 'wannesm/wmgraphviz.vim'
-
-" ctags require https://github.com/universal-ctags/ctags
-Plug 'ludovicchabant/vim-gutentags', {'do': ':call plug#helptags()'}
-Plug 'majutsushi/tagbar'
 call plug#end()
 
 
@@ -201,8 +197,6 @@ let g:deoplete#min_pattern_length = 1
 
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
-
-let g:gutentags_cache_dir = '~/.tags_cache'
 
 let b:csv_arrange_use_all_rows = 1
 
@@ -433,7 +427,6 @@ nnoremap <F4> :ALEFix<CR>
 
 " pane toggles
 nnoremap <F5> :MundoToggle<CR>
-nnoremap <F8> :TagbarToggle<CR>
 
 " edit vimrc/zshrc and source vimrc
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
