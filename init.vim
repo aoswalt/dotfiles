@@ -450,13 +450,14 @@ nnoremap <leader>md :InstantMarkdownPreview<CR>
 fun! MapLCKeys()
   " Don't map for built-in ones
   if &ft =~ 'vim\|help\|shell'
-      return
+    return
   endif
 
-  nnoremap <F2> :call LanguageClient_contextMenu()<CR>
-  nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-  nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-  nnoremap <silent> <F3> :call LanguageClient#textDocument_rename()<CR>
+  nnoremap <buffer> <F2> :call LanguageClient_contextMenu()<CR>
+  nnoremap <buffer> <silent> <F3> :call LanguageClient#textDocument_rename()<CR>
+  nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
+  nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+  nnoremap <buffer> <silent> gD :vsp \| call LanguageClient#textDocument_definition()<CR>
 endfun
 
 autocmd FileType * call MapLCKeys()
