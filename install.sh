@@ -118,14 +118,14 @@ if [[ $setup_neovim || $all ]]; then
       [[ $verbose ]] && echo "Python neovim package already installed"
     else
       [[ $verbose ]] && echo "Installing neovim python3 package"
-      pip3 install neovim
+      pip3 install --user neovim
     fi
 
     if [[ $(pip3 list 2>/dev/null | grep 'neovim-remote') ]]; then
       [[ $verbose ]] && echo "Python neovim package already installed"
     else
       [[ $verbose ]] && echo "Installing neovim-remote python3 package"
-      pip3 install neovim-remote
+      pip3 install --user neovim-remote
     fi
 
     [[ $verbose ]] && echo "Clearing editor from git config to use env"
