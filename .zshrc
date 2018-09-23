@@ -173,5 +173,8 @@ fi
 [ $commands[setxkbmap] ] && setxkbmap -option caps:ctrl_modifier
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+[ -f ~/.asdf/asdf.sh ] && source ~/.asdf/asdf.sh
+[ -f ~/.asdf/completions/asdf.bash ] && source ~/.asdf/completions/asdf.bash
+
 ## load local zshrc
 [ -f $HOME/.zshrc.after ] && source $HOME/.zshrc.after
