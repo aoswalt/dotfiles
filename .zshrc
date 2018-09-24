@@ -50,6 +50,8 @@ alias gzb='gco $(gbL | fzf | cut -d " " -f 3)'
 alias gbdr='git push origin --delete'
 alias gfap='gfa --prune'
 
+alias shrug="echo '¯\_(ツ)_/¯'"
+
 neoterm() {
   nvim +"terminal $*"
 }
