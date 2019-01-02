@@ -16,20 +16,23 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'w0rp/ale'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'w0rp/ale'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'sheerun/vim-polyglot'
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'exu/pgsql.vim'
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-Plug 'Shougo/neco-syntax'
-Plug 'Shougo/neco-vim'
-Plug 'Shougo/deoplete-zsh'
-Plug 'tpope/vim-projectionist'
-Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
+" Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+" Plug 'Shougo/neco-syntax'
+" Plug 'Shougo/neco-vim'
+" Plug 'Shougo/deoplete-zsh'
+" Plug 'tpope/vim-projectionist'
+" Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'vim-scripts/ingo-library'
 Plug 'vim-scripts/SyntaxRange'
+
+Plug 'neoclide/jsonc.vim'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'      "ae/ie for entire file
@@ -45,7 +48,7 @@ Plug 'thinca/vim-quickrun'
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'vim-scripts/dbext.vim'
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+" Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'suan/vim-instant-markdown', { 'do': 'npm install -g instant-markdown-d' }
 Plug 'chrisbra/csv.vim'
 Plug 'junegunn/vim-peekaboo'
@@ -82,6 +85,27 @@ Plug 'w0ng/vim-hybrid'
 Plug 'wannesm/wmgraphviz.vim'
 call plug#end()
 
+let s:coc_extensions = [
+\   'coc-css',
+\   'coc-html',
+\   'coc-json',
+\   'coc-emmet',
+\   'coc-eslint',
+\   'coc-prettier',
+\   'coc-tsserver',
+\   'coc-ultisnips'
+\ ]
+
+function! AddCocExtensions()
+  call call('coc#add_extension', s:coc_extensions)
+endfunction
+
+function! PlugCoc(info) abort
+  if a:info.status ==? 'installed' || a:info.status ==? 'updated' || a:info.force
+    call AddCocExtensions()
+  endif
+  call PlugRemotePlugins(a:info)
+endfunction
 
 " vim settings {{{1
 set noswapfile
@@ -150,12 +174,12 @@ let g:netrw_altfile = 1   "allow <c-6> to go to the previously edited file
 let g:netrw_preview = 1   "open preview window in a vertical split
 let g:netrw_localrmdir='rm -r'  "allow deleting non-empty directories
 
-let g:ale_linters = {}
-let g:ale_linters.javascript = ['eslint']
+" let g:ale_linters = {}
+" let g:ale_linters.javascript = ['eslint']
 
-let g:ale_fixers = {}
-let g:ale_fixers.javascript = ['eslint']
-let g:ale_fixers.elixir = ['mix_format']
+" let g:ale_fixers = {}
+" let g:ale_fixers.javascript = ['prettier', 'eslint']
+" let g:ale_fixers.elixir = ['mix_format']
 
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
@@ -172,18 +196,18 @@ let g:surround_{char2nr('=')} = "<%= \r %>"
 
 let g:vim_textobj_elixir_mapping = 'E'
 
-let g:LanguageClient_serverCommands = {
-\ 'javascript': ['javascript-typescript-stdio'],
-\ 'jsx': ['javascript-typescript-stdio'],
-\ 'javascript.jsx': ['javascript-typescript-stdio'],
-\ 'elixir': ['elixir-ls'],
-\ }
-let g:LanguageClient_diagnosticsList = 'Location'
+" let g:LanguageClient_serverCommands = {
+" \ 'javascript': ['javascript-typescript-stdio'],
+" \ 'jsx': ['javascript-typescript-stdio'],
+" \ 'javascript.jsx': ['javascript-typescript-stdio'],
+" \ 'elixir': ['elixir-ls'],
+" \ }
+" let g:LanguageClient_diagnosticsList = 'Location'
 
 let g:tmux_navigator_no_mappings = 1
 
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#min_pattern_length = 1
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#min_pattern_length = 1
 
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
@@ -295,10 +319,10 @@ nnoremap <Up> gk
 nnoremap <Down> gj
 
 " warning mappings lke unimpaired
-nmap <silent> [W <Plug>(ale_first)
-nmap <silent> [w <Plug>(ale_previous)
-nmap <silent> ]w <Plug>(ale_next)
-nmap <silent> ]W <Plug>(ale_last)
+nmap <silent> [W <Plug>(coc-diagnostic-first)
+nmap <silent> [w <Plug>(coc-diagnostic-previous)
+nmap <silent> ]w <Plug>(coc-diagnostic-next)
+nmap <silent> ]W <Plug>(coc-diagnostic-last)
 
 " split navigation
 nnoremap <silent> <m-h> :TmuxNavigateLeft<cr>
@@ -412,8 +436,11 @@ vnoremap <leader>d :<c-u>execute ':Dispatch ' . substitute(b:dispatch, '%', shel
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>/<C-R>=@/<CR><CR>
 
+" format
+nmap <F4> <plug>(coc-format)
+
 " run fixer
-nnoremap <F4> :ALEFix<CR>
+nmap <F6> <plug>(coc-fix-current)
 
 " pane toggles
 nnoremap <F5> :MundoToggle<CR>
@@ -453,11 +480,12 @@ fun! MapLCKeys()
     return
   endif
 
-  nnoremap <buffer> <F2> :call LanguageClient_contextMenu()<CR>
-  nnoremap <buffer> <silent> <F3> :call LanguageClient#textDocument_rename()<CR>
-  nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
-  nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-  nnoremap <buffer> <silent> gD :vsp \| call LanguageClient#textDocument_definition()<CR>
+  " TODO: change
+  " nnoremap <buffer> <F2> :call LanguageClient_contextMenu()<CR>
+  nmap <buffer> <F3> <plug>(coc-rename)
+  nnoremap <buffer> <silent> K :call CocAction('doHover')<CR>
+  nmap <buffer> gd <plug>(coc-definition)
+  nnoremap <buffer> <silent> gD :vsp \| call <plug>(coc-definition)<CR>
 endfun
 
 autocmd FileType * call MapLCKeys()
@@ -606,8 +634,12 @@ let g:lightline = {
 \   'component_function': {
 \     'filename': 'FilenameWithIcon',
 \     'gitversion': 'GitVersion',
+\     'cocstatus': 'coc#status',
 \   },
 \   'active': {
+\     'middle': [
+\        [ 'cocstatus' ],
+\     ],
 \     'right': [
 \        [ 'lineinfo'],
 \        [ 'gitversion', 'percent' ],
