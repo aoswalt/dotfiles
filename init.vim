@@ -299,6 +299,9 @@ highlight PmenuSel ctermbg=25
 " lighten non-active windows
 highlight NormalNC ctermbg=234
 
+" highlight line 80 and 120+
+highlight ColorColumn ctermbg=232
+let &colorcolumn="80,".join(range(120,999),",")
 
 
 " keymappings {{{1
