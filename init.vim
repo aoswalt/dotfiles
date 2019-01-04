@@ -508,6 +508,15 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 " fuzzy command list
 nnoremap <leader><leader> :Commands<CR>
 
+" fugitive bindings
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>ga :Gwrite<cr>
+nnoremap <leader>gc :Gcommit -v<cr>
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gl :Git log<cr>
+nnoremap <leader>gL :Git log -p<cr>
+nnoremap <leader>gr :Grebase -i --autosquash
+
 
 " commands {{{1
 " close all other buffers
