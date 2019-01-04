@@ -24,7 +24,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'exu/pgsql.vim'
 " Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 " Plug 'Shougo/neco-syntax'
-" Plug 'Shougo/neco-vim'
+Plug 'Shougo/neco-vim'
 " Plug 'Shougo/deoplete-zsh'
 " Plug 'tpope/vim-projectionist'
 " Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
@@ -32,6 +32,7 @@ Plug 'vim-scripts/ingo-library'
 Plug 'vim-scripts/SyntaxRange'
 
 Plug 'neoclide/jsonc.vim'
+Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 Plug 'kana/vim-textobj-user'
