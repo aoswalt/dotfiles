@@ -86,27 +86,20 @@ Plug 'w0ng/vim-hybrid'
 Plug 'wannesm/wmgraphviz.vim'
 call plug#end()
 
+" \   'coc-emmet',
 let s:coc_extensions = [
 \   'coc-css',
 \   'coc-html',
 \   'coc-json',
-\   'coc-emmet',
 \   'coc-eslint',
 \   'coc-prettier',
 \   'coc-tsserver',
 \   'coc-ultisnips'
 \ ]
 
-function! AddCocExtensions()
+if exists('*coc#add_extension')
   call call('coc#add_extension', s:coc_extensions)
-endfunction
-
-function! PlugCoc(info) abort
-  if a:info.status ==? 'installed' || a:info.status ==? 'updated' || a:info.force
-    call AddCocExtensions()
-  endif
-  call PlugRemotePlugins(a:info)
-endfunction
+endif
 
 " vim settings {{{1
 set noswapfile
