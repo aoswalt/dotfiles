@@ -303,6 +303,9 @@ highlight NormalNC ctermbg=234
 highlight ColorColumn ctermbg=232
 let &colorcolumn="80,".join(range(120,999),",")
 
+"blacklist some files for line length markers
+autocmd FileType markdown let &colorcolumn=""
+
 
 " keymappings {{{1
 " swap ; and :
