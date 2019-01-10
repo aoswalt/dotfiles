@@ -49,7 +49,6 @@ Plug 'thinca/vim-quickrun'
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'vim-scripts/dbext.vim'
-" Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'suan/vim-instant-markdown', { 'do': 'npm install -g instant-markdown-d' }
 Plug 'chrisbra/csv.vim'
 Plug 'junegunn/vim-peekaboo'
@@ -213,8 +212,6 @@ let g:quickrun_config['javascript.jsx'] = { 'type': 'javascript' }
 let g:quickrun_config['sh'] = { 'type': 'bash' }
 
 let g:sql_type_default = 'pgsql'
-
-let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
 
 let g:UltiSnipsEditSplit = 'horizontal'
 
