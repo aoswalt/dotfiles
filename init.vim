@@ -392,7 +392,7 @@ nnoremap <leader>f :GFiles -co --exclude-per-directory=.gitignore<CR>
 nnoremap <leader>F :FZF<CR>
 
 " super search
-nnoremap <leader>/ :Ag<space>
+nnoremap <leader>/ :Rg<space>
 nnoremap <leader>? :BLines<space>
 
 " buffer management
