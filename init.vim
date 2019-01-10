@@ -206,6 +206,8 @@ let g:delimitMate_expand_space = 1
 
 let b:csv_arrange_use_all_rows = 1
 
+let g:instant_markdown_autostart = 0
+
 let g:quickrun_config = {}
 let g:quickrun_config['javascript.jsx'] = { 'type': 'javascript' }
 let g:quickrun_config['sh'] = { 'type': 'bash' }
