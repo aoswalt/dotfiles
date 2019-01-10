@@ -16,18 +16,10 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
-" Plug 'w0rp/ale'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'sheerun/vim-polyglot'
-" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'exu/pgsql.vim'
-" Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-" Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neco-vim'
-" Plug 'Shougo/deoplete-zsh'
-" Plug 'tpope/vim-projectionist'
-" Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'vim-scripts/ingo-library'
 Plug 'vim-scripts/SyntaxRange'
 
@@ -85,7 +77,6 @@ Plug 'w0ng/vim-hybrid'
 Plug 'wannesm/wmgraphviz.vim'
 call plug#end()
 
-" \   'coc-emmet',
 let s:coc_extensions = [
 \   'coc-css',
 \   'coc-html',
@@ -165,13 +156,6 @@ let g:netrw_altfile = 1   "allow <c-6> to go to the previously edited file
 let g:netrw_preview = 1   "open preview window in a vertical split
 let g:netrw_localrmdir='rm -r'  "allow deleting non-empty directories
 
-" let g:ale_linters = {}
-" let g:ale_linters.javascript = ['eslint']
-
-" let g:ale_fixers = {}
-" let g:ale_fixers.javascript = ['prettier', 'eslint']
-" let g:ale_fixers.elixir = ['mix_format']
-
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
 
@@ -187,18 +171,7 @@ let g:surround_{char2nr('=')} = "<%= \r %>"
 
 let g:vim_textobj_elixir_mapping = 'E'
 
-" let g:LanguageClient_serverCommands = {
-" \ 'javascript': ['javascript-typescript-stdio'],
-" \ 'jsx': ['javascript-typescript-stdio'],
-" \ 'javascript.jsx': ['javascript-typescript-stdio'],
-" \ 'elixir': ['elixir-ls'],
-" \ }
-" let g:LanguageClient_diagnosticsList = 'Location'
-
 let g:tmux_navigator_no_mappings = 1
-
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#min_pattern_length = 1
 
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
