@@ -271,6 +271,7 @@ augroup term_insert
   autocmd BufLeave term://* stopinsert
 augroup end
 
+autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
 
 
 " colors {{{1
