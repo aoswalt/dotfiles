@@ -216,6 +216,7 @@ let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
 
 let g:UltiSnipsEditSplit = 'horizontal'
 
+let g:fzf_commands_expect = 'enter,ctrl-x'
 
 
 " autocommands {{{1
