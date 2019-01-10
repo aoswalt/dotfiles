@@ -525,21 +525,21 @@ command! BufOnly :%bd|e#
 command! BufCleanup :call BufCleanup()
 command! SynStack :call SynStack()
 
-" open a terminal in a different view while setting bufhidden to hide to keep alive
+" open a terminal in a different view
 command! -nargs=* VTerm :vsp
   \ | execute 'terminal' <args>
 command! -nargs=* VTermRepo :vsp
-  \ | execute 'lcd' fnameescape(s:get_git_root())
+  \ | execute 'lcd' fnameescape(FugitiveWorkTree())
   \ | execute 'terminal' <args>
 command! -nargs=* STerm :sp
   \ | execute 'terminal' <args>
 command! -nargs=* STermRepo :sp
-  \ | execute 'lcd' fnameescape(s:get_git_root())
+  \ | execute 'lcd' fnameescape(FugitiveWorkTree())
   \ | execute 'terminal' <args>
 command! -nargs=* TTerm :tabnew
   \ | execute 'terminal' <args>
 command! -nargs=* TTermRepo :tabnew
-  \ | execute 'lcd' fnameescape(s:get_git_root())
+  \ | execute 'lcd' fnameescape(FugitiveWorkTree())
   \ | execute 'terminal' <args>
 
 " amend without editing commit message
