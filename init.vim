@@ -547,6 +547,7 @@ command! Gamend Gcommit --amend --no-edit
 
 command! -range FormatJSON :<line1>,<line2>call FormatJSON()
 
+command! Gpc execute('Gpush --set-upstream origin '.FugitiveHead())
 
 
 " functions {{{1
