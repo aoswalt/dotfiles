@@ -442,6 +442,9 @@ nmap <F4> <plug>(coc-format)
 " run fixer
 nmap <F6> <plug>(coc-fix-current)
 
+" full info
+nmap <F10> <plug>(coc-diagnostic-info)
+
 " pane toggles
 nnoremap <F5> :MundoToggle<CR>
 
