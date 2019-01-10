@@ -140,8 +140,6 @@ set noshowmode      "do not show mode since using lightline
 set listchars+=extends:»
 set listchars+=precedes:«
 set listchars+=nbsp:⣿
-" more solid vertical bar
-set fillchars=vert:\│
 
 set completeopt=longest,menuone
 
