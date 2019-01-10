@@ -1,0 +1,41 @@
+snippet im "import module from 'module'"
+import ${1} from '${2:$1}'
+endsnippet
+
+snippet imm "import { member } from 'module'"
+import { $1 } from '$2'
+endsnippet
+
+snippet c=> "const fun = () => {}"
+const ${1:fun} = ${2:()} => ${3:\{\}}
+endsnippet
+
+snippet todo "// TODO(name): "
+// TODO(adam): $0
+endsnippet
+
+snippet note "// NOTE(name): "
+// NOTE(adam): $0
+endsnippet
+
+snippet cl "console.log"
+console.log('$1', ${2:$1})
+endsnippet
+
+snippet cl| "console.log ||"
+console.log('$1', ${2:$1}) || $0
+endsnippet
+
+snippet	peek ".then(d => console.log(d) || d)"
+.then(d => console.log(d) || d)
+endsnippet
+
+snippet	peekm ".map(d => console.log(d) || d)"
+.map(d => console.log(d) || d)
+endsnippet
+
+snippet exd "export default" b
+export default $0
+endsnippet
+
+# vim:ft=snippets:

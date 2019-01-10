@@ -1,0 +1,51 @@
+snippet defmo "defmodule" b
+defmodule ${1:Module} do
+	$0
+end
+endsnippet
+
+snippet defmop "defmodulep" b
+defmodulep ${1:Module} do
+	$0
+end
+endsnippet
+
+snippet def "def functions" b
+def ${1:fun}($2) do
+	$0
+end
+endsnippet
+
+snippet defi "defimpl" b
+defimpl ${1:Protocol}, for: ${2:Any} do
+	$3
+end $0
+endsnippet
+
+snippet doc "@doc" b
+@doc """
+$1
+"""$0
+endsnippet
+
+snippet docf "@doc false" b
+@doc false
+endsnippet
+
+snippet mdoc "@moduledoc" b
+@moduledoc """
+$1
+"""$0
+endsnippet
+
+snippet mdocf "@moduledoc false" b
+@moduledoc false
+endsnippet
+
+snippet todo "# TODO(user):"
+# TODO(`whoami`): $0
+endsnippet
+
+snippet note "# NOTE(user):"
+# NOTE(`whoami`): $0
+endsnippet

@@ -1,0 +1,18 @@
+{
+  "languageserver": {
+    "dockerfile": {
+      "command": "docker-langserver",
+      "filetypes": ["dockerfile", "Dockerfile"],
+      "args": ["--stdio"]
+    },
+    "elixir": {
+      "command": "elixir-ls",
+      "filetypes": ["elixir", "eelixir"]
+    },
+    "sh": {
+      "command": "bash-language-server",
+      "filetypes": ["sh"],
+      "args": ["start"]
+    }
+  }
+}
