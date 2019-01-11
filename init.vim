@@ -504,16 +504,19 @@ command! SynStack :call SynStack()
 command! -nargs=* VTerm :vsp
   \ | execute 'terminal' <args>
 command! -nargs=* VTermRepo :vsp
+  \ fnameescape(FugitiveWorkTree())
   \ | execute 'lcd' fnameescape(FugitiveWorkTree())
   \ | execute 'terminal' <args>
 command! -nargs=* STerm :sp
   \ | execute 'terminal' <args>
 command! -nargs=* STermRepo :sp
+  \ fnameescape(FugitiveWorkTree())
   \ | execute 'lcd' fnameescape(FugitiveWorkTree())
   \ | execute 'terminal' <args>
 command! -nargs=* TTerm :tabnew
   \ | execute 'terminal' <args>
-command! -nargs=* TTermRepo :tabnew
+command! -nargs=* TTermRepo :tabedit
+  \ fnameescape(FugitiveWorkTree())
   \ | execute 'lcd' fnameescape(FugitiveWorkTree())
   \ | execute 'terminal' <args>
 
