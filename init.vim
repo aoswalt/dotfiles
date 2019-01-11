@@ -459,6 +459,7 @@ fun! MapLCKeys()
   nmap <buffer> <F3> <plug>(coc-rename)
   nnoremap <buffer> <silent> K :call CocAction('doHover')<CR>
   nmap <buffer> gd <plug>(coc-definition)
+  nmap <buffer> gy <plug>(coc-type-definition)
   nnoremap <buffer> <silent> gD :vsp \| call <plug>(coc-definition)<CR>
 endfun
 
