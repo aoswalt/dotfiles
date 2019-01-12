@@ -114,7 +114,7 @@ if [[ $setup_neovim || $all ]]; then
   mkdir -p ${nvim_dir}
   try_link $this_dir/init.vim $nvim_dir/init.vim
   try_link $this_dir/coc-settings.json $nvim_dir/coc-settings.json
-  try_link $this_dir/UltiSnips $nvim_dir/Ultisnips
+  try_link $this_dir/UltiSnips $nvim_dir/UltiSnips
   if $(type pip3 >/dev/null 2>&1); then
     if [[ $(pip3 list 2>/dev/null | grep 'neovim ') ]]; then
       [[ $verbose ]] && echo "Python neovim package already installed"
