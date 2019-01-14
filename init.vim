@@ -378,7 +378,7 @@ nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :bd<cr>
 
 " search for word under cursor with <leader>*
-nnoremap <leader>* :Ag <c-r><c-w><CR>
+nnoremap <leader>* :Rg <c-r><c-w><CR>
 
 " system clipboard yank
 nnoremap <leader>y "+y
