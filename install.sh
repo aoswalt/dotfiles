@@ -3,6 +3,11 @@
 # get script's directory
 this_dir=$(cd $(dirname $0); pwd -P)
 
+# echo if verbose
+function info() {
+  [[ $verbose ]] && echo -e $1
+}
+
 # try to create a symlink to $1 at $2
 function try_link() {
   src_path=$1
@@ -18,17 +23,17 @@ function try_link() {
     fi
 
     if [[ $choice =~ ^[Yy] ]]; then
-      [[ $verbose ]] && echo -e "Removing \033[36m$dst_path\033[0m"
+      info "Removing \033[36m$dst_path\033[0m"
       rm $dst_path
     else
-      [[ $verbose ]] && echo -e "Not removing \033[36m$dst_path\033[0m"
+      info "Not removing \033[36m$dst_path\033[0m"
     fi
   fi
 
   if [[ ! -e $dst_path ]] && ln -s $src_path $dst_path; then
-    [[ $verbose ]] && echo -e "Link created for \033[36m$dst_path\033[0m"
+    info "Link created for \033[36m$dst_path\033[0m"
   else
-    [[ $verbose ]] && echo -e "Could not create link for \033[36m$dst_path\033[0m"
+    info "Could not create link for \033[36m$dst_path\033[0m"
   fi
 }
 
@@ -119,20 +124,20 @@ if [[ $setup_neovim || $all ]]; then
 
   if $(type pip3 >/dev/null 2>&1); then
     if [[ $(pip3 list 2>/dev/null | grep 'neovim ') ]]; then
-      [[ $verbose ]] && echo "Python neovim package already installed"
+      info "Python neovim package already installed"
     else
-      [[ $verbose ]] && echo "Installing neovim python3 package"
+      info "Installing neovim python3 package"
       pip3 install --user pynvim
     fi
 
     if [[ $(pip3 list 2>/dev/null | grep 'neovim-remote') ]]; then
-      [[ $verbose ]] && echo "Python neovim package already installed"
+      info "Python neovim package already installed"
     else
-      [[ $verbose ]] && echo "Installing neovim-remote python3 package"
+      info "Installing neovim-remote python3 package"
       pip3 install --user neovim-remote
     fi
 
-    [[ $verbose ]] && echo "Clearing editor from git config to use env"
+    info "Clearing editor from git config to use env"
     git config --global --unset core.editor
     # git config --local --unset core.editor
 
@@ -142,11 +147,11 @@ if [[ $setup_neovim || $all ]]; then
 
 
     if [[ ! -e ~/init.after.vim && ! -L ~/int.after.vim ]]; then
-      [[ $verbose ]] && echo "Adding init.after.vim for direct 'edit vim' mapping."
+      info "Adding init.after.vim for direct 'edit vim' mapping."
       echo "nnoremap <leader>ev :vsp $this_dir/init.vim<CR>" > ~/init.after.vim
       echo "nnoremap <leader>ez :vsp $this_dir/.zshrc<CR>" >> ~/init.after.vim
     else
-      [[ $verbose ]] && echo "init.after.vim already exists, not adding direct edit overrides."
+      info "init.after.vim already exists, not adding direct edit overrides."
     fi
 
   else
@@ -156,11 +161,11 @@ fi
 
 if [[ $setup_fzf || $all ]]; then
   if $(type fzf >/dev/null 2>&1); then
-    [[ $verbose ]] && echo "fzf found - not cloning"
+    info "fzf found - not cloning"
   else
-    [[ $verbose ]] && echo "Cloning fzf"
+    info "Cloning fzf"
     git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
-    [[ $verbose ]] && echo "Running fzf install"
+    info "Running fzf install"
     $HOME/.fzf/install
   fi
 fi
@@ -175,16 +180,16 @@ fi
 # prezto setup
 if [[ $setup_prezto || $all ]]; then
   if [[ ! -e "${ZDOTDIR:-$HOME}/.zprezto"  ]]; then
-    [[ $verbose ]] && echo "Cloning Prezto"
+    info "Cloning Prezto"
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
   else
-    [[ $verbose ]] && echo "Prezto already exists - not cloning"
+    info "Prezto already exists - not cloning"
   fi
 fi
 
 if [[ $set_zsh || $all ]]; then
   if [[ $(echo $SHELL | grep 'zsh') ]]; then
-    [[ $verbose ]] && echo "Zsh already default shell"
+    info "Zsh already default shell"
   else
     # TODO(adam): grep in /etc/shells for zsh
     chsh -s $(which zsh)
