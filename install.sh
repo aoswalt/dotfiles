@@ -1,5 +1,16 @@
 #! /bin/bash
 
+normal=$'\033[0m'
+bold=$'\033[1m'
+black=$'\033[30m'
+red=$'\033[31m'
+green=$'\033[32m'
+yellow=$'\033[33m'
+blue=$'\033[34m'
+purple=$'\033[35m'
+cyan=$'\033[36m'
+white=$'\033[37m'
+
 # get script's directory
 this_dir=$(cd $(dirname $0); pwd -P)
 
@@ -19,21 +30,21 @@ function try_link() {
     elif [[ ! -z $all_no ]]; then
       choice='n'
     else
-      read -p $'\033[36m'"$dst_path"$'\033[0m already exists. \033[31;1mRemove?\033[0m [y/\033[31;1mN\033[0m]:  ' choice
+      read -p "${cyan}$dst_path${normal} already exists. ${red}${bold}Remove?${normal} [y/${red}${bold}N${normal}]:  " choice
     fi
 
     if [[ $choice =~ ^[Yy] ]]; then
-      info "Removing \033[36m$dst_path\033[0m"
+      info "Removing ${cyan}$dst_path${normal}"
       rm $dst_path
     else
-      info "Not removing \033[36m$dst_path\033[0m"
+      info "Not removing ${cyan}$dst_path${normal}"
     fi
   fi
 
   if [[ ! -e $dst_path ]] && ln -s $src_path $dst_path; then
-    info "Link created for \033[36m$dst_path\033[0m"
+    info "Link created for ${cyan}$dst_path${normal}"
   else
-    info "Could not create link for \033[36m$dst_path\033[0m"
+    info "Could not create link for ${cyan}$dst_path${normal}"
   fi
 }
 
