@@ -134,10 +134,10 @@ if [[ $setup_neovim || $all ]]; then
   try_link $this_dir/UltiSnips $nvim_dir/UltiSnips
 
   if $(type pip3 >/dev/null 2>&1); then
-    if [[ $(pip3 list 2>/dev/null | grep 'neovim ') ]]; then
+    if [[ $(pip3 list 2>/dev/null | grep 'pynvim') ]]; then
       info "Python neovim package already installed"
     else
-      info "Installing neovim python3 package"
+      info "Installing neovim python3 package - pynvim"
       pip3 install --user pynvim
     fi
 
