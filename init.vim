@@ -457,12 +457,13 @@ fun! MapLCKeys()
   endif
 
   " TODO: change
-  " nnoremap <buffer> <F2> :call LanguageClient_contextMenu()<CR>
+  nnoremap <buffer> <F2> :CocList<CR>
   nmap <buffer> <F3> <plug>(coc-rename)
   nnoremap <buffer> <silent> K :call CocAction('doHover')<CR>
   nmap <buffer> gd <plug>(coc-definition)
-  nmap <buffer> gy <plug>(coc-type-definition)
   nnoremap <buffer> <silent> gD :vsp \| call <plug>(coc-definition)<CR>
+  nmap <buffer> gy <plug>(coc-references)
+  nmap <buffer> gY <plug>(coc-type-definition)
 endfun
 
 autocmd FileType * call MapLCKeys()
