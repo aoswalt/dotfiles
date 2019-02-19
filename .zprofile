@@ -22,6 +22,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # enable iex history in otp 20
 export ERL_AFLAGS="-kernel shell_history enabled"
 
+# darken lock files
+export EXA_COLORS="*.lock=1;30"
+
 ## Paths
 
 # Ensure path arrays do not contain duplicates.
