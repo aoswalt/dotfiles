@@ -22,6 +22,7 @@ Plug 'exu/pgsql.vim'
 Plug 'Shougo/neco-vim'
 Plug 'vim-scripts/ingo-library'
 Plug 'vim-scripts/SyntaxRange'
+Plug 'junegunn/limelight.vim'
 
 Plug 'neoclide/jsonc.vim'
 Plug 'neoclide/coc-neco'
@@ -189,6 +190,7 @@ let g:UltiSnipsEditSplit = 'horizontal'
 
 let g:fzf_commands_expect = 'enter,ctrl-x'
 
+let g:limelight_conceal_ctermfg = 236
 
 " autocommands {{{1
 augroup whitespace
@@ -491,6 +493,10 @@ nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gl :Git log<cr>
 nnoremap <leader>gL :Git log -p<cr>
 nnoremap <leader>gr :Grebase -i --autosquash
+
+nnoremap <leader>l :Limelight<cr>
+nnoremap <leader>L :Limelight!<cr>
+xmap <leader>l <Plug>(Limelight)
 
 
 " commands {{{1
