@@ -198,6 +198,7 @@ for filename in ${files[*]}; do
   try_link $this_dir/$filename $HOME/$filename
 done
 
+# link neovim files, add neovim python packages, and add edit overrides
 function setup_neovim() {
   nvim_dir=$HOME/.config/nvim
   mkdir -p ${nvim_dir}
@@ -206,41 +207,39 @@ function setup_neovim() {
   try_link $this_dir/coc-settings.json $nvim_dir/coc-settings.json
   try_link $this_dir/UltiSnips $nvim_dir/UltiSnips
 
-  if $(type pip3 >/dev/null 2>&1); then
-    if [[ $(pip3 list 2>/dev/null | grep 'pynvim') ]]; then
-      info "Python neovim package already installed"
-    else
-      info "Installing neovim python3 package - pynvim"
-      pip3 install --user pynvim
-    fi
-
-    if [[ $(pip3 list 2>/dev/null | grep 'neovim-remote') ]]; then
-      info "Python neovim package already installed"
-    else
-      info "Installing neovim-remote python3 package"
-      pip3 install --user neovim-remote
-    fi
-
-    info "Clearing editor from git config to use env"
-    git config --global --unset core.editor
-    # git config --local --unset core.editor
-
-    if [ -n "$(git config --system core.editor)" ]; then
-      echo 'WARNING: git system editor set'
-    fi
-
-
-    if [[ ! -e ~/init.after.vim && ! -L ~/int.after.vim ]]; then
-      info "Adding init.after.vim for direct 'edit vim' mapping."
-      echo "nnoremap <leader>ev :vsp $this_dir/init.vim<CR>" > ~/init.after.vim
-      echo "nnoremap <leader>ez :vsp $this_dir/.zshrc<CR>" >> ~/init.after.vim
-    else
-      info "${yellow}init.after.vim already exists, not adding direct edit overrides.${normal}"
-    fi
-
-  else
-    echo -e "${yellow}pip3 not found - python neovim package needed for proper usage${normal}"
+  if [[ ! $(type pip3 >/dev/null 2>&1) ]]; then
+    echo -e "${error}pip3 not found - python neovim package needed for proper usage${normal}"
     return 1
+  fi
+
+  if [[ $(pip3 list 2>/dev/null | grep 'pynvim') ]]; then
+    info "Python neovim package already installed"
+  else
+    info "Installing neovim python3 package - pynvim"
+    pip3 install --user pynvim
+  fi
+
+  if [[ $(pip3 list 2>/dev/null | grep 'neovim-remote') ]]; then
+    info "Python neovim package already installed"
+  else
+    info "Installing neovim-remote python3 package"
+    pip3 install --user neovim-remote
+  fi
+
+  info "Clearing editor from git config to use env"
+  git config --global --unset core.editor
+  # git config --local --unset core.editor
+
+  if [ -n "$(git config --system core.editor)" ]; then
+    echo -e "${yellow}WARNING: git system editor set${normal}"
+  fi
+
+  if [[ ! -e ~/init.after.vim && ! -L ~/int.after.vim ]]; then
+    info "Adding init.after.vim for direct 'edit vim' mapping."
+    echo "nnoremap <leader>ev :vsp $this_dir/init.vim<CR>" > ~/init.after.vim
+    echo "nnoremap <leader>ez :vsp $this_dir/.zshrc<CR>" >> ~/init.after.vim
+  else
+    info "${yellow}init.after.vim already exists, not adding direct edit overrides.${normal}"
   fi
 }
 
