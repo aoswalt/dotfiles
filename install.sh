@@ -198,7 +198,7 @@ for filename in ${files[*]}; do
   try_link $this_dir/$filename $HOME/$filename
 done
 
-if [[ $setup_neovim || $all ]]; then
+function setup_neovim() {
   nvim_dir=$HOME/.config/nvim
   mkdir -p ${nvim_dir}
 
@@ -235,13 +235,16 @@ if [[ $setup_neovim || $all ]]; then
       echo "nnoremap <leader>ev :vsp $this_dir/init.vim<CR>" > ~/init.after.vim
       echo "nnoremap <leader>ez :vsp $this_dir/.zshrc<CR>" >> ~/init.after.vim
     else
-      info "init.after.vim already exists, not adding direct edit overrides."
+      info "${yellow}init.after.vim already exists, not adding direct edit overrides.${normal}"
     fi
 
   else
-    "pip3 not found - python neovim package needed for proper usage"
+    echo -e "${yellow}pip3 not found - python neovim package needed for proper usage${normal}"
+    return 1
   fi
-fi
+}
+
+[[ $setup_neovim || $all ]] && setup_neovim
 
 if [[ $setup_fzf || $all ]]; then
   if $(type fzf >/dev/null 2>&1); then
