@@ -52,6 +52,7 @@ function try_link() {
     info "Link created for ${cyan}$dst_path${normal}"
   else
     info "Could not create link for ${cyan}$dst_path${normal}"
+    return 1
   fi
 }
 
