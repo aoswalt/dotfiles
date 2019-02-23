@@ -114,7 +114,7 @@ function install_language() {
 
   info "Setting up asdf ${cyan}$lang${normal} for version ${cyan}$version${normal}"
 
-  if ! $(asdf plugin-list | grep "$lang" >/dev/null); then
+  if [[ ! $(asdf plugin-list | grep "$lang" >/dev/null) ]]; then
     info "Adding asdf plugin: ${cyan}$lang${normal}"
     asdf plugin-add $lang
 
