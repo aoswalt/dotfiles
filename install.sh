@@ -81,6 +81,71 @@ Installable options:
   exit 1
 }
 
+# clone and install asdf
+function install_asdf() {
+  if $(type asdf >/dev/null); then
+    info "asdf already installed"
+    return
+  fi
+
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.6.3
+
+  [[ ! -z $? ]] && return 1
+
+  source ~/.asdf/asdf.sh
+  source ~/.asdf/completions/asdf.bash
+  info "asdf installed"
+}
+
+# install the specified language and version with asdf
+function install_language() {
+  lang=$1
+  version=$2
+
+  if [[ -z $lang || -z $version ]]; then
+    echo -e "${red}install_language() requires 2 arguments: language and version${normal}"
+    return 1
+  fi
+
+  if ! $(type asdf >/dev/null); then
+    echo -e "${red}asdf not found${normal}"
+    return 1
+  fi
+
+  info "Setting up asdf ${cyan}$lang${normal} for version ${cyan}$version${normal}"
+
+  if ! $(asdf plugin-list | grep "$lang" >/dev/null); then
+    info "Adding asdf plugin: ${cyan}$lang${normal}"
+    asdf plugin-add $lang
+
+    [[ ! -z $? ]] && return 1
+  else
+    info "asdf plugin already exists: ${cyan}$lang${normal}"
+  fi
+
+  if ! $(asdf list $lang | grep "$version" >/dev/null); then
+    info "Installing asdf language: ${cyan}$lang${normal} - ${cyan}$version${normal}"
+    asdf install $lang $version
+
+    [[ ! -z $? ]] && return 1
+  else
+    info "asdf language version already exists: ${cyan}$lang${normal} - ${cyan}$version${normal}"
+  fi
+
+  if ! $(asdf current $lang | grep "$version" >/dev/null); then
+    info "Setting asdf global: ${cyan}$lang${normal} - ${cyan}$version${normal}"
+    asdf global $lang $version
+
+    [[ ! -z $? ]] && return 1
+  else
+    info "asdf gloabl version already set: ${cyan}$lang${normal} - ${cyan}$version${normal}"
+  fi
+
+  asdf reshim $lang $version
+
+  [[ ! -z $? ]] && return 1
+}
+
 
 # display help if no arguments
 if (($# == 0)); then
