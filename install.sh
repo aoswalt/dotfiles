@@ -83,19 +83,19 @@ while getopts 'hAYNVbefknptz' flag; do
   case "${flag}" in
     h) print_help_abort ;;
 
-    A) all='true' ;;
-    Y) all_yes='true' ;;
-    N) all_no='true' ;;
-    V) verbose='true' ;;
+    A) all=1 ;;
+    Y) all_yes=1 ;;
+    N) all_no=1 ;;
+    V) verbose=1 ;;
 
-    b) setup_bash='true' ;;
-    e) setup_eslint='true' ;;
-    f) setup_fzf='true' ;;
-    k) konsole_files='true' ;;
-    n) setup_neovim='true' ;;
-    p) setup_prezto='true' ;;
-    t) setup_tmux='true' ;;
-    z) set_zsh='true' ;;
+    b) setup_bash=1 ;;
+    e) setup_eslint=1 ;;
+    f) setup_fzf=1 ;;
+    k) konsole_files=1 ;;
+    n) setup_neovim=1 ;;
+    p) setup_prezto=1 ;;
+    t) setup_tmux=1 ;;
+    z) set_zsh=1 ;;
 
     \?) print_help_abort ;;
   esac
