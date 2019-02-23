@@ -41,7 +41,14 @@ function try_link() {
     fi
   fi
 
-  if [[ ! -e $dst_path ]] && ln -s $src_path $dst_path; then
+  if [[ ! -e $dst_path ]]; then
+    echo -e "${red}$dst_path already exists. Cannot create link.${normal}"
+    return 1
+  fi
+
+  ln -s $src_path $dst_path
+
+  if [[ -z $? ]]; then
     info "Link created for ${cyan}$dst_path${normal}"
   else
     info "Could not create link for ${cyan}$dst_path${normal}"
