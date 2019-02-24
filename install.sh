@@ -84,7 +84,7 @@ Installable options:
 function install_asdf() {
   if $(type asdf >/dev/null); then
     info "asdf already installed"
-    return
+    return 0
   fi
 
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.6.3
