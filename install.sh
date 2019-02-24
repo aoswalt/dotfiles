@@ -56,7 +56,7 @@ function try_link() {
     fi
   fi
 
-  if [[ ! -e $dst_path ]]; then
+  if [[ -e $dst_path || -L $dst_path ]]; then
     log_error "$dst_path already exists. Cannot create link."
     return 1
   fi
