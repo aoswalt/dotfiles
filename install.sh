@@ -63,7 +63,7 @@ function try_link() {
 
   ln -s $src_path $dst_path
 
-  if [[ -z $? ]]; then
+  if [ $? -eq 0 ]; then
     log_info "Link created for ${cyan}$dst_path${normal}"
   else
     log_info "Could not create link for ${cyan}$dst_path${normal}"
@@ -82,14 +82,14 @@ function try_link_each() {
 
 # clone and install asdf
 function install_asdf() {
-  if $(type asdf >/dev/null); then
+  if $(type asdf >/dev/null 2>&1); then
     log_info "asdf already installed"
     return 0
   fi
 
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.6.3
 
-  [[ ! -z $? ]] && return 1
+  [ $? -ne 0 ] && return 1
 
   source ~/.asdf/asdf.sh
   source ~/.asdf/completions/asdf.bash
@@ -106,18 +106,18 @@ function install_language() {
     return 1
   fi
 
-  if ! $(type asdf >/dev/null); then
+  if ! $(type asdf >/dev/null 2>&1); then
     log_error "asdf not found"
     return 1
   fi
 
   log_info "Setting up asdf ${cyan}$lang${normal} for version ${cyan}$version${normal}"
 
-  if [[ ! $(asdf plugin-list | grep "$lang" >/dev/null) ]]; then
+  if [[ ! $(asdf plugin-list | grep "$lang" >/dev/null 2>&1) ]]; then
     log_info "Adding asdf plugin: ${cyan}$lang${normal}"
     asdf plugin-add $lang
 
-    [[ ! -z $? ]] && return 1
+    [ $? -ne 0 ] && return 1
   else
     log_info "asdf plugin already exists: ${cyan}$lang${normal}"
   fi
@@ -127,33 +127,33 @@ function install_language() {
     bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
   fi
 
-  if ! $(asdf list $lang | grep "$version" >/dev/null); then
+  if ! $(asdf list $lang | grep "$version" >/dev/null 2>&1); then
     log_info "Installing asdf language: ${cyan}$lang${normal} - ${cyan}$version${normal}"
     asdf install $lang $version
 
-    [[ ! -z $? ]] && return 1
+    [ $? -ne 0 ] && return 1
   else
     log_info "asdf language version already exists: ${cyan}$lang${normal} - ${cyan}$version${normal}"
   fi
 
-  if ! $(asdf current $lang | grep "$version" >/dev/null); then
+  if ! $(asdf current $lang | grep "$version" >/dev/null 2>&1); then
     log_info "Setting asdf global: ${cyan}$lang${normal} - ${cyan}$version${normal}"
     asdf global $lang $version
 
-    [[ ! -z $? ]] && return 1
+    [ $? -ne 0 ] && return 1
   else
     log_info "asdf gloabl version already set: ${cyan}$lang${normal} - ${cyan}$version${normal}"
   fi
 
   asdf reshim $lang $version
 
-  [[ ! -z $? ]] && return 1
+  [ $? -ne 0 ] && return 1
 }
 
 # link neovim files, add neovim python packages, and add edit overrides
 function setup_neovim() {
-  nvim_dir=$HOME/.config/nvim
-  mkdir -p ${nvim_dir}
+  nvim_dir="$HOME/.config/nvim"
+  mkdir -p $nvim_dir
 
   config_files=(
     init.vim
@@ -211,7 +211,7 @@ function setup_fzf() {
   log_info "Running fzf install"
   $HOME/.fzf/install --all
 
-  [[ ! -z $? ]] && return 1
+  [ $? -ne 0 ] && return 1
 }
 
 function clone_prezto() {
@@ -251,7 +251,7 @@ function set_zsh() {
 
   chsh -s $(which zsh)
 
-  [[ ! -z $? ]] && return 1
+  [ $? -ne 0 ] && return 1
 
   # run zsh in current shell
   [[ ! -z $ZSH_NAME ]] && exec zsh
