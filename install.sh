@@ -194,23 +194,22 @@ while getopts 'hAYNVbefknptz' flag; do
 done
 
 
-# array of simple files in home folder
-files=()
-
-[[ $setup_bash || $all ]] && files+=(.bashrc)
-[[ $setup_eslint || $all ]] && files+=(.eslintrc.json)
-[[ $setup_tmux || $all ]] && files+=(.tmux.conf)
-
-try_link_each $files
+[[ $setup_bash || $all ]] && try_link .bashrc
+[[ $setup_eslint || $all ]] && try_link .eslintrc.json
+[[ $setup_tmux || $all ]] && try_link .tmux.conf
 
 # link neovim files, add neovim python packages, and add edit overrides
 function setup_neovim() {
   nvim_dir=$HOME/.config/nvim
   mkdir -p ${nvim_dir}
 
-  try_link init.vim $nvim_dir
-  try_link coc-settings.json $nvim_dir
-  try_link UltiSnips $nvim_dir
+  config_files=(
+    init.vim
+    coc-settings.json
+    UltiSnips
+  )
+
+  try_link_each config_files $nvim_dir
 
   if [[ ! $(type pip3 >/dev/null 2>&1) ]]; then
     log_error "pip3 not found - python neovim package needed for proper usage"
