@@ -270,14 +270,24 @@ function clone_prezto() {
 
 [[ $clone_prezto || $all ]] && clone_prezto
 
-if [[ $set_zsh || $all ]]; then
+# set zsh as default shell
+function set_zsh() {
   if [[ $(echo $SHELL | grep 'zsh') ]]; then
     info "Zsh already default shell"
-  else
-    # TODO(adam): grep in /etc/shells for zsh
-    chsh -s $(which zsh)
-
-    # run zsh in current shell
-    [[ ! -z $ZSH_NAME ]] && exec zsh
+    return 0
   fi
-fi
+
+  if [[ ! $(grep zsh /etc/shells) ]]; then
+    echo -e "${red}Zsh not found in /etc/shells${normal}"
+    return 1
+  fi
+
+  chsh -s $(which zsh)
+
+  [[ ! -z $? ]] && return 1
+
+  # run zsh in current shell
+  [[ ! -z $ZSH_NAME ]] && exec zsh
+}
+
+[[ $set_zsh || $all ]] && set_zsh
