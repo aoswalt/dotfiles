@@ -164,7 +164,7 @@ while getopts 'hAYNVbefknptz' flag; do
     e) setup_eslint=1 ;;
     f) setup_fzf=1 ;;
     n) setup_neovim=1 ;;
-    p) clone_prezto=1 ;;
+    p) setup_prezto=1 ;;
     t) setup_tmux=1 ;;
     z) set_zsh=1 ;;
 
@@ -179,15 +179,6 @@ files=()
 [[ $setup_bash || $all ]] && files+=(.bashrc)
 [[ $setup_eslint || $all ]] && files+=(.eslintrc.json)
 [[ $setup_tmux || $all ]] && files+=(.tmux.conf)
-
-[[ $clone_prezto || $all ]] && files+=(
-  .zlogin
-  .zlogout
-  .zpreztorc
-  .zprofile
-  .zshenv
-  .zshrc
-)
 
 for filename in ${files[*]}; do
   try_link $this_dir/$filename $HOME/$filename
@@ -257,7 +248,6 @@ function setup_fzf() {
 
 [[ $setup_fzf || $all ]] && setup_fzf
 
-# clone prezto
 function clone_prezto() {
   if [[ -e "${ZDOTDIR:-$HOME}/.zprezto"  ]]; then
     info "Prezto already exists - not cloning"
@@ -268,7 +258,22 @@ function clone_prezto() {
   git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 }
 
-[[ $clone_prezto || $all ]] && clone_prezto
+function link_prezto_files() {
+  prezto_files=(
+    .zlogin
+    .zlogout
+    .zpreztorc
+    .zprofile
+    .zshenv
+    .zshrc
+  )
+
+  for filename in ${prezto_files[*]}; do
+    try_link $this_dir/$filename $HOME/$filename
+  done
+}
+
+[[ $setup_prezto || $all ]] && clone_prezto && link_prezto_files
 
 # set zsh as default shell
 function set_zsh() {
