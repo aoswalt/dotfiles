@@ -164,7 +164,7 @@ while getopts 'hAYNVbefknptz' flag; do
     e) setup_eslint=1 ;;
     f) setup_fzf=1 ;;
     n) setup_neovim=1 ;;
-    p) setup_prezto=1 ;;
+    p) clone_prezto=1 ;;
     t) setup_tmux=1 ;;
     z) set_zsh=1 ;;
 
@@ -180,7 +180,7 @@ files=()
 [[ $setup_eslint || $all ]] && files+=(.eslintrc.json)
 [[ $setup_tmux || $all ]] && files+=(.tmux.conf)
 
-[[ $setup_prezto || $all ]] && files+=(
+[[ $clone_prezto || $all ]] && files+=(
   .zlogin
   .zlogout
   .zpreztorc
@@ -257,15 +257,18 @@ function setup_fzf() {
 
 [[ $setup_fzf || $all ]] && setup_fzf
 
-# prezto setup
-if [[ $setup_prezto || $all ]]; then
-  if [[ ! -e "${ZDOTDIR:-$HOME}/.zprezto"  ]]; then
-    info "Cloning Prezto"
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-  else
+# clone prezto
+function clone_prezto() {
+  if [[ -e "${ZDOTDIR:-$HOME}/.zprezto"  ]]; then
     info "Prezto already exists - not cloning"
+    return 0
   fi
-fi
+
+  info "Cloning Prezto"
+  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+}
+
+[[ $clone_prezto || $all ]] && clone_prezto
 
 if [[ $set_zsh || $all ]]; then
   if [[ $(echo $SHELL | grep 'zsh') ]]; then
