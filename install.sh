@@ -203,7 +203,7 @@ function setup_neovim() {
   try_link $this_dir/UltiSnips $nvim_dir/UltiSnips
 
   if [[ ! $(type pip3 >/dev/null 2>&1) ]]; then
-    echo -e "${error}pip3 not found - python neovim package needed for proper usage${normal}"
+    echo -e "${red}pip3 not found - python neovim package needed for proper usage${normal}"
     return 1
   fi
 
