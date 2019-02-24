@@ -21,8 +21,12 @@ function info() {
 
 # try to create a symlink to $1 at $2
 function try_link() {
-  src_path=$1
-  dst_path=$2
+  file=$1
+  dst_dir=${2:-$HOME}
+  src_dir=${3:-$this_dir}
+
+  src_path=$src_dir/$file
+  dst_path=$dst_dir/$file
 
   if [[ -e $dst_path || -L $dst_path ]]; then
     if [[ $all_yes ]]; then
@@ -181,7 +185,7 @@ files=()
 [[ $setup_tmux || $all ]] && files+=(.tmux.conf)
 
 for filename in ${files[*]}; do
-  try_link $this_dir/$filename $HOME/$filename
+  try_link $filename
 done
 
 # link neovim files, add neovim python packages, and add edit overrides
@@ -189,9 +193,9 @@ function setup_neovim() {
   nvim_dir=$HOME/.config/nvim
   mkdir -p ${nvim_dir}
 
-  try_link $this_dir/init.vim $nvim_dir/init.vim
-  try_link $this_dir/coc-settings.json $nvim_dir/coc-settings.json
-  try_link $this_dir/UltiSnips $nvim_dir/UltiSnips
+  try_link init.vim $nvim_dir
+  try_link coc-settings.json $nvim_dir
+  try_link UltiSnips $nvim_dir
 
   if [[ ! $(type pip3 >/dev/null 2>&1) ]]; then
     echo -e "${red}pip3 not found - python neovim package needed for proper usage${normal}"
@@ -269,7 +273,7 @@ function link_prezto_files() {
   )
 
   for filename in ${prezto_files[*]}; do
-    try_link $this_dir/$filename $HOME/$filename
+    try_link $filename
   done
 }
 
