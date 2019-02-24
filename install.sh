@@ -78,30 +78,6 @@ function try_link_each() {
   done
 }
 
-# print help and exit
-function print_help_abort() {
-  echo '
-Usage: install options...
--h  help      This output
-
-Script settings:
--A  All       Install all options
--Y  yes       Accept all confirmation prompts
--N  no        Deny all confirmation prompts
--V  verbose   Enable extra logging
-
-Installable options:
--b  bash      Link bashrc
--e  eslint    Link eslintrc
--f  fzf       Setup fzf
--n  neovim    Setup neovim and link init.vim
--p  prezto    Clone prezto and link configuration files
--t  tmux      Link tmux configuration
--z  zsh       Set zsh as shell
-'
-  exit 1
-}
-
 # clone and install asdf
 function install_asdf() {
   if $(type asdf >/dev/null); then
@@ -272,6 +248,30 @@ function set_zsh() {
 
   # run zsh in current shell
   [[ ! -z $ZSH_NAME ]] && exec zsh
+}
+
+# print help and exit
+function print_help_abort() {
+  echo '
+Usage: install options...
+-h  help      This output
+
+Script settings:
+-A  All       Install all options
+-Y  yes       Accept all confirmation prompts
+-N  no        Deny all confirmation prompts
+-V  verbose   Enable extra logging
+
+Installable options:
+-b  bash      Link bashrc
+-e  eslint    Link eslintrc
+-f  fzf       Setup fzf
+-n  neovim    Setup neovim and link init.vim
+-p  prezto    Clone prezto and link configuration files
+-t  tmux      Link tmux configuration
+-z  zsh       Set zsh as shell
+'
+  exit 1
 }
 
 # display help if no arguments
