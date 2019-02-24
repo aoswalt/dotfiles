@@ -167,33 +167,6 @@ function install_language() {
   [[ ! -z $? ]] && return 1
 }
 
-# display help if no arguments
-if (($# == 0)); then
-  print_help_abort
-fi
-
-while getopts 'hAYNVbefknptz' flag; do
-  case "${flag}" in
-    h) print_help_abort ;;
-
-    A) all=1 ;;
-    Y) all_yes=1 ;;
-    N) all_no=1 ;;
-    V) verbose=1 ;;
-
-    b) setup_bash=1 ;;
-    e) setup_eslint=1 ;;
-    f) setup_fzf=1 ;;
-    n) setup_neovim=1 ;;
-    p) setup_prezto=1 ;;
-    t) setup_tmux=1 ;;
-    z) set_zsh=1 ;;
-
-    \?) print_help_abort ;;
-  esac
-done
-
-
 # link neovim files, add neovim python packages, and add edit overrides
 function setup_neovim() {
   nvim_dir=$HOME/.config/nvim
@@ -300,6 +273,33 @@ function set_zsh() {
   # run zsh in current shell
   [[ ! -z $ZSH_NAME ]] && exec zsh
 }
+
+# display help if no arguments
+if (($# == 0)); then
+  print_help_abort
+fi
+
+while getopts 'hAYNVbefknptz' flag; do
+  case "${flag}" in
+    h) print_help_abort ;;
+
+    A) all=1 ;;
+    Y) all_yes=1 ;;
+    N) all_no=1 ;;
+    V) verbose=1 ;;
+
+    b) setup_bash=1 ;;
+    e) setup_eslint=1 ;;
+    f) setup_fzf=1 ;;
+    n) setup_neovim=1 ;;
+    p) setup_prezto=1 ;;
+    t) setup_tmux=1 ;;
+    z) set_zsh=1 ;;
+
+    \?) print_help_abort ;;
+  esac
+done
+
 
 [[ $setup_bash || $all ]] && try_link .bashrc
 [[ $setup_eslint || $all ]] && try_link .eslintrc.json
