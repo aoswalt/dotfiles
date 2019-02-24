@@ -245,16 +245,22 @@ function setup_neovim() {
 
 [[ $setup_neovim || $all ]] && setup_neovim
 
-if [[ $setup_fzf || $all ]]; then
+# clone and install fzf
+function setup_fzf() {
   if $(type fzf >/dev/null 2>&1); then
     info "fzf found - not cloning"
-  else
-    info "Cloning fzf"
-    git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
-    info "Running fzf install"
-    $HOME/.fzf/install
+    return 0
   fi
-fi
+
+  info "Cloning fzf"
+  git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+  info "Running fzf install"
+  $HOME/.fzf/install
+
+  [[ ! -z $? ]] && return 1
+}
+
+[[ $setup_fzf || $all ]] && setup_fzf
 
 if $(type konsole >/dev/null 2>&1) && [[ $konsole_files || $all ]]; then
   konsole_profile_dir=$HOME/.local/share/konsole
