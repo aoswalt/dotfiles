@@ -73,7 +73,9 @@ function try_link() {
 
 # call try_link for each file in an array
 function try_link_each() {
-  for filename in ${1[*]}; do
+  local -n files=$1
+
+  for filename in ${files[*]}; do
     try_link $filename $2 $3
   done
 }
@@ -232,7 +234,7 @@ function link_prezto_files() {
     .zshrc
   )
 
-  try_link_each $prezto_files
+  try_link_each prezto_files
 }
 
 # set zsh as default shell
