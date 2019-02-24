@@ -72,7 +72,6 @@ Installable options:
 -b  bash      Link bashrc
 -e  eslint    Link eslintrc
 -f  fzf       Setup fzf
--k  konsole   Link Konsole profile and colorscheme
 -n  neovim    Setup neovim and link init.vim
 -p  prezto    Clone prezto and link configuration files
 -t  tmux      Link tmux configuration
@@ -164,7 +163,6 @@ while getopts 'hAYNVbefknptz' flag; do
     b) setup_bash=1 ;;
     e) setup_eslint=1 ;;
     f) setup_fzf=1 ;;
-    k) konsole_files=1 ;;
     n) setup_neovim=1 ;;
     p) setup_prezto=1 ;;
     t) setup_tmux=1 ;;
@@ -177,9 +175,6 @@ done
 
 # array of simple files in home folder
 files=()
-
-# TODO(adam): figure out solution for terminal colors
-# .Xresources
 
 [[ $setup_bash || $all ]] && files+=(.bashrc)
 [[ $setup_eslint || $all ]] && files+=(.eslintrc.json)
@@ -261,13 +256,6 @@ function setup_fzf() {
 }
 
 [[ $setup_fzf || $all ]] && setup_fzf
-
-if $(type konsole >/dev/null 2>&1) && [[ $konsole_files || $all ]]; then
-  konsole_profile_dir=$HOME/.local/share/konsole
-  mkdir -p $konsole_profile_dir
-  try_link $this_dir/konsole/Mine.profile $konsole_profile_dir/Mine.profile
-  try_link $this_dir/konsole/Mine.colorscheme $konsole_profile_dir/Mine.colorscheme
-fi
 
 # prezto setup
 if [[ $setup_prezto || $all ]]; then
