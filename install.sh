@@ -60,6 +60,13 @@ function try_link() {
   fi
 }
 
+# call try_link for each file in an array
+function try_link_each() {
+  for filename in ${1[*]}; do
+    try_link $filename $2 $3
+  done
+}
+
 # print help and exit
 function print_help_abort() {
   echo '
@@ -184,9 +191,7 @@ files=()
 [[ $setup_eslint || $all ]] && files+=(.eslintrc.json)
 [[ $setup_tmux || $all ]] && files+=(.tmux.conf)
 
-for filename in ${files[*]}; do
-  try_link $filename
-done
+try_link_each $files
 
 # link neovim files, add neovim python packages, and add edit overrides
 function setup_neovim() {
@@ -272,9 +277,7 @@ function link_prezto_files() {
     .zshrc
   )
 
-  for filename in ${prezto_files[*]}; do
-    try_link $filename
-  done
+  try_link_each $prezto_files
 }
 
 [[ $setup_prezto || $all ]] && clone_prezto && link_prezto_files
