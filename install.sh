@@ -209,7 +209,7 @@ function setup_fzf() {
   log_info "Cloning fzf"
   git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
   log_info "Running fzf install"
-  $HOME/.fzf/install
+  $HOME/.fzf/install --all
 
   [[ ! -z $? ]] && return 1
 }
