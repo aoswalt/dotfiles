@@ -14,9 +14,20 @@ white=$'\033[37m'
 # get script's directory
 this_dir=$(cd $(dirname $0); pwd -P)
 
-# echo if verbose
-function info() {
+function log() {
+  echo -e $1
+}
+
+function log_info() {
   [[ $verbose ]] && echo -e $1
+}
+
+function log_warn() {
+  echo -e "${yellow}$1${normal}"
+}
+
+function log_error() {
+  echo -e "${red}$1${normal}"
 }
 
 # try to create a symlink to $1 at $2
@@ -38,24 +49,24 @@ function try_link() {
     fi
 
     if [[ $choice =~ ^[Yy] ]]; then
-      info "Removing ${cyan}$dst_path${normal}"
+      log_info "Removing ${cyan}$dst_path${normal}"
       rm $dst_path
     else
-      info "Not removing ${cyan}$dst_path${normal}"
+      log_info "Not removing ${cyan}$dst_path${normal}"
     fi
   fi
 
   if [[ ! -e $dst_path ]]; then
-    echo -e "${red}$dst_path already exists. Cannot create link.${normal}"
+    log_error "$dst_path already exists. Cannot create link."
     return 1
   fi
 
   ln -s $src_path $dst_path
 
   if [[ -z $? ]]; then
-    info "Link created for ${cyan}$dst_path${normal}"
+    log_info "Link created for ${cyan}$dst_path${normal}"
   else
-    info "Could not create link for ${cyan}$dst_path${normal}"
+    log_info "Could not create link for ${cyan}$dst_path${normal}"
     return 1
   fi
 }
@@ -94,7 +105,7 @@ Installable options:
 # clone and install asdf
 function install_asdf() {
   if $(type asdf >/dev/null); then
-    info "asdf already installed"
+    log_info "asdf already installed"
     return 0
   fi
 
@@ -104,7 +115,7 @@ function install_asdf() {
 
   source ~/.asdf/asdf.sh
   source ~/.asdf/completions/asdf.bash
-  info "asdf installed"
+  log_info "asdf installed"
 }
 
 # install the specified language and version with asdf
@@ -113,49 +124,48 @@ function install_language() {
   version=$2
 
   if [[ -z $lang || -z $version ]]; then
-    echo -e "${red}install_language() requires 2 arguments: language and version${normal}"
+    log_error "install_language() requires 2 arguments: language and version"
     return 1
   fi
 
   if ! $(type asdf >/dev/null); then
-    echo -e "${red}asdf not found${normal}"
+    log_error "asdf not found"
     return 1
   fi
 
-  info "Setting up asdf ${cyan}$lang${normal} for version ${cyan}$version${normal}"
+  log_info "Setting up asdf ${cyan}$lang${normal} for version ${cyan}$version${normal}"
 
   if [[ ! $(asdf plugin-list | grep "$lang" >/dev/null) ]]; then
-    info "Adding asdf plugin: ${cyan}$lang${normal}"
+    log_info "Adding asdf plugin: ${cyan}$lang${normal}"
     asdf plugin-add $lang
 
     [[ ! -z $? ]] && return 1
   else
-    info "asdf plugin already exists: ${cyan}$lang${normal}"
+    log_info "asdf plugin already exists: ${cyan}$lang${normal}"
   fi
 
   if ! $(asdf list $lang | grep "$version" >/dev/null); then
-    info "Installing asdf language: ${cyan}$lang${normal} - ${cyan}$version${normal}"
+    log_info "Installing asdf language: ${cyan}$lang${normal} - ${cyan}$version${normal}"
     asdf install $lang $version
 
     [[ ! -z $? ]] && return 1
   else
-    info "asdf language version already exists: ${cyan}$lang${normal} - ${cyan}$version${normal}"
+    log_info "asdf language version already exists: ${cyan}$lang${normal} - ${cyan}$version${normal}"
   fi
 
   if ! $(asdf current $lang | grep "$version" >/dev/null); then
-    info "Setting asdf global: ${cyan}$lang${normal} - ${cyan}$version${normal}"
+    log_info "Setting asdf global: ${cyan}$lang${normal} - ${cyan}$version${normal}"
     asdf global $lang $version
 
     [[ ! -z $? ]] && return 1
   else
-    info "asdf gloabl version already set: ${cyan}$lang${normal} - ${cyan}$version${normal}"
+    log_info "asdf gloabl version already set: ${cyan}$lang${normal} - ${cyan}$version${normal}"
   fi
 
   asdf reshim $lang $version
 
   [[ ! -z $? ]] && return 1
 }
-
 
 # display help if no arguments
 if (($# == 0)); then
@@ -203,38 +213,38 @@ function setup_neovim() {
   try_link UltiSnips $nvim_dir
 
   if [[ ! $(type pip3 >/dev/null 2>&1) ]]; then
-    echo -e "${red}pip3 not found - python neovim package needed for proper usage${normal}"
+    log_error "pip3 not found - python neovim package needed for proper usage"
     return 1
   fi
 
   if [[ $(pip3 list 2>/dev/null | grep 'pynvim') ]]; then
-    info "Python neovim package already installed"
+    log_info "Python neovim package already installed"
   else
-    info "Installing neovim python3 package - pynvim"
+    log_info "Installing neovim python3 package - pynvim"
     pip3 install --user pynvim
   fi
 
   if [[ $(pip3 list 2>/dev/null | grep 'neovim-remote') ]]; then
-    info "Python neovim package already installed"
+    log_info "Python neovim package already installed"
   else
-    info "Installing neovim-remote python3 package"
+    log_info "Installing neovim-remote python3 package"
     pip3 install --user neovim-remote
   fi
 
-  info "Clearing editor from git config to use env"
+  log_info "Clearing editor from git config to use env"
   git config --global --unset core.editor
   # git config --local --unset core.editor
 
   if [ -n "$(git config --system core.editor)" ]; then
-    echo -e "${yellow}WARNING: git system editor set${normal}"
+    log_warn "WARNING: git system editor set"
   fi
 
   if [[ ! -e ~/init.after.vim && ! -L ~/int.after.vim ]]; then
-    info "Adding init.after.vim for direct 'edit vim' mapping."
+    log_info "Adding init.after.vim for direct 'edit vim' mapping."
     echo "nnoremap <leader>ev :vsp $this_dir/init.vim<CR>" > ~/init.after.vim
     echo "nnoremap <leader>ez :vsp $this_dir/.zshrc<CR>" >> ~/init.after.vim
   else
-    info "${yellow}init.after.vim already exists, not adding direct edit overrides.${normal}"
+    log_warn "init.after.vim already exists, not adding direct edit overrides."
   fi
 }
 
@@ -243,13 +253,13 @@ function setup_neovim() {
 # clone and install fzf
 function setup_fzf() {
   if $(type fzf >/dev/null 2>&1); then
-    info "fzf found - not cloning"
+    log_info "fzf found - not cloning"
     return 0
   fi
 
-  info "Cloning fzf"
+  log_info "Cloning fzf"
   git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
-  info "Running fzf install"
+  log_info "Running fzf install"
   $HOME/.fzf/install
 
   [[ ! -z $? ]] && return 1
@@ -259,11 +269,11 @@ function setup_fzf() {
 
 function clone_prezto() {
   if [[ -e "${ZDOTDIR:-$HOME}/.zprezto"  ]]; then
-    info "Prezto already exists - not cloning"
+    log_info "Prezto already exists - not cloning"
     return 0
   fi
 
-  info "Cloning Prezto"
+  log_info "Cloning Prezto"
   git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 }
 
@@ -285,12 +295,12 @@ function link_prezto_files() {
 # set zsh as default shell
 function set_zsh() {
   if [[ $(echo $SHELL | grep 'zsh') ]]; then
-    info "Zsh already default shell"
+    log_info "Zsh already default shell"
     return 0
   fi
 
   if [[ ! $(grep zsh /etc/shells) ]]; then
-    echo -e "${red}Zsh not found in /etc/shells${normal}"
+    log_error "Zsh not found in /etc/shells"
     return 1
   fi
 
