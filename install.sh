@@ -194,10 +194,6 @@ while getopts 'hAYNVbefknptz' flag; do
 done
 
 
-[[ $setup_bash || $all ]] && try_link .bashrc
-[[ $setup_eslint || $all ]] && try_link .eslintrc.json
-[[ $setup_tmux || $all ]] && try_link .tmux.conf
-
 # link neovim files, add neovim python packages, and add edit overrides
 function setup_neovim() {
   nvim_dir=$HOME/.config/nvim
@@ -247,8 +243,6 @@ function setup_neovim() {
   fi
 }
 
-[[ $setup_neovim || $all ]] && setup_neovim
-
 # clone and install fzf
 function setup_fzf() {
   if $(type fzf >/dev/null 2>&1); then
@@ -263,8 +257,6 @@ function setup_fzf() {
 
   [[ ! -z $? ]] && return 1
 }
-
-[[ $setup_fzf || $all ]] && setup_fzf
 
 function clone_prezto() {
   if [[ -e "${ZDOTDIR:-$HOME}/.zprezto"  ]]; then
@@ -289,8 +281,6 @@ function link_prezto_files() {
   try_link_each $prezto_files
 }
 
-[[ $setup_prezto || $all ]] && clone_prezto && link_prezto_files
-
 # set zsh as default shell
 function set_zsh() {
   if [[ $(echo $SHELL | grep 'zsh') ]]; then
@@ -311,4 +301,10 @@ function set_zsh() {
   [[ ! -z $ZSH_NAME ]] && exec zsh
 }
 
+[[ $setup_bash || $all ]] && try_link .bashrc
+[[ $setup_eslint || $all ]] && try_link .eslintrc.json
+[[ $setup_tmux || $all ]] && try_link .tmux.conf
+[[ $setup_neovim || $all ]] && setup_neovim
+[[ $setup_fzf || $all ]] && setup_fzf
+[[ $setup_prezto || $all ]] && clone_prezto && link_prezto_files
 [[ $set_zsh || $all ]] && set_zsh
