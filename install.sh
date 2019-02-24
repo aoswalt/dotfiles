@@ -120,6 +120,11 @@ function install_language() {
     log_info "asdf plugin already exists: ${cyan}$lang${normal}"
   fi
 
+  # node needs gpg keys added
+  if [[ $lang == 'nodejs' ]]; then
+    bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+  fi
+
   if ! $(asdf list $lang | grep "$version" >/dev/null); then
     log_info "Installing asdf language: ${cyan}$lang${normal} - ${cyan}$version${normal}"
     asdf install $lang $version
