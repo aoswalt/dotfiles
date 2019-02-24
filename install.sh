@@ -279,7 +279,7 @@ if (($# == 0)); then
   print_help_abort
 fi
 
-while getopts 'hAYNVbefknptz' flag; do
+while getopts 'hAYNVbefnptz' flag; do
   case "${flag}" in
     h) print_help_abort ;;
 
