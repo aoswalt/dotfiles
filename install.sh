@@ -33,16 +33,16 @@ function log_error() {
 # try to create a symlink to $1 at $2
 function try_link() {
   file=$1
-  dst_dir=${2:-$HOME}
-  src_dir=${3:-$this_dir}
+  dst_dir=${2-$HOME}
+  src_dir=${3-$this_dir}
 
   src_path=$src_dir/$file
   dst_path=$dst_dir/$file
 
   if [[ -e $dst_path || -L $dst_path ]]; then
-    if [[ $all_yes ]]; then
+    if [[ $force ]]; then
       choice='y'
-    elif [[ ! -z $all_no ]]; then
+    elif [[ ! -z $no_force ]]; then
       choice='n'
     else
       read -p "${cyan}$dst_path${normal} already exists. ${red}${bold}Remove?${normal} [y/${red}${bold}N${normal}]:  " choice
@@ -97,6 +97,7 @@ function install_asdf() {
 }
 
 # install the specified language and version with asdf
+# TODO: check installed and version
 function install_language() {
   lang=$1
   version=$2
@@ -215,13 +216,13 @@ function setup_fzf() {
 }
 
 function clone_prezto() {
-  if [[ -e "${ZDOTDIR:-$HOME}/.zprezto"  ]]; then
+  if [[ -e "${ZDOTDIR-$HOME}/.zprezto"  ]]; then
     log_info "Prezto already exists - not cloning"
     return 0
   fi
 
   log_info "Cloning Prezto"
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR-$HOME}/.zprezto"
 }
 
 function link_prezto_files() {
@@ -258,60 +259,137 @@ function set_zsh() {
 }
 
 # print help and exit
-function print_help_abort() {
+function print_help() {
   echo '
-Usage: install options...
--h  help      This output
+usage: dotfiles <options>...
 
-Script settings:
--A  All       Install all options
--Y  yes       Accept all confirmation prompts
--N  no        Deny all confirmation prompts
--V  verbose   Enable extra logging
+  -h, --help          Show help
 
-Installable options:
--b  bash      Link bashrc
--e  eslint    Link eslintrc
--f  fzf       Setup fzf
--n  neovim    Setup neovim and link init.vim
--p  prezto    Clone prezto and link configuration files
--t  tmux      Link tmux configuration
--z  zsh       Set zsh as shell
+Settings
+  -f, --force         Force setup by answering `yes` to all overwrite prompts
+  --no-force          Answer `no` to all prompts
+  -v, --verbose       Show info output
+
+Installing
+  --all     Install and setup everything
+
+  --files   Link a dotfiles for a tool (bash, neovim, tmux)
+  --langs   Install languages with asdf (erlang, elixir, nodejs, postgres, python)
+  --lsp     Install language servers (elixir-ls, pyls)
+  --tools   Install tools, linking dotfiles as appropriate (eslint, fzf)
+  --zsh     Install prezto and set zsh as shell
 '
-  exit 1
 }
+
 
 # display help if no arguments
 if (($# == 0)); then
-  print_help_abort
+  print_help
+  exit 1
 fi
 
-while getopts 'hAYNVbefnptz' flag; do
-  case "${flag}" in
-    h) print_help_abort ;;
+while test "$#" -gt 0; do
+  case "$1" in
+    -h|--help)
+      print_help
+      exit 0
+      ;;
 
-    A) all=1 ;;
-    Y) all_yes=1 ;;
-    N) all_no=1 ;;
-    V) verbose=1 ;;
+    -f|--force)   force=1;      shift ;;
+    --no-force)   no_force=1;   shift ;;
+    -v|--verbose) verbose=1;    shift ;;
 
-    b) setup_bash=1 ;;
-    e) setup_eslint=1 ;;
-    f) setup_fzf=1 ;;
-    n) setup_neovim=1 ;;
-    p) setup_prezto=1 ;;
-    t) setup_tmux=1 ;;
-    z) set_zsh=1 ;;
+    --all)        opt_all=1;    shift ;;
+    --files)      opt_files=1;  shift ;;
+    --langs)      opt_langs=1;  shift ;;
+    --lsp)        opt_lsp=1;    shift ;;
+    --tools)      opt_tools=1;  shift ;;
+    --zsh)        opt_zsh=1;    shift ;;
 
-    \?) print_help_abort ;;
+    *)
+      log_error "Unrecognized option: $1"
+      print_help
+      exit 1
+      ;;
   esac
 done
 
 
-[[ $setup_bash || $all ]] && try_link .bashrc
-[[ $setup_eslint || $all ]] && try_link .eslintrc.json
-[[ $setup_tmux || $all ]] && try_link .tmux.conf
-[[ $setup_neovim || $all ]] && setup_neovim
-[[ $setup_fzf || $all ]] && setup_fzf
-[[ $setup_prezto || $all ]] && clone_prezto && link_prezto_files
-[[ $set_zsh || $all ]] && set_zsh
+if [[ ${opt_langs-opt_all} ]]; then
+  install_asdf
+  install_language python 3.7.2
+  install_language nodejs 11.10.0
+  install_language erlang 21.2.6
+  install_language elixir 1.8.1
+  install_language postgres 11.2
+fi
+
+if [[ ${opt_files-opt_all} ]]; then
+  try_link .bashrc
+  try_link .eslintrc.json
+  try_link .tmux.conf
+fi
+
+if [[ ${opt_tools-opt_all} ]]; then
+  setup_neovim
+  setup_fzf
+fi
+
+if [[ ${opt_zsh-opt_all} ]]; then
+  clone_prezto && link_prezto_files
+  set_zsh
+fi
+
+if [[ ${opt_lsp-opt_all} ]]; then
+  [[ $(command -v tsserver) ]] || npm i -g typescript
+  [[ $(command -v bash-language-server) ]] || npm i -g bash-language-server
+  [[ $(command -v dockerfile-language-server-nodejs) ]] || npm i -g dockerfile-language-server-nodejs
+
+  [[ $(command -v elixir-ls) ]] || \
+    mkdir -p "$HOME/tools" && \
+    cd $_ && \
+    git clone https://github.com/JakeBecker/elixir-ls.git && \
+    cd elixir-ls && \
+    mix do deps.get, elixir_ls.release -o release &&
+    ln -s $HOME/tools/elixir-ls/release/language_server.sh /usr/local/bin/elixir-ls
+
+  pip3 install -q python-language-server
+fi
+
+
+
+# TODO: add selectable options
+# Installing
+#   --all               Install and setup everything
+#   --lang=LANG[,...]   Install a language with asdf (erlang|elixir|nodejs|postgres|python)
+#   --tool=TOOL[,...]   Install a tool, linking dotfiles as appropriate (eslint|fzf|prezto)
+#   --files=TOOL[,...]  Link a dotfiles for a tool (bash|neovim|tmux)
+#   --set=DEFAULT[,...] Set a thing as the default (zsh)
+
+
+# function match_flag() {
+#   while getopts 'hfv' flag "$1"; do
+#     case "$flag" in
+#       h)
+#         print_help
+#         exit 0
+#         ;;
+#       f)
+#         force=1
+#         ;;
+#       v)
+#         verbose=1
+#         ;;
+#       # unneeded because of getopts behavior?
+#       # *)
+#       #   log_error "Unrecognized flag: $flag"
+#       #   exit 1
+#       #   ;;
+#     esac
+#   done
+# }
+
+
+# could abort if some fail
+# install_language python 3.7.2 && [ $? -ne 0 ] && exit 1
+# install_language nodejs 11.10.0 && [ $? -ne 0 ] && exit 1
