@@ -82,7 +82,7 @@ function try_link_each() {
 
 # clone and install asdf
 function install_asdf() {
-  if $(type asdf >/dev/null 2>&1); then
+  if [[ $(command -v asdf) ]]; then
     log_info "asdf already installed"
     return 0
   fi
@@ -106,7 +106,7 @@ function install_language() {
     return 1
   fi
 
-  if ! $(type asdf >/dev/null 2>&1); then
+  if [[ ! $(command -v asdf) ]]; then
     log_error "asdf not found"
     return 1
   fi
@@ -163,7 +163,7 @@ function setup_neovim() {
 
   try_link_each config_files $nvim_dir
 
-  if [[ ! $(type pip3 >/dev/null 2>&1) ]]; then
+  if [[ ! $(command -v pip3) ]]; then
     log_error "pip3 not found - python neovim package needed for proper usage"
     return 1
   fi
@@ -201,7 +201,7 @@ function setup_neovim() {
 
 # clone and install fzf
 function setup_fzf() {
-  if $(type fzf >/dev/null 2>&1); then
+  if [[ $(command -v fzf) ]]; then
     log_info "fzf found - not cloning"
     return 0
   fi
