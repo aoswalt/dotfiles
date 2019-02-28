@@ -33,8 +33,8 @@ function log_error() {
 # try to create a symlink to $1 at $2
 function try_link() {
   file=$1
-  dst_dir=${2-$HOME}
-  src_dir=${3-$this_dir}
+  dst_dir=${2:-$HOME}
+  src_dir=${3:-$this_dir}
 
   src_path=$src_dir/$file
   dst_path=$dst_dir/$file
@@ -216,13 +216,13 @@ function setup_fzf() {
 }
 
 function clone_prezto() {
-  if [[ -e "${ZDOTDIR-$HOME}/.zprezto"  ]]; then
+  if [[ -e "${ZDOTDIR:-$HOME}/.zprezto"  ]]; then
     log_info "Prezto already exists - not cloning"
     return 0
   fi
 
   log_info "Cloning Prezto"
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR-$HOME}/.zprezto"
+  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 }
 
 function link_prezto_files() {
@@ -373,7 +373,7 @@ while test "$#" -gt 0; do
 done
 
 
-if [[ ${opt_langs-opt_all} ]]; then
+if [[ ${opt_langs:-$opt_all} ]]; then
   install_asdf
   install_language python 3.7.2
   install_language nodejs 11.10.0
@@ -382,23 +382,23 @@ if [[ ${opt_langs-opt_all} ]]; then
   install_language postgres 11.2
 fi
 
-if [[ ${opt_files-opt_all} ]]; then
+if [[ ${opt_files:-$opt_all} ]]; then
   try_link .bashrc
   try_link .eslintrc.json
   try_link .tmux.conf
 fi
 
-if [[ ${opt_tools-opt_all} ]]; then
+if [[ ${opt_tools:-$opt_all} ]]; then
   setup_neovim
   setup_fzf
 fi
 
-if [[ ${opt_zsh-opt_all} ]]; then
+if [[ ${opt_zsh:-$opt_all} ]]; then
   clone_prezto && link_prezto_files
   set_zsh
 fi
 
-if [[ ${opt_lsp-opt_all} ]]; then
+if [[ ${opt_lsp:-$opt_all} ]]; then
   [[ $(command -v tsserver) ]] || npm i -g typescript
   [[ $(command -v bash-language-server) ]] || npm i -g bash-language-server
   [[ $(command -v dockerfile-language-server-nodejs) ]] || npm i -g dockerfile-language-server-nodejs
@@ -414,7 +414,7 @@ if [[ ${opt_lsp-opt_all} ]]; then
   pip3 install -q python-language-server
 fi
 
-if [[ ${opt_git-opt_all} ]]; then
+if [[ ${opt_git:-$opt_all} ]]; then
   setup_git_configs
 fi
 
