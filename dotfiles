@@ -258,6 +258,62 @@ function set_zsh() {
   [[ ! -z $ZSH_NAME ]] && exec zsh
 }
 
+function add_git_config() {
+  key=$1
+  value=$2
+
+  if [[ -z "$key" || -z "$value" ]]; then
+    log_error "add_individual_git_config() requires 2 arguments: key and value"
+    return 1
+  fi
+
+  if [[ ! $(git config --global "$key" 2>/dev/null) ]]; then
+    git config --global "$key" "$value"
+    log_info "Set global git config ${cyan}$key${normal} to ${cyan}$value${normal}"
+    return 0
+  fi
+
+  if [[ $force ]]; then
+    choice='y'
+  elif [[ ! -z $no_force ]]; then
+    choice='n'
+  else
+    read -p "Global git config ${cyan}$key${normal} already exists. ${red}${bold}Remove?${normal} [y/${red}${bold}N${normal}]:  " choice
+  fi
+
+  if [[ $choice =~ ^[Yy] ]]; then
+    log_info "Overwriting global git config${cyan}$key${normal}"
+  else
+    log_info "Not removing global git config ${cyan}$key${normal}"
+    return 0
+  fi
+
+  git config --global "$key" "$value"
+  log_info "Set global git config ${cyan}$key${normal} to ${cyan}$value${normal}"
+}
+
+function setup_git_configs() {
+  add_git_config 'core.excludesfile' "$HOME/.gitignore"
+
+  if [[ $(command -v diff-so-fancy) ]]; then
+    add_git_config 'core.pager' 'diff-so-fancy | less --tabs=4 -RFX'
+    add_git_config 'color.diff-highlight.oldnormal' 'red bold'
+    add_git_config 'color.diff-highlight.oldhighlight' 'red bold 52'
+    add_git_config 'color.diff-highlight.newnormal' 'green bold'
+    add_git_config 'color.diff-highlight.newhighlight' 'green bold 22'
+  fi
+
+  add_git_config 'format.pretty' '%Cred%h%Creset - %s %Cgreen(%cr)%C(yellow)%d%Creset %C(bold blue)<%an>%Creset '
+
+  if [[ $(command -v nvim) ]]; then
+    add_git_config 'diff.tool' 'fugitive'
+    add_git_config 'merge.tool' 'fugitive'
+    add_git_config 'mergetool.fugitive.cmd' 'nvim -c "Gdiff" $MERGED'
+    add_git_config 'mergetool.nvimdiff.cmd' 'nvim -d $BASE $LOCAL $REMOTE'
+    add_git_config 'mergetool.keepbackup' 'false'
+  fi
+}
+
 # print help and exit
 function print_help() {
   echo '
@@ -274,6 +330,7 @@ Installing
   --all     Install and setup everything
 
   --files   Link a dotfiles for a tool (bash, neovim, tmux)
+  --git     Add gitconfig QoL options
   --langs   Install languages with asdf (erlang, elixir, nodejs, postgres, python)
   --lsp     Install language servers (elixir-ls, pyls)
   --tools   Install tools, linking dotfiles as appropriate (eslint, fzf)
@@ -301,6 +358,7 @@ while test "$#" -gt 0; do
 
     --all)        opt_all=1;    shift ;;
     --files)      opt_files=1;  shift ;;
+    --git)        opt_git=1;    shift ;;
     --langs)      opt_langs=1;  shift ;;
     --lsp)        opt_lsp=1;    shift ;;
     --tools)      opt_tools=1;  shift ;;
@@ -356,6 +414,9 @@ if [[ ${opt_lsp-opt_all} ]]; then
   pip3 install -q python-language-server
 fi
 
+if [[ ${opt_git-opt_all} ]]; then
+  setup_git_configs
+fi
 
 
 # TODO: add selectable options
