@@ -45,6 +45,7 @@ Plug 'vim-scripts/dbext.vim'
 Plug 'suan/vim-instant-markdown', { 'do': 'npm install -g instant-markdown-d' }
 Plug 'chrisbra/csv.vim'
 Plug 'junegunn/vim-peekaboo'
+Plug 'diepm/vim-rest-console'
 
 Plug 'itchyny/lightline.vim'
 Plug 'airblade/vim-gitgutter'
