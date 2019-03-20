@@ -191,6 +191,8 @@ let g:UltiSnipsEditSplit = 'horizontal'
 
 let g:fzf_commands_expect = 'enter,ctrl-x'
 
+let g:vrc_trigger = '<leader>r'
+
 let g:limelight_conceal_ctermfg = 236
 
 " autocommands {{{1
