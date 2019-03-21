@@ -208,7 +208,7 @@ augroup end
 
 augroup ft_match_words
   " add do/end as jumps for %
-  autocmd FileType elixir let b:match_words = '\<do\>:\<end\>'
+  autocmd FileType elixir let b:match_words = '\<\(do\|fn\)\>:\<end\>'
 augroup end
 
 " switch to current file's parent directory
