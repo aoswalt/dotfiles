@@ -306,10 +306,10 @@ nnoremap <silent> <m-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <m-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <m-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <m-\> :TmuxNavigatePrevious<cr>
-inoremap <m-h> <esc>:TmuxNavigateLeft<cr>
-inoremap <m-j> <esc>:TmuxNavigateDown<cr>
-inoremap <m-k> <esc>:TmuxNavigateUp<cr>
-inoremap <m-l> <esc>:TmuxNavigateRight<cr>
+inoremap <silent> <m-h> <esc>:TmuxNavigateLeft<cr>
+inoremap <silent> <m-j> <esc>:TmuxNavigateDown<cr>
+inoremap <silent> <m-k> <esc>:TmuxNavigateUp<cr>
+inoremap <silent> <m-l> <esc>:TmuxNavigateRight<cr>
 
 " terminal keybindings
 tnoremap <leader><esc> <c-\><c-n>
