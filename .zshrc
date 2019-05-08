@@ -22,6 +22,9 @@ zstyle -d ':completion:*' group-name
 
 unsetopt CORRECT                      # Disable autocorrect guesses.
 
+# make ctrl-u delete backwards
+bindkey \^U backward-kill-line
+
 autoload -U zmv
 alias zmv='noglob zmv -W'
 
