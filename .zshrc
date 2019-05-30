@@ -52,6 +52,9 @@ alias gfp='git fetch --prune'
 alias gzb='gco $(gbL | fzf | cut -d " " -f 3)'
 alias gbdr='git push origin --delete'
 alias gfap='gfa --prune && gbl | grep "\[gone\]" | cut -d " " -f3 | xargs git branch -d'
+alias gl='git log'
+alias glg='gl --graph'
+alias glG='glg --all'
 
 alias shrug="echo '¯\_(ツ)_/¯'"
 
