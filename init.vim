@@ -496,7 +496,7 @@ nnoremap <leader>ga :Gwrite<cr>
 nnoremap <leader>gc :Gcommit -v<cr>
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gl :Git log<cr>
-nnoremap <leader>gL :Git log -p<cr>
+nnoremap <leader>gL :Git log -p %<cr>
 nnoremap <leader>gr :Grebase -i --autosquash
 
 nnoremap <leader>l :Limelight<cr>
