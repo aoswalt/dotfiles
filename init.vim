@@ -240,6 +240,12 @@ highlight! jsObjectKey ctermfg=139
 highlight! Constant ctermfg=37
 highlight! Normal ctermbg=NONE
 
+highlight! Define ctermfg=239
+
+augroup elixir_colors
+  autocmd FileType elixir highlight! Identifier ctermfg=88
+augroup end
+
 " highlight! link TermCursor Cursor
 highlight! TermCursorNC ctermbg=0 ctermfg=15
 
