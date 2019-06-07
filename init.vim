@@ -20,9 +20,6 @@ Plug 'stefandtw/quickfix-reflector.vim'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'exu/pgsql.vim'
-Plug 'Shougo/neco-vim'
-Plug 'vim-scripts/ingo-library'
-Plug 'vim-scripts/SyntaxRange'
 Plug 'junegunn/limelight.vim'
 
 Plug 'neoclide/jsonc.vim'
@@ -217,12 +214,6 @@ augroup cursorLine
   autocmd!
   autocmd BufEnter * setlocal cursorline
   autocmd BufLeave * setlocal nocursorline
-augroup end
-
-" use pgsql syntax inside elixir non-doc string blocks
-augroup elixirSql
-  autocmd!
-  autocmd FileType elixir call SyntaxRange#Include('\s\{2,\}\"\"\"', '\"\"\"', 'pgsql', 'NonText')
 augroup end
 
 augroup pum
