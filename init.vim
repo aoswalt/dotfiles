@@ -22,9 +22,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'exu/pgsql.vim'
 Plug 'junegunn/limelight.vim'
 
-Plug 'neoclide/jsonc.vim'
-Plug 'neoclide/coc-neco'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'w0rp/ale'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'      "ae/ie for entire file
@@ -75,20 +74,6 @@ Plug 'w0ng/vim-hybrid'
 
 Plug 'wannesm/wmgraphviz.vim'
 call plug#end()
-
-let s:coc_extensions = [
-\   'coc-css',
-\   'coc-html',
-\   'coc-json',
-\   'coc-eslint',
-\   'coc-prettier',
-\   'coc-tsserver',
-\   'coc-ultisnips'
-\ ]
-
-if exists('*coc#add_extension')
-  call call('coc#add_extension', s:coc_extensions)
-endif
 
 " vim settings {{{1
 set noswapfile
@@ -193,6 +178,19 @@ let g:vrc_trigger = '<leader>r'
 
 let g:limelight_conceal_ctermfg = 236
 
+let g:deoplete#enable_at_startup = 1
+
+let g:ale_linters = {
+\  'javascript': ['eslint', 'tsserver'],
+\  'elixir': ['elixir-ls', 'credo'],
+\}
+
+let g:ale_fixers = {
+\  '*': ['remove_trailing_lines', 'trim_whitespace'],
+\  'javascript': ['prettier', 'eslint'],
+\  'elixir': ['mix_format'],
+\}
+
 " autocommands {{{1
 augroup whitespace
   " automatically strip trailiing whitespace on save
@@ -230,9 +228,6 @@ augroup term_insert
   autocmd BufEnter term://* startinsert
   autocmd BufLeave term://* stopinsert
 augroup end
-
-autocmd CursorHoldI,CursorMovedI * call CocAction('showSignatureHelp')
-
 
 " colors {{{1
 colorscheme onedark
@@ -280,10 +275,10 @@ nnoremap <Up> gk
 nnoremap <Down> gj
 
 " warning mappings lke unimpaired
-nmap <silent> [W <Plug>(coc-diagnostic-first)
-nmap <silent> [w <Plug>(coc-diagnostic-previous)
-nmap <silent> ]w <Plug>(coc-diagnostic-next)
-nmap <silent> ]W <Plug>(coc-diagnostic-last)
+nmap <silent> [W <Plug>(ale_first)
+nmap <silent> [w <Plug>(ale_previous_wrap)
+nmap <silent> ]w <Plug>(ale_next_wrap)
+nmap <silent> ]W <Plug>(ale_last)
 
 " split navigation
 nnoremap <silent> <m-h> :TmuxNavigateLeft<cr>
@@ -398,13 +393,10 @@ xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>/<C-R>=@/<CR><CR>
 
 " format
-nmap <F4> <plug>(coc-format)
-
-" run fixer
-nmap <F6> <plug>(coc-fix-current)
+nmap <F4> <Plug>(ale_fix)
 
 " full info
-nmap <F10> <plug>(coc-diagnostic-info)
+nmap <F10> <Plug>(ale_detail)
 
 " pane toggles
 nnoremap <F5> :MundoToggle<CR>
@@ -444,14 +436,11 @@ fun! MapLCKeys()
     return
   endif
 
-  " TODO: change
-  nnoremap <buffer> <F2> :CocList<CR>
-  nmap <buffer> <F3> <plug>(coc-rename)
-  nnoremap <buffer> <silent> K :call CocAction('doHover')<CR>
-  nmap <buffer> gd <plug>(coc-definition)
-  nnoremap <buffer> <silent> gD :vsp \| call <plug>(coc-definition)<CR>
-  nmap <buffer> gy <plug>(coc-references)
-  nmap <buffer> gY <plug>(coc-type-definition)
+  nmap <buffer> <silent> K <Plug>(ale_hover)
+  nmap <buffer> gd <Plug>(ale_go_to_definition)
+  nmap <buffer> <silent> gD <Plug>(ale_go_to_definition_in_vsplit)
+  nmap <buffer> gy <Plug>(ale_find_references)
+  nmap <buffer> gY <Plug>(ale_go_to_type_definition)
 endfun
 
 autocmd FileType * call MapLCKeys()
@@ -611,13 +600,9 @@ let g:lightline = {
 \   },
 \   'component_function': {
 \     'filename': 'FilenameWithIcon',
-\     'gitversion': 'GitVersion',
-\     'cocstatus': 'coc#status',
+\     'gitversion': 'GitVersion'
 \   },
 \   'active': {
-\     'middle': [
-\        [ 'cocstatus' ],
-\     ],
 \     'right': [
 \        [ 'lineinfo'],
 \        [ 'gitversion', 'percent' ],
