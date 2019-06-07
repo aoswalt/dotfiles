@@ -212,13 +212,6 @@ augroup ft_match_words
   autocmd FileType elixir let b:match_words = '\<\(do\|fn\)\>:\<end\>'
 augroup end
 
-" switch to current file's parent directory
-" set autochdir was causing issues with some plugins but needs reinvestigating
-augroup vimrc_set_working_dir
-  au!
-  autocmd BufRead,BufEnter * silent! lcd %:p:h
-augroup end
-
 " only show cursor line one active window
 augroup cursorLine
   autocmd!
