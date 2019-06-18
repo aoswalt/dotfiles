@@ -180,6 +180,10 @@ let g:limelight_conceal_ctermfg = 236
 
 let g:deoplete#enable_at_startup = 1
 
+call deoplete#custom#option({
+\  'num_processes': 0,
+\})
+
 let g:ale_linters = {
 \  'javascript': ['eslint', 'tsserver'],
 \  'elixir': ['elixir-ls', 'credo'],
