@@ -36,9 +36,9 @@ Plug 'Julian/vim-textobj-variable-segment'    "av/iv for variable part
 Plug 'Chun-Yang/vim-textobj-chunk'  "ac/ic for json-ish chunk
 Plug 'whatyouhide/vim-textobj-xmlattr'  "ax/ix for xml attribute
 
+Plug 'kassio/neoterm'
 Plug 'thinca/vim-quickrun'
 Plug 'tpope/vim-dispatch'
-Plug 'radenling/vim-dispatch-neovim'
 Plug 'vim-scripts/dbext.vim'
 Plug 'suan/vim-instant-markdown', { 'do': 'npm install -g instant-markdown-d' }
 Plug 'chrisbra/csv.vim'
@@ -194,7 +194,16 @@ let g:ale_fixers = {
 \  '*': ['remove_trailing_lines', 'trim_whitespace'],
 \  'javascript': ['prettier', 'eslint'],
 \  'elixir': ['mix_format'],
+\  'sql': ['pgformatter'],
 \}
+
+let g:ale_sql_pgformatter_options = '
+\ --comma-start
+\ --comma-break
+\ --spaces 2
+\ --keyword-case 1
+\ --wrap-after 1
+\'
 
 let g:vista_default_executive = 'ale'
 
