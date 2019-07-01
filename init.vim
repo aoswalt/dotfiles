@@ -24,6 +24,7 @@ Plug 'junegunn/limelight.vim'
 
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'liuchengxu/vista.vim'
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'      "ae/ie for entire file
@@ -194,6 +195,8 @@ let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
 \  'elixir': ['mix_format'],
 \}
+
+let g:vista_default_executive = 'ale'
 
 " autocommands {{{1
 augroup whitespace
@@ -410,6 +413,7 @@ nmap <F10> <Plug>(ale_detail)
 
 " pane toggles
 nnoremap <F5> :MundoToggle<CR>
+nnoremap <F6> :Vista!!<CR>
 
 " edit vimrc/zshrc and source vimrc
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
