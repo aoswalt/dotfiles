@@ -72,6 +72,16 @@ ownnpm() {
   fi
 }
 
+nuke-node-modules() {
+  find . -name "node_modules" -type d -prune -print | xargs du -chs;
+  echo -n "Nuke \033[31meverything\033[0m? [yN] "
+  read -q confirm
+
+  if [[ $confirm =~ ^[Yy] ]]; then
+    find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
+  fi
+}
+
 ## functions
 function = { echo $(($@))  }  # easy math
 mkdwn() { pandoc $1 | lynx -stdin -dump }   # print markdown in terminal
