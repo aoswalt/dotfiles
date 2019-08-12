@@ -494,6 +494,9 @@ nnoremap <leader>l :Limelight<cr>
 nnoremap <leader>L :Limelight!<cr>
 xmap <leader>l <Plug>(Limelight)
 
+" use %% for local relative paths
+cabbr <expr> %% expand('%:p:h')
+
 
 " commands {{{1
 " close all other buffers
