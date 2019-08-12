@@ -331,8 +331,6 @@ nnoremap <M-S-j> <C-w>+
 nnoremap <M-S-k> <C-w>-
 nnoremap <M-S-l> <C-w>>
 nnoremap <silent> <M-=> <c-w>=
-nnoremap <silent> <c-w>' :call ZoomToggle()<cr>
-nnoremap <silent> <c-w>z :call MaximizeWindow()<cr>
 nnoremap <silent> <M-'> :call ZoomToggle()<cr>
 nnoremap <silent> <M-z> :call MaximizeWindow()<cr>
 
@@ -429,9 +427,6 @@ nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>sf :source %<CR>
-
-" save session
-nnoremap <leader>s :mksession<CR>
 
 " term splits like tmux
 nnoremap <leader>\ :VTerm<CR>
