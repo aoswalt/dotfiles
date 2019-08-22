@@ -386,6 +386,7 @@ if [[ ${opt_files:-$opt_all} ]]; then
   try_link .bashrc
   try_link .eslintrc.json
   try_link .tmux.conf
+  try_link .xprofile
 fi
 
 if [[ ${opt_tools:-$opt_all} ]]; then

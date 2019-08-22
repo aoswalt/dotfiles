@@ -188,7 +188,6 @@ fi
 
 [ $commands[fasd] ] && eval "$(fasd --init auto)"
 
-[ $commands[setxkbmap] ] && setxkbmap -option caps:ctrl_modifier
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f ~/.asdf/asdf.sh ] && source ~/.asdf/asdf.sh

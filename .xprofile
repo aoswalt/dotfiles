@@ -1,0 +1,2 @@
+[ $commands[setxkbmap] ] && setxkbmap -option caps:ctrl_modifier
+[ $commands[xcape] ] && xcape -e Caps_Lock=Escape
