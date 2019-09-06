@@ -197,13 +197,14 @@ let g:ale_fixers = {
 \  'sql': ['pgformatter'],
 \}
 
-let g:ale_sql_pgformatter_options = '
+let g:ale_sql_pgformatter_options = "
 \ --comma-start
 \ --comma-break
 \ --spaces 2
 \ --keyword-case 1
 \ --wrap-after 1
-\'
+\ --placeholder ':: '
+\"
 
 let g:vista_default_executive = 'ale'
 
