@@ -466,7 +466,7 @@ autocmd FileType * call MapLCKeys()
 
 " TODO(adam): use Dispatch to default these?
 autocmd FileType sql nnoremap <buffer> <leader>r :.DB<cr>
-autocmd FileType sql vnoremap <buffer> <leader>r :DB<cr>
+autocmd FileType sql vmap <buffer> <expr> <leader>r db#op_exec()
 
 nnoremap <silent> <leader>S :ToggleSqlScratch<cr>
 
