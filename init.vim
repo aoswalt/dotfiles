@@ -118,6 +118,8 @@ set listchars+=nbsp:⣿
 
 set completeopt=longest,menuone
 
+set autochdir
+
 let g:mapleader = ' ' "use space as leader
 
 if isdirectory($HOME . '/.config/nvim/undo') == 0
@@ -209,6 +211,10 @@ let g:ale_sql_pgformatter_options = "
 let g:vista_default_executive = 'ale'
 
 " autocommands {{{1
+augroup autodir
+  autocmd FileType javascript set noautochdir
+augroup end
+
 augroup whitespace
   " automatically strip trailiing whitespace on save
   autocmd BufWritePre * StripWhitespace
