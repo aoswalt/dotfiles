@@ -62,7 +62,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-scriptease'
-Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-vinegar'
@@ -660,11 +659,8 @@ endfunction
 
 
 
-" statusline {{{1
-"\   'colorscheme': 'onedark',
 let g:lightline = {
 \   'component': {
-\     'mode': '%{lightline#mode() . " " . ObsessionStatus()}',
 \     'readonly': '%{&readonly?"\ue0a2":""}',
 \   },
 \   'component_function': {
