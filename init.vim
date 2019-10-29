@@ -430,8 +430,8 @@ nmap <F4> <Plug>(ale_fix)
 nmap <F10> <Plug>(ale_detail)
 
 " pane toggles
-nnoremap <F5> :MundoToggle<CR>
-nnoremap <F6> :Vista!!<CR>
+nnoremap <silent> <F5> :MundoToggle<CR>
+nnoremap <silent> <F6> :Vista!!<CR>
 
 " edit vimrc/zshrc and source vimrc
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
