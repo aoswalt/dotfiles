@@ -53,6 +53,7 @@ alias gzb='gco $(gbL | fzf | cut -d " " -f 3)'
 alias gbdr='git push origin --delete'
 alias gfap='gfa --prune && gbl | grep "\[gone\]" | cut -d " " -f3 | xargs git branch -d'
 alias gl='git log'
+alias gl10='git log -n 10'
 alias glg='gl --graph'
 alias glG='glg --all'
 
