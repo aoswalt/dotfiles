@@ -10,12 +10,12 @@ snippet c=> "const fun = () => {}"
 const ${1:fun} = ${2:()} => ${3:\{\}}
 endsnippet
 
-snippet todo "// TODO(name): "
-// TODO(adam): $0
+snippet todo "// TODO(user): "
+// TODO(`whoami`): $0
 endsnippet
 
-snippet note "// NOTE(name): "
-// NOTE(adam): $0
+snippet note "// NOTE(user): "
+// NOTE(`whoami`): $0
 endsnippet
 
 snippet cl "console.log"
@@ -34,8 +34,24 @@ snippet	peekm "map(d => console.log(d) || d),"
 .map(d => console.log(d) || d)
 endsnippet
 
+snippet ex "export" b
+export $0
+endsnippet
+
+snippet exf "export function" b
+export function ${1:name}($2) {
+  $3
+}$0
+endsnippet
+
 snippet exd "export default" b
 export default $0
+endsnippet
+
+snippet exdf "export default function" b
+export default function ${1:name}($2) {
+  $3
+}$0
 endsnippet
 
 # vim:ft=snippets:
