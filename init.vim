@@ -210,6 +210,8 @@ let g:ale_sql_pgformatter_options = "
 
 let g:vista_default_executive = 'ale'
 
+let g:neoterm_default_mod='belowright'
+
 " autocommands {{{1
 augroup autodir
   autocmd FileType javascript set noautochdir
