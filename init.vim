@@ -480,6 +480,14 @@ autocmd FileType sql nnoremap <buffer> <leader>rr :.DB<cr>
 autocmd FileType sql nmap <buffer> <expr> <leader>r db#op_exec()
 autocmd FileType sql vmap <buffer> <expr> <leader>r db#op_exec()
 
+autocmd FileType sql nnoremap <buffer> gss :.DB<cr>
+autocmd FileType sql nmap <buffer> <expr> gs db#op_exec()
+autocmd FileType sql vmap <buffer> <expr> gs db#op_exec()
+
+autocmd FileType sql nnoremap <buffer> <c-q><c-q> :.DB<cr>
+autocmd FileType sql nmap <buffer> <expr> <c-q> db#op_exec()
+autocmd FileType sql vmap <buffer> <expr> <c-q> db#op_exec()
+
 nnoremap <silent> <leader>S :ToggleSqlScratch<cr>
 
 " fzf
