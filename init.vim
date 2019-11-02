@@ -194,8 +194,11 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \  '*': ['remove_trailing_lines', 'trim_whitespace'],
 \  'javascript': ['prettier', 'eslint'],
+\  'typescript': ['prettier', 'eslint'],
 \  'elixir': ['mix_format'],
 \  'sql': ['pgformatter'],
+\  'css': ['prettier'],
+\  'json': ['prettier'],
 \}
 
 let g:ale_sql_pgformatter_options = "
