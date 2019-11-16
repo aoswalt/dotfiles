@@ -177,6 +177,8 @@ let g:UltiSnipsEditSplit = 'horizontal'
 let g:fzf_commands_expect = 'enter,ctrl-x'
 
 let g:vrc_trigger = '<leader>r'
+let g:vrc_response_default_content_type = 'application/json'
+let g:vrc_curl_opts = { '-sS': '' }
 
 let g:limelight_conceal_ctermfg = 236
 
