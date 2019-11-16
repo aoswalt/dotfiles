@@ -1,0 +1,79 @@
+snippet ir "import React from 'react'" b
+import React from 'react'
+endsnippet
+
+snippet rcp
+class ${1:ClassName} extends React.PureComponent {
+	render() {
+		return (
+			${0:<div />}
+		)
+	}
+}
+endsnippet
+
+snippet rcc
+class ${1:ClassName} extends React.Component {
+	render() {
+		return (
+			${0:<div />}
+		)
+	}
+}
+endsnippet
+
+snippet st "component state" b
+	state = {
+		$0
+	}
+endsnippet
+
+snippet dp
+${1:Component}.defaultProps = {
+	$2: $3,
+}
+endsnippet
+
+snippet pt "prop types" b
+${1:Component}.propTypes = {
+	$2: PropTypes.${3:type}
+}
+endsnippet
+
+snippet {pr "const {} = this.props" b
+	const { $1 } = this.props
+endsnippet
+
+snippet {st "const {} = this.state" b
+	const { $1 } = this.state
+endsnippet
+
+snippet prp "this.props.foo" i
+	this.props.${1}
+endsnippet
+
+snippet ste "this.state.foo" i
+	this.state.${1}
+endsnippet
+
+snippet ren "component render" b
+	render() {
+		return (
+			${1:<div />}
+		)
+	}
+endsnippet
+
+snippet mstp "map state to props" b
+const mapStateToProps = state => ({
+	${1:prop}: ${2:fun}(state),
+})
+endsnippet
+
+snippet mdtp "map dispatch to props" b
+const mapDispatchToProps = {
+	${1:prop}: ${2:fun},
+}
+endsnippet
+
+# vim:ft=snippets:
