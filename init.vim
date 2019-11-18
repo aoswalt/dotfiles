@@ -275,6 +275,10 @@ augroup elixir_colors
   autocmd FileType elixir highlight! Identifier ctermfg=88
 augroup end
 
+augroup dadbod_output_syntax
+  autocmd BufRead *.dbout set syntax=sql
+augroup end
+
 " highlight! link TermCursor Cursor
 highlight! TermCursorNC ctermbg=0 ctermfg=15
 
