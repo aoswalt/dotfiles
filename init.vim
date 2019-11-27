@@ -132,9 +132,6 @@ if executable('nvr')
   let $VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
 endif
 
-" fix to not require extra keypress for fzf in terminal
-let $FZF_DEFAULT_OPTS .= ' --no-height'
-
 
 
 " plugin settings {{{1
