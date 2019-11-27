@@ -600,15 +600,23 @@ function! ZoomToggle()
   endif
 endfunction
 
-" override Ag and Rg commands to search inside git repo
+" override Ag and Rg commands to search inside git repo and add preview
 command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>, {'dir': FugitiveWorkTree()}, <bang>0)
+  \ call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'dir': FugitiveWorkTree()}), <bang>0)
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
     \ "rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
     \ 1,
-    \ {'dir': FugitiveWorkTree()},
+    \ fzf#vim#with_preview({'dir': FugitiveWorkTree()}),
+    \ <bang>0
+  \ )
+
+" override GFiles to add preview
+command! -bang -nargs=? GFiles
+    \ call fzf#vim#gitfiles(
+    \ '-co --exclude-per-directory=.gitignore',
+    \ fzf#vim#with_preview(),
     \ <bang>0
   \ )
 
