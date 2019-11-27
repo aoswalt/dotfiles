@@ -305,7 +305,6 @@ noremap : ;
 nnoremap / /\v
 nnoremap ? ?\v
 cnoremap %s/ %s/\v
-cnoremap s/ s/\v
 
 " search within range, see *search-range*
 vnoremap g/ <esc>/\%><c-r>=line("'<")-1<cr>l\%<<c-r>=line("'>")+1<cr>l
