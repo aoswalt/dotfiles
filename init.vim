@@ -20,6 +20,7 @@ Plug 'stefandtw/quickfix-reflector.vim'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'exu/pgsql.vim'
+Plug 'plasticboy/vim-markdown'  "included in polyglot but without extra features
 Plug 'junegunn/limelight.vim'
 
 Plug 'w0rp/ale'
@@ -40,6 +41,7 @@ Plug 'kassio/neoterm'
 Plug 'thinca/vim-quickrun'
 Plug 'tpope/vim-dispatch'
 Plug 'suan/vim-instant-markdown', { 'do': 'npm install -g instant-markdown-d' }
+Plug 'godlygeek/tabular'
 Plug 'chrisbra/csv.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'diepm/vim-rest-console'
@@ -161,6 +163,10 @@ let g:delimitMate_expand_space = 1
 let b:csv_arrange_use_all_rows = 1
 
 let g:instant_markdown_autostart = 0
+
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_toml_frontmatter = 1
+let g:vim_markdown_new_list_item_indent = 2
 
 let g:quickrun_config = {}
 let g:quickrun_config['javascript.jsx'] = { 'type': 'javascript' }
@@ -290,6 +296,7 @@ let &colorcolumn="80,".join(range(120,999),",")
 
 "blacklist some files for line length markers
 autocmd FileType markdown let &colorcolumn=""
+autocmd FileType markdown set nofoldenable
 
 
 " keymappings {{{1
