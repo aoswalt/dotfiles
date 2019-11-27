@@ -39,7 +39,6 @@ Plug 'whatyouhide/vim-textobj-xmlattr'  "ax/ix for xml attribute
 Plug 'kassio/neoterm'
 Plug 'thinca/vim-quickrun'
 Plug 'tpope/vim-dispatch'
-Plug 'vim-scripts/dbext.vim'
 Plug 'suan/vim-instant-markdown', { 'do': 'npm install -g instant-markdown-d' }
 Plug 'chrisbra/csv.vim'
 Plug 'junegunn/vim-peekaboo'
