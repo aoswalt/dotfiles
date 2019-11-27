@@ -542,6 +542,8 @@ omap ac <Plug>(GitGutterTextObjectOuterPending)
 xmap ic <Plug>(GitGutterTextObjectInnerVisual)
 xmap ac <Plug>(GitGutterTextObjectOuterVisual)
 
+nnoremap <silent> <leader>Rp :ReadPreview<cr>
+
 
 
 " commands {{{1
@@ -579,6 +581,8 @@ command! -range FormatJSON :<line1>,<line2>call FormatJSON()
 command! -nargs=* Gpc execute('Gpush --set-upstream origin '.FugitiveHead().' '.<q-args>)
 
 command! ToggleSqlScratch :call ToggleSqlScratch(<q-mods>)
+
+command! ReadPreview call ReadPreview()
 
 
 " functions {{{1
@@ -673,6 +677,25 @@ function! ToggleSqlScratch(mods)
     let l:mods = get(a:, 'mods', 'botright')
     execute l:mods 'new' '+setlocal\ buftype=nofile|setlocal\ bufhidden=hide|setlocal\ filetype=sql' l:sql_scratch_name
   endif
+endfunction
+
+function! ReadPreview() abort
+  if &previewwindow     " don't do this in the preview window
+    echo "Can't read inside preview window"
+    return
+  endif
+
+  silent! wincmd P " to preview window
+
+  if &previewwindow == 0 " couldn't get to preview window
+    echo "No preview window open"
+    return
+  endif
+
+  let l:contents = getline(1, "$")
+  wincmd p      " back to old window
+
+  put =l:contents
 endfunction
 
 
