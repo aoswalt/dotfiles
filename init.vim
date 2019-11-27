@@ -454,6 +454,10 @@ nnoremap <leader>- :STerm<CR>
 nnoremap <leader>\| :VTermRepo<CR>
 nnoremap <leader>_ :STermRepo<CR>
 
+nmap gxx <Plug>(neoterm-repl-send-line)
+nmap gx <Plug>(neoterm-repl-send)
+xmap gx <Plug>(neoterm-repl-send)
+
 " inside template tags
 onoremap <silent> iT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?\\zs.\rv/\\v.\\ze[%}][>}]\r"<cr>
 vnoremap <silent> iT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?\\zs.\rv/\\v.\\ze[%}][>}]\r"<cr>
