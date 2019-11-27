@@ -32,7 +32,6 @@ Plug 'kana/vim-textobj-entire'      "ae/ie for entire file
 Plug 'kana/vim-textobj-indent'      "ai/ii for indent block
 Plug 'kana/vim-textobj-line'        "al/il for line
 Plug 'sgur/vim-textobj-parameter'   "a,/i, for argument/parameter
-Plug 'aoswalt/vim-textobj-elixir'   "aE/iE for Elixir blocks as remapped
 Plug 'Julian/vim-textobj-variable-segment'    "av/iv for variable part
 Plug 'Chun-Yang/vim-textobj-chunk'  "ac/ic for json-ish chunk
 Plug 'whatyouhide/vim-textobj-xmlattr'  "ax/ix for xml attribute
@@ -153,8 +152,6 @@ let g:ultisnips_javascript = {
 let g:surround_{char2nr('-')} = "<% \r %>"
 let g:surround_{char2nr('=')} = "<%= \r %>"
 
-let g:vim_textobj_elixir_mapping = 'E'
-
 let g:tmux_navigator_no_mappings = 1
 
 let g:delimitMate_expand_cr = 1
@@ -231,11 +228,6 @@ augroup end
 augroup dispatch_commands
   autocmd FileType sh let b:dispatch = '$SHELL %'
   autocmd FileType dot let b:dispatch = 'dot -Tpng % -o %:r.png'
-augroup end
-
-augroup ft_match_words
-  " add do/end as jumps for %
-  autocmd FileType elixir let b:match_words = '\<\(do\|fn\)\>:\<end\>'
 augroup end
 
 " only show cursor line one active window
