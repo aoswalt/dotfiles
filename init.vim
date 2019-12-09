@@ -243,7 +243,7 @@ augroup pum
 augroup end
 
 augroup term_settings
-  autocmd TermOpen * setlocal nonumber norelativenumber bufhidden=hide
+  autocmd TermOpen * setlocal nonumber norelativenumber bufhidden=hide scrolloff=0
 augroup end
 
 augroup term_insert
