@@ -48,6 +48,7 @@ alias v='nvim'
 
 alias gh='git help'
 alias giaa='gia -A'
+alias gria='gri --autosquash'
 alias gfp='git fetch --prune'
 alias gzb='gco $(gbL | fzf | cut -d " " -f 3)'
 alias gbdr='git push origin --delete'
