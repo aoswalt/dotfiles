@@ -144,11 +144,6 @@ let g:indent_guides_enable_on_vim_startup = 1
 
 let g:highlightedyank_highlight_duration = 350
 
-let g:ultisnips_javascript = {
-\ 'semi': 'never',
-\ 'space-before-function-paren': 'never',
-\ }
-
 let g:surround_{char2nr('-')} = "<% \r %>"
 let g:surround_{char2nr('=')} = "<%= \r %>"
 
