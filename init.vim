@@ -167,6 +167,7 @@ let g:quickrun_config['sh'] = { 'type': 'bash' }
 let g:sql_type_default = 'pgsql'
 
 let g:UltiSnipsEditSplit = 'horizontal'
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', $HOME.'/UltiSnips']
 
 let g:fzf_commands_expect = 'enter,ctrl-x'
 
