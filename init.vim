@@ -25,6 +25,7 @@ Plug 'junegunn/limelight.vim'
 
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ncm2/float-preview.nvim'
 Plug 'liuchengxu/vista.vim'
 
 Plug 'kana/vim-textobj-user'
@@ -182,6 +183,8 @@ let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
 \  'num_processes': 0,
 \})
+
+let g:float_preview#docked = 0
 
 let g:ale_linters = {
 \  'javascript': ['eslint', 'tsserver'],
