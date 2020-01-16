@@ -2,4 +2,8 @@ snippet sel "select (columns:*) from table"
 select ${2:*} from ${1} $0
 endsnippet
 
+snippet selfun "select function definition" b
+select pg_get_functiondef('${1:aspire.function_name}' :: regproc)$0
+endsnippet
+
 # vim:ft=snippets:
