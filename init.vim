@@ -199,6 +199,7 @@ let g:ale_fixers = {
 \  'sql': ['pgformatter'],
 \  'css': ['prettier'],
 \  'json': ['prettier'],
+\  'reason': ['refmt'],
 \}
 
 let g:ale_sql_pgformatter_options = "
