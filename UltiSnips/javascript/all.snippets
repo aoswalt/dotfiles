@@ -1,13 +1,13 @@
 snippet im "import module from 'module'"
-import ${1} from '${2:$1}'
+import ${1} from '${2:$1}'$0
 endsnippet
 
 snippet imm "import { member } from 'module'"
-import { $1 } from '$2'
+import { $1 } from '$2'$0
 endsnippet
 
 snippet c=> "const fun = () => {}"
-const ${1:fun} = ${2:()} => ${3:\{\}}
+const ${1:fun} = ${2:()} => ${0:\{\}}
 endsnippet
 
 snippet todo "// TODO(user): "
@@ -19,7 +19,7 @@ snippet note "// NOTE(user): "
 endsnippet
 
 snippet cl "console.log"
-console.log('$1', ${2:$1})
+console.log('$1', ${0:$1})
 endsnippet
 
 snippet cl| "console.log ||"
