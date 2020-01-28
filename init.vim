@@ -229,7 +229,7 @@ augroup dispatch_commands
   autocmd FileType dot let b:dispatch = 'dot -Tpng % -o %:r.png'
 augroup end
 
-" only show cursor line one active window
+" only show cursor line in active window
 augroup cursorLine
   autocmd!
   autocmd BufEnter * setlocal cursorline
@@ -390,7 +390,7 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :bd<cr>
 
-" search for word under cursor with <leader>*
+" project-wide search for word under cursor
 nnoremap <leader>* :Rg <c-r><c-w><CR>
 
 " system clipboard yank
