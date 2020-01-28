@@ -380,6 +380,8 @@ nnoremap <c-right> :bn<cr>
 nnoremap <c-left> :bp<cr>
 nnoremap <c-down> :bn \| bd #<cr>
 
+nnoremap <leader>B :BLines<cr>
+
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :bd<cr>
