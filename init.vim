@@ -336,10 +336,6 @@ tnoremap <m-j> <c-\><c-n><c-w>j
 tnoremap <m-k> <c-\><c-n><c-w>k
 tnoremap <m-l> <c-\><c-n><c-w>l
 
-" tab switching like tmux
-nnoremap <leader><m-h> :tabprev<cr>
-nnoremap <leader><m-l> :tabnext<cr>
-
 " window resizing
 nnoremap <M-S-h> <C-w><
 nnoremap <M-S-j> <C-w>+
@@ -366,17 +362,9 @@ cnoremap $d <CR>:d<CR>``
 " reselect pasted content:
 noremap gV `[v`]
 
-" insert time / date
-nnoremap <leader>it "=strftime("%H:%M")<CR>P
-nnoremap <leader>id "=strftime("%Y-%m-%d")<CR>P
-nnoremap <leader>iD "=strftime("%m.%d.%Y")<CR>P
-
 " netrw splits
 noremap <silent> <leader>x :Vexplore!<CR>:wincmd =<CR>
 noremap <silent> <leader>X :Sexplore<CR>:wincmd =<CR>
-
-" use sudo for file if forgot to when opened
-nnoremap <leader>sw :w !sudo tee % >/dev/null<cr>
 
 " super find
 nnoremap <leader>f :GFiles -co --exclude-per-directory=.gitignore<CR>
@@ -439,11 +427,9 @@ nnoremap <silent> <F6> :Vista!!<CR>
 
 " edit vimrc/zshrc and source vimrc
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
-nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
-nnoremap <leader>sf :source %<CR>
 
-" term splits like tmux
+" term splits
 nnoremap <leader>\ :VTerm<CR>
 nnoremap <leader>- :STerm<CR>
 nnoremap <leader>\| :VTermRepo<CR>
