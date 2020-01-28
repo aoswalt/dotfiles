@@ -138,7 +138,6 @@ endif
 " plugin settings {{{1
 let g:netrw_altfile = 1   "allow <c-6> to go to the previously edited file
 let g:netrw_preview = 1   "open preview window in a vertical split
-let g:netrw_localrmdir='rm -r'  "allow deleting non-empty directories
 
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
