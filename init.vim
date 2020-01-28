@@ -371,7 +371,7 @@ nnoremap <leader>F :FZF<CR>
 
 " super search
 nnoremap <leader>/ :Rg<space>
-nnoremap <leader>? :BLines<space>
+nnoremap <leader>? :Vista finder<cr>
 
 " buffer management
 nnoremap <leader>b :Buffers<cr>
