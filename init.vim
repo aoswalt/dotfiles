@@ -237,11 +237,6 @@ augroup cursorLine
   autocmd BufLeave * setlocal nocursorline
 augroup end
 
-augroup pum
-  " auto-close preview pane
-  autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-augroup end
-
 augroup term_settings
   autocmd TermOpen * setlocal nonumber norelativenumber bufhidden=hide sidescrolloff=0
 augroup end
