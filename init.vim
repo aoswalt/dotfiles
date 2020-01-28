@@ -251,6 +251,10 @@ augroup term_insert
   autocmd BufLeave term://* stopinsert
 augroup end
 
+autocmd FileType markdown set nofoldenable
+
+
+
 " colors {{{1
 colorscheme onedark
 
@@ -287,7 +291,7 @@ let &colorcolumn="80,".join(range(120,999),",")
 
 "blacklist some files for line length markers
 autocmd FileType markdown let &colorcolumn=""
-autocmd FileType markdown set nofoldenable
+
 
 
 " keymappings {{{1
