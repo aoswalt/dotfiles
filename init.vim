@@ -201,6 +201,9 @@ let g:ale_fixers = {
 \  'reason': ['refmt'],
 \}
 
+let g:ale_reason_ls_executable = 'reason-language-server'
+let g:ale_reasonml_refmt_executable = 'bsrefmt'
+
 let g:ale_sql_pgformatter_options = "
 \ --comma-start
 \ --comma-break
