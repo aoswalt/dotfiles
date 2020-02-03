@@ -197,7 +197,7 @@ let g:ale_fixers = {
 \  'elixir': ['mix_format'],
 \  'sql': ['pgformatter'],
 \  'css': ['prettier'],
-\  'json': ['prettier'],
+\  'json': ['prettier', 'jq'],
 \  'reason': ['refmt'],
 \}
 
