@@ -544,23 +544,23 @@ command! SynStack :call SynStack()
 
 " open a terminal in a different view
 command! -nargs=* VTerm :vsp
-  \ | execute 'terminal' <args>
+  \ | execute 'terminal' <q-args>
 command! -nargs=* VTermRepo :vsp
   \ fnameescape(FugitiveWorkTree())
   \ | execute 'lcd' fnameescape(FugitiveWorkTree())
-  \ | execute 'terminal' <args>
+  \ | execute 'terminal' <q-args>
 command! -nargs=* STerm :sp
-  \ | execute 'terminal' <args>
+  \ | execute 'terminal' <q-args>
 command! -nargs=* STermRepo :sp
   \ fnameescape(FugitiveWorkTree())
   \ | execute 'lcd' fnameescape(FugitiveWorkTree())
-  \ | execute 'terminal' <args>
+  \ | execute 'terminal' <q-args>
 command! -nargs=* TTerm :tabnew
-  \ | execute 'terminal' <args>
+  \ | execute 'terminal' <q-args>
 command! -nargs=* TTermRepo :tabedit
   \ fnameescape(FugitiveWorkTree())
   \ | execute 'lcd' fnameescape(FugitiveWorkTree())
-  \ | execute 'terminal' <args>
+  \ | execute 'terminal' <q-args>
 
 " amend without editing commit message
 command! Gamend Gcommit --amend --no-edit
