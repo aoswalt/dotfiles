@@ -45,6 +45,7 @@ Plug 'godlygeek/tabular'
 Plug 'chrisbra/csv.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'diepm/vim-rest-console'
+Plug 'wesQ3/vim-windowswap'
 
 Plug 'itchyny/lightline.vim'
 Plug 'airblade/vim-gitgutter'
