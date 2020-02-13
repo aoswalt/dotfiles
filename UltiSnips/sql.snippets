@@ -6,4 +6,8 @@ snippet selfun "select function definition" b
 select pg_get_functiondef('${1:aspire.function_name}' :: regproc)$0
 endsnippet
 
+snippet selmats "list materialized views" b
+select oid::regclass::text from pg_class where relkind = 'm'
+endsnippet
+
 # vim:ft=snippets:
