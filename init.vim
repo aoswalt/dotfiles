@@ -392,7 +392,7 @@ nnoremap <leader>* :Rg <c-r><c-w><CR>
 " system clipboard yank
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
-nnoremap <leader>Y "+Y
+nmap <leader>Y "+Y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 nnoremap <leader>P "+P
