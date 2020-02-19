@@ -506,6 +506,7 @@ nnoremap <leader><leader> :Commands<CR>
 " fugitive bindings
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>ga :Gwrite<cr>
+nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gc :Gcommit -v<cr>
 nnoremap <leader>gd :Gdiffsplit<cr>
 nnoremap <leader>gl :Git! log<cr>
