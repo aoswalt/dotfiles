@@ -470,6 +470,8 @@ endfun
 
 autocmd FileType * call MapLCKeys()
 
+autocmd FileType sql nnoremap <buffer> <silent> K :DB \h <c-r><c-w><cr>
+
 " TODO(adam): use Dispatch to default these?
 autocmd FileType sql nnoremap <buffer> <leader>rr :.DB<cr>
 autocmd FileType sql nmap <buffer> <expr> <leader>r db#op_exec()
