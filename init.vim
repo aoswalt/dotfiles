@@ -457,7 +457,7 @@ nnoremap <leader>md :InstantMarkdownPreview<CR>
 
 fun! MapLCKeys()
   " Don't map for built-in ones
-  if &ft =~ 'vim\|help\|shell'
+  if &ft =~ 'vim\|help\|sh\|shell'
     return
   endif
 
