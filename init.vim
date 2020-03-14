@@ -254,39 +254,15 @@ autocmd FileType markdown set nofoldenable
 " colors {{{1
 colorscheme onedark
 
-highlight! IndentGuidesOdd  ctermbg=233
-highlight! IndentGuidesEven ctermbg=234
-
-highlight! jsBlock ctermfg=150
-highlight! jsObjectKey ctermfg=139
-highlight! Constant ctermfg=37
-highlight! Normal ctermbg=NONE
-
-highlight! Define ctermfg=239
-
-augroup elixir_colors
-  autocmd FileType elixir highlight! Identifier ctermfg=88
-augroup end
-
 augroup dadbod_output_syntax
   autocmd BufRead *.dbout set syntax=sql
 augroup end
 
-" highlight! link TermCursor Cursor
-highlight! TermCursorNC ctermbg=0 ctermfg=15
-
-highlight Pmenu ctermbg=240
-highlight PmenuSel ctermbg=25
-
-" lighten non-active windows
-highlight NormalNC ctermbg=234
-
-" highlight line 80 and 120+
-highlight ColorColumn ctermbg=232
-let &colorcolumn="80,".join(range(120,999),",")
-
 "blacklist some files for line length markers
 autocmd FileType markdown let &colorcolumn=""
+
+" highlight line 80 and 120+
+let &colorcolumn="80,".join(range(120,999),",")
 
 
 
