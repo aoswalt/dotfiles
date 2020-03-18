@@ -51,7 +51,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ap/vim-css-color'
-Plug 'guns/xterm-color-table.vim'
+Plug 'aoswalt/xterm-color-table.vim'
 Plug 'vim-scripts/AnsiEsc.vim'
 Plug 'ryanoasis/vim-devicons'
 
