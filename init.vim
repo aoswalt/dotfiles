@@ -17,6 +17,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'stefandtw/quickfix-reflector.vim'
+Plug 'wsdjeg/vim-fetch'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'exu/pgsql.vim'
@@ -319,9 +320,6 @@ nnoremap <M-S-l> <C-w>>
 nnoremap <silent> <M-=> <c-w>=
 nnoremap <silent> <M-'> :call ZoomToggle()<cr>
 nnoremap <silent> <M-z> :call MaximizeWindow()<cr>
-
-" open file to side
-nnoremap gF :vertical wincmd f<CR>
 
 " mimic D,C (to end of line)
 nnoremap Y y$
@@ -670,6 +668,20 @@ function! ReadPreview() abort
 
   put =l:contents
 endfunction
+
+function! YankPosition(...)
+  let l:register = get(a:, 1, 0)
+
+  if trim(l:register) == ''
+    let l:register = '"'
+  endif
+
+  let l:fileLine = expand('%') . ':' . line('.') . ':' . col('.')
+
+  execute 'let @' . l:register . ' = "' . l:fileLine . '"'
+endfunction
+
+command! -nargs=? YankPosition :call YankPosition(<q-args>)
 
 
 
