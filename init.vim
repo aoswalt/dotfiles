@@ -480,14 +480,14 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 nnoremap <leader><leader> :Commands<CR>
 
 " fugitive bindings
-nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gs :Git<cr>
 nnoremap <leader>ga :Gwrite<cr>
-nnoremap <leader>gb :Gblame<cr>
-nnoremap <leader>gc :Gcommit -v<cr>
+nnoremap <leader>gb :Git blame<cr>
+nnoremap <leader>gc :Git commit -v<cr>
 nnoremap <leader>gd :Gdiffsplit<cr>
-nnoremap <leader>gl :Git! log<cr>
-nnoremap <leader>gL :Git! log -p %<cr>
-nnoremap <leader>gr :Grebase -i --autosquash
+nnoremap <leader>gl :Git --paginate log<cr>
+nnoremap <leader>gL :Git --paginate log -p %<cr>
+nnoremap <leader>gr :Git rebase -i --autosquash
 
 nnoremap <leader>l :Limelight<cr>
 nnoremap <leader>L :Limelight!<cr>
