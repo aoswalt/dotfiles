@@ -342,7 +342,7 @@ noremap <silent> <leader>x :Vexplore!<CR>:wincmd =<CR>
 noremap <silent> <leader>X :Sexplore<CR>:wincmd =<CR>
 
 " super find
-nnoremap <leader>f :GFiles<CR>
+nnoremap <leader>f :GFilesPreview<CR>
 nnoremap <leader>F :FZF<CR>
 
 " super search
@@ -582,8 +582,8 @@ command! -bang -nargs=* Rg
     \ <bang>0
   \ )
 
-" override GFiles to add preview
-command! -bang -nargs=? GFiles
+" new GFiles to add preview
+command! -bang -nargs=? GFilesPreview
     \ call fzf#vim#gitfiles(
     \ '-co --exclude-per-directory=.gitignore',
     \ fzf#vim#with_preview(),
