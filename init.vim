@@ -342,7 +342,7 @@ noremap <silent> <leader>x :Vexplore!<CR>:wincmd =<CR>
 noremap <silent> <leader>X :Sexplore<CR>:wincmd =<CR>
 
 " super find
-nnoremap <leader>f :GFiles -co --exclude-per-directory=.gitignore<CR>
+nnoremap <leader>f :GFiles<CR>
 nnoremap <leader>F :FZF<CR>
 
 " super search
