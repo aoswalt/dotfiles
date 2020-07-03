@@ -121,8 +121,6 @@ set listchars+=nbsp:⣿
 
 set completeopt=longest,menuone
 
-set autochdir
-
 let g:mapleader = ' ' "use space as leader
 
 if isdirectory($HOME . '/.config/nvim/undo') == 0
