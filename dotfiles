@@ -377,8 +377,8 @@ if [[ ${opt_langs:-$opt_all} ]]; then
   install_asdf
   install_language python 3.7.5
   install_language nodejs 12.12.0
-  install_language erlang 22.1.3
-  install_language elixir 1.9.2-otp-22
+  install_language erlang 23.0.2
+  install_language elixir 1.10.3-otp-23
   install_language postgres 12.0
 fi
 
