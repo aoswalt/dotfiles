@@ -193,7 +193,14 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f ~/.asdf/asdf.sh ] && source ~/.asdf/asdf.sh
-[ -f ~/.asdf/completions/asdf.bash ] && source ~/.asdf/completions/asdf.bash
+
+if [ -d ${ASDF_DIR}/completions ]; then
+  # append completions to fpath
+  fpath=(${ASDF_DIR}/completions $fpath)
+  # initialise completions with ZSH's compinit
+  autoload -Uz compinit
+  compinit
+fi
 
 ## load local zshrc
 [ -f $HOME/.zshrc.after ] && source $HOME/.zshrc.after
