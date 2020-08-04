@@ -84,71 +84,20 @@ function try_link_each() {
 function install_asdf() {
   if [[ $(command -v asdf) ]]; then
     log_info "asdf already installed"
-    return 0
+  else
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0-rc1
+    [ $? -ne 0 ] && return 1
   fi
 
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.6.3
-
-  [ $? -ne 0 ] && return 1
-
-  source ~/.asdf/asdf.sh
-  source ~/.asdf/completions/asdf.bash
+  source $HOME/.asdf/asdf.sh
   log_info "asdf installed"
-}
 
-# install the specified language and version with asdf
-# TODO: check installed and version
-function install_language() {
-  lang=$1
-  version=$2
+  # this is not yet automatically handled by asdf but may be soon
+  log_info "installing asdf plugins"
+  cut -d' ' -f 1 "$this_dir/.tool-versions" | xargs -I % asdf plugin add %
 
-  if [[ -z $lang || -z $version ]]; then
-    log_error "install_language() requires 2 arguments: language and version"
-    return 1
-  fi
-
-  if [[ ! $(command -v asdf) ]]; then
-    log_error "asdf not found"
-    return 1
-  fi
-
-  log_info "Setting up asdf ${cyan}$lang${normal} for version ${cyan}$version${normal}"
-
-  if [[ $(asdf plugin-list | grep "$lang" >/dev/null 2>&1) ]]; then
-    log_info "Adding asdf plugin: ${cyan}$lang${normal}"
-    asdf plugin add $lang
-
-    [ $? -ne 0 ] && return 1
-  else
-    log_info "asdf plugin already exists: ${cyan}$lang${normal}"
-  fi
-
-  # node needs gpg keys added
-  if [[ $lang == 'nodejs' ]]; then
-    bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
-  fi
-
-  if ! $(asdf list $lang | grep "$version" >/dev/null 2>&1); then
-    log_info "Installing asdf language: ${cyan}$lang${normal} - ${cyan}$version${normal}"
-    asdf install $lang $version || true
-
-    [ $? -ne 0 ] && return 1
-  else
-    log_info "asdf language version already exists: ${cyan}$lang${normal} - ${cyan}$version${normal}"
-  fi
-
-  if ! $(asdf current $lang | grep "$version" >/dev/null 2>&1); then
-    log_info "Setting asdf global: ${cyan}$lang${normal} - ${cyan}$version${normal}"
-    asdf global $lang $version
-
-    [ $? -ne 0 ] && return 1
-  else
-    log_info "asdf gloabl version already set: ${cyan}$lang${normal} - ${cyan}$version${normal}"
-  fi
-
-  asdf reshim $lang $version
-
-  [ $? -ne 0 ] && return 1
+  log_info "installing asdf tool versions"
+  asdf install
 }
 
 # link neovim files, add neovim python packages, and add edit overrides
@@ -373,20 +322,16 @@ while test "$#" -gt 0; do
 done
 
 
-if [[ ${opt_langs:-$opt_all} ]]; then
-  install_asdf
-  install_language python 3.8.5
-  install_language nodejs 12.18.3
-  install_language erlang 23.0.3
-  install_language elixir 1.10.4-otp-23
-  install_language postgres 12.3
-fi
-
 if [[ ${opt_files:-$opt_all} ]]; then
   try_link .bashrc
   try_link .eslintrc.json
   try_link .tmux.conf
   try_link .xprofile
+  try_link .tool-versions
+fi
+
+if [[ ${opt_langs:-$opt_all} ]]; then
+  install_asdf
 fi
 
 if [[ ${opt_tools:-$opt_all} ]]; then
