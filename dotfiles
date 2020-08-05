@@ -328,6 +328,8 @@ if [[ ${opt_files:-$opt_all} ]]; then
   try_link .tmux.conf
   try_link .xprofile
   try_link .tool-versions
+  mkdir -p "$HOME/.config/alacritty"
+  try_link alacritty.yml "$HOME/.config/alacritty"
 fi
 
 if [[ ${opt_langs:-$opt_all} ]]; then
