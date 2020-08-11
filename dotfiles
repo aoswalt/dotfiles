@@ -354,10 +354,9 @@ if [[ ${opt_lsp:-$opt_all} ]]; then
   [[ $(command -v elixir-ls) ]] || \
     mkdir -p "$HOME/tools" && \
     cd $_ && \
-    git clone https://github.com/JakeBecker/elixir-ls.git && \
+    git clone https://github.com/elixir-lsp/elixir-ls.git && \
     cd elixir-ls && \
     mix do deps.get, elixir_ls.release -o release &&
-    ln -s $HOME/tools/elixir-ls/release/language_server.sh /usr/local/bin/elixir-ls
 
   pip3 install -q python-language-server
 fi
