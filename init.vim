@@ -436,8 +436,9 @@ fun! MapLCKeys()
   endif
 
   nmap <buffer> <silent> K <Plug>(ale_hover)
+  vmap <buffer> <silent> K <Plug>(ale_hover)
   nmap <buffer> gd <Plug>(ale_go_to_definition)
-  nmap <buffer> <silent> gD <Plug>(ale_go_to_definition_in_vsplit)
+  nnoremap <buffer> <silent> gD :ALEGoToDefinition -vsplit<cr>
   nmap <buffer> gy <Plug>(ale_find_references)
   nmap <buffer> gY <Plug>(ale_go_to_type_definition)
 endfun
