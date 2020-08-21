@@ -10,4 +10,18 @@ snippet selmats "list materialized views" b
 select oid::regclass::text from pg_class where relkind = 'm'
 endsnippet
 
+snippet running "show running queries" b
+select
+    psa.pid
+  , now() - psa.query_start as running_time
+  , psa.client_addr
+  , psa.client_port
+  , psa.application_name
+  , psa.state
+  , psa.query
+from pg_stat_activity psa
+where psa.state <> 'idle'::text and psa.query !~ 'running_queries'::text
+order by psa.query_start
+endsnippet
+
 # vim:ft=snippets:
