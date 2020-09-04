@@ -248,7 +248,7 @@ augroup term_insert
   autocmd BufLeave term://* stopinsert
 augroup end
 
-autocmd FileType markdown set nofoldenable
+autocmd FileType markdown setlocal nofoldenable | setlocal spell | setlocal wrap | setlocal linebreak
 
 
 
@@ -432,6 +432,7 @@ xnoremap Q :normal @q<CR>
 
 " port 8090
 nnoremap <leader>md :InstantMarkdownPreview<CR>
+nnoremap <leader>mD :InstantMarkdownStop<CR>
 
 fun! MapLCKeys()
   " Don't map for built-in ones
