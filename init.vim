@@ -259,6 +259,10 @@ augroup dadbod_output_syntax
   autocmd BufRead *.dbout set syntax=sql
 augroup end
 
+augroup qmk_inc_files_syntax
+  autocmd BufRead *.inc set syntax=c
+augroup end
+
 "blacklist some files for line length markers
 autocmd FileType markdown let &colorcolumn=""
 
