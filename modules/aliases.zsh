@@ -216,17 +216,17 @@ fi
 if [[ $commands[exa] ]]; then
   alias ls='exa --group-directories-first --color=auto --color-scale --classify'
   alias l1='ls -1'
-  alias la='ls -l'
+  alias la='ls -l --all'
   alias la1='la -1'
   alias ll='ls -l'
-  alias lal='ls -l'
+  alias lal='la -l'
 else
   alias ls='ls --group-directories-first --color=auto --classify --human-readable'
   alias l1='ls -1'
-  alias la='ls -l --almost-all'
+  alias la='ls --almost-all'
   alias la1='la -1'
   alias ll='ls -l'
-  alias lal='ls -l --almost-all'
+  alias lal='la -l'
 fi
 
 alias l=ls
