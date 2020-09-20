@@ -1,103 +1,37 @@
-## Executes commands at the start of an interactive session
-
-# fix vim not seeing 256-color terminal
-[[ $COLORTERM = gnome-terminal && ! $TERM = screen-256color && -z "$TMUX" ]] && TERM=xterm-256color
-
 # Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+# if file and size > 0
+# if [[ -s "$HOME/.zprezto/init.zsh" ]]; then
+#   source "$HOME/.zprezto/init.zsh"
+# fi
 
-# Remove completion groups
-zstyle -d ':completion:*:matches' group
-zstyle -d ':completion:*:options' description
-zstyle -d ':completion:*:options' auto-description
-zstyle -d ':completion:*:corrections' format
-zstyle -d ':completion:*:descriptions' format
-zstyle -d ':completion:*:messages' format
-zstyle -d ':completion:*:warnings' format
-zstyle -d ':completion:*:default' list-prompt
-zstyle -d ':completion:*' format
-zstyle -d ':completion:*' group-name
+fpath=($DOTFILESDIR/functions $DOTFILESDIR/widgets $fpath)
+for zfunction in $DOTFILESDIR/{functions,widgets}/*; do
+  autoload -Uz "$zfunction"
+done
 
-unsetopt CORRECT                      # Disable autocorrect guesses.
+for zwidget in $DOTFILESDIR/widgets/*; do
+  zle -N "${zwidget##*/}"
+done
 
-# make ctrl-u delete backwards
-bindkey \^U backward-kill-line
+for module in $DOTFILESDIR/modules/*.zsh; do
+  source $module
+done #2>/dev/null
 
-autoload -U zmv
-alias zmv='noglob zmv -W'
+setopt BEEP                     # Beep on error in line editor.
 
-## aliases
-alias weather='curl wttr.in/Nashville'
-alias tree='tree -C'
-alias python='python3'
-alias pip='pip3'
-alias l1='ls -1'
-alias ll='ls -AlhF'
-alias la='ls -A'
-alias la1='ls -A1'
-alias l='ls -CF'
-alias gresolve="git diff --name-only | uniq | xargs $EDITOR"
-alias gresolvep='gresolve -p'
-alias gresolveo='gresolve -O'
-alias n='nvim'
-alias n.='nvim .'
-alias vim='nvim'
-alias v='nvim'
 
-alias gh='git help'
-alias giaa='gia -A'
-alias gria='gri --autosquash'
-alias gfp='git fetch --prune'
-alias gzb='gco $(gbL | fzf | cut -d " " -f 3)'
-alias gbdr='git push origin --delete'
-alias gfap='gfa --prune && gbl | grep "\[gone\]" | cut -d " " -f3 | xargs git branch -d'
-alias gl='git log'
-alias gl10='git log -n 10'
-alias glg='gl --graph'
-alias glG='glg --all'
+# Load and execute the prompt theming system.
+autoload -Uz promptinit && promptinit
 
-alias shrug="echo '¯\_(ツ)_/¯'"
+prompt "rocket"
 
-neoterm() {
-  nvim +"terminal $*"
-}
-alias nt='neoterm'
+autoload -Uz zmv
 
-ownnpm() {
-  if [[ $(npm config get prefix) == '/usr' ]]; then
-    echo 'Cannot autofix: your npm prefix is "/usr"'
-    echo 'Add to after file: export NPM_CONFIG_PREFIX=~/.npm-global'
-  else
-   sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
-  fi
-}
-
-nuke-node-modules() {
-  find . -name "node_modules" -type d -prune -print | xargs du -chs;
-  echo -n "Nuke \033[31meverything\033[0m? [yN] "
-  read -q confirm
-
-  if [[ $confirm =~ ^[Yy] ]]; then
-    find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
-  fi
-}
+# make ctrl-u delete backwards like bash
+bindkey -M emacs \^U backward-kill-line
 
 ## functions
-function = { echo $(($@))  }  # easy math
 mkdwn() { pandoc $1 | lynx -stdin -dump }   # print markdown in terminal
-
-# from oh-my-zsh
-gpb() {
-  if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
-    git push origin "${*}"
-  else
-    [[ "$#" == 0 ]] && local b="$(git-branch-current)"
-    git push origin "${b:=$1}"
-  fi
-}
-compdef _git gpb=git-checkout
 
 # use nvr to prevent neovim nesting
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
@@ -108,60 +42,48 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
   fi
 fi
 
-# needs tweaking for non BSD, probably with brace expansion {1..5}
-# maybe cd\^
-# cd^ () {
-#   if [ $1 -eq 1 ]; then
-#     cd ..
-#   else
-#     cd $(seq -f '../' -s '' $1)
-#   fi
-# }
-
-# if [[ "$OSTYPE" == "linux-gnu" ]]; then
-#   # ...
-# elif [[ "$OSTYPE" == "darwin"* ]]; then
-#   # Mac OSX
-# elif [[ "$OSTYPE" == "cygwin" ]]; then
-#   # POSIX compatibility layer and Linux environment emulation for Windows
-# elif [[ "$OSTYPE" == "msys" ]]; then
-#   # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
-# elif [[ "$OSTYPE" == "win32" ]]; then
-#   # I'm not sure this can happen.
-# elif [[ "$OSTYPE" == "freebsd"* ]]; then
-#   # ...
-# else
-#   # Unknown.
-# fi
-
-
 # case "$OSTYPE" in
 #   solaris*) echo "SOLARIS" ;;
 #   darwin*)  echo "OSX" ;;
 #   linux*)   echo "LINUX" ;;
 #   bsd*)     echo "BSD" ;;
-#   msys*)    echo "WINDOWS" ;;
+#   cygwin*)  echo "WINDOWS (POSIX compat) ;;
+#   msys*)    echo "WINDOWS (MinGW)" ;;
+#   win32*)   echo "WINDOWS (impossible?)" ;;
+#   freebsd*) echo "FREE BSD" ;;
 #   *)        echo "unknown: $OSTYPE" ;;
 # esac
 
 
+ # # colorize man pages
+ # # https://unix.stackexchange.com/questions/108699/documentation-on-less-termcap-variables
+# man() {
+ #  LESS_TERMCAP_mb=$'\e[1;31m' \
+ #  LESS_TERMCAP_md=$'\e[1;31m' \
+ #  LESS_TERMCAP_me=$'\e[0m' \
+ #  LESS_TERMCAP_se=$'\e[0m' \
+ #  LESS_TERMCAP_so=$'\e[1;44;33m' \
+ #  LESS_TERMCAP_ue=$'\e[0m' \
+ #  LESS_TERMCAP_us=$'\e[1;32m' \
+ #  command man "$@"
+# }
 
-# colorize man pages
-# https://unix.stackexchange.com/questions/108699/documentation-on-less-termcap-variables
-#man() {
-  #LESS_TERMCAP_mb=$'\e[1;31m' \
-  #LESS_TERMCAP_md=$'\e[1;31m' \
-  #LESS_TERMCAP_me=$'\e[0m' \
-  #LESS_TERMCAP_se=$'\e[0m' \
-  #LESS_TERMCAP_so=$'\e[1;44;33m' \
-  #LESS_TERMCAP_ue=$'\e[0m' \
-  #LESS_TERMCAP_us=$'\e[1;32m' \
-  #command man "$@"
-#}
 
-
-# start terminal in tmux, reattach if exists
+# Auto Start tmux
 # [[ $TERM != screen* ]] && [ -z $TMUX ] && { tmux attach || tmux new-session -s home; }
+if [[ $(command -v tmux) && -z "$TMUX" && -z "$EMACS" && -z "$VIM" && -z "$INSIDE_EMACS" && -z "$VSCODE_PID" ]]; then
+  tmux start-server
+
+  if ! tmux has-session 2> /dev/null; then
+    tmux_session=dev
+    tmux \
+      new-session -d -s "$tmux_session" \; \
+      set-option -t "$tmux_session" destroy-unattached off &> /dev/null
+  fi
+
+  # Attach to the 'dev' session or to the last session used. (detach first)
+  exec tmux attach-session -d
+fi
 
 
 [ $commands[fasd] ] && eval "$(fasd --init auto)"
@@ -170,13 +92,35 @@ fi
 
 [ -f ~/.asdf/asdf.sh ] && source ~/.asdf/asdf.sh
 
+
+fpath=($DOTFILES/external/zsh-completions/src $fpath)
 if [ -d ${ASDF_DIR}/completions ]; then
   # append completions to fpath
   fpath=(${ASDF_DIR}/completions $fpath)
-  # initialise completions with ZSH's compinit
-  autoload -Uz compinit
-  compinit
 fi
+
+# initialise completions
+autoload -Uz compinit && compinit
+
+# compdef _git gpb=git-checkout
+
+# Execute code that does not affect the current session in the background.
+{
+  # Compile the completion dump to increase startup speed.
+  zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+  if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
+    zcompile "$zcompdump"
+  fi
+} &!
+
+source $DOTFILES/external/zsh-you-should-use/you-should-use.plugin.zsh
+export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern line cursor root)
+source $DOTFILES/external/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $DOTFILES/external/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $DOTFILES/external/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# emacs _should_ be the default keybinds
+bindkey -e
 
 ## load local zshrc
 [ -f $HOME/.zshrc.after ] && source $HOME/.zshrc.after

@@ -1,0 +1,23 @@
+# Runs bindkey but for all of the keymaps. Running it with no arguments will
+# print out the mappings for all of the keymaps.
+#
+# Provides a function `bindkey-all` which can be useful for checking how all of the
+# keys are bound. Normal `bindkey` command will only list the keys bound for one
+# keymap, which is not as useful if you want to grep through the output. The
+# keymap's names go to stderr so when you grep through bindkey-all's output you
+# will still see the headings and can tell which keymap each binding goes to.
+#
+# It will also pass through arguments so you can use bindkey-all to set bindings
+# for all keymaps at once. If provided arguments it will *not* print out the
+# names of each of the keymaps, and just run the command for each keymap.
+
+local keymap=''
+
+for keymap in $(bindkey -l); do
+  [[ "$#" -eq 0 ]] && printf "#### %s\n" "${keymap}" 1>&2
+  bindkey -M "${keymap}" "$@"
+done
+
+# unset keymap
+
+# vim:ft=zsh

@@ -55,10 +55,14 @@ if [ -x /usr/bin/dircolors ]; then
   alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+alias ls='ls --group-directories-first --classify --human-readable'
+alias l1='ls -1'
+alias la='ls -l --almost-all'
+alias la1='la -1'
+alias ll='ls -l'
+alias lal='ls -l --almost-all'
+
+alias l=ls
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert

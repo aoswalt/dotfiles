@@ -164,29 +164,6 @@ function setup_fzf() {
   [ $? -ne 0 ] && return 1
 }
 
-function clone_prezto() {
-  if [[ -e "${ZDOTDIR:-$HOME}/.zprezto"  ]]; then
-    log_info "Prezto already exists - not cloning"
-    return 0
-  fi
-
-  log_info "Cloning Prezto"
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-}
-
-function link_prezto_files() {
-  prezto_files=(
-    .zlogin
-    .zlogout
-    .zpreztorc
-    .zprofile
-    .zshenv
-    .zshrc
-  )
-
-  try_link_each prezto_files
-}
-
 # set zsh as default shell
 function set_zsh() {
   if [[ $(echo $SHELL | grep 'zsh') ]]; then
@@ -283,7 +260,7 @@ Installing
   --langs   Install languages with asdf (erlang, elixir, nodejs, postgres, python)
   --lsp     Install language servers (elixir-ls, pyls)
   --tools   Install tools, linking dotfiles as appropriate (eslint, fzf)
-  --zsh     Install prezto and set zsh as shell
+  --zsh     Set zsh as shell
 '
 }
 
@@ -342,7 +319,6 @@ if [[ ${opt_tools:-$opt_all} ]]; then
 fi
 
 if [[ ${opt_zsh:-$opt_all} ]]; then
-  clone_prezto && link_prezto_files
   set_zsh
 fi
 
@@ -356,7 +332,7 @@ if [[ ${opt_lsp:-$opt_all} ]]; then
     cd $_ && \
     git clone https://github.com/elixir-lsp/elixir-ls.git && \
     cd elixir-ls && \
-    mix do deps.get, elixir_ls.release -o release &&
+    mix do deps.get, elixir_ls.release -o release
 
   pip3 install -q python-language-server
 fi
@@ -370,7 +346,7 @@ fi
 # Installing
 #   --all               Install and setup everything
 #   --lang=LANG[,...]   Install a language with asdf (erlang|elixir|nodejs|postgres|python)
-#   --tool=TOOL[,...]   Install a tool, linking dotfiles as appropriate (eslint|fzf|prezto)
+#   --tool=TOOL[,...]   Install a tool, linking dotfiles as appropriate (eslint|fzf)
 #   --files=TOOL[,...]  Link a dotfiles for a tool (bash|neovim|tmux)
 #   --set=DEFAULT[,...] Set a thing as the default (zsh)
 

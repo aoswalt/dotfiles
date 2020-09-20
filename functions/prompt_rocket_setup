@@ -1,0 +1,70 @@
+# 16 Terminal Colors
+# -- ---------------
+#  0 black
+#  1 red
+#  2 green
+#  3 yellow
+#  4 blue
+#  5 magenta
+#  6 cyan
+#  7 white
+#  8 bright black
+#  9 bright red
+# 10 bright green
+# 11 bright yellow
+# 12 bright blue
+# 13 bright magenta
+# 14 bright cyan
+# 15 bright white
+
+# Visual effects
+#   %B (%b) - Start (stop) boldface mode.
+#   %E      - Clear to end of line.
+#   %U (%u) - Start (stop) underline mode.
+#   %S (%s) - Start (stop) standout (inverse) mode.
+#   %F (%f) - Start (stop) using a different foreground colour.
+#     The colour may be specified two ways: either as a numeric argument, as normal, or by a sequence in braces following the %F, for example %F{red}.
+#     In the latter case the values allowed are as described for the fg zle_highlight attribute; see Character Highlighting in zshzle(1).
+#     This means that numeric colours are allowed in the second format also.
+#   %K (%k) - Start (stop) using a different bacKground colour. The syntax is identical to that for %F and %f.
+
+function editor-keymap-print {
+  if [[ "$KEYMAP" == 'vicmd' ]]; then
+    echo ' %B%F{2}❮%F{3}❮%F{1}❮%f%b'
+  else
+    echo ' %B%F{1}❯%F{3}❯%F{2}❯%f%b'
+  fi
+}
+zle -N editor-keymap-print
+
+function editor-state-print {
+  if [[ "$ZLE_STATE" == *overwrite* ]]; then
+    echo ' %F{3}♺%f'
+  else
+    echo ''
+  fi
+}
+zle -N editor-state-print
+
+function prompt_rocket_setup {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE # KSH_ARRAYS
+  prompt_opts=(cr percent sp subst)
+
+  # Define prompts.
+  PROMPT='${SSH_TTY:+"%F{9}%n%f%F{7}@%f%F{3}%m%f "}'
+  PROMPT+='%F{4}$(prompt-pwd)'
+  PROMPT+='%(!. %B%F{1}#%f%b.)'
+  PROMPT+='$(editor-keymap-print) '
+
+  RPROMPT='$(editor-state-print)'
+  RPROMPT+='%(?:: %F{1}✘ %? %f)'
+  RPROMPT+='${VIM:+" %B%F{6}V%f%b"} '
+  RPROMPT+='$(git-info)'
+
+  SPROMPT='zsh: correct %F{1}%R%f to %F{2}%r%f [nyae]? '
+}
+
+prompt_rocket_setup "$@"
+
+# vim: ft=zsh

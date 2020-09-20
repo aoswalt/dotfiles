@@ -1,0 +1,9 @@
+# Prints the first non-empty string in the arguments array.
+
+for arg in $argv; do
+  print "$arg"
+  return 0
+done
+return 1
+
+# vim: ft=zsh

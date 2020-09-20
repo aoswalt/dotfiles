@@ -1,0 +1,6 @@
+#compdef dut
+#autoload
+
+_du
+
+# vim: ft=zsh

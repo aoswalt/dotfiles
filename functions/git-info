@@ -1,0 +1,261 @@
+# Gets the Git special action (am, bisect, cherry, merge, rebase, revert).
+#
+# | Name                 | Description
+# | -------------------- | -------------------------------
+# | apply                | Applying patches
+# | bisect               | Binary searching for changes
+# | cherry-pick          | Cherry picking
+# | cherry-pick-sequence | Cherry picking sequence
+# | merge                | Merging
+# | rebase               | Rebasing
+# | rebase-interactive   | Rebasing interactively
+# | rebase-merge         | Rebasing merge
+# | revert               | Reverting
+# | revert-sequence      | Reverting sequence
+function _git-action {
+  local action_dir
+  local git_dir="$(git-dir)"
+
+  for action_dir in \
+    "${git_dir}/rebase-apply" \
+    "${git_dir}/rebase" \
+    "${git_dir}/../.dotest"
+  do
+    if [[ -d "$action_dir" ]] ; then
+      if [[ -f "${action_dir}/rebasing" ]] ; then
+        print 'rebase'
+      elif [[ -f "${action_dir}/applying" ]] ; then
+        print 'apply'
+      else
+        print 'rebase/apply'
+      fi
+
+      return 0
+    fi
+  done
+
+  for action_dir in \
+    "${git_dir}/rebase-merge/interactive" \
+    "${git_dir}/.dotest-merge/interactive"
+  do
+    if [[ -f "$action_dir" ]]; then
+      print 'rebase-interactive'
+      return 0
+    fi
+  done
+
+  for action_dir in \
+    "${git_dir}/rebase-merge" \
+    "${git_dir}/.dotest-merge"
+  do
+    if [[ -d "$action_dir" ]]; then
+      print'rebase-merge'
+      return 0
+    fi
+  done
+
+  if [[ -f "${git_dir}/MERGE_HEAD" ]]; then
+    print 'merge'
+    return 0
+  fi
+
+  if [[ -f "${git_dir}/CHERRY_PICK_HEAD" ]]; then
+    if [[ -d "${git_dir}/sequencer" ]] ; then
+      print 'cherry-pick-sequence'
+    else
+      print 'cherry-pick'
+    fi
+
+    return 0
+  fi
+
+  if [[ -f "${git_dir}/REVERT_HEAD" ]]; then
+    if [[ -d "${git_dir}/sequencer" ]] ; then
+      print 'revert-sequence'
+    else
+      print 'revert'
+    fi
+
+    return 0
+  fi
+
+  if [[ -f "${git_dir}/BISECT_LOG" ]]; then
+    print 'bisect'
+    return 0
+  fi
+
+  return 1
+}
+
+
+# Gets the Git status information.
+function git-info {
+  # Extended globbing is needed to parse repository status.
+  setopt LOCAL_OPTIONS
+  setopt EXTENDED_GLOB
+
+  # Bail if not inside a Git repository work tree.
+  if ! $(command git rev-parse --is-inside-work-tree 2> /dev/null); then
+    return 1
+  fi
+
+  local action
+  local action_formatted
+  local added=0
+  local added_formatted
+  local ahead=0
+  local ahead_and_behind
+  local ahead_formatted
+  local behind=0
+  local behind_formatted
+  local branch
+  local branch_formatted
+  local clean
+  local clean_formatted
+  local commit
+  local commit_formatted
+  local deleted=0
+  local deleted_formatted
+  local dirty=0
+  local dirty_formatted
+  local ignore_submodules
+  local indexed=0
+  local indexed_formatted
+  local modified=0
+  local modified_formatted
+  local position
+  local position_formatted
+  local remote
+  local remote_formatted
+  local renamed=0
+  local renamed_formatted
+  local stashed=0
+  local stashed_formatted
+  local status_mode
+  local unindexed=0
+  local unindexed_formatted
+  local unmerged=0
+  local unmerged_formatted
+  local untracked=0
+  local untracked_formatted
+
+  # literals
+  commit="$(command git rev-parse HEAD 2> /dev/null)"
+  action="$(_git-action)"
+  branch="${$(command git symbolic-ref HEAD 2> /dev/null)#refs/heads/}"
+  position="$(command git describe --contains --all HEAD 2> /dev/null)"
+  remote="${$(command git rev-parse --symbolic-full-name --verify HEAD@\{upstream\} 2> /dev/null)##refs/remotes/}"
+
+  # counts
+  stashed="$(command git stash list 2> /dev/null | wc -l | awk '{print $1}')"
+  ahead_and_behind_counts="$(command git rev-list --count --left-right HEAD...@\{upstream\} 2> /dev/null)"
+  ahead="$ahead_and_behind_counts[(w)1]"
+  behind="$ahead_and_behind_counts[(w)2]"
+
+  # Count added, deleted, modified, renamed, unmerged, untracked, dirty.
+  while IFS=$'\n' read line; do
+    # T (type change) is undocumented, see http://git.io/FnpMGw.
+    # For a table of scenarii, see http://i.imgur.com/2YLu1.png.
+    [[ "$line" == ([ACDMT][\ MT]|[ACMT]D)\ * ]] && (( added++ ))
+    [[ "$line" == [\ ACMRT]D\ * ]] && (( deleted++ ))
+    [[ "$line" == ?[MT]\ * ]] && (( modified++ ))
+    [[ "$line" == R?\ * ]] && (( renamed++ ))
+    [[ "$line" == (AA|DD|U?|?U)\ * ]] && (( unmerged++ ))
+    [[ "$line" == \?\?\ * ]] && (( untracked++ ))
+    (( dirty++ ))
+  done < <(command git status --porcelain --ignore-submodules=none 2> /dev/null)
+
+
+  # literals
+
+  if [[ -n "$commit" ]]; then
+    zformat -f commit_formatted '%B%F{3}%.7c%f%b' "c:$commit"
+  fi
+
+  if [[ -n "$action" ]]; then
+    action_formatted="%F{7}:%f%B%F{9}$action%f%b"
+  fi
+
+  if [[ -n "$branch" ]]; then
+    branch_formatted="%B%F{2}$branch%f%b"
+  fi
+
+  if [[ -n "$position" ]]; then
+      position_formatted="%B%F{13}$position%f%b"
+  fi
+
+  if [[ -n "$remote" ]]; then
+    remote_formatted=''
+  fi
+
+  # counts
+
+  if (( stashed > 0 )); then
+    stashed_formatted=" %B%F{6}✭ $stashed%f%b"
+  fi
+
+  if (( ahead > 0 )); then
+    ahead_formatted=" %B%F{13}⬆$ahead%f%b"
+  fi
+
+  if (( behind > 0 )); then
+    behind_formatted=" %B%F{13}⬇$behind%f%b"
+  fi
+
+  if (( added > 0 )); then
+    added_formatted=" %B%F{2}✚ $added%f%b"
+  fi
+
+  if (( deleted > 0 )); then
+    deleted_formatted=" %B%F{1}✖ $deleted%f%b"
+  fi
+
+  if (( modified > 0 )); then
+    modified_formatted=" %B%F{4}✱ $modified%f%b"
+  fi
+
+  if (( renamed > 0 )); then
+    renamed_formatted=" %B%F{5}➜ $renamed%f%b"
+  fi
+
+  if (( unmerged > 0 )); then
+    unmerged_formatted=" %B%F{3}═ $unmerged%f%b"
+  fi
+
+  if (( untracked > 0 )); then
+    untracked_formatted=" %B%F{7}◼ $untracked%f%b"
+  fi
+
+  if (( dirty > 0 )); then
+    dirty_formatted=''
+  else
+    clean_formatted=''
+  fi
+
+  # construct final result
+
+  REPLY=''
+
+  REPLY+=$(coalesce "$branch_formatted" "$position_formatted" "$commit_formatted")
+  REPLY+=$added_formatted
+  REPLY+=$ahead_formatted
+  REPLY+=$behind_formatted
+  REPLY+=$clean_formatted
+  REPLY+=$deleted_formatted
+  REPLY+=$dirty_formatted
+  REPLY+=$indexed_formatted
+  REPLY+=$unindexed_formatted
+  REPLY+=$modified_formatted
+  REPLY+=$remote_formatted
+  REPLY+=$renamed_formatted
+  REPLY+=$action_formatted
+  REPLY+=$stashed_formatted
+  REPLY+=$unmerged_formatted
+  REPLY+=$untracked_formatted
+
+  echo "$REPLY"
+}
+
+git-info "$@"
+
+# vim: ft=zsh
