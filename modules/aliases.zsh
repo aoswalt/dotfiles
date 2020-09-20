@@ -8,6 +8,9 @@ alias v='nvim'
 neoterm() { nvim +"terminal $*" }
 alias nt='neoterm'
 
+# openers
+alias -s {json,md}=bat
+
 # Git
 alias g='git'
 
