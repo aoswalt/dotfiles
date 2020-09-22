@@ -4,6 +4,11 @@
 #   source "$HOME/.zprezto/init.zsh"
 # fi
 
+path=(
+  $HOME/.local/bin
+  $path
+)
+
 fpath=($DOTFILESDIR/functions $DOTFILESDIR/widgets $fpath)
 for zfunction in $DOTFILESDIR/{functions,widgets}/*; do
   autoload -Uz "$zfunction"
