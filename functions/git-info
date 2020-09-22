@@ -195,11 +195,11 @@ function git-info {
   fi
 
   if (( ahead > 0 )); then
-    ahead_formatted=" %B%F{13}⬆$ahead%f%b"
+    ahead_formatted=" %B%F{13}⬆ $ahead%f%b"
   fi
 
   if (( behind > 0 )); then
-    behind_formatted=" %B%F{13}⬇$behind%f%b"
+    behind_formatted=" %B%F{13}⬇ $behind%f%b"
   fi
 
   if (( added > 0 )); then
