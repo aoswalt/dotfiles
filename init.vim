@@ -137,6 +137,7 @@ endif
 
 
 " plugin settings {{{1
+let g:netrw_altfile = 1   "allow <c-6> to go to the previously edited file
 let g:netrw_preview = 1   "open preview window in a vertical split
 
 let g:indent_guides_auto_colors = 0
@@ -184,6 +185,7 @@ let g:float_preview#docked = 0
 let g:ale_linters = {
 \  'javascript': ['eslint', 'tsserver'],
 \  'elixir': ['elixir-ls', 'credo'],
+\  'rust': ['rls', 'rustc'],
 \}
 
 let g:ale_fixers = {
@@ -192,10 +194,14 @@ let g:ale_fixers = {
 \  'typescript': ['prettier', 'eslint'],
 \  'elixir': ['mix_format'],
 \  'sql': ['pgformatter'],
+\  'html': ['tidy'],
 \  'css': ['prettier'],
 \  'json': ['prettier', 'jq'],
 \  'reason': ['refmt'],
+\  'rust': ['rustfmt'],
 \}
+
+let g:ale_html_tidy_options = '--clean yes --indent yes --wrap 0 --break-before-br yes'
 
 let g:ale_reason_ls_executable = 'reason-language-server'
 let g:ale_reasonml_refmt_executable = 'bsrefmt'
@@ -389,7 +395,6 @@ nmap g* g*zz
 nmap g# g#zz
 
 nnoremap <leader>d :Dispatch<cr>
-vnoremap <leader>d :<c-u>execute ':Dispatch ' . substitute(b:dispatch, '%', shellescape(join(getline(line("'<"), line("'>")), "\n"), "\n"), "")<cr>
 
 " search for visual selection
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
@@ -460,6 +465,11 @@ autocmd FileType sql vmap <buffer> <expr> <leader>r db#op_exec()
 autocmd FileType sql nnoremap <buffer> gss :.DB<cr>
 autocmd FileType sql nmap <buffer> <expr> gs db#op_exec()
 autocmd FileType sql vmap <buffer> <expr> gs db#op_exec()
+
+" TODO(adam): is integration with psql repl possible/feasible?
+autocmd FileType sql nnoremap <buffer> gxx :.DB<cr>
+autocmd FileType sql nmap <buffer> <expr> gx db#op_exec()
+autocmd FileType sql vmap <buffer> <expr> gx db#op_exec()
 
 autocmd FileType sql nnoremap <buffer> <c-q><c-q> :.DB<cr>
 autocmd FileType sql nmap <buffer> <expr> <c-q> db#op_exec()
