@@ -1,5 +1,5 @@
 python 3.8.5
-nodejs 12.18.3
-erlang 23.0.3
-elixir 1.10.4-otp-23
+nodejs 14.12.0
+erlang 23.1.1
+elixir 1.11.0-otp-23
 postgres 12.3
