@@ -16,6 +16,8 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
+Plug 'rhysd/git-messenger.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'wsdjeg/vim-fetch'
 
@@ -504,6 +506,8 @@ nnoremap <leader>gd :Gdiffsplit<cr>
 nnoremap <leader>gl :Git --paginate log<cr>
 nnoremap <leader>gL :Git --paginate log -p %<cr>
 nnoremap <leader>gr :Git rebase -i --autosquash
+
+nnoremap <leader>gv :GV<cr>
 
 nnoremap <leader>l :Limelight<cr>
 nnoremap <leader>L :Limelight!<cr>
