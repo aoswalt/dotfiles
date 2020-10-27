@@ -38,12 +38,20 @@ snippet exc "export const" b
 export const ${1:name} = $0
 endsnippet
 
+snippet exf "export function" b
+export function ${1:name}($2) {
+  $3
+}$0
+endsnippet
+
 snippet exd "export default" b
 export default $0
 endsnippet
 
-snippet exf "export function" b
-export function $0
+snippet exdf "export default function" b
+export default function ${1:name}($2) {
+  $3
+}$0
 endsnippet
 
 # vim:ft=snippets:
