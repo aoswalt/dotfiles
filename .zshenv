@@ -27,6 +27,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 # include docs for erlang
+export KERL_DOC_TARGETS=chunks
 export KERL_BUILD_DOCS=yes
 
 # darken lock files
