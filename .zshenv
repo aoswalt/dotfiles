@@ -1,6 +1,4 @@
 export DOTFILES=$HOME/.dotfiles
-export DOTFILESDIR=$HOME/.dotfiles
-# export DOTFILESDIR=$HOME/.config/dotfiles
 
 # # arg given to `source` and dropping the filename
 # ZPREZTODIR=${0:h}

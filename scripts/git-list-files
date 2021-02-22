@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# https://coderwall.com/p/bt93ia/extend-git-with-custom-commands
+
+# https://stackoverflow.com/questions/424071/how-to-list-all-the-files-in-a-commit
+# * The --no-commit-id suppresses the commit ID output.
+# * The --pretty argument specifies an empty format string to avoid the cruft at the beginning.
+# * The --name-only argument shows only the file names that were affected (Thanks Hank). Use --name-status instead, if you want to see what happened to each file (Deleted, Modified, Added)
+# * The -r argument is to recurse into sub-trees
+
+source "$(git --exec-path)/git-sh-setup"
+
+# USAGE='specify a commit to see file listing; defaults to HEAD'
+
+git diff-tree --no-commit-id --name-only -r ${1:-HEAD}

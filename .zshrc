@@ -5,20 +5,21 @@
 # fi
 
 path=(
+  $DOTFILES/scripts
   $HOME/.local/bin
   $path
 )
 
-fpath=($DOTFILESDIR/functions $DOTFILESDIR/widgets $fpath)
-for zfunction in $DOTFILESDIR/{functions,widgets}/*; do
+fpath=($DOTFILES/functions $DOTFILES/widgets $fpath)
+for zfunction in $DOTFILES/{functions,widgets}/*; do
   autoload -Uz "$zfunction"
 done
 
-for zwidget in $DOTFILESDIR/widgets/*; do
+for zwidget in $DOTFILES/widgets/*; do
   zle -N "${zwidget##*/}"
 done
 
-for module in $DOTFILESDIR/modules/*.zsh; do
+for module in $DOTFILES/modules/*.zsh; do
   source $module
 done #2>/dev/null
 
