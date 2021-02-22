@@ -19,6 +19,10 @@ export EDITOR='nvim'
 export VISUAL=$EDITOR
 export PAGER='less'
 export MANPAGER='nvim +Man!'
+export ELIXIR_EDITOR="nvim +__LINE__ __FILE__"
+export PLUG_EDITOR=$ELIXIR_EDITOR
+export ECTO_EDITOR="nvim"
+# export ECTO_EDITOR=$ELIXIR_EDITOR # pending PR
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
