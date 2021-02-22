@@ -26,8 +26,10 @@ Plug 'exu/pgsql.vim'
 Plug 'plasticboy/vim-markdown'  "included in polyglot but without extra features
 Plug 'junegunn/limelight.vim'
 
+Plug 'neovim/nvim-lspconfig'
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete-lsp'
 Plug 'ncm2/float-preview.nvim'
 Plug 'liuchengxu/vista.vim'
 
@@ -224,6 +226,16 @@ let g:ale_sql_pgformatter_options = "
 let g:vista_default_executive = 'ale'
 let g:vista_fzf_preview = ['right:50%']
 
+let g:ale_disable_lsp = 1
+
+lua <<EOF
+--require'lspconfig'.elixirls.setup{
+--  cmd = { "/path/to/elixir-ls/language_server.sh" };
+--}
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.vimls.setup{}
+require'lspconfig'.rls.setup{}
+EOF
 
 
 " autocommands {{{1
@@ -451,12 +463,19 @@ fun! MapLCKeys()
     return
   endif
 
-  nmap <buffer> <silent> K <Plug>(ale_hover)
-  vmap <buffer> <silent> K <Plug>(ale_hover)
-  nmap <buffer> gd <Plug>(ale_go_to_definition)
-  nnoremap <buffer> <silent> gD :ALEGoToDefinition -vsplit<cr>
-  nmap <buffer> gy <Plug>(ale_find_references)
-  nmap <buffer> gY <Plug>(ale_go_to_type_definition)
+  nnoremap <buffer> <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+  nnoremap <buffer> <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+  nnoremap <buffer> <silent> <c-]> <cmd>lua vim.lsp.buf.declaration()<CR>
+  nnoremap <buffer> <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+  nnoremap <buffer> <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+  nnoremap <buffer> <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+  nnoremap <buffer> <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+  nnoremap <buffer> <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+  nnoremap <buffer> <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+  nnoremap <buffer> <silent> <S-F4>  <cmd>lua vim.lsp.buf.formatting()<cr>
+  nnoremap <buffer> <silent> <F10> <cmd>lua for _i, d in next, vim.lsp.diagnostic.get_line_diagnostics() do print(d["message"]) end<cr>
+
+  setlocal omnifunc=v:lua.vim.lsp.omnifunc
 endfun
 
 autocmd FileType * call MapLCKeys()
