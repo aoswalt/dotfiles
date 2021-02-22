@@ -533,6 +533,13 @@ nnoremap <silent> <leader>Rp :ReadPreview<cr>
 
 
 " commands {{{1
+
+" git push and fetch using Dispatch - :Dispatch git push
+command! -bang -bar -nargs=* Gpush execute 'Dispatch<bang> -dir=' .
+      \ fnameescape(FugitiveGitDir()) 'git push' <q-args>
+command! -bang -bar -nargs=* Gfetch execute 'Dispatch<bang> -dir=' .
+      \ fnameescape(FugitiveGitDir()) 'git fetch' <q-args>
+
 " close all other buffers
 command! BufOnly :%bd|e#
 
@@ -563,7 +570,7 @@ command! -nargs=* TTermRepo :tabedit
   \ | execute 'terminal' <q-args>
 
 " amend without editing commit message
-command! Gamend Gcommit --amend --no-edit
+command! Gamend Git commit --amend --no-edit
 
 command! -range FormatJSON :<line1>,<line2>call FormatJSON()
 
