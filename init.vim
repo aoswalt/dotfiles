@@ -259,6 +259,8 @@ augroup end
 
 autocmd FileType markdown setlocal nofoldenable | setlocal spell | setlocal wrap | setlocal linebreak
 
+autocmd FileType typescriptreact call UltiSnips#AddFiletypes('tsx.typescript')
+
 
 
 " colors {{{1
