@@ -475,6 +475,9 @@ fun! MapLCKeys()
   nnoremap <buffer> <silent> <S-F4>  <cmd>lua vim.lsp.buf.formatting()<cr>
   nnoremap <buffer> <silent> <F10> <cmd>lua for _i, d in next, vim.lsp.diagnostic.get_line_diagnostics() do print(d["message"]) end<cr>
 
+  nnoremap <buffer> <silent> [d <cmd>lua vim.lsp.diagnostic.goto_prev({ wrap = true })<CR>
+  nnoremap <buffer> <silent> ]d <cmd>lua vim.lsp.diagnostic.goto_next({ wrap = true })<CR>
+
   setlocal omnifunc=v:lua.vim.lsp.omnifunc
 endfun
 
