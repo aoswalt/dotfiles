@@ -183,6 +183,8 @@ let g:vrc_curl_opts = { '-sS': '' }
 
 let g:limelight_conceal_ctermfg = 236
 
+call deoplete#custom#option('ignore_sources', {'_': ['ale']})
+
 let g:deoplete#enable_at_startup = 1
 
 let g:float_preview#docked = 0
