@@ -1,0 +1,43 @@
+let g:lightline = {
+\   'component': {
+\     'readonly': '%{&readonly?"\ue0a2":""}',
+\   },
+\   'component_function': {
+\     'gitversion': 'GitVersion'
+\   },
+\   'active': {
+\     'right': [
+\        [ 'lineinfo'],
+\        [ 'gitversion', 'percent' ],
+\        [ 'fileformat', 'filetype' ],
+\     ]
+\   },
+\   'inactive': {
+\     'right': [
+\        [ 'lineinfo' ],
+\        [ 'gitversion', 'percent' ],
+\     ]
+\   },
+\ }
+
+" custom icon overrides
+let s:icons = {
+\   'jsx': "\ue7ba",
+\   'javascript.jsx': "\ue7ba",
+\   'nginx': "\ue776",
+\ }
+
+function! GitVersion()
+  let l:fullname = expand('%')
+  let l:gitversion = ''
+  if l:fullname =~? 'fugitive://.*/\.git//0/.*'
+    let l:gitversion = 'git index'
+  elseif l:fullname =~? 'fugitive://.*/\.git//2/.*'
+    let l:gitversion = 'git target'
+  elseif l:fullname =~? 'fugitive://.*/\.git//3/.*'
+    let l:gitversion = 'git merge'
+  elseif &diff == 1
+    let l:gitversion = 'working copy'
+  endif
+  return l:gitversion
+endfunction
