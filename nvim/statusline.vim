@@ -1,8 +1,14 @@
+function! ExpandedFilename()
+  let l:filename = expand('%')
+  return len(l:filename) > 0 ? l:filename : '[No Name]'
+endfunction
+
 let g:lightline = {
 \   'component': {
 \     'readonly': '%{&readonly?"\ue0a2":""}',
 \   },
 \   'component_function': {
+\     'filename': 'ExpandedFilename',
 \     'gitversion': 'GitVersion'
 \   },
 \   'active': {
