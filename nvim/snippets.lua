@@ -18,14 +18,14 @@ local js_snippets = {
   im = [[import ${1} from '${2:$1}'$0]]; -- import default
   imm = [[import { ${1} } from '$2'$0]]; -- named import
   ["c=>"] = [[const ${1:fun} = ${2:()} => $0]];
-  cl = [[console.log('$1', ${0:$1})]];
+  cl = [[console.log('$1', $1)$0]];
   ["cl?"] = [[console.log('$1', ${2:$1}) ?? $0]];
   peek = [[.then(d => console.log(d) ?? d)]];
   ex = 'export $0';
   exc = [[export const ${1:name} = $0]];
-  exf = [[export function ${1:func}($2) {\n  $0\n}]];
+  exf = 'export function ${1:func}($2) {\n  $0\n}';
   exd = 'export default $0';
-  exdf = [[export default function ${1:func}($2) {\n  $0\n}]];
+  exdf = 'export default function ${1:func}($2) {\n  $0\n}';
 };
 
 local react_snippets = {
@@ -41,7 +41,7 @@ require'snippets'.snippets = {
     time = [[${=vim.fn['strftime']("%H:%M")}]];
     datetime = [[${=vim.fn['strftime']("%Y-%m-%d %H:%M")}]]; -- YYYY-MM-DD hh:mm
     todo = U.force_comment[[TODO(${=vim.loop.os_getenv("USER")}): ]];
-    note = U.force_comment[[TODO(${=vim.loop.os_get_passwd().username}): ]];
+    note = U.force_comment[[NOTE(${=vim.loop.os_get_passwd().username}): ]];
     lorem = [[
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
 tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
