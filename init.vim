@@ -11,6 +11,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'aoswalt/onedark.vim'
 Plug 'christoomey/vim-tmux-navigator'
 
+Plug 'justinmk/vim-dirvish'
 Plug 'simnalamburt/vim-mundo'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -66,7 +67,6 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-dadbod'
 
