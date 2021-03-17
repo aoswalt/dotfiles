@@ -12,7 +12,7 @@ vim.api.nvim_set_keymap('i', '<c-k>', [[<cmd>lua return require'snippets'.advanc
 
 
 -- could use text markers similar to ultisnips instead of popup
--- require'snippets'.set_ux(require'snippets.inserters.text_markers')
+require'snippets'.set_ux(require'snippets.inserters.text_markers')
 
 local js_snippets = {
   im = [[import ${1} from '${2:$1}'$0]]; -- import default
