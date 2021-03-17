@@ -58,3 +58,6 @@ lspconfig.vimls.setup{}
 lspconfig.rls.setup{
   on_attach = on_attach
 }
+lspconfig.dockerls.setup{
+  on_attach = on_attach
+}
