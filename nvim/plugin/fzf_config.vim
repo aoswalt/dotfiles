@@ -1,14 +1,14 @@
 let g:fzf_commands_expect = 'enter,ctrl-x'
 
 " super find
-nnoremap <leader>f <cmd>GFilesPreview<CR>
-nnoremap <leader>F <cmd>FZF<CR>
+nnoremap <leader>f <cmd>GFilesPreview<cr>
+nnoremap <leader>F <cmd>FZF<cr>
 
 " super search
 nnoremap <leader>/ :Rg<space>
 
 " super search for word under cursor
-nnoremap <leader>* <cmd>Rg <c-r><c-w><CR>
+nnoremap <leader>* :Rg <c-r><c-w><cr>
 
 nnoremap <leader>b <cmd>Buffers<cr>
 nnoremap <leader>B <cmd>BLines<cr>
