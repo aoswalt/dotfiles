@@ -20,25 +20,25 @@ nnoremap Y y$
 nnoremap Q @q
 
 " run 'q' macro on selection
-xnoremap Q :normal @q<CR>
+xnoremap Q <cmd>normal @q<cr>
 
 " allow range commands from searches - ex:  /foo$m
-cnoremap $t <CR>:t''<CR>
-cnoremap $m <CR>:m''<CR>
-cnoremap $d <CR>:d<CR>``
+cnoremap $t <cr>:t''<cr>
+cnoremap $m <cr>:m''<cr>
+cnoremap $d <cr>:d<cr>``
 
 " reselect pasted content:
 noremap gV `[v`]
 
 " buffer management
 nnoremap <c-up> :ls<cr>:b
-nnoremap <c-right> :bn<cr>
-nnoremap <c-left> :bp<cr>
-nnoremap <c-down> :bn \| bd #<cr>
+nnoremap <c-right> <cmd>bn<cr>
+nnoremap <c-left> <cmd>bp<cr>
+nnoremap <c-down> <cmd>bn \| bd #<cr>
 
-nnoremap <leader>w :w<cr>
-nnoremap <leader>q :q<cr>
-nnoremap <leader>Q :bd<cr>
+nnoremap <leader>w <cmd>w<cr>
+nnoremap <leader>q <cmd>q<cr>
+nnoremap <leader>Q <cmd>bd<cr>
 
 " system clipboard yank
 nnoremap <leader>y "+y
@@ -56,19 +56,20 @@ nmap * *zz
 nmap # #zz
 xmap n nzz
 xmap N Nzz
-xmap * *zz
-xmap # #zz
+" xmap * *zz " not being recursive as expected with visual-search.vim
+" xmap # #zz
 nmap g* g*zz
 nmap g# g#zz
 
 " edit vimrc/zshrc and source vimrc
-nnoremap <leader>ev :vsp $DOTFILES/init.vim<CR>
-nnoremap <leader>eV :vsp $MYVIMRC<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
-nnoremap <leader>ez :vsp $DOTFILES/.zshrc<CR>
+nnoremap <leader>ev <cmd>vsp $DOTFILES/init.vim<CR>
+nnoremap <leader>eV <cmd>vsp $MYVIMRC<CR>
+nnoremap <leader>sv <cmd>source $MYVIMRC<CR>
+nnoremap <leader>sV <cmd>source %<CR>
+nnoremap <leader>ez <cmd>vsp $DOTFILES/.zshrc<CR>
 
 " inside template tags
-onoremap <silent> iT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?\\zs.\rv/\\v.\\ze[%}][>}]\r"<cr>
-vnoremap <silent> iT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?\\zs.\rv/\\v.\\ze[%}][>}]\r"<cr>
-onoremap <silent> aT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}][>}]/e\r"<cr>
-vnoremap <silent> aT :<c-u>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}][>}]/e\r"<cr>
+onoremap <silent> iT <cmd>execute "silent normal! ?\\v[{<][{%]\\=\\?\\zs.\rv/\\v.\\ze[%}][>}]\r"<cr>
+vnoremap <silent> iT <cmd>execute "silent normal! ?\\v[{<][{%]\\=\\?\\zs.\rv/\\v.\\ze[%}][>}]\r"<cr>
+onoremap <silent> aT <cmd>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}][>}]/e\r"<cr>
+vnoremap <silent> aT <cmd>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}][>}]/e\r"<cr>

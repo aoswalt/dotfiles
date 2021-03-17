@@ -1,1 +1,1 @@
-nnoremap <silent> <F5> :MundoToggle<CR>
+nnoremap <silent> <F5> <cmd>MundoToggle<CR>

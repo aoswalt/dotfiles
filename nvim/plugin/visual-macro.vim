@@ -4,4 +4,4 @@ function! g:ExecuteMacroOverVisualRange()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
 
-xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+xnoremap @ <cmd>call ExecuteMacroOverVisualRange()<CR>

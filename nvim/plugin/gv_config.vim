@@ -1,1 +1,1 @@
-nnoremap <leader>gv :GV<cr>
+nnoremap <leader>gv <cmd>GV<cr>

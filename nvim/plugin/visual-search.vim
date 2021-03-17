@@ -6,8 +6,8 @@ function! s:VSetSearch(cmdType)
   let @s = l:temp
 endfunction
 
-xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
-xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>/<C-R>=@/<CR><CR>
+xnoremap * :<c-u>call <SID>VSetSearch('/')<cr>/<C-R>=@/<cr><cr>
+xnoremap # :<c-u>call <SID>VSetSearch('?')<cr>/<C-R>=@/<cr><cr>
 
 " =====
 " this is basically the opposite. combine vs separate file?

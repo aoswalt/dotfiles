@@ -1,17 +1,17 @@
 let g:fzf_commands_expect = 'enter,ctrl-x'
 
 " super find
-nnoremap <leader>f :GFilesPreview<CR>
-nnoremap <leader>F :FZF<CR>
+nnoremap <leader>f <cmd>GFilesPreview<CR>
+nnoremap <leader>F <cmd>FZF<CR>
 
 " super search
 nnoremap <leader>/ :Rg<space>
 
 " super search for word under cursor
-nnoremap <leader>* :Rg <c-r><c-w><CR>
+nnoremap <leader>* <cmd>Rg <c-r><c-w><CR>
 
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>B :BLines<cr>
+nnoremap <leader>b <cmd>Buffers<cr>
+nnoremap <leader>B <cmd>BLines<cr>
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -28,7 +28,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
 " fuzzy command list
-nnoremap <leader><leader> :Commands<CR>
+nnoremap <leader><leader> <cmd>Commands<CR>
 
 " override Ag and Rg commands to search inside git repo and add preview
 command! -bang -nargs=* Ag

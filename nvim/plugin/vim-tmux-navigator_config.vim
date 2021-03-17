@@ -1,12 +1,12 @@
 let g:tmux_navigator_no_mappings = 1
 
 " split navigation
-nnoremap <silent> <m-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <m-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <m-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <m-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <m-\> :TmuxNavigatePrevious<cr>
-inoremap <silent> <m-h> <esc>:TmuxNavigateLeft<cr>
-inoremap <silent> <m-j> <esc>:TmuxNavigateDown<cr>
-inoremap <silent> <m-k> <esc>:TmuxNavigateUp<cr>
-inoremap <silent> <m-l> <esc>:TmuxNavigateRight<cr>
+nnoremap <silent> <m-h> <cmd>TmuxNavigateLeft<cr>
+nnoremap <silent> <m-j> <cmd>TmuxNavigateDown<cr>
+nnoremap <silent> <m-k> <cmd>TmuxNavigateUp<cr>
+nnoremap <silent> <m-l> <cmd>TmuxNavigateRight<cr>
+nnoremap <silent> <m-\> <cmd>TmuxNavigatePrevious<cr>
+inoremap <silent> <m-h> <esc><cmd>TmuxNavigateLeft<cr>
+inoremap <silent> <m-j> <esc><cmd>TmuxNavigateDown<cr>
+inoremap <silent> <m-k> <esc><cmd>TmuxNavigateUp<cr>
+inoremap <silent> <m-l> <esc><cmd>TmuxNavigateRight<cr>

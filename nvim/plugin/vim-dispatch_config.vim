@@ -1,1 +1,1 @@
-nnoremap <leader>d :Dispatch<cr>
+nnoremap <leader>d <cmd>Dispatch<cr>

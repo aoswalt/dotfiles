@@ -20,5 +20,5 @@ nnoremap <M-S-j> <C-w>+
 nnoremap <M-S-k> <C-w>-
 nnoremap <M-S-l> <C-w>>
 nnoremap <silent> <M-=> <c-w>=
-nnoremap <silent> <M-'> :call ZoomToggle()<cr>
-nnoremap <silent> <M-z> :call MaximizeWindow()<cr>
+nnoremap <silent> <M-'> <cmd>call ZoomToggle()<cr>
+nnoremap <silent> <M-z> <cmd>call MaximizeWindow()<cr>

@@ -19,4 +19,4 @@ endfunction
 
 command! ReadPreview call ReadPreview()
 
-nnoremap <silent> <leader>Rp :ReadPreview<cr>
+nnoremap <silent> <leader>Rp <cmd>ReadPreview<cr>
