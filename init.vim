@@ -73,7 +73,7 @@ Plug 'tpope/vim-dadbod'
 Plug 'wannesm/wmgraphviz.vim'
 call plug#end()
 
-set runtimepath+=$DOTFILES/nvim
+set runtimepath+=$DOTFILES/nvim,$DOTFILES/nvim/after
 
 let path = expand('$DOTFILES/nvim')
 

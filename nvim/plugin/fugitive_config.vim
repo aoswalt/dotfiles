@@ -9,9 +9,9 @@ nnoremap <leader>gr <cmd>Git rebase -i --autosquash<cr>
 
 " git push and fetch using Dispatch - :Dispatch git push
 command! -bang -bar -nargs=* Gpush execute 'Dispatch<bang> -dir=' .
-  \ fnameescape(FugitiveGitDir()) 'git push' <q-args>
+\ fnameescape(FugitiveGitDir()) 'git push' <q-args>
 command! -bang -bar -nargs=* Gfetch execute 'Dispatch<bang> -dir=' .
-  \ fnameescape(FugitiveGitDir()) 'git fetch' <q-args>
+\ fnameescape(FugitiveGitDir()) 'git fetch' <q-args>
 
 command! -nargs=* Gpc execute('Gpush --set-upstream origin '.FugitiveHead().' '.<q-args>)
 
