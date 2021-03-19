@@ -9,10 +9,7 @@ nnoremap <buffer> gss <cmd>.DB<cr>
 nmap <buffer> <expr> gs db#op_exec()
 vmap <buffer> <expr> gs db#op_exec()
 
-" TODO(adam): is integration with psql repl possible/feasible?
-nnoremap <buffer> gxx <cmd>.DB<cr>
-nmap <buffer> <expr> gx db#op_exec()
-vmap <buffer> <expr> gx db#op_exec()
+" TODO(adam): piggyback on repl mappings to add trailing ; if needed?
 
 " nnoremap <buffer> <c-q><c-q> <cmd>.DB<cr>
 " nmap <buffer> <expr> <c-q> db#op_exec()
