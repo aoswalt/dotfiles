@@ -1,4 +1,4 @@
-colorscheme onedark
+colorscheme unemphatic
 
 set noswapfile
 set number              "line numbers

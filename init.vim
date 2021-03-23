@@ -8,7 +8,6 @@ endif
 
 " plugins {{{1
 call plug#begin('~/.config/nvim/plugged')
-Plug 'aoswalt/onedark.vim'
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'justinmk/vim-dirvish'
