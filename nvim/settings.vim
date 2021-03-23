@@ -39,7 +39,7 @@ set listchars+=precedes:«
 set listchars+=nbsp:⣿
 
 " set completeopt=menuone,longest
-set completeopt=menuone,noinsert
+set completeopt=menuone,noinsert,noselect
 
 let g:mapleader = ' ' "use space as leader
 
