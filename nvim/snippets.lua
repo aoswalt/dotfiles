@@ -40,8 +40,8 @@ require'snippets'.snippets = {
     diso = [[${=vim.fn['strftime']("%F %H:%M:%S%z")}]];
     time = [[${=vim.fn['strftime']("%H:%M")}]];
     datetime = [[${=vim.fn['strftime']("%Y-%m-%d %H:%M")}]]; -- YYYY-MM-DD hh:mm
-    todo = U.force_comment[[TODO(${=vim.loop.os_getenv("USER")}): ]];
-    note = U.force_comment[[NOTE(${=vim.loop.os_get_passwd().username}): ]];
+    todo = U.force_comment[[TODO(${=vim.g.username or vim.loop.os_getenv("USER")}): ]];
+    note = U.force_comment[[NOTE(${=vim.g.username or vim.loop.os_get_passwd().username}): ]];
     lorem = [[
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
 tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
