@@ -73,6 +73,7 @@ Plug 'wannesm/wmgraphviz.vim'
 call plug#end()
 
 set runtimepath+=$DOTFILES/nvim,$DOTFILES/nvim/after
+set packpath+=$DOTFILES/nvim
 
 let path = expand('$DOTFILES/nvim')
 

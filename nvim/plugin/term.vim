@@ -40,7 +40,7 @@ command! -nargs=* TTermRepo :tabedit
   \ | execute 'terminal' <q-args>
 
 " term splits
-nnoremap <leader>\ <cmd>VTerm<CR>
-nnoremap <leader>- <cmd>STerm<CR>
-nnoremap <leader>\| <cmd>VTermRepo<CR>
-nnoremap <leader>_ <cmd>STermRepo<CR>
+" nnoremap <leader>\ <cmd>VTerm<CR>
+" nnoremap <leader>- <cmd>STerm<CR>
+" nnoremap <leader>\| <cmd>VTermRepo<CR>
+" nnoremap <leader>_ <cmd>STermRepo<CR>
