@@ -13,6 +13,8 @@ command! -bang -bar -nargs=* Gpush execute 'Dispatch<bang> -dir=' .
 command! -bang -bar -nargs=* Gfetch execute 'Dispatch<bang> -dir=' .
 \ fnameescape(FugitiveGitDir()) 'git fetch' <q-args>
 
+command! -nargs=* Gpushf execute('Gpush --force-with-lease '.<q-args>)
+
 command! -nargs=* Gpc execute('Gpush --set-upstream origin '.FugitiveHead().' '.<q-args>)
 
 " amend without editing commit message
