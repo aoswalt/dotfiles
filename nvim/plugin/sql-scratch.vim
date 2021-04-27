@@ -4,7 +4,7 @@ function! ToggleSqlScratch(mods)
 
   let l:scratch_window = bufwinnr(l:sql_scratch_name)
   if l:scratch_window > -1
-    execute l:scrach_window.'hide'
+    execute l:scratch_window.'hide'
   else
     let l:mods = get(a:, 'mods', 'botright')
     execute l:mods 'new' '+setlocal\ buftype=nofile|setlocal\ bufhidden=hide|setlocal\ filetype=sql' l:sql_scratch_name
