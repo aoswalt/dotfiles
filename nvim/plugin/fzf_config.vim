@@ -1,8 +1,8 @@
 let g:fzf_commands_expect = 'enter,ctrl-x'
 
 " super find
-nnoremap <leader>f <cmd>GFilesPreview<cr>
-nnoremap <leader>F <cmd>FZF<cr>
+nnoremap <leader>f <cmd>FZF<cr>
+nnoremap <leader>F <cmd>GFilesPreview<cr>
 
 " super search
 nnoremap <leader>/ :Rg<space>
