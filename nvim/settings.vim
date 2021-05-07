@@ -41,6 +41,8 @@ set listchars+=nbsp:⣿
 " set completeopt=menuone,longest
 set completeopt=menuone,noinsert,noselect
 
+set grepprg=rg
+
 let g:mapleader = ' ' "use space as leader
 
 if isdirectory($HOME . '/.config/nvim/undo') == 0
