@@ -139,6 +139,7 @@ where s.idx_scan = 0      -- has never been scanned
       (select 1 from pg_catalog.pg_constraint c
         where c.conindid = s.indexrelid)
 order by pg_relation_size(s.indexrelid) desc]]; -- list all unused indices
+-- https://www.cybertec-postgresql.com/en/get-rid-of-your-unused-indexes/
     seldeps = [[
 select dependent_ns.nspname as dependent_schema
   , dependent_view.relname as dependent_view
