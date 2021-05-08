@@ -1,0 +1,13 @@
+#! /bin/sh
+
+if [[ $# != 1 ]]; then
+  echo "Must give epub name"
+  exit 1
+fi
+
+file="${1/.epub/}.epub"
+
+rm -f $file
+
+zip -X0 $file mimetype && \
+  zip -Xur9D $file *
