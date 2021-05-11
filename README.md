@@ -12,3 +12,7 @@ Run `dotfiles` to see a list of the option flags available.
 ---
 
 Submodules are used for some zsh modules, so be sure to include them when cloning and updating!
+
+```sh
+git submodule update --init --recursive --remote
+```
