@@ -13,7 +13,7 @@ let g:ale_fixers = {
 \  'typescriptreact': ['prettier', 'eslint'],
 \  'elixir': ['mix_format'],
 \  'sql': ['pgformatter'],
-\  'html': ['tidy'],
+\  'html': ['prettier'],
 \  'css': ['prettier'],
 \  'json': ['prettier', 'jq'],
 \  'reason': ['refmt'],
