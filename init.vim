@@ -39,7 +39,6 @@ Plug 'Julian/vim-textobj-variable-segment'  "av/iv for variable part
 Plug 'Chun-Yang/vim-textobj-chunk'          "ac/ic for json-ish chunk
 Plug 'whatyouhide/vim-textobj-xmlattr'      "ax/ix for xml attribute
 
-Plug 'kassio/neoterm'
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'suan/vim-instant-markdown', { 'do': 'npm install -g instant-markdown-d' }
