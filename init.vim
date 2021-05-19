@@ -16,7 +16,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
-Plug 'rhysd/git-messenger.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'wsdjeg/vim-fetch'
 
