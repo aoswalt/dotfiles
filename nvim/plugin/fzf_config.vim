@@ -1,8 +1,8 @@
 let g:fzf_commands_expect = 'enter,ctrl-x'
 
 " super find
-nnoremap <leader>f <cmd>FZF<cr>
-nnoremap <leader>F <cmd>GFilesPreview<cr>
+nnoremap <leader>f <cmd>Files<cr>
+nnoremap <leader>F <cmd>GFiles<cr>
 
 " super search
 nnoremap <leader>/ :Rg<space>
@@ -30,7 +30,18 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 " fuzzy command list
 nnoremap <leader><leader> <cmd>Commands<CR>
 
-" override Ag and Rg commands to search inside git repo and add preview
+" override commands to add preview
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+command! -bang -nargs=? GFiles
+    \ call fzf#vim#gitfiles(
+    \ '-co --exclude-per-directory=.gitignore',
+    \ fzf#vim#with_preview(),
+    \ <bang>0
+  \ )
+
+" also set Ag and Rg inside of repo, rethink these?
 command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'dir': FugitiveWorkTree()}), <bang>0)
 
@@ -41,12 +52,3 @@ command! -bang -nargs=* Rg
     \ fzf#vim#with_preview({'dir': FugitiveWorkTree()}),
     \ <bang>0
   \ )
-
-" new GFiles to add preview
-command! -bang -nargs=? GFilesPreview
-    \ call fzf#vim#gitfiles(
-    \ '-co --exclude-per-directory=.gitignore',
-    \ fzf#vim#with_preview(),
-    \ <bang>0
-  \ )
-
