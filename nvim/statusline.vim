@@ -26,16 +26,10 @@ let g:lightline = {
 \   },
 \ }
 
-" custom icon overrides
-let s:icons = {
-\   'jsx': "\ue7ba",
-\   'javascript.jsx': "\ue7ba",
-\   'nginx': "\ue776",
-\ }
-
 function! GitVersion()
   let l:fullname = expand('%')
   let l:gitversion = ''
+
   if l:fullname =~? 'fugitive://.*/\.git//0/.*'
     let l:gitversion = 'git index'
   elseif l:fullname =~? 'fugitive://.*/\.git//2/.*'
@@ -45,5 +39,6 @@ function! GitVersion()
   elseif &diff == 1
     let l:gitversion = 'working copy'
   endif
+
   return l:gitversion
 endfunction
