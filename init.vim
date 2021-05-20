@@ -25,7 +25,7 @@ Plug 'plasticboy/vim-markdown'  "included in polyglot but without extra features
 Plug 'junegunn/limelight.vim'
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-compe'
 Plug 'norcalli/snippets.nvim'
 Plug 'w0rp/ale'
 
@@ -86,6 +86,11 @@ exec 'luafile' path . '/snippets.lua'
 " these must be loaded before the plugin loads which happens after the init file
 for f in split(glob(path . '/plugconfig/*.vim'), '\n')
   exe 'source' f
+endfor
+
+" is there a better way to do lua configs?
+for f in split(glob(path . '/plugconfig/*.lua'), '\n')
+  exe 'luafile' f
 endfor
 
 " after.vim loading {{{1

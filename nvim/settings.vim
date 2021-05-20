@@ -38,7 +38,6 @@ set listchars+=extends:»
 set listchars+=precedes:«
 set listchars+=nbsp:⣿
 
-" set completeopt=menuone,longest
 set completeopt=menuone,noinsert,noselect
 
 set grepprg=rg
