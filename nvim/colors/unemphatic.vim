@@ -256,7 +256,7 @@ call s:h("NvimInternalError", { "fg": s:white, "bg": s:red.dark })
 
 " Language-Specific Highlighting {{{1
 
-" " CSS {{{2
+" CSS {{{2
 " call s:h("cssAttrComma", { "fg": s:purple._ })
 " call s:h("cssAttributeSelector", { "fg": s:green._ })
 call s:h("cssBraces", { "fg": s:fg.dark })

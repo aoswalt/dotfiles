@@ -83,7 +83,7 @@ exec 'source' path . '/autocommands.vim'
 exec 'luafile' path . '/lsp.lua'
 exec 'luafile' path . '/snippets.lua'
 
-" these must be loaded before the plugin loads
+" these must be loaded before the plugin loads which happens after the init file
 for f in split(glob(path . '/plugconfig/*.vim'), '\n')
   exe 'source' f
 endfor
