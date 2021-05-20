@@ -53,15 +53,9 @@ lspconfig.elixirls.setup{
   on_attach = on_attach;
 }
 
-lspconfig.tsserver.setup{
-  on_attach = on_attach;
-}
-
 lspconfig.vimls.setup{}
 
-lspconfig.rls.setup{
-  on_attach = on_attach;
-}
-lspconfig.dockerls.setup{
-  on_attach = on_attach;
-}
+local servers = { 'tsserver', 'rls', 'dockerls' }
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup { on_attach = on_attach }
+end
