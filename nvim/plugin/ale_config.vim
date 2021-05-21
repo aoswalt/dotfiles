@@ -18,6 +18,8 @@ let g:ale_fixers = {
 \  'json': ['prettier', 'jq'],
 \  'reason': ['refmt'],
 \  'rust': ['rustfmt'],
+\  'xml': ['xmllint'],
+\  'xhtml': ['xmllint'],
 \}
 
 let g:ale_html_tidy_options = '--clean yes --indent yes --wrap 0 --break-before-br yes'
