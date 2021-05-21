@@ -87,8 +87,6 @@ exec 'luafile' path . '/snippets.lua'
 for f in split(glob(path . '/plugconfig/*.vim'), '\n')
   exe 'source' f
 endfor
-
-" is there a better way to do lua configs?
 for f in split(glob(path . '/plugconfig/*.lua'), '\n')
   exe 'luafile' f
 endfor
