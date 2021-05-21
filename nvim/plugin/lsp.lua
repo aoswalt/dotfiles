@@ -37,7 +37,7 @@ local on_attach = function(client, bufnr)
   end
 end
 
--- doesn't seem 100% yet, at least for elixir with snippets.nvim, see nvim-lspconfig
+-- seems to partly work but doesn't expand tabs into space
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities.textDocument.completion.completionItem.snippetSupport = true;
 
@@ -48,9 +48,20 @@ end
 --   { on_attach = on_attach }
 -- )
 
+-- turn off virtual text? not sure what the idea was
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--   vim.lsp.diagnostic.on_publish_diagnostics, {
+--     underline = false,
+--     virtual_text = false,
+--     signs = true,
+--     update_in_insert = false,
+--   }
+-- )
+
 lspconfig.elixirls.setup{
   cmd = { (vim.env.ELIXIR_LS_EXECUTABLE or (vim.loop.os_homedir() .. '/.tools/elixir-ls/language_server.sh')) };
   on_attach = on_attach;
+  -- capabilities = capabilities;
 }
 
 lspconfig.vimls.setup{}
