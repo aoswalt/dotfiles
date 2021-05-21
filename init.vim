@@ -48,7 +48,8 @@ Plug 'diepm/vim-rest-console'
 Plug 'wesQ3/vim-windowswap'
 
 Plug 'itchyny/lightline.vim'
-Plug 'airblade/vim-gitgutter'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim', { 'branch': 'main' }
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ap/vim-css-color'
 Plug 'aoswalt/xterm-color-table.vim'

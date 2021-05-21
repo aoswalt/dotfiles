@@ -421,10 +421,16 @@ call s:h('gitmessengerHash', 'Identifier')
 " ALE {{{2
 " call s:h("ALEErrorSign", { "fg": s:red._ })
 
-" airblade/vim-gitgutter {{{2
-call s:h("GitGutterAdd", { "fg": s:green._ })
-call s:h("GitGutterChange", { "fg": s:yellow._ })
-call s:h("GitGutterDelete", { "fg": s:red._ })
+" lewis6991/gitsigns {{{2
+call s:h("GitSignsAdd", { "fg": s:green._ })
+call s:h("GitSignsChange", { "fg": s:yellow._ })
+call s:h("GitSignsDelete", { "fg": s:red._ })
+call s:h("GitSignsAddNr", { "fg": s:green._ })
+call s:h("GitSignsChangeNr", { "fg": s:yellow._ })
+call s:h("GitSignsDeleteNr", { "fg": s:red._ })
+call s:h("GitSignsAddLn", { "bg": s:green.dim_dark })
+call s:h("GitSignsChangeLn", { "bg": s:yellow.dim_dark })
+call s:h("GitSignsDeleteLn", { "bg": s:red.dim_dark })
 
 " tpope/vim-fugitive {{{2
 call s:h("diffAdded", { "fg": s:green._ })
