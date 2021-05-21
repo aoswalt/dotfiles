@@ -17,7 +17,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'g0',     '<cmd>lua vim.lsp.buf.document_symbol()<cr>', opts)
   buf_set_keymap('n', 'gW',     '<cmd>lua vim.lsp.buf.workspace_symbol()<cr>', opts)
   buf_set_keymap('n', '<F10>',  '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>', opts)
-
+  buf_set_keymap('n', 'gA',     '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', '[d',     '<cmd>lua vim.lsp.diagnostic.goto_prev({ wrap = true })<cr>', opts)
   buf_set_keymap('n', ']d',     '<cmd>lua vim.lsp.diagnostic.goto_next({ wrap = true })<cr>', opts)
 
