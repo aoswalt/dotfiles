@@ -145,11 +145,6 @@ let s:menu_selection = { "cterm": 25 }
 
 let s:control_statement = { "fg": s:blue.dim }
 
-" min
-highlight IndentGuidesOdd  ctermbg=233
-" dark
-highlight IndentGuidesEven ctermbg=234
-
 " Syntax Groups (descriptions and ordering from `:h w18`) {{{1
 
 call s:h("Comment", { "fg": s:fg.minimum, "style": "italic" }) " any comment

@@ -50,7 +50,7 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'itchyny/lightline.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim', { 'branch': 'main' }
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'glepnir/indent-guides.nvim'
 Plug 'ap/vim-css-color'
 Plug 'aoswalt/xterm-color-table.vim'
 Plug 'vim-scripts/AnsiEsc.vim'
@@ -80,14 +80,6 @@ exec 'source' path . '/settings.vim'
 exec 'source' path . '/statusline.vim'
 exec 'source' path . '/keys.vim'
 exec 'source' path . '/autocommands.vim'
-
-" these must be loaded before the plugin loads which happens after the init file
-for f in split(glob(path . '/plugconfig/*.vim'), '\n')
-  exe 'source' f
-endfor
-for f in split(glob(path . '/plugconfig/*.lua'), '\n')
-  exe 'luafile' f
-endfor
 
 " after.vim loading {{{1
 " allow loading of device specific configs
