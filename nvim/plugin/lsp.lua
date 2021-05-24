@@ -3,37 +3,38 @@ local lspconfig = require'lspconfig'
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_keymap(mode, lhs, rhs)
+    vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, { noremap = true, silent = true })
+  end
 
-  local opts = { noremap = true, silent = true }
-  buf_set_keymap('n', 'K',      '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-  buf_set_keymap('n', 'gd',     '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-  buf_set_keymap('n', '1gd',    '<cmd>vsp | lua vim.lsp.buf.definition()<cr>', opts)
-  buf_set_keymap('n', '<c-]>',  '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-  buf_set_keymap('n', 'gD',     '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-  buf_set_keymap('n', '<c-k>',  '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-  buf_set_keymap('n', '1gD',    '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-  buf_set_keymap('n', 'gr',     '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-  buf_set_keymap('n', 'g0',     '<cmd>lua vim.lsp.buf.document_symbol()<cr>', opts)
-  buf_set_keymap('n', 'gW',     '<cmd>lua vim.lsp.buf.workspace_symbol()<cr>', opts)
-  buf_set_keymap('n', '<F10>',  '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>', opts)
-  buf_set_keymap('n', 'gA',     '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', '[d',     '<cmd>lua vim.lsp.diagnostic.goto_prev({ wrap = true })<cr>', opts)
-  buf_set_keymap('n', ']d',     '<cmd>lua vim.lsp.diagnostic.goto_next({ wrap = true })<cr>', opts)
+  buf_keymap('n', 'K',      '<cmd>lua vim.lsp.buf.hover()<cr>')
+  buf_keymap('n', 'gd',     '<cmd>lua vim.lsp.buf.definition()<cr>')
+  buf_keymap('n', '1gd',    '<cmd>vsp | lua vim.lsp.buf.definition()<cr>')
+  buf_keymap('n', '<c-]>',  '<cmd>lua vim.lsp.buf.declaration()<cr>')
+  buf_keymap('n', 'gD',     '<cmd>lua vim.lsp.buf.implementation()<cr>')
+  buf_keymap('n', '<c-k>',  '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+  buf_keymap('n', '1gD',    '<cmd>lua vim.lsp.buf.type_definition()<cr>')
+  buf_keymap('n', 'gr',     '<cmd>lua vim.lsp.buf.references()<cr>')
+  buf_keymap('n', 'g0',     '<cmd>lua vim.lsp.buf.document_symbol()<cr>')
+  buf_keymap('n', 'gW',     '<cmd>lua vim.lsp.buf.workspace_symbol()<cr>')
+  buf_keymap('n', '<F10>',  '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>')
+  buf_keymap('n', 'gA',     '<cmd>lua vim.lsp.buf.code_action()<CR>')
+  buf_keymap('n', '[d',     '<cmd>lua vim.lsp.diagnostic.goto_prev({ wrap = true })<cr>')
+  buf_keymap('n', ']d',     '<cmd>lua vim.lsp.diagnostic.goto_next({ wrap = true })<cr>')
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
-    buf_set_keymap('n', '<s-f4>', '<cmd>lua vim.lsp.buf.formatting()<cr>', opts)
+    buf_keymap('n', '<s-f4>', '<cmd>lua vim.lsp.buf.formatting()<cr>')
   elseif client.resolved_capabilities.document_range_formatting then
-    buf_set_keymap('n', '<s-f4>', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
+    buf_keymap('n', '<s-f4>', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
   else
-    buf_set_keymap('n', '<s-f4>',   '<cmd>echoerr "formatting not supported by any active client"<cr>', opts)
+    buf_keymap('n', '<s-f4>', '<cmd>echoerr "formatting not supported by any active client"<cr>')
   end
 
   if client.resolved_capabilities.rename then
-    buf_set_keymap('n', '<f3>',   '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+    buf_keymap('n', '<f3>',   '<cmd>lua vim.lsp.buf.rename()<cr>')
   else
-    buf_set_keymap('n', '<f3>',   '<cmd>echoerr "rename not supported by any active client"<cr>', opts)
+    buf_keymap('n', '<f3>',   '<cmd>echoerr "rename not supported by any active client"<cr>')
   end
 end
 
