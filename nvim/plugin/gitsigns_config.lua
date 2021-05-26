@@ -45,11 +45,13 @@ require'gitsigns'.setup{
   },
 }
 
-vim.api.nvim_set_keymap('n', '[oghs', "<cmd>lua require'gitsigns'.toggle_signs()<CR>", { silent = true })
-vim.api.nvim_set_keymap('n', ']oghs', "<cmd>lua require'gitsigns'.toggle_signs()<CR>", { silent = true })
-vim.api.nvim_set_keymap('n', '[oghn', "<cmd>lua require'gitsigns'.toggle_numhl()<CR>", { silent = true })
-vim.api.nvim_set_keymap('n', ']oghn', "<cmd>lua require'gitsigns'.toggle_numhl()<CR>", { silent = true })
-vim.api.nvim_set_keymap('n', '[oghl', "<cmd>lua require'gitsigns'.toggle_linehl()<CR>", { silent = true })
-vim.api.nvim_set_keymap('n', ']oghl', "<cmd>lua require'gitsigns'.toggle_linehl()<CR>", { silent = true })
-vim.api.nvim_set_keymap('n', '[oghb', "<cmd>lua require'gitsigns'.toggle_current_line_blame()<CR>", { silent = true })
-vim.api.nvim_set_keymap('n', ']oghb', "<cmd>lua require'gitsigns'.toggle_current_line_blame()<CR>", { silent = true })
+local function keymap(mode, lhs, rhs) require'util'.keymap(mode, lhs, rhs, {silent = true}) end
+
+keymap('n', '[oghs', "<cmd>lua require'gitsigns'.toggle_signs()<CR>")
+keymap('n', ']oghs', "<cmd>lua require'gitsigns'.toggle_signs()<CR>")
+keymap('n', '[oghn', "<cmd>lua require'gitsigns'.toggle_numhl()<CR>")
+keymap('n', ']oghn', "<cmd>lua require'gitsigns'.toggle_numhl()<CR>")
+keymap('n', '[oghl', "<cmd>lua require'gitsigns'.toggle_linehl()<CR>")
+keymap('n', ']oghl', "<cmd>lua require'gitsigns'.toggle_linehl()<CR>")
+keymap('n', '[oghb', "<cmd>lua require'gitsigns'.toggle_current_line_blame()<CR>")
+keymap('n', ']oghb', "<cmd>lua require'gitsigns'.toggle_current_line_blame()<CR>")

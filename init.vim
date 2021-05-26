@@ -81,6 +81,8 @@ exec 'source' path . '/statusline.vim'
 exec 'source' path . '/keys.vim'
 exec 'source' path . '/autocommands.vim'
 
+lua U = require'util'
+
 " after.vim loading {{{1
 " allow loading of device specific configs
 if filereadable(expand('$HOME/init.after.vim'))
