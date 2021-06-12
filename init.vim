@@ -50,7 +50,7 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'itchyny/lightline.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim', { 'branch': 'main' }
-Plug 'glepnir/indent-guides.nvim'
+Plug 'glepnir/indent-guides.nvim', { 'branch': 'main' }
 Plug 'ap/vim-css-color'
 Plug 'aoswalt/xterm-color-table.vim'
 Plug 'vim-scripts/AnsiEsc.vim'
