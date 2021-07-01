@@ -31,6 +31,8 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export KERL_DOC_TARGETS=chunks
 export KERL_BUILD_DOCS=yes
 
+export NODEJS_CHECK_SIGNATURES=no
+
 # darken lock files
 export EXA_COLORS="*.lock=1;30"
 
