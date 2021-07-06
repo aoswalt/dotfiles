@@ -26,7 +26,7 @@ Plug 'junegunn/limelight.vim'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
-Plug 'norcalli/snippets.nvim'
+Plug 'L3MON4D3/LuaSnip'
 Plug 'w0rp/ale'
 
 Plug 'kana/vim-textobj-user'
