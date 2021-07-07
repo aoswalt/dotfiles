@@ -19,6 +19,9 @@ Plug 'junegunn/gv.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'wsdjeg/vim-fetch'
 
+Plug 'nvim-treesitter/nvim-treesitter', { 'branch': '0.5-compat', 'do': ':TSUpdate' }
+Plug 'nvim-treesitter/playground'
+
 Plug 'sheerun/vim-polyglot'
 Plug 'exu/pgsql.vim'
 Plug 'plasticboy/vim-markdown'  "included in polyglot but without extra features

@@ -97,7 +97,7 @@ let s:purple = {
 \ "_": { "cterm": "170" },
 \ "light": { "cterm": "219" },
 \ "dark": { "cterm": "135" },
-\ "dim": { "cterm": "91" },
+\ "dim": { "cterm": "90" },
 \ "dim_dark": { "cterm": "55" },
 \}
 
@@ -175,13 +175,26 @@ call s:h("StorageClass", { "fg": s:fg.minimum }) " static, register, volatile, e
 call s:h("Special", { "fg": s:fg.offset }) " any special symbol
 " call s:h("SpecialChar", "Special") " special character in a constant
 " call s:h("Tag", "Special") " you can use CTRL-] on this
-" call s:h("Delimiter", "Special") " character that needs attention
+call s:h("Delimiter", { "fg": s:fg.lessened }) " character that needs attention
 " call s:h("SpecialComment", "Special") " special things inside a comment
 call s:h("Debug", "Special") " debugging statements
 call s:h("Underlined", { "style": "underline" }) " text that stands out, HTML links
 " call s:h("Ignore", {}) " left blank, hidden
 call s:h("Error", { "fg": s:error }) " any erroneous construct
-call s:h("Todo", { "fg": s:purple.dark }) " anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+call s:h("Todo", { "fg": s:purple._ }) " anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+
+call s:h("TSNote", { "fg": s:purple.light })
+call s:h("TSConstBuiltin", "Constant")
+call s:h("TSParameter", "Variable")
+call s:h("TSVariable", "Variable")
+call s:h("TSKeyword", "Keyword")
+call s:h("elixirTSKeyword", "PreProc")
+call s:h("TSKeywordFunction", "PreProc")
+call s:h("TSSymbol", "Constant")
+" call s:h("elixirTSType", "Constant")
+call s:h("TSField", s:none)
+call s:h("bashTSParameter", "NONE")
+call s:h("TSAttribute", { "fg": s:purple.dim })
 
 
 " Highlighting Groups (descriptions and ordering from `:h hitest.vim`) {{{1
@@ -369,6 +382,7 @@ call s:h("typescriptVariableDeclaration", "Identifier")
 call s:h("vimLet", s:control_statement)
 call s:h("vimFuncName", "Statement")
 call s:h("vimOption", "Identifier")
+" call s:h("vimUsrCmd", "vimCommand")
 
 " XML {{{2
 " call s:h("xmlAttrib", { "fg": s:yellow.dark })
@@ -385,7 +399,7 @@ call s:h('sdUnitName', 'Type')
 call s:h('sdEnvArg', 'Identifier')
 
 
-" Git Highlighting {{{1
+" Git {{{2
 
 " call s:h("gitcommitSummary", "Statement")
 call s:h("gitcommitComment", "Comment")
