@@ -2,7 +2,6 @@
 
 # neovim
 alias n='nvim'
-alias n.='nvim .'
 alias vim='nvim'
 alias v='nvim'
 neoterm() { nvim +"terminal $*" }
