@@ -19,7 +19,7 @@ U.keymap('i', '<c-e>', "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : 
 U.keymap('s', '<c-e>', "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<c-e>'", { expr = true, noremap = false, silent = true })
 
 local function comment_prefix()
-  return nvim.bo.commentstring:format(""):gsub("%S$", "%0 ")
+  return vim.bo.commentstring:format("") --:gsub("%S$", "%0 ")
 end
 
 local function username()
@@ -48,13 +48,13 @@ local react_snippets = {
 
 ls.snippets = {
   all = {
-    s('todo', { f(comment_prefix), t'TODO(', f(username), t'): ', }),
-    s('note', { f(comment_prefix), t'NOTE(', f(username), t'): ', }),
-    s('date', f(datefmt('%Y-%m-%d'))),
-    s('ddate', f(datefmt("%b %d, %Y"))), -- Month DD, YYYY
-    s('diso', f(datefmt("%F %H:%M:%S%z"))),
-    s('time', f(datefmt("%H:%M"))),
-    s('datetime', f(datefmt("%Y-%m-%d %H:%M"))), -- YYYY-MM-DD hh:mm
+    s('todo', { f(comment_prefix, {}), t'TODO(', f(username, {}), t'): ', }),
+    s('note', { f(comment_prefix, {}), t'NOTE(', f(username, {}), t'): ', }),
+    s('date', f(datefmt('%Y-%m-%d'), {})),
+    s('ddate', f(datefmt("%b %d, %Y"), {})), -- Month DD, YYYY
+    s('diso', f(datefmt("%F %H:%M:%S%z"), {})),
+    s('time', f(datefmt("%H:%M"), {})),
+    s('datetime', f(datefmt("%Y-%m-%d %H:%M"), {})), -- YYYY-MM-DD hh:mm
     s('lorem', t{
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod',
         'tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At',
@@ -109,7 +109,7 @@ end]]),
     ls.parser.parse_snippet('linkt', [[[${1:Text}](${2:./link/location} "${3:Hover Text}")$0]]); -- link with title
     ls.parser.parse_snippet('img', [[![${2:Alt Text}](${1:./path/to/img.png} "${3:Title}")$0]]);
     ls.parser.parse_snippet('imgl', [[[![${2:Alt Text}](${1:./path/to/img.png} "${3:Title}")](${4:./link/location})$0]]); -- image link
-    s({ trig = 'p(%d+)', name = 'page', regTrig = true, wordTrig = true },
+    s({ trig = 'p(%d+)', name = 'page', regTrig = true },
         f(function(args) return '(p. ' .. args[1].captures[1] .. ')' end, {})
     ),
     ls.parser.parse_snippet('pp', [[(pp. $1)$0]]); -- multiple page number
