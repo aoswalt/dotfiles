@@ -232,6 +232,10 @@ alias l=ls
 
 alias grep="${aliases[grep]:-grep} --color=auto"
 
+# prefer python 3
+alias pip=pip3
+alias python=python3
+
 # open and pb* Everywhere
 if [[ "$OSTYPE" == darwin* ]]; then
   # alias open='open'
