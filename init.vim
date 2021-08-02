@@ -19,6 +19,10 @@ Plug 'junegunn/gv.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'wsdjeg/vim-fetch'
 
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 Plug 'nvim-treesitter/nvim-treesitter', { 'branch': '0.5-compat', 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/playground'
 
@@ -51,7 +55,6 @@ Plug 'diepm/vim-rest-console'
 Plug 'wesQ3/vim-windowswap'
 
 Plug 'itchyny/lightline.vim'
-Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim', { 'branch': 'main' }
 Plug 'glepnir/indent-guides.nvim', { 'branch': 'main' }
 Plug 'ap/vim-css-color'

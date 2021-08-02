@@ -427,6 +427,25 @@ call s:h('gitmessengerHash', 'Identifier')
 
 " Plugin Highlighting {{{1
 
+" Telescope {{{2
+
+" call s:h("TelescopeNormal", { "bg": s:black }) " Floating windows created by telescope
+call s:h("TelescopeSelection", { "bg": s:bg.highlight, "cterm": "bold" }) " Selected item
+call s:h("TelescopeSelectionCaret", { "fg": s:red.light }) " Selection caret
+call s:h("TelescopeMultiSelection", { "bg": s:yellow.dim_dark }) " Multisections
+
+" Border highlight groups
+call s:h("TelescopeBorder", { "fg": s:fg.lessened })
+call s:h("TelescopePromptBorder", { "fg": s:fg.lessened })
+call s:h("TelescopeResultsBorder", { "fg": s:fg.lessened })
+call s:h("TelescopePreviewBorder", { "fg": s:fg.lessened })
+
+" Highlight characters your input matches
+call s:h("TelescopeMatching", { "fg": s:cyan.dark })
+
+" Color the prompt prefix
+call s:h("TelescopePromptPrefix", { "fg": s:red.dim })
+
 " ALE {{{2
 " call s:h("ALEErrorSign", { "fg": s:red._ })
 

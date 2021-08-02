@@ -1,18 +1,5 @@
 let g:fzf_commands_expect = 'enter,ctrl-x'
 
-" super find
-nnoremap <leader>f <cmd>Files<cr>
-nnoremap <leader>F <cmd>GFiles<cr>
-
-" super search
-nnoremap <leader>/ :Rg<space>
-
-" super search for word under cursor
-nnoremap <leader>* :Rg <c-r><c-w><cr>
-
-nnoremap <leader>b <cmd>Buffers<cr>
-nnoremap <leader>B <cmd>BLines<cr>
-
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
@@ -26,9 +13,6 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
-
-" fuzzy command list
-nnoremap <leader><leader> <cmd>Commands<CR>
 
 " override commands to add preview
 command! -bang -nargs=? -complete=dir Files
