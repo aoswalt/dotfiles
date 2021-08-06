@@ -92,7 +92,7 @@ end]]),
     ls.parser.parse_snippet('doc', '@doc """\n$0\n"""'),
     s('docf', t'@doc false'),
     s('mdoc', { t{'@moduledoc """', ''}, i(0), t{'', '"""'} }),
-    s('mdocf', t'@moduledoc false\n'),
+    s('mdocf', t{'@moduledoc false', ''}),
     ls.parser.parse_snippet('defi', [[
 defimpl ${1:Protocol}, for: ${2:Any} do
   $0
