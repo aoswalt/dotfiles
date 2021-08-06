@@ -82,6 +82,8 @@ set packpath+=$DOTFILES/nvim
 
 let path = expand('$DOTFILES/nvim')
 
+lua require'disable'
+
 exec 'source' path . '/settings.vim'
 exec 'source' path . '/statusline.vim'
 exec 'source' path . '/keys.vim'
