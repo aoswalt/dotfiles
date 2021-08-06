@@ -474,5 +474,9 @@ call s:h("ExtraWhitespace", { "bg": s:red.dark })
 " netrw {{{2
 call s:h("netrwExe", { "fg": s:red._ })
 
+" {{{2 lukas-reineke/indent-blankline.nvim
+call s:h("IndentBlanklineChar", { "fg": { "cterm": 234 }})
+
 
 " vim:foldmethod=marker:foldlevel=1:
+
