@@ -19,7 +19,6 @@ Plug 'junegunn/gv.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'wsdjeg/vim-fetch'
 
-Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
