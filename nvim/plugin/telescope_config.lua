@@ -4,9 +4,10 @@ require'telescope'.setup{
   defaults = {
     file_sorter = require'telescope.sorters'.get_fzy_sorter,
     generic_sorter = require'telescope.sorters'.get_fzy_sorter,
+    -- prompt_prefix = '',  -- fixes using rsi in prompt but causes other issues
     mappings = {
       i = {
-        -- ["<esc>"] = actions.close,  -- fixing reverse input requires normal mode
+        -- ["<esc>"] = actions.close,
         ["<c-f>"] = actions.smart_send_to_qflist + actions.open_qflist,
         ["<a-a>"] = actions.select_all,
       },
@@ -18,7 +19,7 @@ U.keymap('n', '<leader>f', "<cmd>lua require'telescope.builtin'.fd{}<cr>")
 U.keymap('n', '<leader>F', "<cmd>lua require'telescope.builtin'.git_files{}<cr>")
 
 -- super search
--- U.keymap('n', '<leader>/', "<cmd>lua require'telescope.builtin'.live_grep{}<cr>") -- can't do regex
+U.keymap('n', '<leader>?', "<cmd>lua require'telescope.builtin'.live_grep{}<cr>") -- can't do regex
 U.keymap('n', '<leader>/', "<cmd>lua require'telescope.builtin'.grep_string{ search = vim.fn.input('Rg> '), use_regex = true }<cr>")
 
 -- super search for word under cursor
