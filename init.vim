@@ -31,6 +31,8 @@ Plug 'plasticboy/vim-markdown'  "included in polyglot but without extra features
 Plug 'junegunn/limelight.vim'
 
 Plug 'neovim/nvim-lspconfig'
+Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 Plug 'hrsh7th/nvim-compe'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'w0rp/ale'

@@ -22,32 +22,21 @@ local on_attach = function(client, bufnr)
   buf_keymap('n', '[d',     '<cmd>lua vim.lsp.diagnostic.goto_prev({ wrap = true })<cr>')
   buf_keymap('n', ']d',     '<cmd>lua vim.lsp.diagnostic.goto_next({ wrap = true })<cr>')
 
-  -- Set some keybinds conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
-    buf_keymap('n', '<s-f4>', '<cmd>lua vim.lsp.buf.formatting()<cr>')
-  elseif client.resolved_capabilities.document_range_formatting then
-    buf_keymap('n', '<s-f4>', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
-  else
-    buf_keymap('n', '<s-f4>', '<cmd>echoerr "formatting not supported by any active client"<cr>')
-  end
+  buf_keymap('n', '<s-f4>', '<cmd>lua vim.lsp.buf.formatting()<cr>')
+  buf_keymap('v', '<s-f4>', ':lua vim.lsp.buf.range_formatting()<cr>')
 
-  if client.resolved_capabilities.rename then
-    buf_keymap('n', '<f3>',   '<cmd>lua vim.lsp.buf.rename()<cr>')
-  else
-    buf_keymap('n', '<f3>',   '<cmd>echoerr "rename not supported by any active client"<cr>')
-  end
+  buf_keymap('n', '<f3>',   '<cmd>lua vim.lsp.buf.rename()<cr>')
 end
 
--- seems to partly work but doesn't expand tabs into space
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true;
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true;
 
--- -- set default for all servers
--- lspconfig.util.default_config = vim.tbl_extend(
---   'force',
---   lspconfig.util.default_config,
---   { on_attach = on_attach }
--- )
+-- set default for all servers
+lspconfig.util.default_config = vim.tbl_extend(
+  'force',
+  lspconfig.util.default_config,
+  { capabilities = capabilities }
+)
 
 -- turn off virtual text? not sure what the idea was
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -59,15 +48,44 @@ end
 --   }
 -- )
 
-lspconfig.elixirls.setup{
-  cmd = { (vim.env.ELIXIR_LS_EXECUTABLE or (vim.loop.os_homedir() .. '/.tools/elixir-ls/language_server.sh')) };
-  on_attach = on_attach;
-  -- capabilities = capabilities;
-}
+local null_ls = require("null-ls")
+null_ls.config({
+  sources = {
+    null_ls.builtins.formatting.mix,
+    -- null_ls.builtins.formatting.eslint,
+    null_ls.builtins.formatting.prettier.with({
+      filetypes = { "html", "css", "json", "markdown", "yaml" },
+    }),
+    null_ls.builtins.formatting.stylua.with({
+      filetypes = { "lua" },
+      command = "stylua",
+      args = { "--indent-width", "2", "--indent-type",  "Spaces", "--quote-style", "AutoPreferSingle", "-" },
+    }),
+  }
+})
 
-lspconfig.vimls.setup{}
-
-local servers = { 'tsserver', 'rls', 'dockerls' }
+local servers = { 'rls', 'dockerls', 'null-ls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup { on_attach = on_attach }
 end
+
+lspconfig.vimls.setup{}
+
+lspconfig.elixirls.setup{
+  cmd = { (vim.env.ELIXIR_LS_EXECUTABLE or (vim.loop.os_homedir() .. '/.tools/elixir-ls/language_server.sh')) };
+  on_attach = on_attach;
+  capabilities = capabilities;
+}
+
+lspconfig.tsserver.setup{
+  on_attach = function(client, bufnr)
+    client.resolved_capabilities.document_formatting = false
+
+    local ts_utils = require("nvim-lsp-ts-utils")
+
+    ts_utils.setup{ enable_formatting = true }
+    ts_utils.setup_client(client)
+
+    on_attach(client, bufnr)
+  end,
+}
