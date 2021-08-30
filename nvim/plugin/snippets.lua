@@ -30,16 +30,16 @@ local function datefmt(fmt) return vim.fn['strftime'](fmt) end
 
 local js_snippets = {
   ls.parser.parse_snippet('im', [[import ${1} from '${2:$1}'$0]]), -- import default
-  ls.parser.parse_snippet('imm', [[import { ${1} } from '$2'$0]]), -- named import
+  ls.parser.parse_snippet('imm', [[import { ${1} \} from '$2'$0]]), -- named import
   ls.parser.parse_snippet("c=>", [[const ${1:fun} = ${2:()} => $0]]),
   ls.parser.parse_snippet('cl', [[console.log('$1', $1)$0]]),
   ls.parser.parse_snippet("cl?", [[console.log('$1', ${2:$1}) ?? $0]]),
   ls.parser.parse_snippet('peek', [[.then(d => console.log(d) ?? d)]]),
   ls.parser.parse_snippet('ex', 'export $0'),
   ls.parser.parse_snippet('exc', [[export const ${1:name} = $0]]),
-  ls.parser.parse_snippet('exf', 'export function ${1:func}($2) {\n  $0\n}'),
+  ls.parser.parse_snippet('exf', 'export function ${1:func}($2) {\n  $0\n\\}'),
   ls.parser.parse_snippet('exd', 'export default $0'),
-  ls.parser.parse_snippet('exdf', 'export default function ${1:func}($2) {\n  $0\n}'),
+  ls.parser.parse_snippet('exdf', 'export default function ${1:func}($2) {\n  $0\n\\}'),
 };
 
 local react_snippets = {
