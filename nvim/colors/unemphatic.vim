@@ -13,6 +13,7 @@
 
 " Setup {{{1
 
+set notermguicolors
 set background=dark
 
 " reset all highlighting to the defaults
@@ -54,56 +55,56 @@ endfunction
 " set termguicolors
 
 let s:red = {
-\ "_": { "cterm": "203" },
 \ "light": { "cterm": "210" },
+\ "_": { "cterm": "203" },
 \ "dark": { "cterm": "196" },
 \ "dim": { "cterm": "124" },
 \ "dim_dark": { "cterm": "52" },
 \}
 
 let s:orange = {
-\ "_": { "cterm": "215" },
 \ "light": { "cterm": "223" },
+\ "_": { "cterm": "215" },
 \ "dark": { "cterm": "208" },
 \ "dim": { "cterm": "130" },
 \ "dim_dark": { "cterm": "94" },
 \}
 
 let s:green = {
-\ "_": { "cterm": "120" },
 \ "light": { "cterm": "157" },
+\ "_": { "cterm": "120" },
 \ "dark": { "cterm": "34" },
 \ "dim": { "cterm": "70" },
 \ "dim_dark": { "cterm": "22" },
 \}
 
 let s:yellow = {
-\ "_": { "cterm": "228" },
 \ "light": { "cterm": "229" },
+\ "_": { "cterm": "228" },
 \ "dark": { "cterm": "220" },
 \ "dim": { "cterm": "142" },
 \ "dim_dark": { "cterm": "100" },
 \}
 
 let s:blue = {
-\ "_": { "cterm": "39" },
 \ "light": { "cterm": "117" },
+\ "_": { "cterm": "39" },
 \ "dark": { "cterm": "27" },
 \ "dim": { "cterm": "25" },
 \ "dim_dark": { "cterm": "20" },
 \}
 
 let s:purple = {
-\ "_": { "cterm": "170" },
 \ "light": { "cterm": "219" },
+\ "_": { "cterm": "170" },
 \ "dark": { "cterm": "135" },
 \ "dim": { "cterm": "90" },
 \ "dim_dark": { "cterm": "55" },
 \}
 
 let s:cyan = {
-\ "_": { "cterm": "44" },
 \ "light": { "cterm": "159" },
+\ "_": { "cterm": "44" },
 \ "dark": { "cterm": "37" },
 \ "dim": { "cterm": "30" },
 \ "dim_dark": { "cterm": "23" },
