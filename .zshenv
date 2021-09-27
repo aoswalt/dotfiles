@@ -30,6 +30,7 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 # include docs for erlang
 export KERL_DOC_TARGETS=chunks
 export KERL_BUILD_DOCS=yes
+export NODEJS_CHECK_SIGNATURES=no
 
 export NODEJS_CHECK_SIGNATURES=no
 
