@@ -110,7 +110,7 @@ end]]),
     ls.parser.parse_snippet('img', [[![${2:Alt Text}](${1:./path/to/img.png} "${3:Title}")$0]]);
     ls.parser.parse_snippet('imgl', [[[![${2:Alt Text}](${1:./path/to/img.png} "${3:Title}")](${4:./link/location})$0]]); -- image link
     s({ trig = 'p(%d+)', name = 'page', regTrig = true },
-        f(function(args) return '(p. ' .. args[1].captures[1] .. ')' end, {})
+        f(function(args, snip) return '(p. ' .. snip.captures[1] .. ')' end, {})
     ),
     ls.parser.parse_snippet('pp', [[(pp. $1)$0]]); -- multiple page number
   },
