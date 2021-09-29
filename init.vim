@@ -98,6 +98,10 @@ exec 'source' path . '/autocommands.vim'
 
 lua U = require'util'
 
+" \"au BufReadPost * if getline(1) =~ \"VAR\" | call SetVar() | endif
+"And define a function SetVar() that does something with the line containing
+""VAR" to do for a custom type of vim settings line
+
 " after.vim loading {{{1
 " allow loading of device specific configs
 if filereadable(expand('$HOME/init.after.vim'))
