@@ -211,6 +211,7 @@ h("Todo", { fg = colors.purple[0] }) -- anything that needs extra attention; mos
 h("TSNote", { fg = colors.purple[-1] })
 h("TSConstBuiltin", "Constant")
 h("TSParameter", "Variable")
+h("elixirTSParameter", "TSSymbol")
 h("TSVariable", "Variable")
 h("TSKeyword", "Keyword")
 h("elixirTSKeyword", "PreProc")
