@@ -91,3 +91,22 @@ lspconfig.tsserver.setup{
     on_attach(client, bufnr)
   end,
 }
+
+lspconfig.gdscript.setup{
+  on_attach = function(client, bufnr)
+    local _notify = client.notify
+
+    client.notify = function (method, params)
+      if method == 'textDocument/didClose' then
+          -- Godot doesn't implement didClose yet
+          return
+      end
+      _notify(method, params)
+    end
+
+    on_attach(client, bufnr)
+  end,
+  flags = {
+    debounce_text_changes = 150,
+  },
+}

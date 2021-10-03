@@ -28,6 +28,7 @@ Plug 'nvim-treesitter/playground'
 Plug 'sheerun/vim-polyglot'
 Plug 'exu/pgsql.vim'
 Plug 'plasticboy/vim-markdown'  "included in polyglot but without extra features
+Plug 'habamax/vim-godot'
 Plug 'junegunn/limelight.vim'
 
 Plug 'neovim/nvim-lspconfig'
