@@ -16,12 +16,15 @@ command! -nargs=* -complete=shellcmd TermiteDir execute(
   \ '$SHELL'
 \)
 
-nnoremap <Plug>(termite_yank_job_id) <cmd>call termite#yank_job_id()<cr>
+nnoremap <Plug>(termite_yank_job_id) <cmd>lua require('termite').yank_job_id()<cr>
+nnoremap <Plug>(termite_put_job_id) <cmd>lua require('termite').put_job_id()<cr>
+nnoremap <Plug>(termite_set_job_id) <cmd>lua require('termite').set_job_id()<cr>
 
 " below should be in user space
 
 nmap gxy <Plug>(termite_yank_job_id)
-" nmap gxp <Plug>(termite_put_job_id)
+nmap gxp <Plug>(termite_put_job_id)
+nmap gxP <Plug>(termite_set_job_id)
 
 nnoremap <leader>\ <cmd>vertical Termite<CR>
 nnoremap <leader>- <cmd>below Termite<CR>
