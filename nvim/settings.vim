@@ -42,6 +42,12 @@ set completeopt=menuone,noinsert,noselect
 
 set grepprg=rg
 
+lua << EOF
+vim.opt.shortmess = vim.opt.shortmess + {
+  c = true, -- Do not show completion messages in command line
+}
+EOF
+
 let g:mapleader = ' ' "use space as leader
 
 if isdirectory($HOME . '/.config/nvim/undo') == 0
