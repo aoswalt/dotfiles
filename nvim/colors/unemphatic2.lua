@@ -473,6 +473,9 @@ h("TelescopeMatching", { fg = colors.cyan[1] })
 -- Color the prompt prefix
 h("TelescopePromptPrefix", { fg = colors.red[2] })
 
+-- nvim-cmp {{{2
+h("CmpItemAbbr", {})
+
 -- ALE {{{2
 -- h("ALEErrorSign", { fg = colors.red[0] })
 
