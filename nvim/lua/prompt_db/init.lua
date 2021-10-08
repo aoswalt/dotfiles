@@ -22,16 +22,18 @@ function M.prompt_db(query)
     vars_with_defaults[var] = M.db_vars[var] or vim.NIL
   end
 
-  local query_vars = require('prompt_db.input').prompt_vars(vars_with_defaults)
+  function on_submit(query_vars)
+    local replaced_query = string.gsub(query, var_replace_pattern, function(leading, var)
+      return leading .. query_vars[var]
+    end)
 
-  local replaced_query = string.gsub(query, var_replace_pattern, function(leading, var)
-    return leading .. query_vars[var]
-  end)
+    M.db_vars = vim.tbl_extend('force', M.db_vars, query_vars)
 
-  M.db_vars = vim.tbl_extend('force', M.db_vars, query_vars)
+    --TODO(adam): pass in other DB options like bang and db
+    vim.cmd('DB ' .. replaced_query)
+  end
 
-  --TODO(adam): pass in other DB options like bang and db
-  vim.cmd('DB ' .. replaced_query)
+  require('prompt_db.prompt_buffer').prompt_vars(vars_with_defaults, on_submit)
 end
 
 function M.get_vars(query)

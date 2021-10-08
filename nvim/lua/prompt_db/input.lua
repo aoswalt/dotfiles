@@ -1,17 +1,17 @@
 local M = {}
 
-function M.prompt_vars(vars)
+function M.prompt_vars(vars, on_submit)
   local query_vars = {}
 
   for var, default in pairs(vars) do
-    local value = M.prompt_var(var, default)
+    local value = prompt_var(var, default)
     query_vars[var] = value
   end
 
-  return query_vars
+  on_submit(query_vars)
 end
 
-function M.prompt_var(var, default)
+local function prompt_var(var, default)
   if default == vim.NIL or not default then
     default = ''
   end
