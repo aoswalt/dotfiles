@@ -22,10 +22,11 @@ local on_attach = function(client, bufnr)
   buf_keymap('n', '[d',     '<cmd>lua vim.lsp.diagnostic.goto_prev({ wrap = true })<cr>')
   buf_keymap('n', ']d',     '<cmd>lua vim.lsp.diagnostic.goto_next({ wrap = true })<cr>')
 
-  buf_keymap('n', '<s-f4>', '<cmd>lua vim.lsp.buf.formatting()<cr>')
-  buf_keymap('n', '<f16>', '<cmd>lua vim.lsp.buf.formatting()<cr>')
-  buf_keymap('v', '<s-f4>', ':lua vim.lsp.buf.range_formatting()<cr>')
-  buf_keymap('v', '<f16>', ':lua vim.lsp.buf.range_formatting()<cr>')
+  buf_keymap('n', '<f4>', '<cmd>lua vim.lsp.buf.formatting()<cr>')
+  buf_keymap('v', '<f4>', ':lua vim.lsp.buf.range_formatting()<cr>')
+
+  vim.api.nvim_buf_set_keymap(bufnr, 'v', '<s-f4>', '<Plug>(ale_fix)', {})
+  vim.api.nvim_buf_set_keymap(bufnr, 'v', '<f16>', '<Plug>(ale_fix)', {})
 
   buf_keymap('n', '<f3>',   '<cmd>lua vim.lsp.buf.rename()<cr>')
 end
