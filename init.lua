@@ -27,6 +27,6 @@ vim.cmd('source $DOTFILES/nvim/settings.vim')
 -- "VAR" to do for a custom type of vim settings line
 
 -- allow loading of device specific configs
-if vim.fn.filereadable(vim.fn.expand('$HOME/init.after.vim')) then
+if vim.fn.filereadable(vim.fn.expand('$HOME/init.after.vim')) > 0 then
   vim.cmd('source $HOME/init.after.vim')
 end
