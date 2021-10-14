@@ -105,13 +105,12 @@ function setup_neovim() {
   nvim_dir="$HOME/.config/nvim"
   mkdir -p $nvim_dir
 
-  config_files=(
-    init.vim
-    coc-settings.json
-    UltiSnips
-  )
-
-  try_link_each config_files $nvim_dir
+  if [[ -e ~/nvim_dir/init.vim ]]; then
+    log_error "Neovim config already exists"
+    return 1
+  else
+    echo 'source $DOTFILES/init.lua' > "$nvim_dir/init.vim"
+  fi
 
   if [[ ! $(command -v pip3) ]]; then
     log_error "pip3 not found - python neovim package needed for proper usage"
