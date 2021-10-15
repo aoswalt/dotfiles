@@ -15,7 +15,7 @@ require'telescope'.setup{
   },
 }
 
-U.keymap('n', '<leader>f', "<cmd>lua require'telescope.builtin'.fd{}<cr>")
+U.keymap('n', '<leader>f', "<cmd>lua require'telescope.builtin'.fd{file_ignore_patterns = {'^external/'}}<cr>")
 U.keymap('n', '<leader>F', "<cmd>lua require'telescope.builtin'.git_files{}<cr>")
 
 -- super search
@@ -29,3 +29,4 @@ U.keymap('n', '<leader>b', "<cmd>lua require'telescope.builtin'.buffers{}<cr>")
 U.keymap('n', '<leader>B', "<cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find{}<cr>")
 
 U.keymap('n', '<leader><leader>', "<cmd>lua require'telescope.builtin'.commands{}<cr>")
+U.keymap('n', '<leader>K', "<cmd>lua require'telescope.builtin'.help_tags{}<cr>")
