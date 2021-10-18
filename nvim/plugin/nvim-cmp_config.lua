@@ -7,7 +7,6 @@ cmp.setup {
     end
   },
 
-  -- You must set mapping if you want.
   mapping = {
     ['<c-p>'] = cmp.mapping.select_prev_item(),
     ['<c-n>'] = cmp.mapping.select_next_item(),
@@ -23,25 +22,24 @@ cmp.setup {
     -- })
   },
 
-  -- You should specify your *installed* sources.
   sources = {
-    { name = 'buffer' },
+    {
+      name = 'buffer',
+      opts = {
+        -- get completion from visible buffers
+        get_bufnrs = function()
+          local bufs = {}
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            bufs[vim.api.nvim_win_get_buf(win)] = true
+          end
+          return vim.tbl_keys(bufs)
+        end
+      }
+    },
     { name = 'path' },
     { name = 'calc' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'nvim_lua' },
   },
 }
-
-vim.api.nvim_command[[
-autocmd FileType lua lua require'cmp'.setup.buffer {
-    sources = {
-      { name = 'buffer' },
-      { name = 'path' },
-      { name = 'calc' },
-      { name = 'nvim_lsp' },
-      { name = 'luasnip' },
-      { name = 'nvim_lua' },
-    },
-  }
-]]
