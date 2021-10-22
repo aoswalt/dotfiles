@@ -17,10 +17,9 @@ vim.opt.packpath = vim.opt.packpath + '$DOTFILES/nvim'
 
 U = require('util')
 
+require('settings')
 require('disable')
 require('plugins')
-
-vim.cmd('source $DOTFILES/nvim/settings.vim')
 
 --  \"au BufReadPost * if getline(1) =~ \"VAR\" | call SetVar() | endif
 -- And define a function SetVar() that does something with the line containing
