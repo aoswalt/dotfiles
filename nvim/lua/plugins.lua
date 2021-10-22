@@ -2,7 +2,7 @@ require('packer').startup({
   function(use)
     use('wbthomason/packer.nvim')
 
-    use('christoomey/vim-tmux-navigator')
+    use({ 'nathom/tmux.nvim', config = [[require('config.tmux')]] })
 
     use('justinmk/vim-dirvish')
     use('simnalamburt/vim-mundo')
