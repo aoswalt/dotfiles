@@ -2,7 +2,7 @@ let g:ale_disable_lsp = 1
 
 let g:ale_linters = {
 \  'javascript': ['eslint', 'tsserver'],
-\  'elixir': ['elixir-ls', 'credo'],
+\  'elixir': [],
 \  'rust': ['rls', 'rustc'],
 \}
 
@@ -16,15 +16,12 @@ let g:ale_fixers = {
 \  'html': ['prettier'],
 \  'css': ['prettier'],
 \  'json': ['prettier', 'jq'],
-\  'reason': ['refmt'],
 \  'rust': ['rustfmt'],
 \  'xml': ['xmllint'],
 \  'xhtml': ['xmllint'],
 \}
 
 let g:ale_html_tidy_options = '--clean yes --indent yes --wrap 0 --break-before-br yes'
-
-let g:ale_reasonml_refmt_executable = 'bsrefmt'
 
 let g:ale_elixir_credo_strict = 1
 
