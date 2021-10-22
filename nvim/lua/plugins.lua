@@ -92,7 +92,7 @@ require('packer').startup({
   end,
   config = {
     display = {
-      open_cmd = 'leftabove 65vnew \\[packer\\]',
+      open_cmd = 'leftabove 75vnew \\[packer\\]',
     },
   },
 })
