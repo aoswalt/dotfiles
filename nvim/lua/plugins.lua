@@ -66,7 +66,7 @@ require('packer').startup({
 
     use('itchyny/lightline.vim')
     use({ 'lewis6991/gitsigns.nvim', branch = 'main', config = [[require('config.gitsigns')]] })
-    use('lukas-reineke/indent-blankline.nvim')
+    use({ 'lukas-reineke/indent-blankline.nvim', config = [[require('config.indent-blankline')]] })
     use('ap/vim-css-color')
     use('aoswalt/xterm-color-table.vim')
     use('vim-scripts/AnsiEsc.vim')
