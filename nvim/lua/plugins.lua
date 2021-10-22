@@ -65,7 +65,7 @@ require('packer').startup({
     use('wesQ3/vim-windowswap')
 
     use('itchyny/lightline.vim')
-    use({ 'lewis6991/gitsigns.nvim', branch = 'main' })
+    use({ 'lewis6991/gitsigns.nvim', branch = 'main', config = [[require('config.gitsigns')]] })
     use('lukas-reineke/indent-blankline.nvim')
     use('ap/vim-css-color')
     use('aoswalt/xterm-color-table.vim')
