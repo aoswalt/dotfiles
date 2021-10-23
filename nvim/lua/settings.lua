@@ -28,7 +28,7 @@ vim.opt.inccommand = 'nosplit' -- show substitution while typing
 vim.opt.path = vim.opt.path + { '**' } -- include subdirectory globbing in path for :find
 vim.opt.diffopt = vim.opt.diffopt + { vertical = true } -- vertical split for diffs
 
--- vim.opt.showmode = false -- do not show mode since using lightline
+vim.opt.showmode = false -- do not show mode since using lightline
 
 -- characters for horizontal scrolled text
 vim.opt.listchars = vim.opt.listchars + {
