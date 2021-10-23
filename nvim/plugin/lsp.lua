@@ -1,5 +1,8 @@
 local lspconfig = require('lspconfig')
 
+U.keymap('n', '<f4>', '<cmd>echoerr "No lsp for formatting set"<cr>')
+U.keymap('v', '<f4>', '<cmd>echoerr "No lsp for formatting set"<cr>')
+
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -21,12 +24,11 @@ local on_attach = function(client, bufnr)
   buf_keymap('n', 'gA', '<cmd>Telescope lsp_code_actions<CR>')
   buf_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev({ wrap = true })<cr>')
   buf_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next({ wrap = true })<cr>')
+  buf_keymap('n', '[w', '<cmd>lua vim.lsp.diagnostic.goto_prev({ wrap = true })<cr>')
+  buf_keymap('n', ']W', '<cmd>lua vim.lsp.diagnostic.goto_next({ wrap = true })<cr>')
 
   buf_keymap('n', '<f4>', '<cmd>lua vim.lsp.buf.formatting()<cr>')
   buf_keymap('v', '<f4>', ':lua vim.lsp.buf.range_formatting()<cr>')
-
-  vim.api.nvim_buf_set_keymap(bufnr, 'v', '<s-f4>', '<Plug>(ale_fix)', {})
-  vim.api.nvim_buf_set_keymap(bufnr, 'v', '<f16>', '<Plug>(ale_fix)', {})
 
   buf_keymap('n', '<f3>', '<cmd>lua vim.lsp.buf.rename()<cr>')
 end
@@ -36,29 +38,6 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- set default for all servers
 lspconfig.util.default_config = vim.tbl_extend('force', lspconfig.util.default_config, { capabilities = capabilities })
-
-local null_ls = require('null-ls')
-null_ls.config({
-  debug = true,
-  sources = {
-    null_ls.builtins.diagnostics.credo.with({
-      condition = function(utils)
-        return utils.root_has_file('.credo.exs')
-      end,
-    }),
-    -- null_ls.builtins.formatting.eslint,
-    null_ls.builtins.formatting.prettier,
-    -- null_ls.builtins.formatting.prettier.with({
-    --   filetypes = { "html", "css", "json", "markdown", "yaml" },
-    -- }),
-    null_ls.builtins.formatting.stylua.with({
-      args = { '--indent-width', '2', '--indent-type', 'Spaces', '--quote-style', 'AutoPreferSingle', '-' },
-    }),
-    null_ls.builtins.formatting.rustfmt,
-    -- null_ls.builtins.diagnostics.shellcheck, -- ls instead?
-    -- null_ls.builtins.diagnostics.luacheck, -- ls instead?
-  },
-})
 
 local servers = { 'rls', 'dockerls', 'null-ls', 'bashls' }
 for _, lsp in ipairs(servers) do

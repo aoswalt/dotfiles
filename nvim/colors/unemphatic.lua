@@ -476,9 +476,6 @@ h("TelescopePromptPrefix", { fg = colors.red[2] })
 -- nvim-cmp {{{2
 h("CmpItemAbbr", {})
 
--- ALE {{{2
--- h("ALEErrorSign", { fg = colors.red[0] })
-
 -- lewis6991/gitsigns {{{2
 h("GitSignsAdd", { fg = colors.green[0] })
 h("GitSignsChange", { fg = colors.yellow[0] })

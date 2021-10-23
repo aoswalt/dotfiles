@@ -4,7 +4,7 @@ require('packer').startup({
 
     use({ 'nathom/tmux.nvim', config = [[require('config.tmux')]] })
 
-    use('justinmk/vim-dirvish')
+    use({ 'justinmk/vim-dirvish', config = [[require('config.dirvish')]] })
     use('simnalamburt/vim-mundo')
     use({
       'junegunn/fzf',
@@ -14,26 +14,35 @@ require('packer').startup({
     })
     use('junegunn/fzf.vim')
     use('tpope/vim-fugitive')
-    use('junegunn/gv.vim')
+    use({ 'junegunn/gv.vim', config = [[require('config.gv')]] })
     use('stefandtw/quickfix-reflector.vim')
     use('wsdjeg/vim-fetch')
 
     use('nvim-lua/plenary.nvim')
-    use({ 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } })
+    use({
+      'nvim-telescope/telescope.nvim',
+      requires = { 'nvim-lua/plenary.nvim' },
+      config = [[require('config.telescope')]],
+    })
 
-    use({ 'nvim-treesitter/nvim-treesitter', branch = '0.5-compat', run = ':TSUpdate' })
+    use({
+      'nvim-treesitter/nvim-treesitter',
+      branch = '0.5-compat',
+      run = ':TSUpdate',
+      config = [[require('config.treesitter')]],
+    })
     use('nvim-treesitter/playground')
 
-    use('sheerun/vim-polyglot')
+    use({ 'sheerun/vim-polyglot', config = [[require('config.polyglot')]] })
     use('exu/pgsql.vim')
-    use('plasticboy/vim-markdown') -- included in polyglot but without extra features
+    use({ 'plasticboy/vim-markdown', config = [[require('config.markdown')]] }) -- included in polyglot but without extra features
     use('habamax/vim-godot')
-    use('junegunn/limelight.vim')
+    use({ 'junegunn/limelight.vim', config = [[require('config.limelight')]] })
 
     use('neovim/nvim-lspconfig')
-    use({ 'jose-elias-alvarez/null-ls.nvim', branch = 'main' })
+    use({ 'jose-elias-alvarez/null-ls.nvim', branch = 'main', config = [[require('config.null-ls')]] })
     use({ 'jose-elias-alvarez/nvim-lsp-ts-utils', branch = 'main' })
-    use({ 'hrsh7th/nvim-cmp', branch = 'main' })
+    use({ 'hrsh7th/nvim-cmp', branch = 'main', config = [[require('config.treesitter')]] })
     use({ 'hrsh7th/cmp-buffer', branch = 'main' })
     use({ 'hrsh7th/cmp-path', branch = 'main' })
     use({ 'hrsh7th/cmp-calc', branch = 'main' })
@@ -41,11 +50,6 @@ require('packer').startup({
     use({ 'hrsh7th/cmp-nvim-lua', branch = 'main' })
     use('L3MON4D3/LuaSnip')
     use('saadparwaiz1/cmp_luasnip')
-    use({
-      'w0rp/ale',
-      cmd = 'ALEEnable',
-      config = 'vim.cmd[[ALEEnable]]',
-    })
 
     use('kana/vim-textobj-user')
     use('kana/vim-textobj-entire') -- ae/ie for entire file
@@ -56,12 +60,18 @@ require('packer').startup({
     use('Chun-Yang/vim-textobj-chunk') -- ac/ic for json-ish chunk
     use('whatyouhide/vim-textobj-xmlattr') -- ax/ix for xml attribute
 
-    use('tpope/vim-dispatch')
-    use({ 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview' })
+    use({ 'tpope/vim-dispatch', config = [[require('config.dispatch')]] })
+    use({
+      'iamcco/markdown-preview.nvim',
+      run = 'cd app && yarn install',
+      ft = { 'markdown' },
+      cmd = 'MarkdownPreview',
+      config = [[require('config.markdown-preview')]],
+    })
     use('godlygeek/tabular')
     use('chrisbra/csv.vim')
     use('junegunn/vim-peekaboo')
-    use('diepm/vim-rest-console')
+    use({ 'diepm/vim-rest-console', config = [[require('config.rest-console')]] })
     use('wesQ3/vim-windowswap')
 
     use('itchyny/lightline.vim')
@@ -71,12 +81,12 @@ require('packer').startup({
     use('aoswalt/xterm-color-table.vim')
     use('vim-scripts/AnsiEsc.vim')
 
-    use('Raimondi/delimitMate')
+    use({ 'Raimondi/delimitMate', config = [[require('config.delimitmate')]] })
     use('tpope/vim-commentary')
-    use('ntpeters/vim-better-whitespace')
+    use({ 'ntpeters/vim-better-whitespace', config = [[require('config.better-whitespace')]] })
     use('tpope/vim-repeat')
     use('tpope/vim-unimpaired')
-    use('tpope/vim-surround')
+    use({ 'tpope/vim-surround', config = [[require('config.surround')]] })
     use('tpope/vim-abolish')
     use('tpope/vim-scriptease')
     use('tpope/vim-speeddating')
