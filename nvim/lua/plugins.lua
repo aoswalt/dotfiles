@@ -42,7 +42,7 @@ require('packer').startup({
     use('neovim/nvim-lspconfig')
     use({ 'jose-elias-alvarez/null-ls.nvim', branch = 'main', config = [[require('config.null-ls')]] })
     use({ 'jose-elias-alvarez/nvim-lsp-ts-utils', branch = 'main' })
-    use({ 'hrsh7th/nvim-cmp', branch = 'main', config = [[require('config.treesitter')]] })
+    use({ 'hrsh7th/nvim-cmp', branch = 'main', config = [[require('config.cmp')]] })
     use({ 'hrsh7th/cmp-buffer', branch = 'main' })
     use({ 'hrsh7th/cmp-path', branch = 'main' })
     use({ 'hrsh7th/cmp-calc', branch = 'main' })
