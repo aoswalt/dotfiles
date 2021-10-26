@@ -29,11 +29,11 @@ local null_ls = require('null-ls')
 null_ls.config({
   debug = true,
   sources = {
-    -- null_ls.builtins.diagnostics.credo.with({
-    --   condition = function(utils)
-    --     return utils.root_has_file('.credo.exs')
-    --   end,
-    -- }),
+    null_ls.builtins.diagnostics.credo.with({
+      condition = function(utils)
+        return utils.root_has_file('.credo.exs')
+      end,
+    }),
     -- null_ls.builtins.formatting.eslint,
     null_ls.builtins.formatting.prettier,
     -- null_ls.builtins.formatting.prettier.with({
