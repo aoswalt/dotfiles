@@ -6,13 +6,6 @@ require('packer').startup({
 
     use({ 'justinmk/vim-dirvish', config = [[require('config.dirvish')]] })
     use('simnalamburt/vim-mundo')
-    use({
-      'junegunn/fzf',
-      run = function()
-        vim.fn['fzf#install']()
-      end,
-    })
-    use('junegunn/fzf.vim')
     use('tpope/vim-fugitive')
     use({ 'junegunn/gv.vim', config = [[require('config.gv')]] })
     use('stefandtw/quickfix-reflector.vim')
