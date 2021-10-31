@@ -91,10 +91,9 @@ if [[ $(command -v tmux) && -z "$TMUX" && -z "$EMACS" && -z "$VIM" && -z "$INSID
   exec tmux attach-session -d
 fi
 
-
-[ $commands[fasd] ] && eval "$(fasd --init auto)"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ $commands[zoxide] ] && eval "$(zoxide init zsh)"
 
 [ -f ~/.asdf/asdf.sh ] && source ~/.asdf/asdf.sh
 
