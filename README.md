@@ -11,12 +11,16 @@ Run `dotfiles` to see a list of the option flags available.
 
 ## Dependencies
 
-- asdf `$(brew --prefix asdf)/asdf.sh`
+- asdf `sh $(brew --prefix asdf)/asdf.sh`
 - npm packages
-  - neovim
+  - vim-language-server
+  - bash-language-server
+  - prettier
+  - typescript
+  - typescript-language-server
+  - vscode-langservers-extracted
 - python packages
-  - pynvim
-  <!-- - python-language-server -->
+  - neovim-remote
 - system
   - alacritty
   - tmux
@@ -24,6 +28,7 @@ Run `dotfiles` to see a list of the option flags available.
   - git-delta
   - stylua
   - elixir ls
+  - ripgrep
   - postgres/psql
 - mac
   - less
@@ -38,7 +43,7 @@ Run `dotfiles` to see a list of the option flags available.
   - bat
   - exa
   - htop
-  - flameshot (brew install --cask flameshot)
+  - flameshot (brew install flameshot)
 
 ---
 
