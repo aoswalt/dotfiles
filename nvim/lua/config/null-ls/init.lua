@@ -31,7 +31,7 @@ null_ls.config({
   sources = {
     null_ls.builtins.diagnostics.credo.with({
       condition = function(utils)
-        return utils.root_has_file('.credo.exs')
+        return utils.root_has_file('.credo.exs') or utils.root_has_file('config/.credo.exs')
       end,
     }),
     -- null_ls.builtins.formatting.eslint,
