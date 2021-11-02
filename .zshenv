@@ -21,7 +21,7 @@ export ELIXIR_EDITOR="nvim +__LINE__ __FILE__"
 export PLUG_EDITOR=$ELIXIR_EDITOR
 export ECTO_EDITOR=$ELIXIR_EDITOR
 
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_COMMAND="rg --files --hidden --glob='!.git'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # enable iex history in otp 20
@@ -30,8 +30,6 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 # include docs for erlang
 export KERL_DOC_TARGETS=chunks
 export KERL_BUILD_DOCS=yes
-export NODEJS_CHECK_SIGNATURES=no
-
 export NODEJS_CHECK_SIGNATURES=no
 
 # darken lock files
