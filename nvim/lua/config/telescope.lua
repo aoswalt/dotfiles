@@ -1,3 +1,12 @@
+local M = {}
+
+-- from telescope wiki
+-- use git_files if in git project; fall back to find_files if not
+M.project_files = function()
+  local ok = pcall(require'telescope.builtin'.git_files, {})
+  if not ok then require'telescope.builtin'.find_files({hidden = true}) end
+end
+
 local actions = require'telescope.actions'
 
 require'telescope'.setup{
@@ -15,18 +24,20 @@ require'telescope'.setup{
   },
 }
 
-U.keymap('n', '<leader>f', "<cmd>lua require'telescope.builtin'.fd{file_ignore_patterns = {'^external/'}}<cr>")
-U.keymap('n', '<leader>F', "<cmd>lua require'telescope.builtin'.git_files{}<cr>")
+U.keymap('n', '<leader>f', "<cmd>lua require('config.telescope').project_files{}<cr>")
+U.keymap('n', '<leader>F', "<cmd>lua require('telescope.builtin').fd{}<cr>")
 
 -- super search
-U.keymap('n', '<leader>?', "<cmd>lua require'telescope.builtin'.live_grep{}<cr>") -- can't do regex
-U.keymap('n', '<leader>/', "<cmd>lua require'telescope.builtin'.grep_string{ search = vim.fn.input('Rg> '), use_regex = true }<cr>")
+U.keymap('n', '<leader>?', "<cmd>lua require('telescope.builtin').live_grep{}<cr>") -- can't do regex
+U.keymap('n', '<leader>/', "<cmd>lua require('telescope.builtin').grep_string{ search = vim.fn.input('Rg> '), use_regex = true }<cr>")
 
 -- super search for word under cursor
-U.keymap('n', '<leader>*', "<cmd>lua require'telescope.builtin'.grep_string{}<cr>")
+U.keymap('n', '<leader>*', "<cmd>lua require('telescope.builtin').grep_string{}<cr>")
 
-U.keymap('n', '<leader>b', "<cmd>lua require'telescope.builtin'.buffers{}<cr>")
-U.keymap('n', '<leader>B', "<cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find{}<cr>")
+U.keymap('n', '<leader>b', "<cmd>lua require('telescope.builtin').buffers{}<cr>")
+U.keymap('n', '<leader>B', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find{}<cr>")
 
-U.keymap('n', '<leader><leader>', "<cmd>lua require'telescope.builtin'.commands{}<cr>")
-U.keymap('n', '<leader>K', "<cmd>lua require'telescope.builtin'.help_tags{}<cr>")
+U.keymap('n', '<leader><leader>', "<cmd>lua require('telescope.builtin').commands{}<cr>")
+U.keymap('n', '<leader>K', "<cmd>lua require('telescope.builtin').help_tags{}<cr>")
+
+return M
