@@ -26,7 +26,8 @@ vim.opt.lazyredraw = true -- no need to redraw all the time
 vim.opt.hlsearch = false -- don't highlight searches by default
 vim.opt.inccommand = 'nosplit' -- show substitution while typing
 vim.opt.path = vim.opt.path + { '**' } -- include subdirectory globbing in path for :find
-vim.opt.diffopt = vim.opt.diffopt + { vertical = true } -- vertical split for diffs
+vim.opt.diffopt:append('internal') -- internal library for performance
+vim.opt.diffopt:append('vertical') -- vertical split for diffs
 
 vim.opt.showmode = false -- do not show mode since using lightline
 
