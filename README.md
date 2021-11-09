@@ -20,6 +20,7 @@ Run `dotfiles` to see a list of the option flags available.
   - typescript-language-server
   - vscode-langservers-extracted
 - python packages
+  - pynvim
   - neovim-remote
 - system
   - alacritty
