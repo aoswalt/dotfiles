@@ -40,6 +40,9 @@ nnoremap <leader>w <cmd>w<cr>
 nnoremap <leader>q <cmd>q<cr>
 nnoremap <leader>Q <cmd>bd<cr>
 
+" easier previous buffer because c-s-6 is cumbersome
+nnoremap <BS> <c-^>
+
 " system clipboard yank
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
