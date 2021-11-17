@@ -22,6 +22,18 @@ require'telescope'.setup{
       },
     },
   },
+  pickers = {
+    buffers = {
+      mappings = {
+        n = {
+          ['<c-d>'] = require('telescope.actions').delete_buffer,
+        },
+        i = {
+          ['<c-d>'] = require('telescope.actions').delete_buffer,
+        },
+      },
+    },
+  },
 }
 
 U.keymap('n', '<leader>f', "<cmd>lua require('config.telescope').project_files{}<cr>")
