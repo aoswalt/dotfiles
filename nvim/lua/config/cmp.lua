@@ -25,7 +25,7 @@ cmp.setup {
   sources = {
     {
       name = 'buffer',
-      opts = {
+      options = {
         -- get completion from visible buffers
         get_bufnrs = function()
           local bufs = {}
