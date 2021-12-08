@@ -24,7 +24,6 @@ vim.opt.wildignorecase = true -- ignore case on files and directories
 vim.opt.gdefault = true -- global search by default
 vim.opt.lazyredraw = true -- no need to redraw all the time
 vim.opt.hlsearch = false -- don't highlight searches by default
-vim.opt.inccommand = 'nosplit' -- show substitution while typing
 vim.opt.path = vim.opt.path + { '**' } -- include subdirectory globbing in path for :find
 vim.opt.diffopt:append('internal') -- internal library for performance
 vim.opt.diffopt:append('vertical') -- vertical split for diffs

@@ -13,9 +13,6 @@ nnoremap j gj
 nnoremap <Up> gk
 nnoremap <Down> gj
 
-" mimic D,C (to end of line)
-nnoremap Y y$
-
 " use Q to play q macro
 nnoremap Q @q
 
