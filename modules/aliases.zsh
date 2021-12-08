@@ -162,7 +162,7 @@ alias gwX='git rm -rf'
 alias gpb='git-push-branch'
 
 # Mine
-alias gh='git help'
+# alias gh='git help'
 alias giaa='gia -A'
 alias gria='gri --autosquash'
 alias gfp='git fetch --prune'

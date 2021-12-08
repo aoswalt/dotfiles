@@ -17,6 +17,15 @@ require('packer').startup({
       requires = { 'nvim-lua/plenary.nvim' },
       config = [[require('config.telescope')]],
     })
+    use({ 'nvim-telescope/telescope-github.nvim', config = [[require('config.telescope-github')]] })
+    use({
+      'rlch/github-notifications.nvim',
+      config = [[require('config.github-notifications')]],
+      requires = {
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope.nvim',
+      },
+    })
 
     use({
       'nvim-treesitter/nvim-treesitter',
