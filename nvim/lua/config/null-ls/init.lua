@@ -34,11 +34,10 @@ null_ls.config({
         return utils.root_has_file('.credo.exs') or utils.root_has_file('config/.credo.exs')
       end,
     }),
-    -- null_ls.builtins.formatting.eslint,
-    null_ls.builtins.formatting.prettier,
-    -- null_ls.builtins.formatting.prettier.with({
-    --   filetypes = { "html", "css", "json", "markdown", "yaml" },
-    -- }),
+    null_ls.builtins.formatting.prettier.with({ -- prettier, eslint, eslint_d, or prettierd
+      --   filetypes = { "html", "css", "json", "markdown", "yaml" },
+      prefer_local = 'node_modules/.bin',
+    }),
     null_ls.builtins.formatting.stylua.with({
       args = { '--indent-width', '2', '--indent-type', 'Spaces', '--quote-style', 'AutoPreferSingle', '-' },
     }),
