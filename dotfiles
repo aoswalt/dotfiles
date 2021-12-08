@@ -174,13 +174,24 @@ function add_git_config() {
 function setup_git_configs() {
   add_git_config 'core.excludesfile' "$HOME/.gitignore"
 
-  if [[ $(command -v diff-so-fancy) ]]; then
-    add_git_config 'core.pager' 'diff-so-fancy | less --tabs=4 -RFX'
-    add_git_config 'color.diff-highlight.oldnormal' 'red bold'
-    add_git_config 'color.diff-highlight.oldhighlight' 'red bold 52'
-    add_git_config 'color.diff-highlight.newnormal' 'green bold'
-    add_git_config 'color.diff-highlight.newhighlight' 'green bold 22'
-  fi
+  # if [[ $(command -v diff-so-fancy) ]]; then
+  #   add_git_config 'core.pager' 'diff-so-fancy | less --tabs=4 -RFX'
+  #   add_git_config 'color.diff-highlight.oldnormal' 'red bold'
+  #   add_git_config 'color.diff-highlight.oldhighlight' 'red bold 52'
+  #   add_git_config 'color.diff-highlight.newnormal' 'green bold'
+  #   add_git_config 'color.diff-highlight.newhighlight' 'green bold 22'
+  # fi
+
+
+  # git-delta config
+# [pager]
+#     diff = delta
+#     log = delta
+#     reflog = delta
+#     show = delta
+
+# [interactive]
+#     diffFilter = delta --color-only --features=interactive
 
   add_git_config 'format.pretty' '%Cred%h%Creset - %s %Cgreen(%cr)%C(yellow)%d%Creset %C(bold blue)<%an>%Creset '
 
