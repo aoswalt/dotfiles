@@ -39,7 +39,7 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 -- set default for all servers
 lspconfig.util.default_config = vim.tbl_extend('force', lspconfig.util.default_config, { capabilities = capabilities })
 
-local servers = { 'eslint', 'rls', 'dockerls', 'null-ls', 'bashls' }
+local servers = { 'eslint', 'rls', 'dockerls', 'bashls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup({ on_attach = on_attach })
 end

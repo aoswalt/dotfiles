@@ -26,7 +26,7 @@ local null_ls = require('null-ls')
 --     return l:lines_new
 -- endfunction
 
-null_ls.config({
+null_ls.setup({
   debug = true,
   sources = {
     null_ls.builtins.diagnostics.credo.with({
