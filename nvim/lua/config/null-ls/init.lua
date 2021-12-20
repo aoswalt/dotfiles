@@ -27,7 +27,6 @@ local null_ls = require('null-ls')
 -- endfunction
 
 null_ls.setup({
-  debug = true,
   sources = {
     null_ls.builtins.diagnostics.credo.with({
       condition = function(utils)
