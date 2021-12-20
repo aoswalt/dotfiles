@@ -80,7 +80,6 @@ require('packer').startup({
     use({ 'lukas-reineke/indent-blankline.nvim', config = [[require('config.indent-blankline')]] })
     use('ap/vim-css-color')
     use('aoswalt/xterm-color-table.vim')
-    use('vim-scripts/AnsiEsc.vim')
 
     use({ 'Raimondi/delimitMate', config = [[require('config.delimitmate')]] })
     use('tpope/vim-commentary')
@@ -94,8 +93,6 @@ require('packer').startup({
     use('tpope/vim-endwise')
     use('tpope/vim-rsi')
     use('tpope/vim-dadbod')
-
-    use('wannesm/wmgraphviz.vim')
 
     if packer_bootstrap then
       require('packer').sync()
