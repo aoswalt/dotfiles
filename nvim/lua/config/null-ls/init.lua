@@ -1,4 +1,5 @@
 local null_ls = require('null-ls')
+local lsp = require('lsp')
 
 -- \  'xml': ['xmllint'],
 -- \  'xhtml': ['xmllint'],
@@ -27,6 +28,7 @@ local null_ls = require('null-ls')
 -- endfunction
 
 null_ls.setup({
+  on_attach = lsp.on_attach,
   sources = {
     null_ls.builtins.diagnostics.credo.with({
       condition = function(utils)
