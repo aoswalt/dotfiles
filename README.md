@@ -31,6 +31,8 @@ Run `dotfiles` to see a list of the option flags available.
   - elixir ls
   - ripgrep
   - postgres/psql
+  - pgformatter
+  - github cli
 - mac
   - less
   - gsed
