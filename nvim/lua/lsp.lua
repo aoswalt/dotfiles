@@ -1,6 +1,6 @@
 local M = {}
 
-M.on_attach = function(_client, bufnr)
+M.on_attach = function(_client, bufnr) -- luacheck: no unused
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local function buf_keymap(mode, lhs, rhs)

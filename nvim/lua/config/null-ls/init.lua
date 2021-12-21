@@ -44,7 +44,22 @@ null_ls.setup({
     }),
     null_ls.builtins.formatting.rustfmt,
     -- null_ls.builtins.diagnostics.shellcheck, -- ls instead?
-    -- null_ls.builtins.diagnostics.luacheck, -- ls instead?
+    null_ls.builtins.diagnostics.luacheck.with({
+      args = {
+        '--formatter',
+        'plain',
+        '--codes',
+        '--ranges',
+        '--new-globals',
+        'vim',
+        '--new-globals',
+        'U',
+        '--no-max-line-length',
+        '--filename',
+        '$FILENAME',
+        '-',
+      },
+    }), -- ls instead?
     require('config.null-ls.pgformatter'),
     require('config.null-ls.comment-line'),
   },

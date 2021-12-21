@@ -1,4 +1,4 @@
-vim.g.colors_name = "unemphatic2"
+vim.g.colors_name = "unemphatic"
 
 vim.api.nvim_exec([[
   highlight clear

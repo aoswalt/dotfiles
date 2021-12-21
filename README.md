@@ -47,6 +47,8 @@ Run `dotfiles` to see a list of the option flags available.
   - exa
   - htop
   - flameshot (brew install flameshot)
+- luarocks
+  - luacheck
 
 ---
 

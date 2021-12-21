@@ -48,7 +48,7 @@ function U.get_visual_selection(type)
 
   local selection
 
-  is_success = xpcall(function()
+  local is_success = xpcall(function()
     vim.o.clipboard = ''
     vim.o.selection = 'inclusive'
 
@@ -69,6 +69,5 @@ function U.get_visual_selection(type)
     return selection
   end
 end
-
 
 return U

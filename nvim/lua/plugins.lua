@@ -94,7 +94,8 @@ require('packer').startup({
     use('tpope/vim-rsi')
     use('tpope/vim-dadbod')
 
-    if packer_bootstrap then
+    -- from main init
+    if packer_bootstrap then -- luacheck: globals packer_bootstrap
       require('packer').sync()
     end
   end,
