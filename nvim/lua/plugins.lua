@@ -5,7 +5,7 @@ require('packer').startup({
     use({ 'nathom/tmux.nvim', config = [[require('config.tmux')]] })
 
     use({ 'justinmk/vim-dirvish', config = [[require('config.dirvish')]] })
-    use('simnalamburt/vim-mundo')
+    use({ 'simnalamburt/vim-mundo', config = [[require('config.mundo')]] })
     use('tpope/vim-fugitive')
     use({ 'junegunn/gv.vim', config = [[require('config.gv')]] })
     use('stefandtw/quickfix-reflector.vim')
