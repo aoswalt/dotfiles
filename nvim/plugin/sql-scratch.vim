@@ -7,7 +7,12 @@ function! ToggleSqlScratch(mods)
     execute l:scratch_window.'hide'
   else
     let l:mods = get(a:, 'mods', 'botright')
-    execute l:mods 'new' '+setlocal\ buftype=nofile|setlocal\ bufhidden=hide|setlocal\ filetype=sql' l:sql_scratch_name
+    "NOTE: more 'proper' way to create the scrat buffer
+    " execute l:mods 'new' '+setlocal\ buftype=nofile|setlocal\ bufhidden=hide|setlocal\ filetype=sql' l:sql_scratch_name
+
+    execute l:mods 'new' '+setlocal\ bufhidden=hide|setlocal\ filetype=sql' l:sql_scratch_name
+    "NOTE: nofile should generally be set first, but that prevents attaching of language client
+    setlocal buftype=nofile
   endif
 endfunction
 
