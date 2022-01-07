@@ -60,7 +60,20 @@ null_ls.setup({
         '-',
       },
     }), -- ls instead?
-    require('config.null-ls.pgformatter'),
+    null_ls.builtins.formatting.pg_format.with({
+      args = {
+        '--comma-start',
+        '--comma-break',
+        '--spaces',
+        '2',
+        '--keyword-case',
+        '1',
+        '--wrap-after',
+        '1',
+        '--placeholder',
+        '":: "',
+      },
+    }),
     require('config.null-ls.comment-line'),
   },
 })
