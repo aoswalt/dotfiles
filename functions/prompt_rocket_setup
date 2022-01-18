@@ -58,8 +58,9 @@ function prompt_rocket_setup {
   PROMPT+='$(editor-keymap-print) '
 
   RPROMPT='$(editor-state-print)'
-  RPROMPT+='%(?:: %F{1}✘ %? %f)'
-  RPROMPT+='${VIM:+" %B%F{6}V%f%b"} '
+  RPROMPT+='%(?:: %F{1}✘ %? %f)' # show exit code if previous command failed
+  RPROMPT+='${VIM:+" %B%F{6}V%f%b"} ' # vim indicator
+  RPROMPT+='%(1j.%j⚙️ .)' # if background jobs, print count + gear
   RPROMPT+='$(git-info)'
 
   SPROMPT='zsh: correct %F{1}%R%f to %F{2}%r%f [nyae]? '
