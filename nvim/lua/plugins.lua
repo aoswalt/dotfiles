@@ -36,7 +36,7 @@ require('packer').startup({
 
     use({ 'sheerun/vim-polyglot', config = [[require('config.polyglot')]] })
     use('exu/pgsql.vim')
-    use({ 'plasticboy/vim-markdown', config = [[require('config.markdown')]] }) -- included in polyglot but without extra features
+    use({ 'preservim/vim-markdown', config = [[require('config.markdown')]] }) -- included in polyglot but without extra features
     use('habamax/vim-godot')
     use({ 'junegunn/limelight.vim', config = [[require('config.limelight')]] })
 
