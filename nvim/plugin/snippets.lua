@@ -6,10 +6,17 @@ local i = ls.i
 local f = ls.f
 local c = ls.c
 local d = ls.d
+local fmt = require('luasnip.extras.fmt').fmt
+local rep = require('luasnip.extras').rep
 
 local U = require'util'
 
-U.keymap('i', '<c-j>', "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-j>'", { expr = true, noremap = false, silent = true })
+ls.config.set_config({
+  updateevents = 'TextChanged,TextChangedI',
+})
+
+-- U.keymap('i', '<c-j>', "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-j>'", { expr = true, noremap = false, silent = true })
+U.keymap('i', '<c-j>', "luasnip#expand_or_locally_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-j>'", { expr = true, noremap = false, silent = true })
 U.keymap('i', '<c-k>', "<cmd>lua require'luasnip'.jump(-1)<cr>", { silent = true })
 
 U.keymap('s', '<c-j>', "<cmd>lua require'luasnip'.jump(1)<cr>", { silent = true })
@@ -64,18 +71,7 @@ ls.snippets = {
   },
 
   elixir = {
-    s('def', {
-        t'def ',
-        i(1, 'function'),
-        t'(',
-        i(2),
-        t{
-          ') do',
-          '\t'
-        },
-        i(0),
-        t{'','end'},
-      }),
+    s('def', fmt('def {}({}) do\n	{}\nend', { i(1, 'function'), i(2), i(0) })),
     ls.parser.parse_snippet('defp', [[
 defp ${1:function}($2) do
   $0
@@ -113,6 +109,7 @@ end]]),
         f(function(_args, snip) return '(p. ' .. snip.captures[1] .. ')' end, {}) -- luacheck: no unused
     ),
     ls.parser.parse_snippet('pp', [[(pp. $1)$0]]); -- multiple page number
+    ls.parser.parse_snippet('-[', [[- [ ] ]]); -- checkbox list
   },
 
   sql = {
@@ -121,16 +118,17 @@ end]]),
     ls.parser.parse_snippet('selmats', [[select oid::regclass::text from pg_class where relkind = 'm']]), -- list materialized views
     ls.parser.parse_snippet('running', [[
 select
-    psa.pid
-  , now() - psa.query_start as running_time
-  , psa.client_addr
-  , psa.client_port
-  , psa.application_name
-  , psa.state
-  , psa.query
-from pg_stat_activity psa
-where psa.state <> 'idle'::text and psa.query !~ 'running_queries'::text
-order by psa.query_start]]), -- show running queries
+    pid
+  , now() - query_start as running_time
+  , client_addr
+  , client_port
+  , application_name
+  , state
+  , query
+from pg_stat_activity
+where state != 'idle'
+  and pid != pg_backend_pid()
+order by query_start]]), -- show running queries
     ls.parser.parse_snippet('selview', [[
 select pg_get_viewdef(oid)
 from pg_class
@@ -238,6 +236,13 @@ from pg_catalog.pg_statio_user_tables
 order by pg_total_relation_size(relid) desc,
          pg_relation_size(relid) desc
 limit 10]]); -- list 10 largest tables
+    s('fix_sequence', fmt([[
+      select setval(
+        pg_get_serial_sequence('{}', '{}'),
+        (select max({}) from {})
+      )
+      ]], { i(1, 'schema.table'), i(2, 'id'), rep(2), rep(1) })),
+    s('cancel', fmt('select pg_cancel_backend({})', { i(1, '__pid__') })),
+    s('kill', fmt('select pg_terminate_backend({})', { i(1, '__pid__') })),
   },
-
 }

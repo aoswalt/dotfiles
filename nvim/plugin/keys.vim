@@ -66,6 +66,7 @@ nnoremap <leader>ev <cmd>vsp $DOTFILES/init.vim<CR>
 nnoremap <leader>eV <cmd>vsp $MYVIMRC<CR>
 nnoremap <leader>sv <cmd>source $MYVIMRC<CR>
 nnoremap <leader>sV <cmd>source %<CR>
+nnoremap <leader>ss <cmd>source $DOTFILES/nvim/plugin/snippets.lua<CR>
 nnoremap <leader>ez <cmd>vsp $DOTFILES/.zshrc<CR>
 
 " inside template tags (<%= foo %>)
