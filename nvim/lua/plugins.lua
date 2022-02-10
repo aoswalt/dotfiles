@@ -82,7 +82,12 @@ require('packer').startup({
     use('aoswalt/xterm-color-table.vim')
 
     use({ 'Raimondi/delimitMate', config = [[require('config.delimitmate')]] })
-    use('tpope/vim-commentary')
+    use({
+      'numToStr/Comment.nvim',
+      config = function()
+        require('Comment').setup()
+      end,
+    })
     use({ 'ntpeters/vim-better-whitespace', config = [[require('config.better-whitespace')]] })
     use('tpope/vim-repeat')
     use('tpope/vim-unimpaired')
