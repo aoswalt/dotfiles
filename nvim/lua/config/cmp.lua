@@ -58,3 +58,16 @@ cmp.setup({
     }),
   },
 })
+
+require('cmp').setup.cmdline(':', {
+  sources = {
+    { name = 'cmdline' },
+    { name = 'buffer' },
+  },
+})
+
+require('cmp').setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' },
+  },
+})
