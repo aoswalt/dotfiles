@@ -1,12 +1,7 @@
 local cmp = require('cmp')
+local lspkind = require('lspkind')
 
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      require'luasnip'.lsp_expand(args.body)
-    end
-  },
-
+cmp.setup({
   mapping = {
     ['<c-p>'] = cmp.mapping.select_prev_item(),
     ['<c-n>'] = cmp.mapping.select_next_item(),
@@ -15,14 +10,17 @@ cmp.setup {
     -- ['<c-space>'] = cmp.mapping.complete(),
     ['<c-l>'] = cmp.mapping.complete(),
     ['<c-e>'] = cmp.mapping.close(),
-    --TODO(adam): needed for lsp snippets but clunky for luasnip snippet triggering
-    -- ['<c-j>'] = cmp.mapping.confirm({
-    --   behavior = cmp.ConfirmBehavior.Insert,
-    --   -- select = true,
-    -- })
+    ['<c-j>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    }),
   },
 
   sources = {
+    { name = 'luasnip' },
+    { name = 'calc' },
+    { name = 'nvim_lsp' },
+    { name = 'nvim_lua' },
     {
       name = 'buffer',
       options = {
@@ -33,13 +31,30 @@ cmp.setup {
             bufs[vim.api.nvim_win_get_buf(win)] = true
           end
           return vim.tbl_keys(bufs)
-        end
-      }
+        end,
+      },
+      keyword_length = 4,
     },
     { name = 'path' },
-    { name = 'calc' },
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'nvim_lua' },
   },
-}
+
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+
+  formatting = {
+    format = lspkind.cmp_format({
+      with_text = true,
+      menu = {
+        buffer = '[buf]',
+        nvim_lsp = '[LSP]',
+        nvim_lua = '[api]',
+        path = '[path]',
+        luasnip = '[snip]',
+        ['vim-dadbod-completion'] = '[db]',
+      },
+    }),
+  },
+})

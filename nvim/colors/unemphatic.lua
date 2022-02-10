@@ -474,7 +474,11 @@ h("TelescopeMatching", { fg = colors.cyan[1] })
 h("TelescopePromptPrefix", { fg = colors.red[2] })
 
 -- nvim-cmp {{{2
-h("CmpItemAbbr", {})
+h("CmpItemAbbr", "Comment")
+h("CmpItemAbbrDeprecated", "PreProc")
+h("CmpItemAbbr", styles.fg_offset)
+h("CmpItemKind", { fg = colors.cyan[2] })
+h("CmpItemMenu", "NonText")
 
 -- lewis6991/gitsigns {{{2
 h("GitSignsAdd", { fg = colors.green[0] })

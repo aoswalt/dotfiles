@@ -14,3 +14,5 @@ vmap <buffer> <expr> gs db#op_exec()
 " nnoremap <buffer> <c-q><c-q> <cmd>.DB<cr>
 " nmap <buffer> <expr> <c-q> db#op_exec()
 " vmap <buffer> <expr> <c-q> db#op_exec()
+
+lua require('cmp').setup.buffer({ sources = { { name = 'luasnip' }, { name = 'vim-dadbod-completion' } } })

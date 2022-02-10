@@ -49,6 +49,8 @@ require('packer').startup({
     use({ 'hrsh7th/cmp-calc', branch = 'main' })
     use({ 'hrsh7th/cmp-nvim-lsp', branch = 'main' })
     use({ 'hrsh7th/cmp-nvim-lua', branch = 'main' })
+    use('onsails/lspkind-nvim')
+    use('kristijanhusak/vim-dadbod-completion')
     use('L3MON4D3/LuaSnip')
     use('saadparwaiz1/cmp_luasnip')
 
