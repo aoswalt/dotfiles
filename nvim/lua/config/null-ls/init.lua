@@ -1,9 +1,6 @@
 local null_ls = require('null-ls')
 local lsp = require('lsp')
 
--- \  'xml': ['xmllint'],
--- \  'xhtml': ['xmllint'],
-
 -- function! ale#fixers#generic#RemoveTrailingBlankLines(buffer, lines) abort
 --     let l:end_index = len(a:lines) - 1
 
@@ -73,6 +70,9 @@ null_ls.setup({
         '--placeholder',
         '":: "',
       },
+    }),
+    null_ls.builtins.formatting.xmllint.with({
+      filetypes = { 'xml', 'xhtml' },
     }),
     require('config.null-ls.comment-line'),
   },
