@@ -61,13 +61,13 @@ cmp.setup({
 
 require('cmp').setup.cmdline(':', {
   sources = {
-    { name = 'cmdline' },
-    { name = 'buffer' },
+    { name = 'cmdline', keyword_length = 3 },
+    { name = 'buffer', keyword_length = 3 },
   },
 })
 
 require('cmp').setup.cmdline('/', {
   sources = {
-    { name = 'buffer' },
+    { name = 'buffer', keyword_length = 3 },
   },
 })
