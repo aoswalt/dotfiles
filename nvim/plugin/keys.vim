@@ -76,3 +76,9 @@ onoremap <silent> aT <cmd>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}]
 vnoremap <silent> aT <cmd>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}][>}]/e\r"<cr>
 
 nnoremap z= <cmd>Telescope spell_suggest<cr>
+
+nnoremap <F10> <cmd>lua vim.diagnostic.open_float()<cr>
+nnoremap [d <cmd>lua vim.diagnostic.goto_prev({ wrap = true })<cr>
+nnoremap ]d <cmd>lua vim.diagnostic.goto_next({ wrap = true })<cr>
+nnoremap [w <cmd>lua vim.diagnostic.goto_prev({ wrap = true })<cr>
+nnoremap ]W <cmd>lua vim.diagnostic.goto_next({ wrap = true })<cr>

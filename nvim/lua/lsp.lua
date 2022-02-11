@@ -17,12 +17,7 @@ M.on_attach = function(_client, bufnr) -- luacheck: no unused
   buf_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
   buf_keymap('n', 'g0', '<cmd>lua vim.lsp.buf.document_symbol()<cr>')
   buf_keymap('n', 'gW', '<cmd>lua vim.lsp.buf.workspace_symbol()<cr>')
-  buf_keymap('n', '<F10>', '<cmd>lua vim.diagnostic.open_float()<cr>')
   buf_keymap('n', 'gA', '<cmd>Telescope lsp_code_actions<CR>')
-  buf_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ wrap = true })<cr>')
-  buf_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next({ wrap = true })<cr>')
-  buf_keymap('n', '[w', '<cmd>lua vim.diagnostic.goto_prev({ wrap = true })<cr>')
-  buf_keymap('n', ']W', '<cmd>lua vim.diagnostic.goto_next({ wrap = true })<cr>')
 
   buf_keymap('n', '<f4>', '<cmd>lua vim.lsp.buf.formatting()<cr>')
   buf_keymap('v', '<f4>', ':lua vim.lsp.buf.range_formatting()<cr>')
