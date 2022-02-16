@@ -6,6 +6,8 @@ echo -e "\e[1mbold\e[0m"
 echo -e "\e[3mitalic\e[0m"
 echo -e "\e[3m\e[1mbold italic\e[0m"
 echo -e "\e[4munderline\e[0m"
+echo -e "\e[4:3mundercurl\e[4:0m"
+echo -e '\e[4:3m\e[58:2::240:143:104mcolored undercurl\e[59m\e[4:0m'
 
 # Based on: https://gist.github.com/XVilka/8346728
 awk -v term_cols="${width:-$(tput cols || echo 80)}" 'BEGIN{
