@@ -14,6 +14,16 @@ require'telescope'.setup{
     file_sorter = require'telescope.sorters'.get_fzy_sorter,
     generic_sorter = require'telescope.sorters'.get_fzy_sorter,
     -- prompt_prefix = '',  -- fixes using rsi in prompt but causes other issues
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--hidden',
+    },
     mappings = {
       i = {
         -- ["<esc>"] = actions.close,
