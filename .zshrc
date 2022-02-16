@@ -1,9 +1,3 @@
-# Source Prezto.
-# if file and size > 0
-# if [[ -s "$HOME/.zprezto/init.zsh" ]]; then
-#   source "$HOME/.zprezto/init.zsh"
-# fi
-
 path=(
   $DOTFILES/scripts
   $HOME/.local/bin
