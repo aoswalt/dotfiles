@@ -59,8 +59,5 @@ if [[ ! -d "${TMPDIR}" ]]; then
   mkdir -m 700 "${TMPDIR}"
 fi
 
-# fix vim not seeing 256-color terminal
-# [[ $COLORTERM = gnome-terminal && ! $TERM = screen-256color && -z "$TMUX" ]] && TERM=xterm-256color
-
 ## load local zshenv
 [ -f $HOME/.zshenv.after ] && source $HOME/.zshenv.after

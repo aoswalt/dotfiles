@@ -23,8 +23,7 @@ Run `dotfiles` to see a list of the option flags available.
   - pynvim
   - neovim-remote
 - system
-  - alacritty
-  - tmux
+  - kitty
   - yarn
   - git-delta
   - stylua

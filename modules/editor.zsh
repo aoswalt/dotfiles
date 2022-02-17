@@ -74,9 +74,6 @@ bindkey -M emacs ' ' magic-space
 # }
 # zle -N glob-alias
 
-# # conflicts with tmux binding
-# bindkey -M emacs "$key_info[Control] " glob-alias
-
 # Expand command name to full path.
 for key in "$key_info[Escape]"{E,e}
   bindkey -M emacs "$key" expand-cmd-path

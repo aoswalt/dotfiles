@@ -219,7 +219,7 @@ Settings
 Installing
   --all     Install and setup everything
 
-  --files   Link a dotfiles for a tool (bash, neovim, tmux)
+  --files   Link a dotfiles for a tool (bash, neovim)
   --git     Add gitconfig QoL options
   --langs   Install languages with asdf (erlang, elixir, nodejs, postgres, python)
   --lsp     Install language servers (elixir-ls, pyls)
@@ -232,7 +232,6 @@ if [[ ${opt_files:-$opt_all} ]]; then
   try_link .zshenv
   try_link .zshrc
   try_link .bashrc
-  try_link .tmux.conf
   # try_link .eslintrc.json
   # try_link .xprofile
 fi

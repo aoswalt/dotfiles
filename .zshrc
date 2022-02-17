@@ -69,22 +69,6 @@ fi
 # }
 
 
-# Auto Start tmux
-# [[ $TERM != screen* ]] && [ -z $TMUX ] && { tmux attach || tmux new-session -s home; }
-if [[ $(command -v tmux) && -z "$TMUX" && -z "$EMACS" && -z "$VIM" && -z "$INSIDE_EMACS" && -z "$VSCODE_PID" ]]; then
-  tmux start-server
-
-  if ! tmux has-session 2> /dev/null; then
-    tmux_session=dev
-    tmux \
-      new-session -d -s "$tmux_session" \; \
-      set-option -t "$tmux_session" destroy-unattached off &> /dev/null
-  fi
-
-  # Attach to the 'dev' session or to the last session used. (detach first)
-  exec tmux attach-session -d
-fi
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ $commands[zoxide] ] && eval "$(zoxide init zsh)"

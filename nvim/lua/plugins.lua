@@ -2,7 +2,12 @@ require('packer').startup({
   function(use)
     use('wbthomason/packer.nvim')
 
-    use({ 'nathom/tmux.nvim', config = [[require('config.tmux')]] })
+    use('fladson/vim-kitty')
+    use({
+      'knubie/vim-kitty-navigator',
+      run = 'cp ./*.py ~/.config/kitty/',
+      config = [[require('config.kitty-navigator')]],
+    })
 
     use({ 'justinmk/vim-dirvish', config = [[require('config.dirvish')]] })
     use({ 'simnalamburt/vim-mundo', config = [[require('config.mundo')]] })
