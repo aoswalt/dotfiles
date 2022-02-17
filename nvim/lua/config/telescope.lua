@@ -3,16 +3,18 @@ local M = {}
 -- from telescope wiki
 -- use git_files if in git project; fall back to find_files if not
 M.project_files = function()
-  local ok = pcall(require'telescope.builtin'.git_files, {})
-  if not ok then require'telescope.builtin'.find_files({hidden = true}) end
+  local ok = pcall(require('telescope.builtin').git_files, {})
+  if not ok then
+    require('telescope.builtin').find_files({ hidden = true })
+  end
 end
 
-local actions = require'telescope.actions'
+local actions = require('telescope.actions')
 
-require'telescope'.setup{
+require('telescope').setup({
   defaults = {
-    file_sorter = require'telescope.sorters'.get_fzy_sorter,
-    generic_sorter = require'telescope.sorters'.get_fzy_sorter,
+    file_sorter = require('telescope.sorters').get_fzy_sorter,
+    generic_sorter = require('telescope.sorters').get_fzy_sorter,
     -- prompt_prefix = '',  -- fixes using rsi in prompt but causes other issues
     vimgrep_arguments = {
       'rg',
@@ -27,8 +29,8 @@ require'telescope'.setup{
     mappings = {
       i = {
         -- ["<esc>"] = actions.close,
-        ["<c-f>"] = actions.smart_send_to_qflist + actions.open_qflist,
-        ["<a-a>"] = actions.select_all,
+        ['<c-f>'] = actions.smart_send_to_qflist + actions.open_qflist,
+        ['<a-a>'] = actions.select_all,
       },
     },
   },
@@ -44,14 +46,18 @@ require'telescope'.setup{
       },
     },
   },
-}
+})
 
 U.keymap('n', '<leader>f', "<cmd>lua require('config.telescope').project_files{}<cr>")
 U.keymap('n', '<leader>F', "<cmd>lua require('telescope.builtin').fd{}<cr>")
 
 -- super search
 U.keymap('n', '<leader>?', "<cmd>lua require('telescope.builtin').live_grep{}<cr>") -- can't do regex
-U.keymap('n', '<leader>/', "<cmd>lua require('telescope.builtin').grep_string{ search = vim.fn.input('Rg> '), use_regex = true }<cr>")
+U.keymap(
+  'n',
+  '<leader>/',
+  "<cmd>lua require('telescope.builtin').grep_string{ search = vim.fn.input('Rg> '), use_regex = true }<cr>"
+)
 
 -- super search for word under cursor
 U.keymap('n', '<leader>*', "<cmd>lua require('telescope.builtin').grep_string{}<cr>")
