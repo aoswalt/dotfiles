@@ -25,6 +25,7 @@ require('telescope').setup({
       '--column',
       '--smart-case',
       '--hidden',
+      [[--glob=!.git']],
     },
     mappings = {
       i = {
