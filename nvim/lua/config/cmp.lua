@@ -5,11 +5,14 @@ cmp.setup({
   mapping = {
     ['<c-p>'] = cmp.mapping.select_prev_item(),
     ['<c-n>'] = cmp.mapping.select_next_item(),
-    ['<c-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<c-f>'] = cmp.mapping.scroll_docs(4),
-    -- ['<c-space>'] = cmp.mapping.complete(),
-    ['<c-l>'] = cmp.mapping.complete(),
-    ['<c-e>'] = cmp.mapping.close(),
+    ['<c-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<c-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<c-space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<c-l>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<c-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    }),
     ['<c-j>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
@@ -59,9 +62,20 @@ cmp.setup({
   },
 })
 
+require('cmp_git').setup()
+
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'cmp_git' },
+  }, {
+    { name = 'buffer', keyword_length = 3 },
+  }),
+})
+
 require('cmp').setup.cmdline(':', {
   sources = {
     { name = 'cmdline', keyword_length = 3 },
+    { name = 'path', keyword_length = 2 },
     { name = 'buffer', keyword_length = 3 },
   },
 })
