@@ -1,12 +1,23 @@
 local U = {}
 
-U.inspect = function(...)
-  print(vim.inspect(...))
+U.inspect = function(v)
+  print(vim.inspect(v))
+  return v
 end
 
-U.reload = function(module)
-  require'plenary'.reload.reload_module(module)
-  return require(module)
+U.p = U.inspect
+
+U.err = function(v)
+  error(vim.inspect(v))
+end
+
+U.reload = function(...)
+  require'plenary.reload'.reload_module(...)
+end
+
+U.r = function(name)
+  U.reload(name)
+  return require(name)
 end
 
 local default_keyamp_opts = { noremap = true }
