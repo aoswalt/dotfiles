@@ -16,6 +16,9 @@ require('packer').startup({
     use('stefandtw/quickfix-reflector.vim')
     use('wsdjeg/vim-fetch')
 
+    use('nanotee/luv-vimdocs')
+    use('milisims/nvim-luaref')
+
     use('nvim-lua/plenary.nvim')
     use({
       'nvim-telescope/telescope.nvim',
