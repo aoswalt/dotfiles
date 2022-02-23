@@ -17,8 +17,6 @@ for module in $DOTFILES/modules/*.zsh; do
   source $module
 done #2>/dev/null
 
-setopt BEEP                     # Beep on error in line editor.
-
 
 # Load and execute the prompt theming system.
 autoload -Uz promptinit && promptinit
