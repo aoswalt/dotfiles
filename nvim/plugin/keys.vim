@@ -82,3 +82,6 @@ nnoremap [d <cmd>lua vim.diagnostic.goto_prev({ wrap = true })<cr>
 nnoremap ]d <cmd>lua vim.diagnostic.goto_next({ wrap = true })<cr>
 nnoremap [w <cmd>lua vim.diagnostic.goto_prev({ wrap = true })<cr>
 nnoremap ]W <cmd>lua vim.diagnostic.goto_next({ wrap = true })<cr>
+
+nnoremap <silent> <f4> <cmd>Format<cr>
+vnoremap <silent> <f4> <cmd>Format<cr>

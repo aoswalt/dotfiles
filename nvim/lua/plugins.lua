@@ -49,8 +49,8 @@ require('packer').startup({
     use({ 'junegunn/limelight.vim', config = [[require('config.limelight')]] })
 
     use('neovim/nvim-lspconfig')
-    use({ 'jose-elias-alvarez/null-ls.nvim', branch = 'main', config = [[require('config.null-ls')]] })
-    use({ 'jose-elias-alvarez/nvim-lsp-ts-utils', branch = 'main' })
+    use({ 'mfussenegger/nvim-lint', config = [[require('config.lint')]] })
+    use({ 'mhartington/formatter.nvim', config = [[require('config.formatter')]] })
     use({ 'hrsh7th/nvim-cmp', branch = 'main', config = [[require('config.cmp')]] })
     use({ 'hrsh7th/cmp-buffer', branch = 'main' })
     use({ 'hrsh7th/cmp-path', branch = 'main' })
