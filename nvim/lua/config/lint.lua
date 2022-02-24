@@ -133,6 +133,6 @@ function M.conditional_lint()
   require('lint').try_lint()
 end
 
-vim.cmd([[au BufReadPost,TextChanged,InsertLeave <buffer> lua require('config.lint').conditional_lint()]])
+vim.cmd([[au BufReadPost,BufWritePost <buffer> lua require('config.lint').conditional_lint()]])
 
 return M
