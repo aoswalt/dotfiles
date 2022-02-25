@@ -19,9 +19,6 @@ prompt "rocket"
 
 autoload -Uz zmv
 
-# make ctrl-u delete backwards like bash
-bindkey -M emacs \^U backward-kill-line
-
 ## functions
 mkdwn() { pandoc $1 | lynx -stdin -dump }   # print markdown in terminal
 

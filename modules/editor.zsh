@@ -92,8 +92,8 @@ bindkey -M emacs "$key_info[BackTab]" reverse-menu-complete
 # Complete in the middle of word.
 bindkey -M emacs "$key_info[Control]I" expand-or-complete
 
-# Expand .... to ../..
-# bindkey -M emacs "." expand-dot-to-parent-directory-path
-
 # Display an indicator when completing.
 bindkey -M emacs "$key_info[Control]I" expand-or-complete-with-indicator
+
+# make ctrl-u delete backwards like bash
+bindkey -M emacs \^U backward-kill-line
