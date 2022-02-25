@@ -228,8 +228,6 @@ fi
 
 alias l=ls
 
-# alias lm='la | "$PAGER"' # Lists human readable sizes, hidden files through pager.
-
 alias grep="${aliases[grep]:-grep} --color=auto"
 
 # prefer python 3

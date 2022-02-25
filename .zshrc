@@ -9,14 +9,14 @@ done
 
 for module in $DOTFILES/modules/*.zsh; do
   source $module
-done #2>/dev/null
-
+done
 
 # Load and execute the prompt theming system.
 autoload -Uz promptinit && promptinit
 
 prompt "rocket"
 
+# more feature-rich mv command
 autoload -Uz zmv
 
 ## functions
@@ -30,33 +30,6 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
     alias nvim='echo "No nesting!"'
   fi
 fi
-
-# case "$OSTYPE" in
-#   solaris*) echo "SOLARIS" ;;
-#   darwin*)  echo "OSX" ;;
-#   linux*)   echo "LINUX" ;;
-#   bsd*)     echo "BSD" ;;
-#   cygwin*)  echo "WINDOWS (POSIX compat) ;;
-#   msys*)    echo "WINDOWS (MinGW)" ;;
-#   win32*)   echo "WINDOWS (impossible?)" ;;
-#   freebsd*) echo "FREE BSD" ;;
-#   *)        echo "unknown: $OSTYPE" ;;
-# esac
-
-
- # # colorize man pages
- # # https://unix.stackexchange.com/questions/108699/documentation-on-less-termcap-variables
-# man() {
- #  LESS_TERMCAP_mb=$'\e[1;31m' \
- #  LESS_TERMCAP_md=$'\e[1;31m' \
- #  LESS_TERMCAP_me=$'\e[0m' \
- #  LESS_TERMCAP_se=$'\e[0m' \
- #  LESS_TERMCAP_so=$'\e[1;44;33m' \
- #  LESS_TERMCAP_ue=$'\e[0m' \
- #  LESS_TERMCAP_us=$'\e[1;32m' \
- #  command man "$@"
-# }
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

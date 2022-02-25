@@ -40,15 +40,12 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 # include docs for erlang
 export KERL_DOC_TARGETS=chunks
 export KERL_BUILD_DOCS=yes
+
+# skip nodejs gpg checks with asdf
 export NODEJS_CHECK_SIGNATURES=no
 
 # darken lock files
 export EXA_COLORS="*.lock=1;30"
-
-# Set the default Less options.
-# Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
-# Remove -X and -F (exit if the content fits on one screen) to enable it.
-# export LESS='-F -g -i -M -R -S -w -X -z-4'
 
 # Set the Less input preprocessor.
 # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
