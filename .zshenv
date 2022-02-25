@@ -47,11 +47,12 @@ export NODEJS_CHECK_SIGNATURES=no
 # darken lock files
 export EXA_COLORS="*.lock=1;30"
 
-# Set the Less input preprocessor.
-# Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
-if (( $#commands[(i)lesspipe(|.sh)] )); then
-  export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
-fi
+# # Set the Less input preprocessor.
+# https://github.com/wofr06/lesspipe
+# # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
+# if (( $#commands[(i)lesspipe(|.sh)] )); then
+#   export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
+# fi
 
 ## Temporary Files
 # Set TMPDIR if the variable is not set/empty or the directory doesn't exist
