@@ -12,6 +12,16 @@ if [[ -z "$LANG" ]]; then
   export LANG='en_US.UTF-8'
 fi
 
+typeset -U path fpath  # prevent duplicates
+
+path=(
+  $DOTFILES/scripts
+  $HOME/.local/bin
+  $path
+)
+
+fpath=($DOTFILES/functions $DOTFILES/widgets $fpath)
+
 ## Editors
 export EDITOR='nvim'
 export VISUAL=$EDITOR
@@ -34,9 +44,6 @@ export NODEJS_CHECK_SIGNATURES=no
 
 # darken lock files
 export EXA_COLORS="*.lock=1;30"
-
-# Ensure path arrays do not contain duplicates.
-# typeset -gU cdpath fpath mailpath path
 
 # Set the default Less options.
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).

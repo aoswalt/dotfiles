@@ -1,10 +1,4 @@
-path=(
-  $DOTFILES/scripts
-  $HOME/.local/bin
-  $path
-)
 
-fpath=($DOTFILES/functions $DOTFILES/widgets $fpath)
 for zfunction in $DOTFILES/{functions,widgets}/*; do
   autoload -Uz "$zfunction"
 done
