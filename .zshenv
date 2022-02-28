@@ -12,7 +12,7 @@ if [[ -z "$LANG" ]]; then
   export LANG='en_US.UTF-8'
 fi
 
-typeset -U path fpath  # prevent duplicates
+typeset -U path fpath cdpath  # prevent duplicates
 
 path=(
   $DOTFILES/scripts
