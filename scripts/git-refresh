@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -e
+
+# https://coderwall.com/p/bt93ia/extend-git-with-custom-commands
+
+source "$(git --exec-path)/git-sh-setup"
+
+current_branch="$(git branch --show-current)"
+
+git checkout "${1:-master}"
+git pull
+git fetch --prune
+
+# remove branches whoese upstream is "[gone]"
+git branch --verbose | grep "\[gone\]" | cut -d " " -f3 | xargs git branch -d
+
+git checkout "$current_branch"
