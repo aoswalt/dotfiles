@@ -64,6 +64,8 @@ require('packer').startup({
     use('L3MON4D3/LuaSnip')
     use('saadparwaiz1/cmp_luasnip')
 
+    use("mickael-menu/zk-nvim")
+
     use('kana/vim-textobj-user')
     use('kana/vim-textobj-entire') -- ae/ie for entire file
     use('kana/vim-textobj-indent') -- ai/ii for indent block

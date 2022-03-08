@@ -53,3 +53,8 @@ lspconfig.vimls.setup({
   -- don't want to override built-in keybinds for vim
   capabilities = capabilities,
 })
+
+require('zk').setup({
+  picker = 'telescope',
+  lsp = { config = { on_attach = on_attach } },
+})

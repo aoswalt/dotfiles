@@ -144,6 +144,7 @@ local other_colors = {
   active_grey =  { term = 245, gui = '8a8a8a' },
   inactive_grey =  { term = 236, gui = '303030' },
   menu_selection = { term = 25, gui = '005faf' },
+  quote = { term = 62, gui='9e9ebe' }
 }
 
 local white = colors.grayscale[0]
@@ -166,6 +167,7 @@ local styles = {
   active_grey = { fg = other_colors.active_grey },
   inactive_grey = { fg = other_colors.inactive_grey },
   menu_selection ={ bg = other_colors.menu_selection },
+  quote = { fg = other_colors.quote, style = 'italic' },
 }
 -- }}}
 
@@ -450,6 +452,10 @@ h("gitcommitUnmergedArrow", "gitcommitUnmergedFile")
 
 h('gitmessengerHash', 'Identifier')
 
+
+-- Markdown {{{2
+
+h("mkdBlockQuote", styles.quote)
 
 -- Plugin highlighting {{{1
 
