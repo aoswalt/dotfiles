@@ -129,6 +129,8 @@ from pg_stat_activity
 where state != 'idle'
   and pid != pg_backend_pid()
 order by query_start]]), -- show running queries
+    ls.parser.parse_snippet('stop', [[select pg_cancel_backend($1)]]),
+    ls.parser.parse_snippet('kill', [[select pg_terminate_backend($1) -- be careful, try stop/cancel first!]]),
     ls.parser.parse_snippet('selview', [[
 select pg_get_viewdef(oid)
 from pg_class
