@@ -411,6 +411,8 @@ h("vimLet", styles.control_statement)
 h("vimFuncName", "Statement")
 h("vimOption", "Identifier")
 -- h("vimUsrCmd", "vimCommand")
+h("helpExample", styles.quote)
+h("helpCommand", styles.quote)
 
 -- XML {{{2
 -- h("xmlAttrib", { fg = colors.yellow[1] })
