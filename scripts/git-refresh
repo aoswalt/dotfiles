@@ -9,8 +9,8 @@ source "$(git --exec-path)/git-sh-setup"
 current_branch="$(git branch --show-current)"
 
 git checkout "${1:-master}"
-git pull
 git fetch --prune
+git merge --ff-only
 
 # remove branches whoese upstream is "[gone]"
 git branch --verbose | grep "\[gone\]" | cut -d " " -f3 | xargs git branch -d
