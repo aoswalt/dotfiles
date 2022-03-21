@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# https://coderwall.com/p/bt93ia/extend-git-with-custom-commands
+
+source "$(git --exec-path)/git-sh-setup"
+
+awk -F "/" '{print $NF}' ".git/refs/remotes/${1:-origin}/HEAD"
+
+# could parse results of `git remote show` instead
+# git remote show ${1:-origin} | grep 'HEAD branch' | cut -d' ' -f5
