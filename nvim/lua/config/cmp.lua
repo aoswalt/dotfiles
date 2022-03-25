@@ -1,14 +1,19 @@
 local cmp = require('cmp')
+local ls = require('luasnip')
 local lspkind = require('lspkind')
+
+local ls_next_choice = function()
+  ls.change_choice(1)
+end
 
 cmp.setup({
   mapping = {
     ['<c-p>'] = cmp.mapping.select_prev_item(),
     ['<c-n>'] = cmp.mapping.select_next_item(),
-    ['<c-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-    ['<c-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<c-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 's' }),
+    ['<c-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 's' }),
     ['<c-space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-    ['<c-l>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<c-l>'] = cmp.mapping(ls_next_choice, { 'i', 's' }),
     ['<c-e>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),

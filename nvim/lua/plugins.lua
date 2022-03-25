@@ -61,7 +61,12 @@ require('packer').startup({
     use('petertriho/cmp-git')
     use('onsails/lspkind-nvim')
     use('kristijanhusak/vim-dadbod-completion')
-    use('L3MON4D3/LuaSnip')
+    use({
+      'L3MON4D3/LuaSnip',
+      config = function()
+        require('snippets')
+      end,
+    })
     use('saadparwaiz1/cmp_luasnip')
 
     use({ 'mickael-menu/zk-nvim', config = [[require('config.zk')]] })

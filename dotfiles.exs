@@ -1,3 +1,5 @@
+#! /usr/bin/env elixir
+
 defmodule Dotfiles do
   def main(args \\ []) do
     {opts, remaining} =
