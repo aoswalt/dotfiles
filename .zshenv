@@ -31,6 +31,8 @@ export ELIXIR_EDITOR="nvim +__LINE__ __FILE__"
 export PLUG_EDITOR=$ELIXIR_EDITOR
 export ECTO_EDITOR=$ELIXIR_EDITOR
 
+export PGUSER='postgres'
+
 export FZF_DEFAULT_COMMAND="rg --files --hidden --glob='!.git'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
