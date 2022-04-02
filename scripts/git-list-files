@@ -1,5 +1,7 @@
 #!/bin/sh
 
+#< (git command) list files in a commit
+
 # https://coderwall.com/p/bt93ia/extend-git-with-custom-commands
 
 # https://stackoverflow.com/questions/424071/how-to-list-all-the-files-in-a-commit

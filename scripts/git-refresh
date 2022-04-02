@@ -1,5 +1,7 @@
 #!/bin/sh
 
+#< (git command) checkout the main branch (or argument), and fetch, prune, etc.
+
 set -e
 
 # https://coderwall.com/p/bt93ia/extend-git-with-custom-commands
@@ -8,7 +10,7 @@ source "$(git --exec-path)/git-sh-setup"
 
 current_branch="$(git branch --show-current)"
 
-git checkout "${1:-master}"
+git checkout "${1:-$(git main-branch)}"
 git fetch --prune
 git merge --ff-only
 

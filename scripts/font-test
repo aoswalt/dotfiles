@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+#< print some colors and font effects to test terminal output
+
 # terminal effects
 echo "normal"
 echo -e "\e[1mbold\e[0m"

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+#< (git command) squash the last n commits together
+
 # from https://coderwall.com/p/bt93ia/extend-git-with-custom-commands
 
 source "$(git --exec-path)/git-sh-setup"

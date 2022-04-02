@@ -1,5 +1,7 @@
 #! /bin/bash
 
+#< download and unzip the latest elixir-ls release
+
 read -p "Are you in the correct directory for downloaded and extraction? [yN]: " choice
 
 if [[ ! $choice =~ ^[Yy] ]]; then

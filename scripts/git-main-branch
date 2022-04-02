@@ -1,5 +1,7 @@
 #!/bin/sh
 
+#< (git command) detemine the main remote branch of a repo, generally "main" or "master"
+
 # https://coderwall.com/p/bt93ia/extend-git-with-custom-commands
 
 source "$(git --exec-path)/git-sh-setup"

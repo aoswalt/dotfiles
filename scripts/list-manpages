@@ -1,0 +1,10 @@
+#! /bin/zsh
+
+#< list all of the commands that have a manpage
+
+# https://www.reddit.com/r/commandline/comments/q9skbh/how_to_remember_what_applications_you_have/hgyk2ab/
+
+ls /usr/share/man/man1 2> /dev/null |
+  sed -e 's/\.1.*//' |
+  xargs whatis 2> /dev/null |
+  sed -e '/unknown subject/d' -e 's/  *- / - /'
