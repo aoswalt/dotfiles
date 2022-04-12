@@ -125,7 +125,6 @@ require('packer').startup({
   end,
   config = {
     display = {
-      max_jobs = 10,
       open_cmd = 'leftabove 75vnew \\[packer\\]',
     },
   },
