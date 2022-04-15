@@ -1,1 +1,1 @@
-U.keymap('n', '<leader>gv', '<cmd>GV<cr>')
+vim.keymap.set('n', '<leader>gv', '<cmd>GV<cr>')

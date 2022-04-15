@@ -1,4 +1,4 @@
-require'gitsigns'.setup{
+require('gitsigns').setup({
   --numhl = true,
   signs = {
     delete = {
@@ -9,15 +9,15 @@ require'gitsigns'.setup{
     },
   },
   count_chars = {
-    [1]   = '₁',
-    [2]   = '₂',
-    [3]   = '₃',
-    [4]   = '₄',
-    [5]   = '₅',
-    [6]   = '₆',
-    [7]   = '₇',
-    [8]   = '₈',
-    [9]   = '₉',
+    [1] = '₁',
+    [2] = '₂',
+    [3] = '₃',
+    [4] = '₄',
+    [5] = '₅',
+    [6] = '₆',
+    [7] = '₇',
+    [8] = '₈',
+    [9] = '₉',
     ['+'] = '₊',
   },
   keymaps = {
@@ -26,8 +26,8 @@ require'gitsigns'.setup{
 
     ['n ]c'] = { expr = true, [[&diff ? ']c' : '<cmd>lua require"gitsigns".next_hunk()<CR>']] },
     ['n [c'] = { expr = true, [[&diff ? '[c' : '<cmd>lua require"gitsigns".prev_hunk()<CR>']] },
-    ['n ]h'] = { '<cmd>lua require\"gitsigns\".next_hunk()<CR>' },
-    ['n [h'] = { '<cmd>lua require\"gitsigns\".prev_hunk()<CR>' },
+    ['n ]h'] = { '<cmd>lua require"gitsigns".next_hunk()<CR>' },
+    ['n [h'] = { '<cmd>lua require"gitsigns".prev_hunk()<CR>' },
 
     ['n ghs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
     ['n ghu'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
@@ -41,11 +41,13 @@ require'gitsigns'.setup{
     ['o ic'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
     ['x ic'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
     ['o ih'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
-    ['x ih'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>'
+    ['x ih'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
   },
-}
+})
 
-local function keymap(mode, lhs, rhs) require'util'.keymap(mode, lhs, rhs, {silent = true}) end
+local function keymap(mode, lhs, rhs)
+  vim.keymap.set(mode, lhs, rhs, { silent = true })
+end
 
 keymap('n', '[oghs', "<cmd>lua require'gitsigns'.toggle_signs()<CR>")
 keymap('n', ']oghs', "<cmd>lua require'gitsigns'.toggle_signs()<CR>")

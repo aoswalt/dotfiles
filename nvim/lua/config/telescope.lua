@@ -1,8 +1,5 @@
-local M = {}
-
--- from telescope wiki
--- use git_files if in git project; fall back to find_files if not
-M.project_files = function()
+-- from telescope wiki - use git_files if in git project; fall back to find_files if not
+project_files = function()
   local ok = pcall(require('telescope.builtin').git_files, {})
   if not ok then
     require('telescope.builtin').find_files({ hidden = true })
@@ -49,24 +46,20 @@ require('telescope').setup({
   },
 })
 
-U.keymap('n', '<leader>f', "<cmd>lua require('config.telescope').project_files{}<cr>")
-U.keymap('n', '<leader>F', "<cmd>lua require('telescope.builtin').fd{}<cr>")
+local builtin = require('telescope.builtin')
+
+vim.keymap.set('n', '<leader>f', project_files)
+vim.keymap.set('n', '<leader>F', function() builtin.fd() end)
 
 -- super search
-U.keymap('n', '<leader>?', "<cmd>lua require('telescope.builtin').live_grep{}<cr>") -- can't do regex
-U.keymap(
-  'n',
-  '<leader>/',
-  "<cmd>lua require('telescope.builtin').grep_string{ search = vim.fn.input('Rg> '), use_regex = true }<cr>"
-)
+vim.keymap.set('n', '<leader>?', function() builtin.live_grep() end) -- can't do regex
+vim.keymap.set('n', '<leader>/', function() builtin.grep_string({ search = vim.fn.input('Rg> '), use_regex = true }) end)
 
 -- super search for word under cursor
-U.keymap('n', '<leader>*', "<cmd>lua require('telescope.builtin').grep_string{}<cr>")
+vim.keymap.set('n', '<leader>*', function() builtin.grep_string() end)
 
-U.keymap('n', '<leader>b', "<cmd>lua require('telescope.builtin').buffers{}<cr>")
-U.keymap('n', '<leader>B', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find{}<cr>")
+vim.keymap.set('n', '<leader>b', function() builtin.buffers() end)
+vim.keymap.set('n', '<leader>B', function() builtin.current_buffer_fuzzy_find() end)
 
-U.keymap('n', '<leader><leader>', "<cmd>lua require('telescope.builtin').commands{}<cr>")
-U.keymap('n', '<leader>K', "<cmd>lua require('telescope.builtin').help_tags{}<cr>")
-
-return M
+vim.keymap.set('n', '<leader><leader>', function() builtin.commands() end)
+vim.keymap.set('n', '<leader>K', function() builtin.help_tags() end)

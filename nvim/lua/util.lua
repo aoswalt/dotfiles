@@ -20,22 +20,6 @@ U.r = function(name)
   return require(name)
 end
 
-local default_keyamp_opts = { noremap = true }
-
-U.keymap = function(mode, lhs, rhs, opts_arg)
-  local opts = vim.deepcopy(default_keyamp_opts)
-  for k,v in pairs(opts_arg or {}) do opts[k] = v end
-
-  vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
-end
-
-U.buf_keymap = function(bufnr, mode, lhs, rhs, opts_arg)
-  local opts = vim.deepcopy(default_keyamp_opts)
-  for k,v in pairs(opts_arg or {}) do opts[k] = v end
-
-  vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
-end
-
 --NOTE(adam): words from mapping type, literals from visualmode()
 local regtype_to_prefix = {
   line = '`[V`]',

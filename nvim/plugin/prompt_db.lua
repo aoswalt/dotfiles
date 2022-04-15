@@ -16,6 +16,5 @@ endfunction
 command! -range PromptDB exec PromptDB(<line1>, <line2>)
 ]])
 
-vim.api.nvim_set_keymap('v', '<leader>v', 'PromptDB_OP()', { expr = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>v', 'PromptDB_OP()', { expr = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>vv', 'PromptDB_OP() .. "_"', { expr = true, noremap = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>v', 'PromptDB_OP()', { expr = true })
+vim.keymap.set('n', '<leader>vv', 'PromptDB_OP() .. "_"', { expr = true })

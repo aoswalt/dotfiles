@@ -70,6 +70,6 @@ function elixir_test(type)
     :start()
 end
 
-vim.api.nvim_set_keymap('n', '<leader>tt', '<cmd>lua elixir_test("line")<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>tf', '<cmd>lua elixir_test("file")<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>ta', '<cmd>lua elixir_test("all")<cr>', { noremap = true })
+vim.keymap.set('n', '<leader>tt', '<cmd>lua elixir_test("line")<cr>')
+vim.keymap.set('n', '<leader>tf', '<cmd>lua elixir_test("file")<cr>')
+vim.keymap.set('n', '<leader>ta', '<cmd>lua elixir_test("all")<cr>')
