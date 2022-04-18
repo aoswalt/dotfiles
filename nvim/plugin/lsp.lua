@@ -1,5 +1,8 @@
 local lspconfig = require('lspconfig')
 
+-- server capabilities in spec
+-- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#serverCapabilities
+
 local function on_attach(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -19,11 +22,11 @@ local function on_attach(client, bufnr)
   buf_keymap('n', 'gW', function() vim.lsp.buf.workspace_symbol() end)
   buf_keymap('n', 'gA', function() require('telescope.builtin').lsp_code_actions() end)
 
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.documentFormattingProvider then
     buf_keymap('n', '<f4>', function() vim.lsp.buf.formatting() end)
   end
 
-  if client.resolved_capabilities.document_range_formatting then
+  if client.server_capabilities.documentRangeFormattingProvider then
     buf_keymap('v', '<f4>', function() vim.lsp.buf.range_formatting() end)
   end
 
