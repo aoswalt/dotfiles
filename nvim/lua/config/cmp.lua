@@ -77,13 +77,14 @@ cmp.setup.filetype('gitcommit', {
   }),
 })
 
-require('cmp').setup.cmdline(':', {
-  sources = {
-    { name = 'cmdline', keyword_length = 3 },
-    { name = 'path', keyword_length = 2 },
-    { name = 'buffer', keyword_length = 3 },
-  },
-})
+-- -- causing weird slowness with dadbod
+-- require('cmp').setup.cmdline(':', {
+--   sources = {
+--     { name = 'cmdline', keyword_length = 3 },
+--     { name = 'path', keyword_length = 2 },
+--     { name = 'buffer', keyword_length = 3 },
+--   },
+-- })
 
 require('cmp').setup.cmdline('/', {
   sources = {
