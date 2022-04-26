@@ -20,7 +20,8 @@ local function on_attach(client, bufnr)
   buf_keymap('n', 'gr', function() vim.lsp.buf.references() end)
   buf_keymap('n', 'g0', function() vim.lsp.buf.document_symbol() end)
   buf_keymap('n', 'gW', function() vim.lsp.buf.workspace_symbol() end)
-  buf_keymap('n', 'gA', function() require('telescope.builtin').lsp_code_actions() end)
+  buf_keymap('n', 'gA', function() vim.lsp.buf.code_action() end)
+  buf_keymap('v', 'gA', function() vim.lsp.buf.range_code_action() end)
 
   if client.server_capabilities.documentFormattingProvider then
     buf_keymap('n', '<f4>', function() vim.lsp.buf.formatting() end)

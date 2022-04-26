@@ -25,6 +25,7 @@ require('packer').startup({
       requires = { 'nvim-lua/plenary.nvim' },
       config = [[require('config.telescope')]],
     })
+    use({ 'nvim-telescope/telescope-ui-select.nvim' })
     use({ 'nvim-telescope/telescope-github.nvim', config = [[require('config.telescope-github')]] })
     use({
       'rlch/github-notifications.nvim',
