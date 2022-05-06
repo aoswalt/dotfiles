@@ -75,11 +75,12 @@ return {
 
   s(
     { trig = 'selchecks', dscr = 'list check constraints' },
-    t([[
+    fmt(
+      [[
         select
             nsp.nspname || '.' || rel.relname "table"
           , con.conname as constraint_name
-          , con.consrc as definition
+          , pg_get_constraintdef(con.oid) as definition
         from pg_catalog.pg_constraint con
         join pg_catalog.pg_class rel
           on rel.oid = con.conrelid
@@ -87,28 +88,33 @@ return {
           on nsp.oid = connamespace
         where con.contype = 'c' -- check constraint
         order by nsp.nspname, rel.relname
-      ]])
+      ]],
+      {}
+    )
   ),
 
   s(
     { trig = 'seluidx', dscr = 'list unused indices' },
-    t([[
-      select
-          s.schemaname
-        , s.relname as tablename
-        , s.indexrelname as indexname
-        , pg_relation_size(s.indexrelid) as index_size
-      from pg_catalog.pg_stat_user_indexes s
-      join pg_catalog.pg_index i
-        on s.indexrelid = i.indexrelid
-      where s.idx_scan = 0      -- has never been scanned
-        and 0 <> all(i.indkey)  -- no index column is an expression
-        and not i.indisunique   -- is not a unique index
-        and not exists          -- does not enforce a constraint
-          (select 1 from pg_catalog.pg_constraint c
-            where c.conindid = s.indexrelid)
-      order by pg_relation_size(s.indexrelid) desc
-    ]])
+    fmt(
+      [[
+        select
+            s.schemaname
+          , s.relname as tablename
+          , s.indexrelname as indexname
+          , pg_relation_size(s.indexrelid) as index_size
+        from pg_catalog.pg_stat_user_indexes s
+        join pg_catalog.pg_index i
+          on s.indexrelid = i.indexrelid
+        where s.idx_scan = 0      -- has never been scanned
+          and 0 <> all(i.indkey)  -- no index column is an expression
+          and not i.indisunique   -- is not a unique index
+          and not exists          -- does not enforce a constraint
+            (select 1 from pg_catalog.pg_constraint c
+              where c.conindid = s.indexrelid)
+        order by pg_relation_size(s.indexrelid) desc
+      ]],
+      {}
+    )
   ),
   -- https://www.cybertec-postgresql.com/en/get-rid-of-your-unused-indexes/
 
