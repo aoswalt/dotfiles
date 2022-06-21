@@ -36,9 +36,10 @@ return {
     [[select oid::regclass::text from pg_class where relkind = 'm']]
   ),
 
-  parse(
+  s(
     { trig = 'running', dscr = 'show running queries' },
-    [[
+    fmt(
+      [[
       select
           pid
         , now() - query_start as running_time
@@ -51,7 +52,9 @@ return {
       where state != 'idle'
         and pid != pg_backend_pid()
       order by query_start
-    ]]
+      ]],
+      {}
+    )
   ),
 
   s({ trig = 'stop', dscr = 'stop a running query' }, fmt('select pg_cancel_backend({})', { i(1, '__pid__') })),
@@ -118,9 +121,10 @@ return {
   ),
   -- https://www.cybertec-postgresql.com/en/get-rid-of-your-unused-indexes/
 
-  parse(
+  s(
     { trig = 'seldeps', dscr = 'find dependencies' },
-    [[
+    fmt(
+      [[
       select
           dependent_ns.nspname as dependent_schema
         , dependent_view.relname as dependent_view
@@ -141,28 +145,42 @@ return {
         on dependent_ns.oid = dependent_view.relnamespace
       join pg_namespace source_ns
         on source_ns.oid = source_table.relnamespace
-      where source_ns.nspname = '${1:schema}'
-        and source_table.relname = '${2:table}'
+      where source_ns.nspname = '{schema}'
+        and source_table.relname = '{table}'
         and pg_attribute.attnum > 0
-        and pg_attribute.attname = '${3:my_column}'
+        and pg_attribute.attname = '{my_column}'
       order by 1, 2
-    ]]
+    ]],
+      {
+        schema = i(1, 'schema'),
+        table = i(2, 'table'),
+        my_column = i(3, 'my_column'),
+      }
+    )
   ),
 
-  parse(
+  s(
     { trig = 'selusage', dscr = 'find view usages' },
-    [[
+    fmt(
+      [[
       select *
       from information_schema.view_column_usage
-      where table_schema = '${1:schema}'
-        and table_name = '${2:table}'
-        and column_name = '${3:column}'
-    ]]
+      where table_schema = '{schema}'
+        and table_name = '{table}'
+        and column_name = '{column}'
+    ]],
+      {
+        schema = i(1, 'schema'),
+        table = i(2, 'table'),
+        column = i(3, 'column'),
+      }
+    )
   ),
 
-  parse(
+  s(
     { trig = 'selvdeps', dscr = 'find dependent views from table' },
-    [[
+    fmt(
+      [[
       with recursive views as (
         -- get the directly depending views
         select
@@ -177,7 +195,7 @@ return {
           and d.classid = 'pg_rewrite'::regclass
           and d.refclassid = 'pg_class'::regclass
           and d.deptype = 'n'
-          and d.refobjid = '${0:table}'::regclass
+          and d.refobjid = '{table}'::regclass
         union all
         -- add the views that depend on these
         select
@@ -201,7 +219,9 @@ return {
       from views
       group by view
       order by max(level)
-    ]]
+    ]],
+      { table = i(1, 'table') }
+    )
   ),
 
   s(
@@ -230,4 +250,7 @@ return {
       { i(1, 'schema.table'), i(2, 'id'), rep(2), rep(1) }
     )
   ),
+
+  s('unaligned', t('\\pset format unaligned \\;')),
+  s('expanded', t('\\pset expanded \\;')),
 }
