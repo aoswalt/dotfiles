@@ -60,6 +60,7 @@ require('formatter').setup({
     css = { prettier },
     html = { prettier },
     javascript = { prettier },
+    javascriptreact = { prettier },
     json = { prettier },
     lua = { stylua },
     markdown = { prettier },
