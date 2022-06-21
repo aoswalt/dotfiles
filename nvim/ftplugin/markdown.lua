@@ -13,10 +13,25 @@ vim.cmd([[
   setlocal nofoldenable | setlocal spell | setlocal wrap | setlocal linebreak
 ]])
 
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>md', '<Plug>MarkdownPreview', { noremap = false })
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>mD', '<Plug>MarkdownPreviewStop', { noremap = false })
+vim.keymap.set('n', '<leader>md', '<Plug>MarkdownPreview')
+vim.keymap.set('n', '<leader>mD', '<Plug>MarkdownPreviewStop')
 
+local toggle_checkbox = function()
+  local toggles = {
+    ['[ ]'] = '[x]',
+    ['[x]'] = '[ ]',
+  }
 
-if require("zk.util").notebook_root(vim.fn.expand('%:p')) ~= nil then
+  local line = vim.fn.getline('.')
+
+  if string.match(line, '%[.%]') then
+    local updated_line = string.gsub(line, '%[.%]', toggles, 1)
+    vim.fn.setline('.', updated_line)
+  end
+end
+
+vim.keymap.set('n', '<leader>t', toggle_checkbox, { desc = 'toggle checkbox' })
+
+if require('zk.util').notebook_root(vim.fn.expand('%:p')) ~= nil then
   vim.opt_local.conceallevel = 2
 end
