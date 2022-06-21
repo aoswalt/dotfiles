@@ -1,0 +1,6 @@
+# using \r to return to the beginning and print over the exising line to give
+# the appearance of updating the line
+for i in {1..${1:-10}}; do print -n "\r$i"; sleep 1; done
+print ''
+
+# vim: ft=zsh
