@@ -18,10 +18,21 @@ cmp.setup({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
-    ['<c-j>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    }),
+    ['<c-j>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.confirm({
+          behavior = cmp.ConfirmBehavior.Insert,
+          select = true,
+        })
+      elseif ls.expand_or_jumpable() then
+        ls.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<c-k>'] = cmp.mapping(function()
+      ls.jump(-1)
+    end, { 'i', 's' }),
   },
 
   sources = {
@@ -71,7 +82,7 @@ require('cmp_git').setup()
 
 cmp.setup.filetype('gitcommit', {
   sources = cmp.config.sources({
-    { name = 'cmp_git' },
+    { name = 'git' },
   }, {
     { name = 'buffer', keyword_length = 3 },
   }),

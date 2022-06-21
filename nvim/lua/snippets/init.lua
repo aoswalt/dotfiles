@@ -4,20 +4,6 @@ ls.config.set_config({
   updateevents = 'TextChanged,TextChangedI',
 })
 
--- vim.keymap.set('i', '<c-j>', "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-j>'", { expr = true, remap = true, silent = true })
-vim.keymap.set(
-  'i',
-  '<c-j>',
-  "luasnip#expand_or_locally_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-j>'",
-  { expr = true, remap = true, silent = true }
-)
-vim.keymap.set('s', '<c-j>', function()
-  require('luasnip').jump(1)
-end, { silent = true })
-vim.keymap.set({ 'i', 's' }, '<c-k>', function()
-  require('luasnip').jump(-1)
-end, { silent = true })
-
 vim.keymap.set(
   { 'i', 's' },
   '<c-e>',
