@@ -92,7 +92,7 @@ require('packer').startup({
     use('godlygeek/tabular')
     use('chrisbra/csv.vim')
     use('junegunn/vim-peekaboo')
-    use({ 'diepm/vim-rest-console', config = [[require('config.rest-console')]] })
+    use({ 'NTBBloodbath/rest.nvim', config = [[require('config.rest')]] })
     use('wesQ3/vim-windowswap')
 
     use('itchyny/lightline.vim')
