@@ -113,10 +113,8 @@ require('packer').startup({
     use('tpope/vim-unimpaired')
     use({ 'tpope/vim-surround', config = [[require('config.surround')]] })
     use('tpope/vim-abolish')
-    use('tpope/vim-scriptease')
     use('tpope/vim-speeddating')
     use('tpope/vim-endwise')
-    use('tpope/vim-rsi')
     use('tpope/vim-dadbod')
 
     -- from main init
