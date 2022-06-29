@@ -1,6 +1,8 @@
 local Job = require('plenary.job')
 local win_float = require('plenary.window.float')
 
+vim.opt.makeprg = 'mix'
+
 -- stolen from plenary's test_harness
 local function make_output_window()
   res = win_float.percentage_range_window(0.95, 0.70, { winblend = 3 })
