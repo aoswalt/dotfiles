@@ -3,6 +3,16 @@ local lspconfig = require('lspconfig')
 -- server capabilities in spec
 -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#serverCapabilities
 
+local function has_attached_server(server_name)
+  for _, server in ipairs(vim.lsp.buf_get_clients()) do
+    if server.name == server_name then
+      return true
+    end
+  end
+
+  return false
+end
+
 local function on_attach(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -23,12 +33,17 @@ local function on_attach(client, bufnr)
   buf_keymap('n', 'gA', function() vim.lsp.buf.code_action() end)
   buf_keymap('v', 'gA', function() vim.lsp.buf.range_code_action() end)
 
+  -- use eslint formatting over tsserver if available because more project-specific
   if client.server_capabilities.documentFormattingProvider then
-    buf_keymap('n', '<f4>', function() vim.lsp.buf.formatting() end)
+    if client.name ~= 'tsserver' or not has_attached_server('eslint') then
+      buf_keymap('n', '<f4>', function() vim.lsp.buf.formatting() end)
+    end
   end
 
   if client.server_capabilities.documentRangeFormattingProvider then
-    buf_keymap('v', '<f4>', function() vim.lsp.buf.range_formatting() end)
+    if client.name ~= 'tsserver' or not has_attached_server('eslint') then
+      buf_keymap('v', '<f4>', function() vim.lsp.buf.range_formatting() end)
+    end
   end
 
   buf_keymap('n', '<f3>', function() vim.lsp.buf.rename() end)
