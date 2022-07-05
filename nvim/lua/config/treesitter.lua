@@ -66,7 +66,8 @@ require('nvim-treesitter.configs').setup({
     'yaml',
     'zig',
     'help', -- experimental
-    -- 'markdown', -- experimental
+    'markdown', -- experimental
+    'markdown_inline', -- experimental
   },
   highlight = {
     enable = true,
