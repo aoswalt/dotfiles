@@ -41,9 +41,6 @@ require('lint').linters.credo = {
   stream = 'stdout',
   ignore_exitcode = true, -- exits with severity code
   parser = function(output)
-    -- error(vim.inspect(output))
-    -- error('my code' .. vim.inspect(output))
-    -- assert(false, "do something please")
     local issues = {}
 
     -- if no output to parse, stop
@@ -112,9 +109,7 @@ require('lint').linters_by_ft = {
   sh = { 'shellcheck' },
 }
 
-local function file_exists(file)
-  return vim.fn.filereadable(file) == 1
-end
+local function file_exists(file) return vim.fn.filereadable(file) == 1 end
 
 local M = {}
 

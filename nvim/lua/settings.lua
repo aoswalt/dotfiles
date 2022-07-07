@@ -41,9 +41,10 @@ vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 
 vim.opt.grepprg = 'rg'
 
-vim.opt.shortmess = vim.opt.shortmess + {
-  c = true, -- Do not show completion messages in command line
-}
+vim.opt.shortmess = vim.opt.shortmess
+  + {
+    c = true, -- Do not show completion messages in command line
+  }
 
 vim.g.mapleader = ' ' -- use space as leader
 

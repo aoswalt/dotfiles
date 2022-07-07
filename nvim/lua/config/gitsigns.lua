@@ -45,9 +45,7 @@ require('gitsigns').setup({
   },
 })
 
-local function keymap(mode, lhs, rhs)
-  vim.keymap.set(mode, lhs, rhs, { silent = true })
-end
+local function keymap(mode, lhs, rhs) vim.keymap.set(mode, lhs, rhs, { silent = true }) end
 
 keymap('n', '[oghs', "<cmd>lua require'gitsigns'.toggle_signs()<CR>")
 keymap('n', ']oghs', "<cmd>lua require'gitsigns'.toggle_signs()<CR>")

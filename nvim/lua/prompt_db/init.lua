@@ -9,11 +9,11 @@ M.db_vars = M.db_vars or {}
 
 --NOTE(adam): would rather not have 2 patterns but can't figure out how to make
 --replacement work with 1 capture but not nested substitutution
-local var_find_pattern = "[^%w:]:(%w+)"
-local var_replace_pattern = "([^%w:]):(%w+)"
+local var_find_pattern = '[^%w:]:(%w+)'
+local var_replace_pattern = '([^%w:]):(%w+)'
 
 function M.prompt_db(query)
-  query = vim.fn.substitute(query, "\n$", '', 'g')
+  query = vim.fn.substitute(query, '\n$', '', 'g')
 
   local vars = M.get_vars(query)
 
@@ -23,9 +23,11 @@ function M.prompt_db(query)
   end
 
   function on_submit(query_vars)
-    local replaced_query = string.gsub(query, var_replace_pattern, function(leading, var)
-      return leading .. query_vars[var]
-    end)
+    local replaced_query = string.gsub(
+      query,
+      var_replace_pattern,
+      function(leading, var) return leading .. query_vars[var] end
+    )
 
     M.db_vars = vim.tbl_extend('force', M.db_vars, query_vars)
 
@@ -55,7 +57,7 @@ end
 function M.prompt_db_range(line1, line2)
   lines = vim.fn.getline(line1, line2)
   --NOTE(adam): traling shouldn't matter but makes results match
-  text = table.concat(lines, "\n") .. "\n"
+  text = table.concat(lines, '\n') .. '\n'
 
   M.prompt_db(text)
 end

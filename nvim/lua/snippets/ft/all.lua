@@ -4,14 +4,10 @@ local function comment_prefix()
   return vim.bo.commentstring:format('') --:gsub("%S$", "%0 ")
 end
 
-local function username()
-  return vim.g.username or vim.loop.os_getenv('USER')
-end
+local function username() return vim.g.username or vim.loop.os_getenv('USER') end
 
 local function datefmt(fmt)
-  return function()
-    return vim.fn['strftime'](fmt)
-  end
+  return function() return vim.fn['strftime'](fmt) end
 end
 
 return {

@@ -24,13 +24,13 @@ termite.get_terminal_job_id = function()
   local var = vim.b[termite.repl_var]
 
   if not var then
-    error("termite: No terminal job id found in buffer")
+    error('termite: No terminal job id found in buffer')
   end
 
   return var
 end
 
-termite.yank_job_id = function (register)
+termite.yank_job_id = function(register)
   register = register or vim.v.register
   local term_job_id = termite.get_terminal_job_id()
   vim.fn.setreg(register, term_job_id)
@@ -42,7 +42,13 @@ function termite.put_job_id(register)
   local maybe_id = getreg(register)
 
   if not string.match(maybe_id, '%d+') then
-    error(string.format('termite: Given value of `%s` in register `%s` is not a valid job id', maybe_id, register))
+    error(
+      string.format(
+        'termite: Given value of `%s` in register `%s` is not a valid job id',
+        maybe_id,
+        register
+      )
+    )
   end
 
   local job_id = vim.fn.str2nr(maybe_id)
@@ -66,7 +72,7 @@ local function set_job_id(job_id)
 end
 
 local function get_most_local(var_name, default)
-  for _, scope in ipairs({vim.b, vim.w, vim.t, vim.g}) do
+  for _, scope in ipairs({ vim.b, vim.w, vim.t, vim.g }) do
     local value = scope[var_name]
 
     if value then

@@ -66,10 +66,34 @@ table_previewer = previewers.new_buffer_previewer({
 })
 
 field_picker = function(tbl)
-  pickers.new(opts, {
+  pickers
+    .new(opts, {
+      finder = finders.new_table({
+        results = utils.get_os_command_output(list_columns_cmd(tbl)),
+      }),
+      sorter = conf.generic_sorter({}),
+      attach_mappings = function(prompt_bufnr, map)
+        actions.select_default:replace(function()
+          local selection = action_state.get_selected_entry()
+          actions.close(prompt_bufnr)
+
+          -- print("Selected: ", selection.display)
+          vim.cmd('normal! a' .. selection[1])
+          vim.cmd('stopinsert')
+        end)
+
+        return true
+      end,
+    })
+    :find()
+end
+
+pickers
+  .new(opts, {
     finder = finders.new_table({
-      results = utils.get_os_command_output(list_columns_cmd(tbl)),
+      results = utils.get_os_command_output(list_tables_cmd()),
     }),
+    previewer = table_previewer,
     sorter = conf.generic_sorter({}),
     attach_mappings = function(prompt_bufnr, map)
       actions.select_default:replace(function()
@@ -81,38 +105,18 @@ field_picker = function(tbl)
         vim.cmd('stopinsert')
       end)
 
+      local fields = function()
+        local current_picker = action_state.get_current_picker(prompt_bufnr)
+        local full_name = action_state.get_selected_entry()[1]
+
+        actions.close(prompt_bufnr, true)
+        field_picker(full_name)
+      end
+
+      map('i', '<c-f>', fields)
+      map('n', '<c-f>', fields)
+
       return true
     end,
-  }):find()
-end
-
-pickers.new(opts, {
-  finder = finders.new_table({
-    results = utils.get_os_command_output(list_tables_cmd()),
-  }),
-  previewer = table_previewer,
-  sorter = conf.generic_sorter({}),
-  attach_mappings = function(prompt_bufnr, map)
-    actions.select_default:replace(function()
-      local selection = action_state.get_selected_entry()
-      actions.close(prompt_bufnr)
-
-      -- print("Selected: ", selection.display)
-      vim.cmd('normal! a' .. selection[1])
-      vim.cmd('stopinsert')
-    end)
-
-    local fields = function()
-      local current_picker = action_state.get_current_picker(prompt_bufnr)
-      local full_name = action_state.get_selected_entry()[1]
-
-      actions.close(prompt_bufnr, true)
-      field_picker(full_name)
-    end
-
-    map('i', '<c-f>', fields)
-    map('n', '<c-f>', fields)
-
-    return true
-  end,
-}):find()
+  })
+  :find()

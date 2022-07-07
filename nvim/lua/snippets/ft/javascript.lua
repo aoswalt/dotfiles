@@ -1,7 +1,10 @@
 -- luacheck: new globals s sn t f i c d r l rep p m n dl fmt fmta conds types events parse ai
 
 return {
-  s({ trig = 'im', dscr = 'import default' }, fmt([[import {} from '{}']], { i(1), dl(2, l._1, 1) })),
+  s(
+    { trig = 'im', dscr = 'import default' },
+    fmt([[import {} from '{}']], { i(1), dl(2, l._1, 1) })
+  ),
 
   s({ trig = 'imm', dscr = 'named import' }, fmta([[import { <> } from '<>']], { i(1), i(2) })),
 
@@ -23,14 +26,15 @@ return {
   }),
 
   -- easier but does not preserve input values
-  s({
-    trig = 'cl2',
-    dscr = 'console log/warn/error',
-  },
+  s(
+    {
+      trig = 'cl2',
+      dscr = 'console log/warn/error',
+    },
     c(1, {
-      fmta("console.log('<>', <>)", {rep(1), i(1)}),
-      fmta("console.warn('<>', <>)", {rep(1), i(1)}),
-      fmta("console.error('<>', <>)", {rep(1), i(1)})
+      fmta("console.log('<>', <>)", { rep(1), i(1) }),
+      fmta("console.warn('<>', <>)", { rep(1), i(1) }),
+      fmta("console.error('<>', <>)", { rep(1), i(1) }),
     })
   ),
 

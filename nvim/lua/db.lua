@@ -26,23 +26,19 @@ M.get_table_columns = function(table_schema_or_name, table_name, db_url)
       .. [[']],
   }
 
-  Job
-    :new({
-      command = 'psql',
-      args = args,
-      cwd = vim.fn.getcwd(),
-      on_exit = function(j, return_val)
-        if return_val == 1 then
-          error(vim.inspect(j:result()))
-        end
+  Job:new({
+    command = 'psql',
+    args = args,
+    cwd = vim.fn.getcwd(),
+    on_exit = function(j, return_val)
+      if return_val == 1 then
+        error(vim.inspect(j:result()))
+      end
 
-        local columns = table.concat(j:result(), ', ')
-        vim.schedule(function()
-          vim.paste({ columns }, -1)
-        end)
-      end,
-    })
-    :start()
+      local columns = table.concat(j:result(), ', ')
+      vim.schedule(function() vim.paste({ columns }, -1) end)
+    end,
+  }):start()
 end
 
 return M

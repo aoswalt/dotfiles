@@ -57,7 +57,10 @@ return {
     )
   ),
 
-  s({ trig = 'stop', dscr = 'stop a running query' }, fmt('select pg_cancel_backend({})', { i(1, '__pid__') })),
+  s(
+    { trig = 'stop', dscr = 'stop a running query' },
+    fmt('select pg_cancel_backend({})', { i(1, '__pid__') })
+  ),
 
   s(
     { trig = 'kill', dscr = 'kill a running query - be careful, try stop/cancel first!' },

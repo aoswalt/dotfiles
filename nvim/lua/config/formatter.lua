@@ -7,7 +7,11 @@ end
 local function prettier()
   return {
     exe = node_modules_or_global('prettier'),
-    args = { '--stdin-filepath', vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--single-quote' },
+    args = {
+      '--stdin-filepath',
+      vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+      '--single-quote',
+    },
     stdin = true,
   }
 end

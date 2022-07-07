@@ -7,13 +7,9 @@ end
 
 U.p = U.inspect
 
-U.err = function(v)
-  error(vim.inspect(v))
-end
+U.err = function(v) error(vim.inspect(v)) end
 
-U.reload = function(...)
-  require'plenary.reload'.reload_module(...)
-end
+U.reload = function(...) require('plenary.reload').reload_module(...) end
 
 U.r = function(name)
   U.reload(name)
@@ -50,7 +46,7 @@ function U.get_visual_selection(type)
     assert(regtype_to_prefix[type], 'Unknown regtype: ' .. vim.inspect(type))
     vim.cmd('silent noautocmd keepjumps normal! ' .. regtype_to_prefix[type] .. 'y')
     selection = vim.fn.getreg('"')
-  end, function(err) print("ERROR: ", err) end)
+  end, function(err) print('ERROR: ', err) end)
 
   vim.o.selection = orig_selection
   vim.o.clipboard = orig_clipboard
@@ -59,7 +55,7 @@ function U.get_visual_selection(type)
   vim.fn.setpos("'>", orig_visual_end)
 
   if not is_success then
-    error("Failed to get selection")
+    error('Failed to get selection')
   else
     return selection
   end

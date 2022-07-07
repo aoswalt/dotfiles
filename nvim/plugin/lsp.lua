@@ -22,7 +22,10 @@ local function on_attach(client, bufnr)
 
   buf_keymap('n', 'K', function() vim.lsp.buf.hover() end)
   buf_keymap('n', 'gd', function() vim.lsp.buf.definition() end)
-  buf_keymap('n', '1gd', function() vim.cmd('vsplit'); vim.lsp.buf.definition() end)
+  buf_keymap('n', '1gd', function()
+    vim.cmd('vsplit')
+    vim.lsp.buf.definition()
+  end)
   buf_keymap('n', '<c-]>', function() vim.lsp.buf.declaration() end)
   buf_keymap('n', 'gD', function() vim.lsp.buf.implementation() end)
   buf_keymap('n', '<c-k>', function() vim.lsp.buf.signature_help() end)
@@ -56,7 +59,12 @@ local servers = { 'elixirls', 'eslint', 'tsserver', 'rls', 'dockerls', 'bashls',
 
 local configs = {
   elixirls = {
-    cmd = { (vim.env.ELIXIR_LS_EXECUTABLE or (vim.loop.os_homedir() .. '/.tools/elixir-ls/language_server.sh')) },
+    cmd = {
+      (
+        vim.env.ELIXIR_LS_EXECUTABLE
+        or (vim.loop.os_homedir() .. '/.tools/elixir-ls/language_server.sh')
+      ),
+    },
   },
 }
 

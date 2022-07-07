@@ -11,7 +11,7 @@ local function make_output_window()
   vim.api.nvim_buf_set_keymap(res.bufnr, 'n', 'q', ':q<cr>', { noremap = true })
 
   vim.api.nvim_win_set_option(res.win_id, 'winhl', 'Normal:Normal')
-  vim.api.nvim_win_set_option(res.win_id, "conceallevel", 3)
+  vim.api.nvim_win_set_option(res.win_id, 'conceallevel', 3)
   vim.api.nvim_win_set_option(res.win_id, 'concealcursor', 'n')
 
   if res.border_win_id then
@@ -49,27 +49,23 @@ function elixir_test(type)
     error('Unknown type for tests:', type)
   end
 
-  Job
-    :new({
-      command = 'mix',
-      args = args,
-      cwd = vim.fn.getcwd(),
-      on_exit = function(j, return_val)
-        if return_val == 0 then
-          vim.schedule(function()
-            vim.notify('Tests run successfully')
-          end)
-        else
-          vim.schedule(function()
-            float = make_output_window()
-            for _, line in ipairs(j:result()) do
-              vim.api.nvim_chan_send(float.job_id, line .. '\r\n')
-            end
-          end)
-        end
-      end,
-    })
-    :start()
+  Job:new({
+    command = 'mix',
+    args = args,
+    cwd = vim.fn.getcwd(),
+    on_exit = function(j, return_val)
+      if return_val == 0 then
+        vim.schedule(function() vim.notify('Tests run successfully') end)
+      else
+        vim.schedule(function()
+          float = make_output_window()
+          for _, line in ipairs(j:result()) do
+            vim.api.nvim_chan_send(float.job_id, line .. '\r\n')
+          end
+        end)
+      end
+    end,
+  }):start()
 end
 
 vim.keymap.set('n', '<leader>tt', '<cmd>lua elixir_test("line")<cr>')

@@ -2,9 +2,7 @@ local cmp = require('cmp')
 local ls = require('luasnip')
 local lspkind = require('lspkind')
 
-local ls_next_choice = function()
-  ls.change_choice(1)
-end
+local ls_next_choice = function() ls.change_choice(1) end
 
 cmp.setup({
   mapping = {
@@ -30,9 +28,7 @@ cmp.setup({
         fallback()
       end
     end, { 'i', 's' }),
-    ['<c-k>'] = cmp.mapping(function()
-      ls.jump(-1)
-    end, { 'i', 's' }),
+    ['<c-k>'] = cmp.mapping(function() ls.jump(-1) end, { 'i', 's' }),
   },
 
   sources = {
@@ -58,9 +54,7 @@ cmp.setup({
   },
 
   snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
+    expand = function(args) require('luasnip').lsp_expand(args.body) end,
   },
 
   formatting = {

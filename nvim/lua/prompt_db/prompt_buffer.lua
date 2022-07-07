@@ -6,7 +6,7 @@ local on_submit
 function M.prompt_vars(vars, on_submit_)
   --NOTE(adam): vim.deepcopy errors on vim.NIL
   current_vars = {}
-  for k,v in pairs(vars) do
+  for k, v in pairs(vars) do
     current_vars[k] = v
   end
 

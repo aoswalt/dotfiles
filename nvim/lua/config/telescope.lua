@@ -41,7 +41,11 @@ vim.keymap.set('n', '<leader>F', function() builtin.fd() end)
 
 -- super search
 vim.keymap.set('n', '<leader>?', function() builtin.live_grep() end) -- can't do regex
-vim.keymap.set('n', '<leader>/', function() builtin.grep_string({ search = vim.fn.input('Rg> '), use_regex = true }) end)
+vim.keymap.set(
+  'n',
+  '<leader>/',
+  function() builtin.grep_string({ search = vim.fn.input('Rg> '), use_regex = true }) end
+)
 
 -- super search for word under cursor
 vim.keymap.set('n', '<leader>*', function() builtin.grep_string() end)
@@ -52,4 +56,4 @@ vim.keymap.set('n', '<leader>B', function() builtin.current_buffer_fuzzy_find() 
 vim.keymap.set('n', '<leader><leader>', function() builtin.commands() end)
 vim.keymap.set('n', '<leader>K', function() builtin.help_tags() end)
 
-require("telescope").load_extension("ui-select")
+require('telescope').load_extension('ui-select')
