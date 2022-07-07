@@ -10,7 +10,7 @@ require('packer').startup({
     })
 
     use({ 'justinmk/vim-dirvish', config = function() require('config.dirvish') end })
-    use({ 'simnalamburt/vim-mundo', config = function() require('config.mundo') end })
+    use({ 'mbbill/undotree', config = function() require('config.undotree') end })
     use('tpope/vim-fugitive')
     use({ 'junegunn/gv.vim', config = function() require('config.gv') end })
     use('stefandtw/quickfix-reflector.vim')
