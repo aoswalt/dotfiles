@@ -1,2 +1,9 @@
-vim.g['surround_' .. vim.fn.char2nr('-')] = '<% \r %>'
-vim.g['surround_' .. vim.fn.char2nr('=')] = '<%= \r %>'
+require('nvim-surround').setup({
+  pairs = {
+    ['-'] = { '<%', '%>' },
+    ['='] = { '<%=', '%>' },
+  },
+  highlight_motion = { -- Highlight before inserting/changing surrounds
+    duration = 100, -- millisections
+  },
+})

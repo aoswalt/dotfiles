@@ -120,7 +120,7 @@ require('packer').startup({
     })
     use('tpope/vim-repeat')
     use('tpope/vim-unimpaired')
-    use({ 'tpope/vim-surround', config = function() require('config.surround') end })
+    use({ 'kylechui/nvim-surround', config = function() require('config.surround') end })
     use('tpope/vim-abolish')
     use('tpope/vim-speeddating')
     use('tpope/vim-endwise')
