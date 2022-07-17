@@ -39,7 +39,10 @@ vim.opt.listchars = vim.opt.listchars + {
 
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 
-vim.opt.grepprg = 'rg'
+if vim.fn.executable("rg") then
+  vim.opt.grepprg='rg --vimgrep --smart-case --hidden'
+  vim.opt.grepformat='%f:%l:%c:%m'
+end
 
 vim.opt.shortmess = vim.opt.shortmess
   + {
