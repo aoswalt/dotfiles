@@ -128,6 +128,10 @@ function M.conditional_lint()
   require('lint').try_lint()
 end
 
-vim.cmd([[au BufReadPost,BufWritePost <buffer> lua require('config.lint').conditional_lint()]])
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufWritePost' }, {
+  buffer = 0,
+  callback = function() require('config.lint').conditional_lint() end,
+  desc = 'lint'
+})
 
 return M
