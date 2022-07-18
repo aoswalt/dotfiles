@@ -55,13 +55,13 @@ require('packer').startup({
     use('neovim/nvim-lspconfig')
     use({ 'mfussenegger/nvim-lint', config = function() require('config.lint') end })
     use({ 'mhartington/formatter.nvim', config = function() require('config.formatter') end })
-    use({ 'hrsh7th/nvim-cmp', branch = 'main', config = function() require('config.cmp') end })
-    use({ 'hrsh7th/cmp-buffer', branch = 'main' })
-    use({ 'hrsh7th/cmp-path', branch = 'main' })
-    use({ 'hrsh7th/cmp-calc', branch = 'main' })
-    use({ 'hrsh7th/cmp-nvim-lsp', branch = 'main' })
-    use({ 'hrsh7th/cmp-nvim-lua', branch = 'main' })
-    use({ 'hrsh7th/cmp-cmdline', branch = 'main' })
+    use({ 'hrsh7th/nvim-cmp', config = function() require('config.cmp') end })
+    use('hrsh7th/cmp-buffer')
+    use('hrsh7th/cmp-path')
+    use('hrsh7th/cmp-calc')
+    use('hrsh7th/cmp-nvim-lsp')
+    use('hrsh7th/cmp-nvim-lua')
+    use('hrsh7th/cmp-cmdline')
     use('petertriho/cmp-git')
     use('onsails/lspkind-nvim')
     use('kristijanhusak/vim-dadbod-completion')
@@ -97,11 +97,7 @@ require('packer').startup({
     use('wesQ3/vim-windowswap')
 
     use('itchyny/lightline.vim')
-    use({
-      'lewis6991/gitsigns.nvim',
-      branch = 'main',
-      config = function() require('config.gitsigns') end,
-    })
+    use({ 'lewis6991/gitsigns.nvim', config = function() require('config.gitsigns') end })
     use({
       'lukas-reineke/indent-blankline.nvim',
       config = function() require('config.indent-blankline') end,
