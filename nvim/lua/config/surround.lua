@@ -3,7 +3,7 @@ require('nvim-surround').setup({
     ['-'] = { '<%', '%>' },
     ['='] = { '<%=', '%>' },
   },
-  highlight_motion = { -- Highlight before inserting/changing surrounds
+  highlight = { -- Highlight before inserting/changing surrounds
     duration = 100, -- millisections
   },
 })
