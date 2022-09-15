@@ -119,7 +119,7 @@ require('packer').startup({
     use({ 'kylechui/nvim-surround', config = function() require('config.surround') end })
     use('tpope/vim-abolish')
     use('tpope/vim-speeddating')
-    use('tpope/vim-endwise')
+    use({ 'windwp/nvim-autopairs', config = function() require('config.autopairs') end })
     use('tpope/vim-dadbod')
 
     -- from main init
