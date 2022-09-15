@@ -39,13 +39,23 @@ local function on_attach(client, bufnr)
   -- use eslint formatting over tsserver if available because more project-specific
   if client.server_capabilities.documentFormattingProvider then
     if not (client.name == 'tsserver' and has_attached_server('eslint')) then
-      buf_keymap('n', '<f4>', function() vim.lsp.buf.formatting() end)
+      buf_keymap(
+        'n',
+        '<f4>',
+        function() vim.lsp.buf.formatting() end,
+        { desc = 'lsp format with ' .. client.name }
+      )
     end
   end
 
   if client.server_capabilities.documentRangeFormattingProvider then
     if not (client.name == 'tsserver' and has_attached_server('eslint')) then
-      buf_keymap('v', '<f4>', function() vim.lsp.buf.range_formatting() end)
+      buf_keymap(
+        'v',
+        '<f4>',
+        function() vim.lsp.buf.range_formatting() end,
+        { desc = 'lsp range format with ' .. client.name }
+      )
     end
   end
 
