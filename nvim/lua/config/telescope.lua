@@ -36,6 +36,7 @@ require('telescope').setup({
 
 local builtin = require('telescope.builtin')
 
+vim.keymap.set('n', '<f1>', function() builtin.help_tags() end)
 vim.keymap.set('n', '<leader>f', project_files)
 vim.keymap.set('n', '<leader>F', function() builtin.fd() end)
 
