@@ -1,8 +1,10 @@
--- from telescope wiki - use git_files if in git project; fall back to find_files if not
+-- from telescope wiki/issue - use git_files if in git project; fall back to find_files if not
 project_files = function()
-  local ok = pcall(require('telescope.builtin').git_files, { show_untracked = true })
-  if not ok then
-    require('telescope.builtin').find_files({ hidden = true })
+  local in_git_repo = vim.fn.systemlist('git rev-parse --is-inside-work-tree')[1] == 'true'
+  if in_git_repo then
+    require('telescope.builtin').git_files({ show_untracked = true })
+  else
+    require('telescope.builtin').find_files()
   end
 end
 
