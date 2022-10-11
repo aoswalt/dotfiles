@@ -1,4 +1,4 @@
-vim.cmd('colorscheme unemphatic')
+vim.cmd.colorscheme('unemphatic')
 
 vim.opt.swapfile = false
 vim.opt.number = true -- line numbers
@@ -24,30 +24,29 @@ vim.opt.wildignorecase = true -- ignore case on files and directories
 vim.opt.gdefault = true -- global search by default
 vim.opt.lazyredraw = true -- no need to redraw all the time
 vim.opt.hlsearch = false -- don't highlight searches by default
-vim.opt.path = vim.opt.path + { '**' } -- include subdirectory globbing in path for :find
-vim.opt.diffopt:append('internal') -- internal library for performance
-vim.opt.diffopt:append('vertical') -- vertical split for diffs
+vim.opt.path:append({ '**' }) -- include subdirectory globbing in path for :find
+vim.opt.diffopt:append({ 'internal' }) -- internal library for performance
+vim.opt.diffopt:append({ 'vertical' }) -- vertical split for diffs
 
 vim.opt.showmode = false -- do not show mode since using lightline
 
 -- characters for horizontal scrolled text
-vim.opt.listchars = vim.opt.listchars + {
+vim.opt.listchars:append({
   extends = '»',
   precedes = '«',
   nbsp = '⣿',
-}
+})
 
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 
-if vim.fn.executable("rg") then
-  vim.opt.grepprg='rg --vimgrep --smart-case --hidden'
-  vim.opt.grepformat='%f:%l:%c:%m'
+if vim.fn.executable('rg') then
+  vim.opt.grepprg = 'rg --vimgrep --smart-case --hidden'
+  vim.opt.grepformat = '%f:%l:%c:%m'
 end
 
-vim.opt.shortmess = vim.opt.shortmess
-  + {
-    c = true, -- Do not show completion messages in command line
-  }
+vim.opt.shortmess:append({
+  c = true, -- Do not show completion messages in command line
+})
 
 vim.g.mapleader = ' ' -- use space as leader
 
