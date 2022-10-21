@@ -20,38 +20,107 @@ require('gitsigns').setup({
     [9] = '₉',
     ['+'] = '₊',
   },
-  keymaps = {
-    noremap = true,
-    buffer = true,
+  on_attach = function(bufnr)
+    vim.keymap.set('n', ']c', function()
+      if vim.opt.diff:get() then
+        return ']c'
+      else
+        return "<cmd>lua require('gitsigns').next_hunk()<cr>"
+      end
+    end, { buffer = bufnr, expr = true })
+    vim.keymap.set('n', '[c', function()
+      if vim.opt.diff:get() then
+        return '[c'
+      else
+        return "<cmd>lua require('gitsigns').prev_hunk()<cr>"
+      end
+    end, { buffer = bufnr, expr = true })
 
-    ['n ]c'] = { expr = true, [[&diff ? ']c' : '<cmd>lua require"gitsigns".next_hunk()<CR>']] },
-    ['n [c'] = { expr = true, [[&diff ? '[c' : '<cmd>lua require"gitsigns".prev_hunk()<CR>']] },
-    ['n ]h'] = { '<cmd>lua require"gitsigns".next_hunk()<CR>' },
-    ['n [h'] = { '<cmd>lua require"gitsigns".prev_hunk()<CR>' },
+    vim.keymap.set('n', ']h', function() require('gitsigns').next_hunk() end, { buffer = bufnr })
+    vim.keymap.set('n', '[h', function() require('gitsigns').prev_hunk() end, { buffer = bufnr })
 
-    ['n ghs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-    ['n ghu'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-    ['n ghU'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-    ['n ghr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-    ['n ghR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-    ['n ghp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-    ['n ghb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
+    vim.keymap.set('n', 'ghs', function() require('gitsigns').stage_hunk() end, { buffer = bufnr })
+    vim.keymap.set('n', 'ghu', function() require('gitsigns').reset_hunk() end, { buffer = bufnr })
+    vim.keymap.set(
+      'n',
+      'ghU',
+      function() require('gitsigns').undo_stage_hunk() end,
+      { buffer = bufnr }
+    )
+    vim.keymap.set('n', 'ghr', function() require('gitsigns').reset_hunk() end, { buffer = bufnr })
+    vim.keymap.set(
+      'n',
+      'ghR',
+      function() require('gitsigns').reset_buffer() end,
+      { buffer = bufnr }
+    )
+    vim.keymap.set(
+      'n',
+      'ghp',
+      function() require('gitsigns').preview_hunk() end,
+      { buffer = bufnr }
+    )
+    vim.keymap.set(
+      'n',
+      'ghb',
+      function() require('gitsigns').blame_line(true) end,
+      { buffer = bufnr }
+    )
 
     -- Text objects
-    ['o ic'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
-    ['x ic'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
-    ['o ih'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
-    ['x ih'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
-  },
+    vim.keymap.set('o', 'ic', function() require('gitsigns').select_hunk() end, { buffer = bufnr })
+    vim.keymap.set('x', 'ic', function() require('gitsigns').select_hunk() end, { buffer = bufnr })
+    vim.keymap.set('o', 'ih', function() require('gitsigns').select_hunk() end, { buffer = bufnr })
+    vim.keymap.set('x', 'ih', function() require('gitsigns').select_hunk() end, { buffer = bufnr })
+
+    -- Option Toggles
+    vim.keymap.set(
+      'n',
+      '[oghs',
+      function() require('gitsigns').toggle_signs() end,
+      { buffer = bufnr, silent = true }
+    )
+    vim.keymap.set(
+      'n',
+      ']oghs',
+      function() require('gitsigns').toggle_signs() end,
+      { buffer = bufnr, silent = true }
+    )
+    vim.keymap.set(
+      'n',
+      '[oghn',
+      function() require('gitsigns').toggle_numhl() end,
+      { buffer = bufnr, silent = true }
+    )
+    vim.keymap.set(
+      'n',
+      ']oghn',
+      function() require('gitsigns').toggle_numhl() end,
+      { buffer = bufnr, silent = true }
+    )
+    vim.keymap.set(
+      'n',
+      '[oghl',
+      function() require('gitsigns').toggle_linehl() end,
+      { buffer = bufnr, silent = true }
+    )
+    vim.keymap.set(
+      'n',
+      ']oghl',
+      function() require('gitsigns').toggle_linehl() end,
+      { buffer = bufnr, silent = true }
+    )
+    vim.keymap.set(
+      'n',
+      '[oghb',
+      function() require('gitsigns').toggle_current_line_blame() end,
+      { buffer = bufnr, silent = true }
+    )
+    vim.keymap.set(
+      'n',
+      ']oghb',
+      function() require('gitsigns').toggle_current_line_blame() end,
+      { buffer = bufnr, silent = true }
+    )
+  end,
 })
-
-local function keymap(mode, lhs, rhs) vim.keymap.set(mode, lhs, rhs, { silent = true }) end
-
-keymap('n', '[oghs', "<cmd>lua require'gitsigns'.toggle_signs()<CR>")
-keymap('n', ']oghs', "<cmd>lua require'gitsigns'.toggle_signs()<CR>")
-keymap('n', '[oghn', "<cmd>lua require'gitsigns'.toggle_numhl()<CR>")
-keymap('n', ']oghn', "<cmd>lua require'gitsigns'.toggle_numhl()<CR>")
-keymap('n', '[oghl', "<cmd>lua require'gitsigns'.toggle_linehl()<CR>")
-keymap('n', ']oghl', "<cmd>lua require'gitsigns'.toggle_linehl()<CR>")
-keymap('n', '[oghb', "<cmd>lua require'gitsigns'.toggle_current_line_blame()<CR>")
-keymap('n', ']oghb', "<cmd>lua require'gitsigns'.toggle_current_line_blame()<CR>")
