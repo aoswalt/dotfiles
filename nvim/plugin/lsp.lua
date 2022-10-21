@@ -62,8 +62,7 @@ local function on_attach(client, bufnr)
   buf_keymap('n', '<f3>', function() vim.lsp.buf.rename() end)
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local servers = { 'elixirls', 'eslint', 'tsserver', 'rls', 'dockerls', 'bashls', 'gdscript' }
 
