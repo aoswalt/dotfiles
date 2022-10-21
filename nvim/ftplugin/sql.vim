@@ -17,6 +17,11 @@ vmap <buffer> <expr> gs db#op_exec()
 
 lua require('cmp').setup.buffer({ sources = { { name = 'luasnip' }, { name = 'vim-dadbod-completion' } } })
 
-" command -nargs=+ -complete= Columns lua require('db').get_table_columns()
-command! -nargs=+ Columns lua require('db').get_table_columns(<f-args>)
-" command! -nargs=+ Columns call luaeval('require("db").get_table_columns(_A)', expand('<f-args>'))
+lua << EOF
+vim.api.nvim_buf_create_user_command(
+  0,
+  'Columns',
+  function(args) require('db').get_table_columns(args.fargs[1]) end,
+  { nargs = '?', desc = "Expand a * into the table's columns" }
+)
+EOF
