@@ -217,19 +217,19 @@ h('Error', styles.error) -- any erroneous construct
 h('Warning', { fg = colors.yellow[1] }) -- * my addition
 h('Todo', { fg = colors.purple[0] }) -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
-h('TSNote', { fg = colors.purple[-1] })
-h('TSConstBuiltin', 'Constant')
-h('TSParameter', 'Variable')
-h('elixirTSParameter', 'TSSymbol')
-h('TSVariable', 'Variable')
-h('TSKeyword', 'Keyword')
+h('@text.note', { fg = colors.purple[-1] })
+h('@constant.builtin', 'Constant')
+h('@parameter', 'Variable')
+h('elixirTSParameter', '@symbol')
+h('@variable', 'Variable')
+h('@keyword', 'Keyword')
 h('elixirTSKeyword', 'PreProc')
-h('TSKeywordFunction', 'PreProc')
-h('TSSymbol', 'Constant')
+h('@keyword.function', 'PreProc')
+h('@symbol', 'Constant')
 -- h("elixirTSType", "Constant")
-h('TSField', 'NONE')
+h('@field', 'NONE')
 h('bashTSParameter', 'NONE')
-h('TSAttribute', { fg = colors.purple[2] })
+h('@attribute', { fg = colors.purple[2] })
 
 -- Highlighting Groups (descriptions and ordering from `:h hitest.vim`) {{{1
 
