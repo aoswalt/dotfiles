@@ -11,8 +11,10 @@ if fn.empty(fn.glob(install_path)) > 0 then
     'https://github.com/wbthomason/packer.nvim',
     install_path,
   })
-  vim.cmd [[packadd packer.nvim]]
+  vim.cmd([[packadd packer.nvim]])
 end
+
+require('impatient')
 
 vim.opt.runtimepath = vim.opt.runtimepath + { '$DOTFILES/nvim', '$DOTFILES/nvim/after' }
 vim.opt.packpath = vim.opt.packpath + '$DOTFILES/nvim'
