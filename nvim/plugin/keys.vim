@@ -83,5 +83,6 @@ nnoremap ]d <cmd>lua vim.diagnostic.goto_next({ wrap = true })<cr>
 nnoremap [w <cmd>lua vim.diagnostic.goto_prev({ wrap = true })<cr>
 nnoremap ]W <cmd>lua vim.diagnostic.goto_next({ wrap = true })<cr>
 
+" should try using gq for formatting
 nnoremap <silent> <f4> <cmd>Format<cr>
-vnoremap <silent> <f4> <cmd>Format<cr>
+vnoremap <silent> <f4> :Format<cr>
