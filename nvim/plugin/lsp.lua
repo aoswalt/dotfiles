@@ -42,7 +42,7 @@ local function on_attach(client, bufnr)
       buf_keymap(
         'n',
         '<f4>',
-        function() vim.lsp.buf.formatting() end,
+        function() vim.lsp.buf.format() end,
         { desc = 'lsp format with ' .. client.name }
       )
     end
@@ -53,7 +53,7 @@ local function on_attach(client, bufnr)
       buf_keymap(
         'v',
         '<f4>',
-        function() vim.lsp.buf.range_formatting() end,
+        function() vim.lsp.buf.format() end,
         { desc = 'lsp range format with ' .. client.name }
       )
     end
