@@ -217,13 +217,16 @@ h('Error', styles.error) -- any erroneous construct
 h('Warning', { fg = colors.yellow[1] }) -- * my addition
 h('Todo', { fg = colors.purple[0] }) -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
-h('@text.note', { fg = colors.purple[-1] })
+h('@text.title', 'Title')
+h('@text.note', 'Todo')
+h('@text.warning', 'Warning')
+h('@text.danger', 'Error')
 h('@constant.builtin', 'Constant')
 h('@parameter', 'Variable')
 h('elixirTSParameter', '@symbol')
 h('@variable', 'Variable')
 h('@keyword', 'Keyword')
-h('elixirTSKeyword', 'PreProc')
+-- h('@keyword', 'PreProc')
 h('@keyword.function', 'PreProc')
 h('@symbol', 'Constant')
 -- h("elixirTSType", "Constant")
@@ -234,7 +237,7 @@ h('@attribute', { fg = colors.purple[2] })
 -- Highlighting Groups (descriptions and ordering from `:h hitest.vim`) {{{1
 
 h('ColorColumn', styles.bg_offset) -- used for the columns set with 'colorcolumn'
--- h("Conceal", {}) -- placeholder characters substituted for concealed text (see 'conceallevel')
+h("Conceal", { fg = colors.grayscale[2], bg = colors.grayscale[8] }) -- placeholder characters substituted for concealed text (see 'conceallevel')
 h('Cursor', { fg = colors.none, bg = colors.blue[0] }) -- the character under the cursor
 -- h("CursorIM", {}) -- like Cursor, but used when in IME mode
 h('CursorColumn', styles.bg_highlight) -- the screen column that the cursor is in when 'cursorcolumn' is set
