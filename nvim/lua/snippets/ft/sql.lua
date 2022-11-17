@@ -51,7 +51,44 @@ return {
       from pg_stat_activity
       where state != 'idle'
         and pid != pg_backend_pid()
-      order by query_start
+      order by query_start, pid
+      ]],
+      {}
+    )
+  ),
+
+  s(
+    { trig = 'slowest', dscr = 'list most time-consuming queries' },
+    fmt(
+      [[
+    select
+        round(total_time :: numeric, 2) as total_time
+      , calls
+      , round(mean_time :: numeric, 2) as mean
+      , round((100 * total_time / sum(total_time :: numeric) over ()) :: numeric, 2) as percentage_overall
+      , query
+    from pg_stat_statements
+    order by total_time desc
+    limit 10
+    ]],
+      {}
+    )
+  ),
+
+  s(
+    { trig = 'seq_scans', dscr = 'compare rows from sequential scans to index scans' },
+    fmt(
+      [[
+      select
+          schemaname
+        , relname
+        , seq_scan -- number of times done sequential scan
+        , seq_tup_read -- total number of rows returned by sequential scans
+        , idx_scan -- number of times done index scan
+        , seq_tup_read / seq_scan as avg -- average number of rows returned by sequential scans
+      from pg_stat_user_tables
+      where seq_scan > 0
+      order by seq_tup_read desc
       ]],
       {}
     )
