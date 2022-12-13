@@ -22,4 +22,4 @@ command! -nargs=* Gpushf execute('Gpush --force-with-lease '.<q-args>)
 command! -nargs=* Gpc execute('Gpush --set-upstream origin '.FugitiveHead().' '.<q-args>)
 
 " amend without editing commit message
-command! Gamend Git commit --amend --no-edit
+command! -nargs=* Gamend Git commit --amend --no-edit <args>
