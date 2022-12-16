@@ -26,10 +26,10 @@ require('telescope').setup({
     buffers = {
       mappings = {
         n = {
-          ['<c-d>'] = require('telescope.actions').delete_buffer,
+          ['<c-q>'] = require('telescope.actions').delete_buffer,
         },
         i = {
-          ['<c-d>'] = require('telescope.actions').delete_buffer,
+          ['<c-q>'] = require('telescope.actions').delete_buffer,
         },
       },
     },
