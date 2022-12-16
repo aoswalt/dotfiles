@@ -121,6 +121,7 @@ require('packer').startup({
     use('tpope/vim-abolish')
     use('tpope/vim-speeddating')
     use({ 'windwp/nvim-autopairs', config = function() require('config.autopairs') end })
+    use({ 'windwp/nvim-ts-autotag', config = function() require('config.autotag') end })
     use('tpope/vim-dadbod')
 
     -- from main init
