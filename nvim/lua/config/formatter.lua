@@ -42,10 +42,9 @@ local function pg_format()
       '2',
       '--keyword-case',
       '1',
-      '--wrap-after',
-      '1',
       '--placeholder',
       '":: "',
+      '--format-type',
     },
     stdin = true,
   }
