@@ -48,7 +48,6 @@ require('packer').startup({
     })
     use('nvim-treesitter/playground')
 
-    use({ 'sheerun/vim-polyglot', config = function() require('config.polyglot') end })
     use('exu/pgsql.vim')
     use({ 'preservim/vim-markdown', config = function() require('config.markdown') end }) -- included in polyglot but without extra features
     use('habamax/vim-godot')
