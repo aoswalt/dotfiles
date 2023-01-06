@@ -284,6 +284,42 @@ return {
   ),
 
   s(
+    { trig = 'blocked', dscr = 'show blocked queries' },
+    fmt(
+      [[
+    select
+        pid
+      , usename
+      , now() - query_start as duration
+      , pg_blocking_pids (pid) as blocked_by
+      , query as blocked_query
+    from pg_stat_activity
+    where cardinality(pg_blocking_pids(pid)) > 0
+    ]],
+      {}
+    )
+  ),
+
+  s(
+    { trig = 'disk_reads', dscr = 'show often called queries to check disk reads' },
+    fmt(
+      [[
+    select
+        calls
+      , (calls / total_time) :: integer as ms_per_call
+      , total_time :: integer
+      , shared_blks_hit cache_hits
+      , shared_blks_read disk_reads
+      , query
+    from pg_stat_statements pss
+    order by calls desc
+    limit 20
+    ]],
+      {}
+    )
+  ),
+
+  s(
     'fix_sequence',
     fmt(
       [[select setval(pg_get_serial_sequence('{}', '{}'), (select max({}) from {}))]],
