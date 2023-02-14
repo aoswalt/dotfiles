@@ -1,6 +1,7 @@
 local M = {}
 
 local Job = require('plenary.job')
+local ui = require('my.ui')
 
 local run_get_table_columns = function(schema_name, table_name, db_url, callback)
   table_schema = schema_name or 'public'
@@ -121,6 +122,69 @@ M.get_table_columns = function(db_url)
     local columns = table.concat(columns, ', ')
 
     replace_node_text(star_node, columns)
+  end)
+end
+
+local run_get_ddl = function(schema_name, table_name, db_url, callback)
+  table_schema = schema_name or 'public'
+
+  db_url = db_url or vim.b.db or vim.g.db
+
+  if not callback then
+    error('No callback function given')
+  end
+
+  table_pattern = string.format('%s.%s', schema_name or 'public', table_name)
+
+  local args = {
+    '--schema-only',
+    '--table=' .. table_pattern,
+  }
+
+  if db_url then
+    table.insert(args, '--dbname=' .. db_url)
+  end
+
+  Job:new({
+    command = 'pg_dump',
+    args = args,
+    cwd = vim.fn.getcwd(),
+    on_exit = function(j, return_val)
+      if return_val == 1 then
+        error(vim.inspect(j:result()))
+      end
+
+      vim.schedule(function() callback(j:result()) end)
+    end,
+  }):start()
+end
+
+M.get_ddl = function(args)
+  db_url = nil
+  schema_name = nil
+  table_name = nil
+
+  if #args == 3 then
+    db_url = args[1]
+    schema_name = args[2]
+    table_name = args[3]
+  elseif #args == 2 then
+    db_url = args[1]
+    table_name = args[2]
+  elseif #args == 1 then
+    table_name = args[1]
+  end
+
+  expanded_db_url = vim.fn.expand(db_url)
+  if expanded_db_url == 'v:null' then
+    expanded_db_url = nil
+  end
+
+  run_get_ddl(schema_name, table_name, expanded_db_url, function(output)
+    float = ui.make_output_window({ filetype = 'sql', syntax = 'sql' })
+    for _, line in ipairs(output) do
+      vim.api.nvim_chan_send(float.job_id, line .. '\r\n')
+    end
   end)
 end
 

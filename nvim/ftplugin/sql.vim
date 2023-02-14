@@ -25,3 +25,18 @@ vim.api.nvim_buf_create_user_command(
   { nargs = '?', desc = "Expand a * into the table's columns" }
 )
 EOF
+
+lua << EOF
+vim.api.nvim_buf_create_user_command(
+  0,
+  'GetDDL',
+  function(args) require('db').get_ddl(args.fargs) end,
+  { nargs = '+', desc = "Get a table's ddl" }
+)
+EOF
+
+" " https://github.com/Saecki/dotfiles/blob/main/.config/nvim/lua/config/lsp/init.lua#L137-L140
+" vim.lsp.handlers["textDocument/codeAction"] = function(...)
+"       vim.lsp.buf.clear_references()
+"       DOCUMENT_HIGHLIGHT_HANDLER(...)
+"   end
