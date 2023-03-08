@@ -14,3 +14,5 @@ vim.keymap.set(
 require('luasnip.loaders.from_lua').load({
   paths = vim.api.nvim_get_runtime_file('lua/snippets/ft', false)[1],
 })
+
+ls.filetype_extend('javascriptreact', { 'javascript' })

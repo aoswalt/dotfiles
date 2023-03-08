@@ -82,10 +82,10 @@ return {
       select
           schemaname
         , relname
-        , seq_scan -- number of times done sequential scan
-        , seq_tup_read -- total number of rows returned by sequential scans
-        , idx_scan -- number of times done index scan
-        , seq_tup_read / seq_scan as avg -- average number of rows returned by sequential scans
+        , seq_scans -- number of times done sequential scan
+        , seq_tup_reads -- total number of rows returned by sequential scans
+        , idx_scans -- number of times done index scan
+        , seq_tup_read / seq_scan as seq_avg -- average number of rows returned by sequential scans
       from pg_stat_user_tables
       where seq_scan > 0
       order by seq_tup_read desc
