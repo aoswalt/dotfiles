@@ -27,6 +27,7 @@ vim.opt.hlsearch = false -- don't highlight searches by default
 vim.opt.path:append({ '**' }) -- include subdirectory globbing in path for :find
 vim.opt.diffopt:append({ 'internal' }) -- internal library for performance
 vim.opt.diffopt:append({ 'vertical' }) -- vertical split for diffs
+vim.opt.diffopt:append({ 'linematch:60' }) -- align lines in diffs
 
 vim.opt.showmode = false -- do not show mode since using lightline
 
