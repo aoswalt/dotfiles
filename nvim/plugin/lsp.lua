@@ -64,7 +64,7 @@ end
 
 capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local servers = { 'elixirls', 'eslint', 'tsserver', 'rls', 'dockerls', 'bashls', 'gdscript' }
+local servers = { 'elixirls', 'eslint', 'tsserver', 'rust_analyzer', 'dockerls', 'bashls', 'gdscript' }
 
 local configs = {
   elixirls = {
