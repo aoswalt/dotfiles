@@ -46,7 +46,6 @@ require('packer').startup({
       run = ':TSUpdate',
       config = function() require('config.treesitter') end,
     })
-    use('nvim-treesitter/playground')
 
     use('exu/pgsql.vim')
     use({ 'preservim/vim-markdown', config = function() require('config.markdown') end }) -- included in polyglot but without extra features
