@@ -13,7 +13,10 @@ if [[ $# != 1 ]]; then
 fi
 
 if [[ "$(uname -a)" =~ "Darwin" ]]; then
-  projdir="--with-projdir=/usr/local/Cellar/proj/9.1.0"
+  projcellar="$(brew --cellar proj)"
+  projversion="$(brew info --json proj | jq '.[0].installed[0].version')"
+
+  projdir="--with-projdir=${projcellar:?}/${projversion:?}"
 fi
 
 tmpdir=/tmp/postgis-install-"$@"
