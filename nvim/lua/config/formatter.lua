@@ -16,6 +16,20 @@ local function prettier()
   }
 end
 
+local function prettier_md()
+  return {
+    exe = node_modules_or_global('prettier'),
+    args = {
+      '--stdin-filepath',
+      vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+      '--single-quote',
+      '--parser',
+      'markdown',
+    },
+    stdin = true,
+  }
+end
+
 local function stylua()
   return {
     exe = 'stylua',
@@ -66,7 +80,7 @@ require('formatter').setup({
     javascriptreact = { prettier },
     json = { prettier },
     lua = { stylua },
-    markdown = { prettier },
+    markdown = { prettier_md },
     pgsql = { pg_format },
     rust = { rustfmt },
     sql = { pg_format },
