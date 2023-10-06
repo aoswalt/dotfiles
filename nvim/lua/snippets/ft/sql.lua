@@ -31,6 +31,11 @@ return {
     [[select pg_get_functiondef('${0:schema.function_name}' :: regproc)]]
   ),
 
+  s(
+    'find_in_function',
+    fmt([[select proname, prosrc, * from pg_proc where prosrc like '%{}%';]], i(1, 'text'))
+  ),
+
   parse(
     { trig = 'selmats', dscr = 'list materialized views' },
     [[select oid::regclass::text from pg_class where relkind = 'm']]
@@ -200,7 +205,7 @@ return {
   ),
 
   s(
-    { trig = 'selusage', dscr = 'find view usages' },
+    { trig = 'find_view_usage', dscr = 'find view usages' },
     fmt(
       [[
       select *
@@ -214,6 +219,27 @@ return {
         table = i(2, 'table'),
         column = i(3, 'column'),
       }
+    )
+  ),
+
+  s(
+    { trig = 'find_column', dscr = 'find where a column lives' },
+    fmt(
+      [[
+      select
+          t.table_schema
+        , t.table_name
+      from information_schema.tables t
+      join information_schema.columns cols
+        on cols.table_name = t.table_name
+      and cols.table_schema = t.table_schema
+      where cols.column_name = '{column_name}'
+        and t.table_schema not in ('information_schema', 'pg_catalog')
+        and t.table_type = 'BASE TABLE'
+      order by t.table_schema
+      ;
+    ]],
+      { column_name = i(1, 'column_name') }
     )
   ),
 
