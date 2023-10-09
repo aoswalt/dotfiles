@@ -1,3 +1,5 @@
-require('indent_blankline').setup({
-  buftype_exclude = { 'terminal' },
+require('ibl').setup({
+  exclude = {
+    buftypes = { 'terminal' },
+  }
 })

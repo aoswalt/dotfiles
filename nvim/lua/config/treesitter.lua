@@ -65,7 +65,6 @@ require('nvim-treesitter.configs').setup({
     'vue',
     'yaml',
     'zig',
-    'help', -- experimental
     'markdown', -- experimental
     'markdown_inline', -- experimental
   },
