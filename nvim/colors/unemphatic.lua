@@ -520,6 +520,6 @@ h('ExtraWhitespace', { bg = colors.red[1] })
 h('netrwExe', { fg = colors.red[0] })
 
 -- {{{2 lukas-reineke/indent-blankline.nvim
-h('IndentBlanklineChar', { fg = colors.grayscale[7] })
+h('IblIndent', { fg = colors.grayscale[7] })
 
 -- vim:foldmethod=marker:foldlevel=1:
