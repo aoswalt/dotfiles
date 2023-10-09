@@ -43,7 +43,7 @@ require('lazy').setup({
   },
 
   'exu/pgsql.vim',
-  { 'preservim/vim-markdown', config = function() require('config.markdown') end }, -- included in polyglot but without extra features
+  { 'preservim/vim-markdown', config = function() require('config.markdown') end },
   'habamax/vim-godot',
   { 'junegunn/limelight.vim', config = function() require('config.limelight') end },
 
@@ -65,6 +65,16 @@ require('lazy').setup({
     config = function() require('snippets') end,
   },
   'saadparwaiz1/cmp_luasnip',
+
+  {
+    'elixir-tools/elixir-tools.nvim',
+    version = '*',
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function() require('config.elixir-tools') end,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+  },
 
   { 'mickael-menu/zk-nvim', config = function() require('config.zk') end },
 

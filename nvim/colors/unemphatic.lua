@@ -175,6 +175,7 @@ local styles = {
   inactive_grey = { fg = other_colors.inactive_grey },
   menu_selection = { bg = other_colors.menu_selection },
   quote = { fg = other_colors.quote, style = 'italic' },
+  codelens = { fg = colors.grayscale[2], style = 'italic' },
 }
 -- }}}
 
@@ -214,8 +215,10 @@ h('Debug', 'Special') -- debugging statements
 h('Underlined', { style = 'underline' }) -- text that stands out, HTML links
 -- h("Ignore", {}) -- left blank, hidden
 h('Error', styles.error) -- any erroneous construct
-h('Warning', { fg = colors.yellow[1] }) -- * my addition
-h('Todo', { fg = colors.purple[0] }) -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+h('Warning', { fg = colors.yellow[1] })
+h('Todo', { fg = colors.purple[0] }) -- anything that needs extra attention; mostly the keywords TODO and XXX
+
+h('LspCodeLens', styles.codelens)
 
 h('@text.title', 'Title')
 h('@text.note', 'Todo')
