@@ -1,5 +1,15 @@
 local M = {}
 
+local function has_attached_server(server_name)
+  for _, server in ipairs(vim.lsp.buf_get_clients()) do
+    if server.name == server_name then
+      return true
+    end
+  end
+
+  return false
+end
+
 function M.on_attach(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
