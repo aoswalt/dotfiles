@@ -26,6 +26,20 @@ return {
     })
   ),
 
+  s(
+    { trig = 'val', dscr = 'in memory values table' },
+    fmt(
+      [[
+      select * from (
+        values
+          (1, 'foo')
+        , (2, 'bar')
+      ) x (id, name)
+      ]],
+      {}
+    )
+  ),
+
   parse(
     { trig = 'selfun', dscr = "show a function's definition" },
     [[select pg_get_functiondef('${0:schema.function_name}' :: regproc)]]
