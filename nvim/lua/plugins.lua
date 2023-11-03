@@ -94,10 +94,9 @@ require('lazy').setup({
   { 'tpope/vim-dispatch', config = function() require('config.dispatch') end },
   {
     'iamcco/markdown-preview.nvim',
-    run = 'cd app && yarn install',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     ft = { 'markdown' },
-    cmd = 'MarkdownPreview',
-    config = function() require('config.markdown-preview') end,
+    build = function() vim.fn['mkdp#util#install']() end,
   },
   'godlygeek/tabular',
   'chrisbra/csv.vim',
