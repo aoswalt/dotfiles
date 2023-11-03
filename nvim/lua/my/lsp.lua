@@ -32,29 +32,18 @@ function M.on_attach(client, bufnr)
   buf_keymap('n', 'gW', function() vim.lsp.buf.workspace_symbol() end)
   buf_keymap('n', 'gA', function() vim.lsp.buf.code_action() end)
   buf_keymap('v', 'gA', function() vim.lsp.buf.range_code_action() end)
-
-  -- use eslint formatting over tsserver if available because more project-specific
-  if client.server_capabilities.documentFormattingProvider then
-    if not (client.name == 'tsserver' and has_attached_server('eslint')) then
-      buf_keymap(
-        'n',
-        '<f4>',
-        function() vim.lsp.buf.format() end,
-        { desc = 'lsp format with ' .. client.name }
-      )
-    end
-  end
-
-  if client.server_capabilities.documentRangeFormattingProvider then
-    if not (client.name == 'tsserver' and has_attached_server('eslint')) then
-      buf_keymap(
-        'v',
-        '<f4>',
-        function() vim.lsp.buf.format() end,
-        { desc = 'lsp range format with ' .. client.name }
-      )
-    end
-  end
+  buf_keymap(
+    'n',
+    '<f4>',
+    function() vim.lsp.buf.format() end,
+    { desc = 'lsp format with ' .. client.name }
+  )
+  buf_keymap(
+    'v',
+    '<f4>',
+    function() vim.lsp.buf.format() end,
+    { desc = 'lsp range format with ' .. client.name }
+  )
 
   buf_keymap('n', '<f3>', function() vim.lsp.buf.rename() end)
 end
