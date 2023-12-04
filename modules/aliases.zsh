@@ -81,6 +81,7 @@ alias gfc='git clone'
 alias gfcr='git clone --recurse-submodules'
 alias gfm='git pull'
 alias gfr='git pull --rebase'
+alias gfri='git pull --rebase=interactive'
 
 # Index (i)
 alias gia='git add'
