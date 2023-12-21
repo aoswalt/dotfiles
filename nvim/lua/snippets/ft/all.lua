@@ -27,4 +27,35 @@ return {
       'no sea takimata sanctus est Lorem ipsum dolor sit amet.',
     })
   ),
+  s(
+    {
+      trig = '_(%-?%d+)',
+      regTrig = true,
+      name = 'Number list',
+      dscr = 'Create a list of numbers in various structures',
+    },
+    d(1, function(_args, snip)
+      local n = tonumber(snip.captures[1])
+
+      local nums = {}
+
+      if n < 1 then
+        for i = -1, n, -1 do
+          table.insert(nums, tostring(i))
+        end
+      else
+        for i = 1, n do
+          table.insert(nums, tostring(i))
+        end
+      end
+
+      return sn(nil, {
+        c(1, {
+          t(table.concat(nums, ', ')),
+          t(nums),
+          t(table.concat(nums, ' ')),
+        }),
+      })
+    end, {})
+  ),
 }
