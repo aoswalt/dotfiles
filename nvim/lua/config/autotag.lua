@@ -4,4 +4,7 @@
 --   }
 -- }
 
-require('nvim-ts-autotag').setup()
+require('nvim-ts-autotag').setup({
+  enable_rename = false,
+  close_on_slash = false,
+})
