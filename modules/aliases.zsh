@@ -150,6 +150,7 @@ alias gsw='git stash save --include-untracked --keep-index'
 
 # Working Copy (w)
 alias gws='git status --ignore-submodules=none --short'
+alias gwsb='git status --ignore-submodules=none --short --branch'
 alias gwS='git status --ignore-submodules=none'
 alias gwd='git diff --no-ext-diff'
 alias gwD='git diff --no-ext-diff --word-diff'
