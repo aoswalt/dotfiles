@@ -105,7 +105,7 @@ require('lint').linters.credo = {
 require('lint').linters_by_ft = {
   javascript = { 'eslint' },
   lua = { 'luacheck' },
-  elixir = { 'mix_format', 'credo' },
+  elixir = { 'mix_format' },
   sh = { 'shellcheck' },
 }
 
@@ -113,24 +113,9 @@ local function file_exists(file) return vim.fn.filereadable(file) == 1 end
 
 local M = {}
 
-function M.conditional_lint()
-  if vim.bo.filetype == 'elixir' then
-    require('lint').try_lint('mix_format')
-
-    -- only run credo if config exists
-    if file_exists('.credo.exs') or file_exists('config/.credo.exs') then
-      require('lint').try_lint('credo')
-    end
-
-    return
-  end
-
-  require('lint').try_lint()
-end
-
 vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufWritePost' }, {
   buffer = 0,
-  callback = function() require('config.lint').conditional_lint() end,
+  callback = function() require('lint').try_lint() end,
   desc = 'lint'
 })
 
