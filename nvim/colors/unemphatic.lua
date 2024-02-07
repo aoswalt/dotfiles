@@ -13,6 +13,8 @@ vim.o.termguicolors = true
 
 vim.o.background = 'dark'
 
+vim.o.conceallevel = 2
+
 local function link(from, to)
   to = to or 'NONE'
   vim.api.nvim_command('highlight! link ' .. from .. ' ' .. to)
@@ -220,17 +222,23 @@ h('Todo', { fg = colors.purple[0] }) -- anything that needs extra attention; mos
 
 h('LspCodeLens', styles.codelens)
 
+h('@markup.heading', { fg = colors.green[-1], style = 'bold' })
+h('@markup.strong.markdown_inline', { style = 'bold' })
+h('@markup.italic.markdown_inline', { style = 'italic' })
+h('@markup.raw.markdown_inline', '@symbol')
+h('@markup.raw.delimiter.markdown_inline', '@conceal')
+h('@markup.link.label.markdown_inline', 'Identifier')
 h('@text.title', 'Title')
 h('@text.note', 'Todo')
 h('@text.warning', 'Warning')
 h('@text.danger', 'Error')
 h('@text.literal.block.markdown', 'NONE')
-h('@text.literal.markdown_inline', '@symbol')
+h('@text.strong', { style = 'bold' })
 h('@text.strong', { style = 'bold' })
 h('@text.emphasis', { style = 'italic' })
 h('@constant.builtin', 'Constant')
 h('@parameter', 'Variable')
-h('elixirTSParameter', '@symbol')
+-- h('elixirTSParameter', '@symbol')
 h('@variable', 'Variable')
 h('@keyword', 'Keyword')
 -- h('@keyword', 'PreProc')
@@ -240,6 +248,11 @@ h('@symbol', 'Constant')
 h('@field', 'NONE')
 h('bashTSParameter', 'NONE')
 h('@attribute', { fg = colors.purple[2] })
+h('@module', 'Type')
+h('@string.special', 'Constant')
+h('@variable', 'Variable')
+h('@variable.member', 'Identifier')
+h('@comment.todo', 'Todo')
 
 -- Highlighting Groups (descriptions and ordering from `:h hitest.vim`) {{{1
 
@@ -329,11 +342,11 @@ h('cssProp', { fg = colors.white })
 -- h("cssTagName", { fg = colors.red[0] })
 
 -- Elixir {{{2
-h('elixirAlias', 'elixirModuleDeclaration') -- aliased module names
-h('elixirBlock', 'PreProc') -- do, end, etc.
-h('elixirModuleDeclaration', 'Constant') -- module name definition
+-- h('elixirAlias', 'elixirModuleDeclaration') -- aliased module names
+-- h('elixirBlock', 'PreProc') -- do, end, etc.
+-- h('elixirModuleDeclaration', 'Constant') -- module name definition
 -- h("elixirStringDelimiter", "Special") -- quotes, etc.
-h('elixirVariable', { fg = colors.blue[2] }) -- module attributes
+-- h('elixirVariable', { fg = colors.blue[2] }) -- module attributes
 
 -- HTML {{{2
 h('htmlTitle', { fg = colors.white })
