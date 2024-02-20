@@ -62,6 +62,7 @@ require('nvim-treesitter.configs').setup({
     'tsx',
     'typescript',
     'vim',
+    'vimdoc',
     'vue',
     'yaml',
     'zig',
