@@ -40,6 +40,18 @@ return {
     )
   ),
 
+  s(
+    {trig = 'begin', dscr = 'begin/rollback transactionblock'},
+    fmt(
+      [[
+      begin;
+      {}
+      ; rollback;
+      ]],
+      { i(0) }
+    )
+  ),
+
   parse(
     { trig = 'selfun', dscr = "show a function's definition" },
     [[select pg_get_functiondef('${0:schema.function_name}' :: regproc)]]
