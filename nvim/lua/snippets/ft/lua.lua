@@ -6,7 +6,7 @@ return {
       trig = 'mod',
       name = 'module',
     },
-    fmt(
+    fmta(
       [[
       local M = {}
 
@@ -14,8 +14,24 @@ return {
 
       return M
       ]],
-      { i(0) },
-      { delimiters = '<>' }
+      { i(0) }
     )
+  ),
+  s(
+    {
+      trig = 'fun',
+      name = 'function',
+    },
+    c(1, {
+      fmt(
+        [[
+        function {}({})
+          {}
+        end
+        ]],
+        { i(1, 'name'), i(2, 'args'), i(0) }
+      ),
+      fmt([[function({}) {} end]], { i(1, 'args'), i(0) }),
+    })
   ),
 }
