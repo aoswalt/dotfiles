@@ -2,33 +2,37 @@ local cmp = require('cmp')
 local ls = require('luasnip')
 local lspkind = require('lspkind')
 
-local ls_next_choice = function() ls.change_choice(1) end
-
 cmp.setup({
   mapping = {
-    ['<c-p>'] = cmp.mapping.select_prev_item(),
-    ['<c-n>'] = cmp.mapping.select_next_item(),
-    ['<c-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 's' }),
+    ['<c-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+    ['<c-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
     ['<c-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 's' }),
+    ['<c-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 's' }),
     ['<c-space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-    ['<c-l>'] = cmp.mapping(ls_next_choice, { 'i', 's' }),
-    ['<c-e>'] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
-    }),
-    ['<c-j>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.confirm({
-          behavior = cmp.ConfirmBehavior.Insert,
-          select = true,
-        })
-      elseif ls.expand_or_jumpable() then
+    ['<c-,>'] = cmp.mapping(function() ls.change_choice(-1) end, { 'i', 's' }),
+    ['<c-.>'] = cmp.mapping(function() ls.change_choice(1) end, { 'i', 's' }),
+    ['<c-l>'] = cmp.mapping(function()
+      if ls.locally_jumpable(1) then
+        ls.jump(1)
+      end
+    end, { 'i', 's' }),
+    ['<c-h>'] = cmp.mapping(function()
+      if ls.locally_jumpable(-1) then
+        ls.jump(-1)
+      end
+    end, { 'i', 's' }),
+    ['<c-e>'] = cmp.mapping(cmp.mapping.abort(), { 'i', 'c' }),
+    -- ['<c-k>'] = cmp.mapping(function() ls.jump(-1) end, { 'i', 's' }),
+    ['<c-y>'] = cmp.mapping(cmp.mapping.confirm({ select = false }), { 'i', 'c' }),
+    ['<cr>'] = cmp.mapping.confirm({ select = false }),
+    -- ['<c-cr>'] = cmp.mapping.confirm({ select = true }),
+    ['<c-cr>'] = cmp.mapping(function(fallback)
+      if ls.expand_or_jumpable() then
         ls.expand_or_jump()
       else
         fallback()
       end
     end, { 'i', 's' }),
-    ['<c-k>'] = cmp.mapping(function() ls.jump(-1) end, { 'i', 's' }),
   },
 
   sources = {
@@ -97,10 +101,6 @@ require('cmp').setup.cmdline('/', {
   },
 })
 
-
 -- If you want insert `(` after select function or method item
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-cmp.event:on(
-  'confirm_done',
-  cmp_autopairs.on_confirm_done()
-)
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
