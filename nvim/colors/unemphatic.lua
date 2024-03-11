@@ -15,10 +15,7 @@ vim.o.background = 'dark'
 
 vim.o.conceallevel = 2
 
-local function link(from, to)
-  to = to or 'NONE'
-  vim.api.nvim_command('highlight! link ' .. from .. ' ' .. to)
-end
+local function link(from, to) vim.api.nvim_set_hl(0, from, { link = to }) end
 
 local clear_style = {
   fg = 'NONE',
@@ -43,7 +40,7 @@ local keymap = {
 local function highlight(group, style)
   style = vim.tbl_extend('force', clear_style, style)
 
-  strings = {}
+  local strings = {}
   for k, v in pairs(style) do
     k = keymap[k] or k
     v = v or 'NONE'
@@ -51,16 +48,16 @@ local function highlight(group, style)
     table.insert(strings, k .. '=' .. v)
   end
 
-  combined = table.concat(strings, ' ')
+  local combined = table.concat(strings, ' ')
 
   vim.api.nvim_command('highlight! ' .. group .. ' ' .. combined)
 end
 
 local function expand_style(style)
-  fg = style.fg or {}
-  bg = style.bg or {}
+  local fg = style.fg or {}
+  local bg = style.bg or {}
   style = style.style or 'NONE'
-  guisp = style.guisp or 'NONE'
+  local guisp = style.guisp or 'NONE'
 
   return {
     fg = fg.term or 'NONE',
@@ -75,7 +72,7 @@ end
 
 local function h(group, style_or_group)
   if type(style_or_group) == 'table' then
-    style = expand_style(style_or_group)
+    local style = expand_style(style_or_group)
     highlight(group, style)
   else
     link(group, style_or_group)
@@ -535,8 +532,6 @@ h('fugitiveStagedHeading', 'gitcommitSelectedFile')
 -- better-whitespace {{{2
 h('ExtraWhitespace', { bg = colors.red[1] })
 
--- netrw {{{2
-h('netrwExe', { fg = colors.red[0] })
 
 -- {{{2 lukas-reineke/indent-blankline.nvim
 h('IblIndent', { fg = colors.grayscale[7] })
