@@ -59,4 +59,4 @@ vim.keymap.set('n', '<leader>B', function() builtin.current_buffer_fuzzy_find() 
 vim.keymap.set('n', '<leader><leader>', function() builtin.commands() end)
 vim.keymap.set('n', '<leader>K', function() builtin.help_tags() end)
 
-require('telescope').load_extension('ui-select')
+vim.keymap.set('n', '<leader>sh', function() builtin.help_tags() end)
