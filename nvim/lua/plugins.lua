@@ -1,9 +1,9 @@
 require('lazy').setup({
-  'fladson/vim-kitty',
   {
-    'knubie/vim-kitty-navigator',
-    run = 'cp ./*.py ~/.config/kitty/',
-    config = function() require('config.kitty-navigator') end,
+    'willothy/wezterm.nvim',
+    opts = {
+      create_commands = false,
+    },
   },
 
   { 'justinmk/vim-dirvish', config = function() require('config.dirvish') end },

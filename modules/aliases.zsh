@@ -278,4 +278,4 @@ alias zmv='noglob zmv -W'
 
 alias http-serve='python3 -m http.server' # serves a directory via HTTP
 
-alias icat="kitty +kitten icat --align=left"
+alias icat="wezterm imgcat"
