@@ -61,14 +61,6 @@ xmap N Nzz
 nmap g* g*zz
 nmap g# g#zz
 
-" edit vimrc/zshrc and source vimrc
-nnoremap <leader>ev <cmd>vsp $DOTFILES/init.vim<CR>
-nnoremap <leader>eV <cmd>vsp $MYVIMRC<CR>
-nnoremap <leader>sv <cmd>source $MYVIMRC<CR>
-nnoremap <leader>sV <cmd>source %<CR>
-nnoremap <leader>ss <cmd>source $DOTFILES/nvim/plugin/snippets.lua<CR>
-nnoremap <leader>ez <cmd>vsp $DOTFILES/.zshrc<CR>
-
 " inside template tags (<%= foo %>)
 onoremap <silent> iT <cmd>execute "silent normal! ?\\v[{<][{%]\\=\\?\\zs.\rv/\\v.\\ze[%}][>}]\r"<cr>
 xnoremap <silent> iT <cmd>execute "silent normal! ?\\v[{<][{%]\\=\\?\\zs.\rv/\\v.\\ze[%}][>}]\r"<cr>
