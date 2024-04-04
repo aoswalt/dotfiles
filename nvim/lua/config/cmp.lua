@@ -30,7 +30,7 @@ cmp.setup({
       if ls.expand_or_jumpable() then
         ls.expand_or_jump()
       else
-        fallback()
+        cmp.mapping.confirm({ select = true })
       end
     end, { 'i', 's' }),
   },
