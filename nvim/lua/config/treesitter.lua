@@ -53,6 +53,7 @@ require('nvim-treesitter.configs').setup({
     'rust',
     'scala',
     'scss',
+    'sql',
     'surface',
     'svelte',
     'swift',
