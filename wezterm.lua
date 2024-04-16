@@ -129,7 +129,7 @@ config.keys = {
   { key = '0', mods = mods, action = act.ResetFontSize },
 
   -- SpawnTab tries to use current directory
-  { key = 't', mods = mods, action = act.SpawnCommandInNewTab({ cwd = '$HOME' }) },
+  { key = 't', mods = mods, action = act.SpawnCommandInNewTab({ cwd = os.getenv('HOME') }) },
   { key = 'w', mods = mods, action = act.CloseCurrentTab({ confirm = true }) },
 
   {
