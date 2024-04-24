@@ -125,10 +125,6 @@ require('lazy').setup({
     'numToStr/Comment.nvim',
     config = function() require('Comment').setup() end,
   },
-  {
-    'ntpeters/vim-better-whitespace',
-    config = function() require('config.better-whitespace') end,
-  },
   'tpope/vim-repeat',
   'tpope/vim-unimpaired',
   { 'kylechui/nvim-surround', config = function() require('config.surround') end },
