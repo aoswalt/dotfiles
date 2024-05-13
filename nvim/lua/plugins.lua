@@ -106,7 +106,22 @@ require('lazy').setup({
   'godlygeek/tabular',
   'chrisbra/csv.vim',
   'junegunn/vim-peekaboo',
-  { 'rest-nvim/rest.nvim', config = function() require('config.rest') end },
+
+  {
+    'vhyrro/luarocks.nvim',
+    priority = 1000,
+    config = true,
+    opts = {
+      rocks = { 'lua-curl', 'nvim-nio', 'mimetypes', 'xml2lua' },
+    },
+  },
+  {
+    'rest-nvim/rest.nvim',
+    ft = 'http',
+    dependencies = { 'luarocks.nvim' },
+    config = function() require('config.rest') end,
+  },
+
   'wesQ3/vim-windowswap',
 
   'itchyny/lightline.vim',
