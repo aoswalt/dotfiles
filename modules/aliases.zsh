@@ -243,7 +243,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
 else
   alias open='xdg-open'
 
-  if (( $+commands[xclip] )); then
+  if (( $+commands[wl-copy] )); then
+    alias pbcopy='wl-copy'
+    alias pbpaste='wl-paste'
+  elif (( $+commands[xclip] )); then
     alias pbcopy='xclip -selection clipboard -in'
     alias pbpaste='xclip -selection clipboard -out'
   elif (( $+commands[xsel] )); then
