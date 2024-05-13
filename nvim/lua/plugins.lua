@@ -6,7 +6,7 @@ require('lazy').setup({
     },
   },
 
-  { 'justinmk/vim-dirvish', config = function() require('config.dirvish') end },
+  { 'stevearc/oil.nvim', config = function() require('config.oil') end },
   { 'mbbill/undotree', config = function() require('config.undotree') end },
   'tpope/vim-fugitive',
   { 'junegunn/gv.vim', config = function() require('config.gv') end },
