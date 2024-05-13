@@ -200,22 +200,22 @@ wezterm.on('gui-startup', function(cmd)
   window:gui_window():maximize()
 end)
 
+-- unchanged from default so far
 -- ideally, be smarter about titles to not show machine and combine path + program
--- wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
---   -- prefer the title that was set via `tab:set_title()`
---   -- or `wezterm cli set-tab-title`, but falls back to the
---   -- title of the active pane in that tab.
---
---   local title = tab.tab_title
---   -- if the tab title is explicitly set, take that
---   if title and #title > 0 then
---     return title
---   end
---
---   -- Otherwise, use the title from the active pane
---   -- in that tab
---   return tab.active_pane.title
--- end)
+wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+  -- prefer the title that was set via `tab:set_title()`
+  -- or `wezterm cli set-tab-title`, but falls back to the
+  -- title of the active pane in that tab.
+
+  local title
+  if tab.tab_title and #tab.tab_title > 0 then
+    title = tab.tab_title
+  else
+    title = tab.active_pane.title
+  end
+
+  return string.format(' %s: %s ', tab.tab_index + 1, title)
+end)
 
 local smart_nvim_nav = function(window, pane, direction_wez, direction_nvim)
   -- if wezterm can talk to neovim, neovim would not need any custom navigation config
