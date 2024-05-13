@@ -45,13 +45,14 @@ local query_string = [[
 (statement (
   (select
     (select_expression
-      (all_fields) @star))
+      (term
+        value: (all_fields) @star)))
   (from
     (relation
-      (table_reference
+      (object_reference
         schema: (identifier)? @schema
         name: (identifier) @table
-      ) @table_reference
+      ) @object_reference
     )
   )
 ))
@@ -65,18 +66,18 @@ local replace_node_text = function(node, new_text)
 end
 
 M.get_table_columns = function(db_url)
-  if vim.treesitter.get_node_at_cursor() ~= 'all_fields' then
+  if vim.treesitter.get_node():type() ~= 'all_fields' then
     error('Not on a *')
     return
   end
 
-  local query = vim.treesitter.parse_query('sql', query_string)
+  local query = vim.treesitter.query.parse('sql', query_string)
 
   local parser = vim.treesitter.get_parser(0, 'sql')
   local tree = unpack(parser:parse())
 
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-  local cur_node = vim.treesitter.get_node_at_pos(0, row - 1, col, {})
+  local cur_node = vim.treesitter.get_node()
   local statement_node = cur_node
 
   while cur_node:type() ~= 'statement' and cur_node:parent() ~= nil do
