@@ -119,6 +119,7 @@ require('lazy').setup({
     'rest-nvim/rest.nvim',
     ft = 'http',
     dependencies = { 'luarocks.nvim' },
+    main = 'rest-nvim',
     config = function() require('config.rest') end,
   },
 
