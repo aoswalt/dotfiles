@@ -19,7 +19,27 @@ vim.opt.runtimepath:append({ '$DOTFILES/nvim' })
 U = require('util')
 
 require('settings')
-require('plugins')
+
+require('lazy').setup({ import = 'config/plugins' }, {
+  performance = {
+    rtp = {
+      paths = { vim.fn.expand('$DOTFILES/nvim'), vim.fn.expand('$DOTFILES/nvim/after') },
+      disabledPlugins = {
+        'netrw',
+        'netrwPlugin',
+        'netrwSettings',
+        'netrwFileHandlers',
+        'vimball',
+        'vimballPlugin',
+        '2html_plugin',
+        'spellfile_plugin',
+      },
+    },
+  },
+  change_detection = {
+    notify = false,
+  },
+})
 
 --  \"au BufReadPost * if getline(1) =~ \"VAR\" | call SetVar() | endif
 -- And define a function SetVar() that does something with the line containing
@@ -28,4 +48,8 @@ require('plugins')
 -- allow loading of device specific configs
 if vim.fn.filereadable(vim.fn.expand('$HOME/init.after.vim')) > 0 then
   vim.cmd('source $HOME/init.after.vim')
+end
+
+if vim.fn.filereadable(vim.fn.expand('$HOME/init.after.lua')) > 0 then
+  vim.cmd('source $HOME/init.after.lua')
 end

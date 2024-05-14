@@ -41,7 +41,7 @@ return {
   ),
 
   s(
-    {trig = 'begin', dscr = 'begin/rollback transactionblock'},
+    { trig = 'begin', dscr = 'begin/rollback transactionblock' },
     fmt(
       [[
       begin;
@@ -113,9 +113,9 @@ return {
       select
           schemaname
         , relname
-        , seq_scans -- number of times done sequential scan
-        , seq_tup_reads -- total number of rows returned by sequential scans
-        , idx_scans -- number of times done index scan
+        , seq_scan -- number of times done sequential scan
+        , seq_tup_read -- total number of rows returned by sequential scans
+        , idx_scan -- number of times done index scan
         , seq_tup_read / seq_scan as seq_avg -- average number of rows returned by sequential scans
       from pg_stat_user_tables
       where seq_scan > 0
@@ -132,7 +132,10 @@ return {
 
   s(
     { trig = 'kill', dscr = 'kill a running query - be careful, try stop/cancel first!' },
-    fmt('select pg_terminate_backend({})', { i(1, '__pid__') })
+    fmt(
+      'select pg_terminate_backend({}) -- use with care, try stop/cancel first!',
+      { i(1, '__pid__') }
+    )
   ),
 
   s(

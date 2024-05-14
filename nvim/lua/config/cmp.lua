@@ -86,6 +86,13 @@ cmp.setup.filetype('gitcommit', {
   }),
 })
 
+cmp.setup.filetype({ 'sql' }, {
+  sources = {
+    { name = 'vim-dadbod-completion' },
+    { name = 'buffer' },
+  },
+})
+
 -- -- causing weird slowness with dadbod
 -- require('cmp').setup.cmdline(':', {
 --   sources = {
