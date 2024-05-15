@@ -10,6 +10,3 @@
 [submodule "external/zsh-history-substring-search"]
 	path = external/zsh-history-substring-search
 	url = git@github.com:zsh-users/zsh-history-substring-search.git
-[submodule "external/zsh-completions"]
-	path = external/zsh-completions
-	url = git@github.com:zsh-users/zsh-completions.git

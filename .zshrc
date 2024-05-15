@@ -38,14 +38,19 @@ fi
 [ -f ~/.asdf/asdf.sh ] && source ~/.asdf/asdf.sh
 
 
-fpath=($DOTFILES/external/zsh-completions/src $fpath)
+fpath=($DOTFILES/completions $fpath)
 if [ -d ${ASDF_DIR}/completions ]; then
   # append completions to fpath
   fpath=(${ASDF_DIR}/completions $fpath)
 fi
 
 # initialise completions
-autoload -Uz compinit && compinit
+# autoload -Uz compinit && compinit
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 
 # compdef _git gpb=git-checkout
 
