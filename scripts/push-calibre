@@ -1,0 +1,8 @@
+#! /bin/zsh
+
+if [[ ! -e calibre_library ]] then
+  printf "No 'calibre_library' folder found in current directory\n"
+  exit 1
+fi
+
+rsync -vzzhre ssh --delete calibre_library adam@adamoswalt.com:/home/adam/
