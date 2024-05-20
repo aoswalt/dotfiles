@@ -24,6 +24,12 @@ return {
           Count = 'select count(*) from {table}',
         },
       }
+
+      vim.api.nvim_create_autocmd({ 'FileType' }, {
+        pattern = { 'dbout' },
+        callback = function() vim.wo[0].foldenable = false end,
+        desc = 'nofold dbout',
+      })
     end,
   },
 }
