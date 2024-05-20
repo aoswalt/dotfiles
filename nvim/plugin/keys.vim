@@ -43,11 +43,15 @@ nnoremap <BS> <c-^>
 " system clipboard yank
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
-nmap <leader>Y "+Y
+nnoremap <leader>Y "+Y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>P "+P
+nnoremap <leader>d "+d
+vnoremap <leader>d "+d
+nnoremap <leader>D "+D
+vnoremap <leader>D "+D
 
 " put searches in middle of screen
 nmap n nzz
