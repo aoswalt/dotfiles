@@ -60,3 +60,5 @@ vim.keymap.set('n', '<leader><leader>', function() builtin.commands() end)
 vim.keymap.set('n', '<leader>K', function() builtin.help_tags() end)
 
 vim.keymap.set('n', '<leader>sh', function() builtin.help_tags() end)
+
+vim.keymap.set('n', 'z=', function() builtin.spell_suggest() end)
