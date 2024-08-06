@@ -25,6 +25,37 @@ for _, lsp in ipairs({ 'eslint', 'tsserver' }) do
   })
 end
 
+lspconfig.tailwindcss.setup({
+  filetypes = {
+    -- html
+    'eelixir',
+    'elixir',
+    'html',
+    'heex',
+    -- css
+    'css',
+    -- js
+    'javascript',
+    'javascriptreact',
+    'typescript',
+    'typescriptreact',
+    -- mixed
+    'vue',
+    'svelte',
+  },
+  on_attach = function(client, bufnr)
+    my_lsp.on_attach(client, bufnr)
+    require('telescope').load_extension('tailiscope')
+    vim.keymap.set('n', '<leader>sT', '<cmd>Telescope tailiscope<cr>')
+  end,
+  capabilities = my_lsp.capabilities,
+  init_options = {
+    userLanguages = {
+      heex = 'phoenix-heex',
+    },
+  },
+})
+
 lspconfig.vimls.setup({
   -- don't want to override built-in keybinds for vim
   capabilities = capabilities,

@@ -9,8 +9,6 @@ vim.api.nvim_exec(
   false
 )
 
-vim.o.termguicolors = true
-
 vim.o.background = 'dark'
 
 vim.o.conceallevel = 2

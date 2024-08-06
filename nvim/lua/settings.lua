@@ -31,6 +31,8 @@ vim.opt.diffopt:append({ 'linematch:60' }) -- align lines in diffs
 
 vim.opt.showmode = false -- do not show mode since using lightline
 
+vim.opt.keywordprg = nil -- let lsp take control
+
 -- characters for horizontal scrolled text
 vim.opt.listchars:append({
   extends = '»',

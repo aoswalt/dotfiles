@@ -15,6 +15,8 @@ return {
         'cooklang',
         'cpp',
         'css',
+        'csv',
+        'diff',
         'dockerfile',
         'dot',
         'eex',
@@ -24,6 +26,12 @@ return {
         'fish',
         'fortran',
         'gdscript',
+        'gdshader',
+        'git_config',
+        'git_rebase',
+        'gitattributes',
+        'gitcommit',
+        'gitignore',
         'gleam',
         'glsl',
         'go',
@@ -43,7 +51,10 @@ return {
         'latex',
         'llvm',
         'lua',
+        'luap',
         'make',
+        'markdown', -- experimental
+        'markdown_inline', -- experimental
         'norg',
         'ocaml',
         'ocaml_interface',
@@ -66,10 +77,10 @@ return {
         'vim',
         'vimdoc',
         'vue',
+        'wgsl',
+        'wgsl_bevy',
         'yaml',
         'zig',
-        'markdown', -- experimental
-        'markdown_inline', -- experimental
       },
       highlight = {
         enable = true,

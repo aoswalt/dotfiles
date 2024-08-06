@@ -213,17 +213,17 @@ else
   fi
 fi
 
-if [[ $commands[exa] ]]; then
-  alias ls='exa --group-directories-first --color=auto --color-scale --classify'
+if [[ $commands[eza] ]]; then
+  alias ls='eza --group-directories-first --color=auto --color-scale --classify'
   alias l1='ls -1'
   alias la='ls --all'
   alias la1='la -1'
   alias ll='ls -l'
   alias lal='la -l'
 else
-  alias ls='ls --group-directories-first --color=auto --classify --human-readable'
+  alias ls='ls --color=auto'
   alias l1='ls -1'
-  alias la='ls --almost-all'
+  alias la='ls -A'
   alias la1='la -1'
   alias ll='ls -l'
   alias lal='la -l'
@@ -267,8 +267,8 @@ alias df='df -kh'  # displays free disk space using human readable units
 alias du='du -kh'  # displays disk usage using human readable units
 
 # force tree colorizing, may not be needed with LS_COLORS or TREE_COLORS
-if [[ $commands[exa] ]]; then
-  alias tree='exa --tree'
+if [[ $commands[eza] ]]; then
+  alias tree='eza --tree'
 else
   alias tree='tree -C'
 fi

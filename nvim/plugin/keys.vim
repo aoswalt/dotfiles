@@ -43,7 +43,7 @@ nnoremap <BS> <c-^>
 " system clipboard yank
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
-nnoremap <leader>Y "+Y
+nmap <leader>Y "+Y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 nnoremap <leader>P "+P
@@ -65,17 +65,16 @@ xmap N Nzz
 nmap g* g*zz
 nmap g# g#zz
 
+map <c-ScrollWheelUp> zh
+map <c-ScrollWheelDown> zl
+map <c-s-ScrollWheelUp> zH
+map <c-s-ScrollWheelDown> zL
+
 " inside template tags (<%= foo %>)
 onoremap <silent> iT <cmd>execute "silent normal! ?\\v[{<][{%]\\=\\?\\zs.\rv/\\v.\\ze[%}][>}]\r"<cr>
 xnoremap <silent> iT <cmd>execute "silent normal! ?\\v[{<][{%]\\=\\?\\zs.\rv/\\v.\\ze[%}][>}]\r"<cr>
 onoremap <silent> aT <cmd>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}][>}]/e\r"<cr>
 xnoremap <silent> aT <cmd>execute "silent normal! ?\\v[{<][{%]\\=\\?.\rv/\\v[%}][>}]/e\r"<cr>
-
-nnoremap <F10> <cmd>lua vim.diagnostic.open_float()<cr>
-nnoremap [d <cmd>lua vim.diagnostic.goto_prev({ wrap = true })<cr>
-nnoremap ]d <cmd>lua vim.diagnostic.goto_next({ wrap = true })<cr>
-nnoremap [w <cmd>lua vim.diagnostic.goto_prev({ wrap = true })<cr>
-nnoremap ]W <cmd>lua vim.diagnostic.goto_next({ wrap = true })<cr>
 
 " should try using gq for formatting
 nnoremap <silent> <f4> <cmd>Format<cr>

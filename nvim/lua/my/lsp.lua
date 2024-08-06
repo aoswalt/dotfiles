@@ -30,6 +30,7 @@ function M.on_attach(client, bufnr)
   buf_keymap('n', 'gr', function() vim.lsp.buf.references() end)
   buf_keymap('n', 'g0', function() vim.lsp.buf.document_symbol() end)
   buf_keymap('n', 'gW', function() vim.lsp.buf.workspace_symbol() end)
+  buf_keymap('n', '<f10>', function() vim.diagnostic.open_float() end) -- default is <c-w>d
   buf_keymap('n', 'gA', function() vim.lsp.buf.code_action() end)
   buf_keymap('v', 'gA', function() vim.lsp.buf.range_code_action() end)
   buf_keymap(

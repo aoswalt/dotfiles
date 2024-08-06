@@ -41,10 +41,9 @@ Run `dotfiles` to see a list of the option flags available.
 
 - system
   - fzf `$(brew --prefix fzf)/install`
-  - zoxide
   - bat
-  - exa
-  - htop
+  - eza
+  - btop
   - flameshot (brew install flameshot)
 - luarocks
   - luacheck

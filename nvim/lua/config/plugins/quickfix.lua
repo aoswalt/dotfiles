@@ -1,3 +1,3 @@
 return {
-  'wsdjeg/vim-fetch',
+  'stefandtw/quickfix-reflector.vim',
 }

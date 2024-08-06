@@ -10,7 +10,7 @@ return {
     elixir.setup({
       -- failing about dependencies as of 10/9
       nextls = {
-        enable = true,
+        enable = false,
         -- port = 9000,
         experimental = {
           completions = {
@@ -19,8 +19,17 @@ return {
         },
         on_attach = my_lsp.on_attach,
       },
-      credo = { enable = false },
-      elixirls = { enable = false },
+      credo = { enable = true },
+      elixirls = {
+        enable = true,
+        settings = elixirls.settings({
+          dialyzerEnabled = true,
+          fetchDeps = false,
+          enableTestLenses = true,
+          suggestSpecs = false,
+        }),
+        on_attach = my_lsp.on_attach,
+      },
     })
   end,
   dependencies = {

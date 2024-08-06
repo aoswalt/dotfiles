@@ -14,6 +14,7 @@ return {
       'nvim-telescope/telescope-ui-select.nvim',
       'nvim-telescope/telescope-github.nvim',
       'rlch/github-notifications.nvim',
+      'danielvolchek/tailiscope.nvim',
     },
     config = function()
       require('config.telescope')

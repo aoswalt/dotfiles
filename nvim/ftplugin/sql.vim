@@ -1,6 +1,6 @@
-nnoremap <buffer> <silent> K <cmd>DB \h <c-r><c-w><cr>
+set keywordprg=:DB\ \h
 
-" TODO(adam): use Dispatch to default these?
+" TODO(adam): use Dispatch to default these as "run""?
 nnoremap <buffer> <leader>rr <cmd>.DB<cr>
 nmap <buffer> <expr> <leader>r db#op_exec()
 vmap <buffer> <expr> <leader>r db#op_exec()
@@ -34,6 +34,9 @@ vim.api.nvim_buf_create_user_command(
   { nargs = '+', desc = "Get a table's ddl" }
 )
 EOF
+
+
+setlocal commentstring=--\ %s
 
 " " https://github.com/Saecki/dotfiles/blob/main/.config/nvim/lua/config/lsp/init.lua#L137-L140
 " vim.lsp.handlers["textDocument/codeAction"] = function(...)

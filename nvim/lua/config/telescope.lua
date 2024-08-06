@@ -34,6 +34,11 @@ require('telescope').setup({
       },
     },
   },
+  extensions = {
+    tailiscope = {
+      register = '',
+    },
+  },
 })
 
 local builtin = require('telescope.builtin')
