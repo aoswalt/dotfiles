@@ -122,11 +122,8 @@ config.keys = {
   { key = 'n', mods = mods, action = act.SpawnWindow },
 
   { key = '-', mods = 'SUPER', action = act.DecreaseFontSize },
-  { key = '-', mods = mods, action = act.DecreaseFontSize },
   { key = '+', mods = 'SUPER', action = act.IncreaseFontSize },
-  { key = '+', mods = mods, action = act.IncreaseFontSize },
   { key = '0', mods = 'SUPER', action = act.ResetFontSize },
-  { key = '0', mods = mods, action = act.ResetFontSize },
 
   -- SpawnTab tries to use current directory
   { key = 't', mods = mods, action = act.SpawnCommandInNewTab({ cwd = os.getenv('HOME') }) },
