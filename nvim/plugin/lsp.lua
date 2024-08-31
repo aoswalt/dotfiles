@@ -4,7 +4,7 @@ local my_lsp = require('my.lsp')
 -- server capabilities in spec
 -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#serverCapabilities
 
-local servers = { 'rust_analyzer', 'dockerls', 'bashls', 'gdscript' }
+local servers = { 'rust_analyzer', 'dockerls', 'bashls', 'gdscript', 'lua_ls' }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup({
