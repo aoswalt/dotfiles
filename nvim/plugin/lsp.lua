@@ -88,12 +88,12 @@ lspconfig.tailwindcss.setup({
 
 lspconfig.vimls.setup({
   -- don't want to override built-in keybinds for vim
-  capabilities = capabilities,
+  capabilities = my_lsp.capabilities,
 })
 
 require('zk').setup({
   picker = 'telescope',
-  lsp = { config = { on_attach = on_attach } },
+  lsp = { config = { on_attach = my_lsp.on_attach } },
 })
 
 vim.diagnostic.config({
