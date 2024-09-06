@@ -43,7 +43,7 @@ lspconfig.lua_ls.setup({
   }
 })
 
-for _, lsp in ipairs({ 'eslint', 'tsserver' }) do
+for _, lsp in ipairs({ 'eslint', 'ts_ls' }) do
   lspconfig[lsp].setup({
     on_attach = function(client, bufnr)
       my_lsp.on_attach(client, bufnr)
