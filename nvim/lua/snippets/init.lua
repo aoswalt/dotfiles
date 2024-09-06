@@ -16,3 +16,4 @@ require('luasnip.loaders.from_lua').load({
 })
 
 ls.filetype_extend('javascriptreact', { 'javascript' })
+ls.filetype_extend('typescriptreact', { 'typescript' })

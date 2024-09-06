@@ -48,9 +48,9 @@ return {
 
   parse('exc', [[export const ${1:name} = $0]]),
 
-  parse('exf', 'export function ${1:func}($2) {\n  $0\n\\}'),
+  parse('exf', 'export function ${1:func}($2): $3 {\n  $0\n\\}'),
 
   parse('exd', 'export default $0'),
 
-  parse('exdf', 'export default function ${1:func}($2) {\n  $0\n\\}'),
+  parse('exdf', 'export default function ${1:func}($2): $3 {\n  $0\n\\}'),
 }
