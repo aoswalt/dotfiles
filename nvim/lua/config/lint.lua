@@ -104,7 +104,6 @@ require('lint').linters.credo = {
 
 require('lint').linters_by_ft = {
   javascript = { 'eslint' },
-  lua = { 'luacheck' },
   elixir = { 'mix_format' },
   sh = { 'shellcheck' },
 }

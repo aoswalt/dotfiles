@@ -18,6 +18,7 @@ function M.on_attach(client, bufnr)
   end
 
   buf_keymap('n', 'K', function() vim.lsp.buf.hover() end)
+  vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
   buf_keymap('n', 'gd', function() vim.lsp.buf.definition() end)
   buf_keymap('n', '1gd', function()
     vim.cmd('vsplit')

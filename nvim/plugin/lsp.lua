@@ -4,7 +4,7 @@ local my_lsp = require('my.lsp')
 -- server capabilities in spec
 -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#serverCapabilities
 
-local servers = { 'rust_analyzer', 'dockerls', 'bashls', 'gdscript', 'lua_ls' }
+local servers = { 'rust_analyzer', 'dockerls', 'bashls', 'gdscript' }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup({
@@ -12,6 +12,36 @@ for _, lsp in ipairs(servers) do
     capabilities = my_lsp.capabilities,
   })
 end
+
+lspconfig.lua_ls.setup({
+  on_attach = my_lsp.on_attach,
+  capabilities = my_lsp.capabilities,
+  settings = {
+    Lua = {
+      runtime = {
+        version = "LuaJIT"
+      },
+      workspace = {
+        userThirdParty = { "~/.tools/lls-addons" },
+        library = { "~/.tools/lls-addons/love2d" },
+      },
+      diagnostics = {
+        workspaceDelay = 2000,
+      },
+      hint = {
+        enable = true,
+      },
+      format = {
+        defaultConfig = {
+          indent_style = "space",
+          indent_width = 2,
+          quote_style = "single",
+          trailing_table_separator = "smart"
+        }
+      }
+    }
+  }
+})
 
 for _, lsp in ipairs({ 'eslint', 'tsserver' }) do
   lspconfig[lsp].setup({
@@ -64,4 +94,12 @@ lspconfig.vimls.setup({
 require('zk').setup({
   picker = 'telescope',
   lsp = { config = { on_attach = on_attach } },
+})
+
+vim.diagnostic.config({
+  virtual_text = false,
+  severity_sort = true,
+  float = {
+    source = "always", -- Or "if_many"
+  },
 })
