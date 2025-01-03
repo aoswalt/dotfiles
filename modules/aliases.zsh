@@ -275,7 +275,10 @@ fi
 
 alias weather='curl wttr.in/Nashville'
 
-alias shrug="echo '¯\_(ツ)_/¯'"
+alias ,shrug="echo '¯\_(ツ)_/¯'"
+function ,throw {
+  echo "(╯°□°）╯彡 $(flip-text $1)"
+}
 
 alias zmv='noglob zmv -W'
 
