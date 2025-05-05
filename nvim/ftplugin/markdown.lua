@@ -31,7 +31,3 @@ local toggle_checkbox = function()
 end
 
 vim.keymap.set('n', '<leader>t', toggle_checkbox, { desc = 'toggle checkbox' })
-
-if require('zk.util').notebook_root(vim.fn.expand('%:p')) ~= nil then
-  vim.opt_local.conceallevel = 2
-end
