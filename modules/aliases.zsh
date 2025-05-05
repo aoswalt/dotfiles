@@ -55,6 +55,7 @@ alias gcsS='git show --pretty=short --show-signature'
 alias gcl='git-commit-lost'
 alias gcy='git cherry -v --abbrev'
 alias gcY='git cherry -v'
+alias gcwip='git commit --no-verify --message="wip"'
 
 # Conflict (C)
 alias gCl='git --no-pager diff --name-only --diff-filter=U'
