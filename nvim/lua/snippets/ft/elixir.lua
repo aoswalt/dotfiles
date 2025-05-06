@@ -57,7 +57,7 @@ return {
       fmt('IO.inspect({}, label: "{}")', { i(1), dl(2, l._1, 1) }),
       fmt('|> IO.inspect(label: "{}")', { i(1) }),
       fmt('IO.inspect(<>, label: "<>:#{__ENV__.line}")', { i(1), f(filepath, {}) }, { delimiters = '<>' }),
-      fmt('|> IO.inspect(label: "[]:#{__ENV__.line}")', { f(filepath, {}) }, { delimiters = '[]' }),
+      fmt('|> IO.inspect(label: "[]:#{__ENV__.line}")[]', { f(filepath, {}), i(1)  }, { delimiters = '[]'}),
     })
   ),
 
