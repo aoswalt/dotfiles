@@ -1,0 +1,7 @@
+local match=$(mix phx.routes | fzf | cut -w -f 5,6)
+local module=$(echo "$match" | cut -w -f 1)
+local func=$(echo "$match" | cut -w -f 2)
+local func_name=${func:1}
+rg --files-with-matches "defmodule $module" lib | xargs rg --vimgrep "def $func_name"
+
+# vim: ft=zsh

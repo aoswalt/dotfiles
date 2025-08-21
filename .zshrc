@@ -33,10 +33,6 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-[ $commands[zoxide] ] && eval "$(zoxide init zsh)"
-
-[ -f ~/.asdf/asdf.sh ] && source ~/.asdf/asdf.sh
-
 
 fpath=($DOTFILES/completions $fpath)
 if [ -d ${ASDF_DIR}/completions ]; then

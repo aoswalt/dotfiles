@@ -17,12 +17,96 @@ return {
       'danielvolchek/tailiscope.nvim',
     },
     config = function()
-      require('config.telescope')
-
       require('telescope').load_extension('fzf')
       require('telescope').load_extension('ui-select')
       require('telescope').load_extension('gh')
       require('telescope').load_extension('ghn')
+
+      -- from telescope wiki/issue - use git_files if in git project; fall back to find_files if not
+      local project_files = function()
+        local in_git_repo = vim.fn.systemlist('git rev-parse --is-inside-work-tree')[1] == 'true'
+        if in_git_repo then
+          require('telescope.builtin').git_files({ show_untracked = true })
+        else
+          require('telescope.builtin').find_files()
+        end
+      end
+
+      local actions = require('telescope.actions')
+
+      require('telescope').setup({
+        defaults = {
+          file_sorter = require('telescope.sorters').get_fzy_sorter,
+          generic_sorter = require('telescope.sorters').get_fzy_sorter,
+          mappings = {
+            i = {
+              ['<c-f>'] = actions.smart_send_to_qflist + actions.open_qflist,
+              ['<a-a>'] = actions.select_all,
+            },
+          },
+        },
+        pickers = {
+          buffers = {
+            mappings = {
+              n = {
+                ['<c-q>'] = actions.delete_buffer,
+              },
+              i = {
+                ['<c-q>'] = actions.delete_buffer,
+              },
+            },
+          },
+        },
+        extensions = {
+          tailiscope = {
+            register = '',
+          },
+        },
+      })
+
+      local builtin = require('telescope.builtin')
+
+      vim.keymap.set('n', '<leader>f', project_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>sf', project_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>F', builtin.find_files, { desc = '[S]earch project [F]iles' })
+      vim.keymap.set('n', '<leader>sF', builtin.find_files, { desc = '[S]earch project [F]iles' })
+
+      vim.keymap.set(
+        'n',
+        '<leader>/',
+        function() builtin.grep_string({ search = vim.fn.input('Rg> '), use_regex = true }) end
+      )
+      vim.keymap.set('n', '<leader>?', builtin.live_grep) -- can't do regex
+      vim.keymap.set('n', '<leader>s/', function()
+        builtin.live_grep {
+          grep_open_files = true,
+          prompt_title = 'Live Grep in Open Files',
+        }
+      end, { desc = '[S]earch [?] in Open Files' })
+      vim.keymap.set('n', '<leader>*', builtin.grep_string, { desc = 'super search for word under cursor' })
+
+      vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = '[S]earch [B]uffers' })
+      vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch [B]uffers' })
+      vim.keymap.set('n', '<leader>B', builtin.current_buffer_fuzzy_find,
+        { desc = '[S]earch current [B]uffers with fuzzy find' })
+      vim.keymap.set('n', '<leader>sB', builtin.current_buffer_fuzzy_find,
+        { desc = '[S]earch current [B]uffers with fuzzy find' })
+
+      vim.keymap.set('n', '<f1>', builtin.help_tags, { desc = '[S]earch [H]elp' })
+      vim.keymap.set('n', '<leader>K', builtin.help_tags, { desc = '[S]earch [H]elp' })
+      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+
+      vim.keymap.set('n', 'z=', builtin.spell_suggest, { desc = 'Spell suggest' })
+      vim.keymap.set('n', '<leader><leader>', builtin.commands, { desc = 'Search Commands' })
+
+      vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
+
+      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
+      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
+      vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
+      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     end,
   },
 }

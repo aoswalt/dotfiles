@@ -1,4 +1,5 @@
 " Delete buffers that are not displayed in any window or modified
+" should keep terminals
 function! BufCleanup()
   let l:tabs = map(copy(gettabinfo()), 'v:val.tabnr')
 

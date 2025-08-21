@@ -1,45 +1,49 @@
 local M = {}
 
 function M.on_attach(client, bufnr)
+  vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  local function buf_keymap(mode, lhs, rhs, opts)
-    vim.keymap.set(mode, lhs, rhs, vim.tbl_extend('force', { buffer = true, silent = true }, opts or {}))
+  local function map(keys, func, desc, mode)
+    vim.keymap.set(mode or 'n', keys, func, { buffer = bufnr, desc = 'LSP: ' .. desc, silent = true })
   end
 
-  buf_keymap('n', 'K', function() vim.lsp.buf.hover() end)
-  vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-  buf_keymap('n', 'gd', function() vim.lsp.buf.definition() end)
-  buf_keymap('n', '1gd', function()
+  map('K', vim.lsp.buf.hover, 'Hover')
+  map('<c-k>', vim.lsp.buf.signature_help, 'Signature Help')
+
+  map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
+  map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
+  map('grr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  map('gri', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+  map('grd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+  map('1grd', function()
     vim.cmd('vsplit')
     vim.lsp.buf.definition()
-  end)
-  buf_keymap('n', '<c-]>', function() vim.lsp.buf.declaration() end)
-  buf_keymap('n', 'gD', function() vim.lsp.buf.implementation() end)
-  buf_keymap('n', '<c-k>', function() vim.lsp.buf.signature_help() end)
-  buf_keymap('n', '1gD', function() vim.lsp.buf.type_definition() end)
-  buf_keymap('n', 'gr', function() vim.lsp.buf.references() end)
-  buf_keymap('n', 'g0', function() vim.lsp.buf.document_symbol() end)
-  buf_keymap('n', 'gW', function() vim.lsp.buf.workspace_symbol() end)
-  buf_keymap('n', '<f10>', function() vim.diagnostic.open_float() end) -- default is <c-w>d
-  buf_keymap('n', 'gA', function() vim.lsp.buf.code_action() end)
-  buf_keymap('v', 'gA', function() vim.lsp.buf.range_code_action() end)
-  buf_keymap(
-    'n',
-    '<f4>',
-    function() vim.lsp.buf.format() end,
-    { desc = 'lsp format with ' .. client.name }
-  )
-  buf_keymap(
-    'v',
-    '<f4>',
-    function() vim.lsp.buf.format() end,
-    { desc = 'lsp range format with ' .. client.name }
-  )
+  end, '[G]oto [D]efinition in Vertical Split')
 
-  buf_keymap('n', '<f3>', function() vim.lsp.buf.rename() end)
+  -- WARN: This is not Goto Definition, this is Goto Declaration.
+  --  For example, in C this would take you to the header.
+  map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+
+  -- Fuzzy find all the symbols in your current document.
+  --  Symbols are things like variables, functions, types, etc.
+  map('gO', require('telescope.builtin').lsp_document_symbols, 'Open Document Symbols')
+
+  -- Fuzzy find all the symbols in your current workspace.
+  --  Similar to document symbols, except searches over your entire project.
+  map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
+
+  -- Jump to the type of the word under your cursor.
+  --  Useful when you're not sure what type a variable is and you want to see
+  --  the definition of its *type*, not where it was *defined*.
+  map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
+
+  map('<f4>', vim.lsp.buf.format, 'lsp format with ' .. client.name)
+  map('<f4>', vim.lsp.buf.format, 'lsp range format with ' .. client.name, 'x')
 end
 
-M.capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- M.capabilities = require('cmp_nvim_lsp').default_capabilities()
+M.capabilities = require('blink.cmp').get_lsp_capabilities()
 
 return M

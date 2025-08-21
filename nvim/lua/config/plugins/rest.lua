@@ -1,18 +1,7 @@
 return {
   -- {
-  --   'vhyrro/luarocks.nvim',
-  --   priority = 1000,
-  --   config = true,
-  --   opts = {
-  --     -- jsregexp is for luasnip. a separate option is provided there if the
-  --     -- only needed option for luarocks later
-  --     rocks = { 'lua-curl', 'nvim-nio', 'mimetypes', 'xml2lua', 'jsregexp' },
-  --   },
-  -- },
-  -- {
   --   'rest-nvim/rest.nvim',
   --   ft = 'http',
-  --   dependencies = { 'luarocks.nvim' },
   --   main = 'rest-nvim',
   --   config = function()
   --     require('rest-nvim').setup({
@@ -31,4 +20,14 @@ return {
   --     })
   --   end,
   -- },
+  {
+    "rest-nvim/rest.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      opts = function(_, opts)
+        opts.ensure_installed = opts.ensure_installed or {}
+        table.insert(opts.ensure_installed, "http")
+      end,
+    }
+  }
 }

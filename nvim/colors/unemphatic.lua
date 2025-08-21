@@ -281,7 +281,7 @@ h('ModeMsg', {}) -- 'showmode' message (e.g., '-- INSERT --')
 h('MoreMsg', {}) -- more-prompt
 h('NonText', styles.fg_minimum) -- '~' and '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., '>' displayed when a double-wide character doesn't fit at the end of the line).
 h('Normal', {}) -- normal text
--- h("NormalFloat", "Pmenu") -- normal text in floating windows
+h("NormalFloat", { bg = colors.grayscale[9] }) -- normal text in floating windows
 h('NormalNC', styles.bg_minimum) -- normal text in non-current windows
 h('Pmenu', styles.bg_dark) -- Popup menu = normal item.
 h('PmenuSel', styles.menu_selection) -- Popup menu = selected item.
@@ -396,14 +396,6 @@ h('jsonString', { fg = colors.green[0] })
 h('jsonStringSQError', { fg = colors.red[1], style = 'reverse' })
 h('jsonSemicolonError', { fg = colors.red[1], style = 'reverse' })
 
--- ReasonML {{{2
-h('reasonConditional', 'Conditional')
-h('reasonEnumVariant', 'Type')
-h('reasonModPath', 'Identifier')
-h('reasonTrait', 'Identifier')
-h('reasonOperator', 'Operator')
-h('reasonArrowCharacter', 'Operator')
-
 -- SQL {{{2
 h('sqlKeyword', 'Statement')
 
@@ -500,13 +492,6 @@ h('TelescopeMatching', { fg = colors.cyan[1] })
 
 -- Color the prompt prefix
 h('TelescopePromptPrefix', { fg = colors.red[2] })
-
--- nvim-cmp {{{2
-h('CmpItemAbbr', 'Comment')
-h('CmpItemAbbrDeprecated', 'PreProc')
-h('CmpItemAbbr', styles.fg_offset)
-h('CmpItemKind', { fg = colors.cyan[2] })
-h('CmpItemMenu', 'NonText')
 
 -- lewis6991/gitsigns {{{2
 h('GitSignsAdd', { fg = colors.green[0] })

@@ -39,6 +39,9 @@ require('lazy').setup({ import = 'config/plugins' }, {
   change_detection = {
     notify = false,
   },
+  rocks = {
+    hererocks = true,
+  },
 })
 
 --  \"au BufReadPost * if getline(1) =~ \"VAR\" | call SetVar() | endif
@@ -53,3 +56,9 @@ end
 if vim.fn.filereadable(vim.fn.expand('$HOME/init.after.lua')) > 0 then
   vim.cmd('source $HOME/init.after.lua')
 end
+
+-- vim.o.winborder = 'rounded'
+
+vim.diagnostic.config({
+  virtual_text = { current_line = true }
+})

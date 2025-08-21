@@ -1,14 +1,21 @@
 local ls = require('luasnip')
 
-ls.config.set_config({
-  updateevents = 'TextChanged,TextChangedI',
+ls.config.setup({
+  update_events = 'TextChanged,TextChangedI',
 })
 
 vim.keymap.set(
   { 'i', 's' },
-  '<c-e>',
-  "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<c-e>'",
-  { expr = true, remap = true, silent = true }
+  '<c-.>',
+  function() return require('luasnip').choice_active() and require('luasnip').change_choice(1) end,
+  { desc = 'Luasnip - Iterate over active choices', }
+)
+
+vim.keymap.set(
+  { 'i', 's' },
+  '<c-,>',
+  function() return require('luasnip').choice_active() and require('luasnip').change_choice(-1) end,
+  { desc = 'Luasnip - Iterate over active choices backward', }
 )
 
 require('luasnip.loaders.from_lua').load({
