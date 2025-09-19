@@ -1,4 +1,3 @@
-local lspconfig = require('lspconfig')
 local my_lsp = require('my.lsp')
 
 -- server capabilities in spec
@@ -7,13 +6,13 @@ local my_lsp = require('my.lsp')
 local servers = { 'rust_analyzer', 'dockerls', 'bashls', 'gdscript', 'postgres_lsp' }
 
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup({
+  vim.lsp.config(lsp, {
     on_attach = my_lsp.on_attach,
     capabilities = my_lsp.capabilities,
   })
 end
 
-lspconfig.lua_ls.setup({
+vim.lsp.config('lua_ls', {
   on_attach = my_lsp.on_attach,
   capabilities = my_lsp.capabilities,
   settings = {
@@ -44,7 +43,7 @@ lspconfig.lua_ls.setup({
 })
 
 for _, lsp in ipairs({ 'eslint', 'ts_ls' }) do
-  lspconfig[lsp].setup({
+  vim.lsp.config(lsp, {
     on_attach = function(client, bufnr)
       my_lsp.on_attach(client, bufnr)
       if vim.fn.exists(':EslintFixAll') then
@@ -55,7 +54,7 @@ for _, lsp in ipairs({ 'eslint', 'ts_ls' }) do
   })
 end
 
-lspconfig.tailwindcss.setup({
+vim.lsp.config('tailwindcss', {
   -- filetypes = {
   --   -- html
   --   'eelixir',
@@ -86,7 +85,7 @@ lspconfig.tailwindcss.setup({
   },
 })
 
-lspconfig.vimls.setup({
+vim.lsp.config('vimls', {
   -- don't want to override built-in keybinds for vim
   capabilities = my_lsp.capabilities,
 })
