@@ -45,11 +45,17 @@ vim.lsp.config('lua_ls', {
 vim.lsp.enable('lua_ls')
 
 for _, lsp in ipairs({ 'eslint', 'ts_ls' }) do
+  local base_on_attach = vim.lsp.config[lsp].on_attach
   vim.lsp.config(lsp, {
     on_attach = function(client, bufnr)
       my_lsp.on_attach(client, bufnr)
-      if vim.fn.exists(':EslintFixAll') then
-        vim.keymap.set('n', '<f4>', '<cmd>EslintFixAll<cr>', { buffer = true, silent = true })
+
+      if base_on_attach then
+        base_on_attach(client, bufnr)
+      end
+
+      if vim.fn.exists(':LspEslintFixAll') then
+        vim.keymap.set('n', '<f4>', '<cmd>LspEslintFixAll<cr>', { buffer = true, silent = true })
       end
     end,
     capabilities = my_lsp.capabilities,
