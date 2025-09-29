@@ -10,6 +10,7 @@ for _, lsp in ipairs(servers) do
     on_attach = my_lsp.on_attach,
     capabilities = my_lsp.capabilities,
   })
+  vim.lsp.enable(lsp)
 end
 
 vim.lsp.config('lua_ls', {
@@ -41,6 +42,7 @@ vim.lsp.config('lua_ls', {
     }
   }
 })
+vim.lsp.enable('lua_ls')
 
 for _, lsp in ipairs({ 'eslint', 'ts_ls' }) do
   vim.lsp.config(lsp, {
@@ -52,6 +54,7 @@ for _, lsp in ipairs({ 'eslint', 'ts_ls' }) do
     end,
     capabilities = my_lsp.capabilities,
   })
+  vim.lsp.enable(lsp)
 end
 
 vim.lsp.config('tailwindcss', {
@@ -84,11 +87,13 @@ vim.lsp.config('tailwindcss', {
     },
   },
 })
+vim.lsp.enable('tailwindcss')
 
 vim.lsp.config('vimls', {
   -- don't want to override built-in keybinds for vim
   capabilities = my_lsp.capabilities,
 })
+vim.lsp.enable('vimls')
 
 -- require('zk').setup({
 --   picker = 'telescope',
