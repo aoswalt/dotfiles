@@ -1,6 +1,65 @@
 return {
-  'petertriho/cmp-git',
-  'tpope/vim-fugitive',
+  {
+    'tpope/vim-fugitive',
+    config = function()
+      vim.api.nvim_create_user_command(
+        'GlogRange',
+        function(opts)
+          local range_arg = table.concat({ '-L', opts.line1, ',', opts.line2, ':', vim.fn.expand('%') })
+          vim.cmd.Git(table.concat({ '--paginate', 'log', range_arg }, ' '))
+        end,
+        { range = true, desc = 'git log for range' }
+      )
+
+      vim.api.nvim_create_user_command(
+        'Gamend',
+        function(opts)
+          vim.cmd.Git({ args = { 'commit', '--amend', '--no-edit', opts.args } })
+        end,
+        { nargs = '*', desc = 'git amend without editing commit message' }
+      )
+
+      -- git push and fetch using Dispatch - :Dispatch git push
+
+      vim.api.nvim_create_user_command(
+        'Gpush',
+        function(opts)
+          vim.cmd.Dispatch(
+            { '-dir=' .. vim.fn.FugitiveGitDir() .. ' git push' .. opts.args, bang = opts.bang })
+        end,
+        { nargs = '*', bang = true, bar = true, desc = 'git push via Dispatch' })
+
+      vim.api.nvim_create_user_command(
+        'Gfetch',
+        function(opts)
+          vim.cmd.Dispatch({ '-dir=' .. vim.fn.FugitiveGitDir() .. ' git fetch' .. opts.args, bang = opts.bang })
+        end,
+        { nargs = '*', bang = true, bar = true, desc = 'git fetch via Dispatch' })
+
+      vim.api.nvim_create_user_command(
+        'Gpushf', function(opts) vim.cmd.Gpush('--force-with-lease ' .. opts.args) end,
+        { nargs = '*', desc = 'git push --force-with-lease' })
+
+      vim.api.nvim_create_user_command(
+        'Gpc',
+        function(opts)
+          vim.cmd.Gpush(table.concat({ '--set-upstream', 'origin', vim.fn.FugitiveHead(), opts.args }, ' '))
+        end,
+        { nargs = '*', desc = 'git push and set upstream (create)' }
+      )
+
+      vim.keymap.set('n', '<leader>gs', '<cmd>Git<cr>')
+      vim.keymap.set('n', '<leader>ga', '<cmd>Gwrite<cr>')
+      vim.keymap.set('n', '<leader>gb', '<cmd>Git blame<cr>')
+      vim.keymap.set('n', '<leader>gc', '<cmd>Git commit -v<cr>')
+      vim.keymap.set('n', '<leader>gd', '<cmd>Gdiffsplit<cr>')
+      vim.keymap.set('n', '<leader>gl', '<cmd>Git --paginate log<cr>')
+      vim.keymap.set('v', '<leader>gl', '<cmd>GlogRange<cr>')
+      vim.keymap.set('n', '<leader>gL', '<cmd>Git --paginate log -p %<cr>')
+      vim.keymap.set('v', '<leader>gL', ':GlogRange<cr>', { silent = true })
+      vim.keymap.set('n', '<leader>gr', '<cmd>Git rebase -i --autosquash<cr>')
+    end
+  },
   {
     'junegunn/gv.vim',
     config = function() vim.keymap.set('n', '<leader>gv', '<cmd>GV<cr>') end,
