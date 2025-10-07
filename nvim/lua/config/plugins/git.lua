@@ -25,7 +25,7 @@ return {
         'Gpush',
         function(opts)
           vim.cmd.Dispatch(
-            { '-dir=' .. vim.fn.FugitiveGitDir() .. ' git push' .. opts.args, bang = opts.bang })
+            { '-dir=' .. vim.fn.FugitiveGitDir() .. ' git push ' .. opts.args, bang = opts.bang })
         end,
         { nargs = '*', bang = true, bar = true, desc = 'git push via Dispatch' })
 
