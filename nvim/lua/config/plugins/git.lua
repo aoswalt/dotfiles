@@ -14,7 +14,7 @@ return {
       vim.api.nvim_create_user_command(
         'Gamend',
         function(opts)
-          vim.cmd.Git({ args = { 'commit', '--amend', '--no-edit', opts.args } })
+          vim.cmd.Git(table.concat({ 'commit', '--amend', '--no-edit', opts.args }, ' '))
         end,
         { nargs = '*', desc = 'git amend without editing commit message' }
       )
