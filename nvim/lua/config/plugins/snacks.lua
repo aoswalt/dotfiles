@@ -32,7 +32,7 @@ return {
     vim.keymap.set(
       'n',
       '<leader>/',
-      function() Snacks.picker.grep_word({ search = vim.fn.input('Rg> '), regex = true }) end
+      function() Snacks.picker.grep_word({ search = '.*' .. vim.fn.input('Rg> ') .. '.*', regex = true }) end
     )
     vim.keymap.set('n', '<leader>?', Snacks.picker.grep)
     vim.keymap.set('n', '<leader>s/', Snacks.picker.grep, { desc = '[S]earch [?] in Open Files' })
